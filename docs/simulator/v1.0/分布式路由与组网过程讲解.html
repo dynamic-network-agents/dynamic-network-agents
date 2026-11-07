@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>分布式路由与组网过程讲解</title>
+<style>
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #222; max-width: 900px; margin: 0 auto; padding: 24px; }
+h1 { font-size: 24px; border-bottom: 2px solid #2b6cb0; padding-bottom: 8px; }
+h2 { font-size: 19px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-top: 28px; color: #2b6cb0; }
+h3 { font-size: 16px; color: #2c5282; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+th, td { border: 1px solid #bbb; padding: 6px 8px; text-align: left; vertical-align: top; }
+th { background: #edf2f7; }
+code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-family: "SF Mono", Menlo, monospace; font-size: 12px; }
+pre { background: #f6f8fa; border: 1px solid #ddd; padding: 12px; overflow-x: auto; font-family: "SF Mono", Menlo, monospace; font-size: 12px; line-height: 1.4; }
+blockquote { border-left: 4px solid #2b6cb0; margin: 12px 0; padding: 8px 16px; background: #f0f7ff; color: #2c3e50; }
+ol, ul { padding-left: 24px; }
+</style>
+</head>
+<body>
+
+<h1>分布式路由与组网过程讲解</h1>
+<blockquote>面向熟悉 4G/5G 接入网、但对 mesh/自组网不熟的读者：用一个具体例子，讲清楚自组网怎么组网、网络拓扑怎么建立/保存/维护、路由表到底存什么、"目的地"是什么、数据怎么逐跳转发。</blockquote>
+
+<h2>1. 先建立心智模型（用 4G/5G 做锚点）</h2>
+<p>4G/5G 是<b>「有固定中心、集中式」</b>：终端(UE) 永远接入基站(gNB/eNB)，基站由核心网(AMF/MME)统一管。有"基站—终端"的<b>主从之分</b>，网络拓扑是<b>固定的</b>（基站不动、预先规划）。</p>
+<p>Mesh/自组网是<b>「无固定中心、分布式」</b>：<b>每个节点既是"终端"又是"基站"</b>，节点之间互相发现、互相转发，拓扑<b>随时在变</b>，没有谁天生是中心。</p>
+<table>
+<tr><th>概念</th><th>4G/5G（熟悉的）</th><th>Mesh/自组网（本方案）</th></tr>
+<tr><td>谁发现谁</td><td>基站广播 SIB/SSB，UE 搜小区</td><td>人人广播 HELLO，互相发现（无主从）</td></tr>
+<tr><td>接入方式</td><td>UE 单跳 attach 到基站</td><td>节点接入邻居，可<b>多跳</b>转发</td></tr>
+<tr><td>谁管拓扑</td><td>核心网 AMF/MME（集中）</td><td>每节点本地维护 + 协调器全局汇总</td></tr>
+<tr><td>谁算路由</td><td>核心网/基站（集中）</td><td>每个节点本地算下一跳（分布）</td></tr>
+<tr><td>节点移动</td><td>切换基站(handover)</td><td>换邻居 + 重路由</td></tr>
+</table>
+<p>一句话记住：<b>蜂窝网是"大家连基站"，自组网是"大家连大家"。</b></p>
+
+<h2>2. 一个具体场景（先约定节点）</h2>
+<p>约定一个无人平台任务网，节点如下：</p>
+<table>
+<tr><th>节点</th><th>类别</th><th>层次</th><th>作用</th></tr>
+<tr><td>C</td><td>协调器</td><td>管控面</td><td>全局调度、仲裁（地面指挥所）</td></tr>
+<tr><td>B1</td><td>骨干节点</td><td>骨干网</td><td>地面站，微波连 C</td></tr>
+<tr><td>R1、R2</td><td>中继节点</td><td>中继层</td><td>中继机，转发+扩覆盖</td></tr>
+<tr><td>U1、U2</td><td>末端平台</td><td>接入网</td><td>侦察 UAV</td></tr>
+<tr><td>G1、G2</td><td>末端平台</td><td>接入网</td><td>UGV 无人车</td></tr>
+</table>
+<p>目标拓扑（最终形成的样子）：</p>
+<pre>
+             C (协调器/指挥所)
+             │
+             B1 (骨干/地面站)
+             │
+        ┌────┴────┐
+       R1(中继)   R2(中继)
+       /  \        /  \
+     U1    U2    G1   G2
+</pre>
+
+<h2>3. 组网全过程（6 步走完）</h2>
+
+<h3>阶段 1：邻居发现 —— 类比 5G 的"小区搜索"，但人人都在发</h3>
+<p>4G/5G 里是 <b>gNB 周期广播 SSB/SIB</b>，UE 被动扫。自组网里是<b>每个节点都周期广播 HELLO 报文</b>：</p>
+<pre>
+HELLO { 节点ID: "U1", 类型: "UAV", 位置: (x,y), 序列号: 37 }
+</pre>
+<ul>
+<li>U1 开机后广播 HELLO，同时收到 R1 的 HELLO → 知道自己有 1 个邻居 R1。</li>
+<li>通过<b>双向握手</b>确认"我发得出去、也收得到"（单向链路不算数）。</li>
+</ul>
+<p><b>结果</b>：每个节点本地形成一张<b>邻居表</b>（只存一跳邻居）：</p>
+<table>
+<tr><th>邻居</th><th>链路代价(ETX)</th><th>最近HELLO</th><th>有效期</th></tr>
+<tr><td>R1</td><td>1.0</td><td>0.1s 前</td><td>还剩 1.9s</td></tr>
+</table>
+<blockquote>这张表是<b>分布式</b>的——每个节点只存自己的局部信息，没有谁替你记全网。这正是和 4G/5G 最大的区别：没有"核心网"帮你记着全网。</blockquote>
+
+<h3>阶段 2：接入选择与入网 —— 类比 attach，但可多跳</h3>
+<ul>
+<li>U1 根据代价选择接入邻居 R1。</li>
+<li>4G/5G 是"UE 只连基站"，自组网是"末端可连中继、也可连别的末端"，路径是<b>多跳的</b>。</li>
+</ul>
+
+<h3>阶段 3：拓扑建立 —— 从"局部邻居表"到"全网拓扑图"</h3>
+<p><b>每个节点只知道邻居，怎么让全网都知道拓扑长什么样？</b> 分两种思路：</p>
+<ul>
+<li><b>主动式（骨干/中继用）</b>：每个节点把"我和谁连着、代价多少"（<b>链路状态通告 LSA</b>）<b>洪泛</b>给全网，最终<b>每个节点都拼出全网拓扑图</b>（OSPF 思路，RFC 2328；OLSR 用 MPR 减少洪泛冗余，RFC 3626）。</li>
+<li><b>反应式（末端接入用）</b>：平时不维护全网，有数据才广播"找路请求(RREQ)"、目标回"应答(RREP)"（AODV，RFC 3561）。</li>
+</ul>
+<p>同时，<b>协调器 C 通过管控面收集全网快照</b>，得到全局视图。</p>
+
+<h3>阶段 4：拓扑保存 —— 存哪、存什么</h3>
+<p>拓扑信息存在<b>两个地方</b>：</p>
+<p><b>① 分布式（每个节点本地）</b> —— 存"局部视图"（邻居表 + 路由表，见第 4 节）。</p>
+<p><b>② 集中式（协调器 C）</b> —— 存"全局快照"，用于全局优化和仲裁：</p>
+<pre>
+{
+  "snapshotVersion": 123,
+  "nodes": [{"nodeId":"U1","nodeType":"UAV","status":"up"}],
+  "links": [
+    {"linkId":"L17","linkType":"microwave","srcNodeId":"U1","dstNodeId":"R1",
+     "status":"up","params":{"delayMs":12.5,"jitterMs":3.0,"bandwidthBps":8000000,
+     "ber":0.0001,"packetLossRate":0.02},"tsUs":1798585182125680}
+  ]
+}
+</pre>
+<blockquote>记忆点：<b>节点存"我该往哪转发"（路由表），协调器存"全网长什么样"（快照）</b>。</blockquote>
+
+<h3>阶段 5：路由计算 —— 各算各的</h3>
+<ul>
+<li><b>数据面</b>：每个节点拿着全网拓扑图，本地跑 <b>Dijkstra</b> 算到各目的地的下一跳。</li>
+<li><b>管控面</b>：协调器/资源 Agent 用 <b>K 最短路 + 约束过滤(CSPF)</b> 算候选路径，给全局调度用。</li>
+</ul>
+
+<h3>阶段 6：拓扑维护 —— 动态变化怎么办</h3>
+<table>
+<tr><th>机制</th><th>做法</th><th>类比 4G/5G</th></tr>
+<tr><td>老化定时器</td><td>HELLO 有 lifetime，超时没收到就删邻居</td><td>类似 RRC 失步/RLF 检测</td></tr>
+<tr><td>增量更新</td><td>链路状态变了才洪泛变化部分</td><td>类似"事件上报"而非全量刷新</td></tr>
+<tr><td>失效重路由</td><td>链路断了→局部修复/重算→换下一跳</td><td>类似切换 handover / 重建</td></tr>
+</table>
+<p><b>举例</b>：R2 开机晚了，它开机广播 HELLO → G1、G2 发现新邻居 R2 → 更新路由表，流量切到 R2。这就是赛题"节点上线/下线"要模拟的过程。</p>
+
+<h2>4. 一个节点的"三张表"（你问的重点）</h2>
+<p><b>核心答案</b>：路由表存的<b>不是"邻居"</b>，而是<b>"到全网每个目的地的下一跳"</b>。邻居只存在邻居表里。</p>
+<table>
+<tr><th>表</th><th>存什么</th><th>类比</th></tr>
+<tr><td><b>邻居表</b></td><td>只有<b>一跳直达</b>的邻居 + 链路质量</td><td>你只认识隔壁的人</td></tr>
+<tr><td><b>拓扑表</b>（链路状态库）</td><td><b>全网地图</b>（所有节点 + 所有链路）</td><td>你手里有一整张地图</td></tr>
+<tr><td><b>路由表</b></td><td>到<b>全网每个目的地</b>的"下一跳"</td><td>地图上算好的"去每个地方该走哪条街"</td></tr>
+</table>
+<p>以 U1 为例，看三张表：</p>
+<p><b>① 邻居表（一跳，只有 1 个）</b></p>
+<table>
+<tr><th>邻居</th><th>链路代价</th></tr>
+<tr><td>R1</td><td>1.0</td></tr>
+</table>
+<p><b>② 拓扑表（主动式协议洪泛学到的全网地图）</b></p>
+<pre>
+节点: C, B1, R1, R2, U1, U2, G1, G2
+链路: C-B1, B1-R1, B1-R2, R1-U1, R1-U2, R2-G1, R2-G2
+</pre>
+<p><b>③ 路由表（全网 7 个目的地，但下一跳都是 R1）</b></p>
+<table>
+<tr><th>目的地</th><th>下一跳</th><th>跳数</th></tr>
+<tr><td>R1</td><td>R1</td><td>1</td></tr>
+<tr><td>U2</td><td>R1</td><td>2</td></tr>
+<tr><td>B1</td><td>R1</td><td>2</td></tr>
+<tr><td>R2</td><td>R1</td><td>3</td></tr>
+<tr><td>C</td><td>R1</td><td>3</td></tr>
+<tr><td>G1</td><td>R1</td><td>4</td></tr>
+<tr><td>G2</td><td>R1</td><td>4</td></tr>
+</table>
+<p><b>关键观察</b>：</p>
+<ul>
+<li>邻居表只有 <code>R1</code>（一跳），但路由表有 <b>7 个目的地</b>——因为 U2、G1、C 虽然不挨着 U1，U1 依然要能"到达"它们。</li>
+<li>因为 U1 只有 R1 一个出口，所以所有目的地的"下一跳"都是 R1。<b>"目的地"和"下一跳"是两个概念</b>：目的地是最终收件人，下一跳是"这一站先交给谁"。</li>
+</ul>
+
+<h2>5. "目的地"是什么、怎么确定</h2>
+<p><b>目的地 = 某个节点的唯一标识（节点 ID / 地址）</b>，就像 IP 地址或电话号码。竞赛仿真里就是 <code>nodeId</code>（如 <code>"C"</code>、<code>"G1"</code>）。</p>
+<p><b>目的地不是路由协议决定的，是业务/应用层决定的</b>：</p>
+<table>
+<tr><th>问题</th><th>谁决定</th><th>类比</th></tr>
+<tr><td>我要发给<b>谁</b>？（目的地地址）</td><td><b>业务/应用层</b></td><td>打电话给谁，是"你"决定</td></tr>
+<tr><td>知道了地址，<b>怎么送过去</b>？（下一跳）</td><td><b>路由层</b></td><td>电话网帮你接通线路</td></tr>
+</table>
+<p><b>逐跳转发（hop-by-hop）</b> 的过程，就像<b>问路</b>：</p>
+<ul>
+<li>U1 的业务指令是"把侦察视频<b>回传指挥所 C</b>" → 数据包头上写目的地 <code>C</code>。</li>
+<li>U1 查路由表：<code>C → 下一跳 R1</code>，交给 R1。</li>
+<li>R1 查表：<code>C → 下一跳 B1</code>，交给 B1。</li>
+<li>B1 查表：<code>C → 下一跳 C</code>（直达），送达。</li>
+</ul>
+<p><b>每个节点只负责"下一跳给谁"，不负责全程。</b></p>
+
+<h2>6. 路由表里的"目的地条目"怎么学到</h2>
+<ul>
+<li><b>主动式（OLSR，RFC 3626）</b>：所有节点洪泛链路状态 → 每个节点拼出全网地图 → 路由表自然有了"到全网每个节点的条目"。</li>
+<li><b>反应式（AODV，RFC 3561）</b>：平时不学，有数据要发到某目的地时，才临时广播找路、学到该目的地的路由。</li>
+</ul>
+<p>类比 4G/5G：你的手机不需要"学全网路由"（核心网替你算），但自组网没有核心网，所以<b>每个节点都得自己学、自己算</b>——这就是"分布式"的含义。</p>
+
+<h2>7. 一句话总结</h2>
+<table>
+<tr><th>问题</th><th>答案</th></tr>
+<tr><td>组网过程</td><td>邻居发现(HELLO) → 链路测量(ETX) → 拓扑洪泛(LSA) → 路由计算(Dijkstra) → 周期维护</td></tr>
+<tr><td>拓扑怎么建立</td><td>每个节点广播自己认识谁，拼出全网地图</td></tr>
+<tr><td>拓扑怎么保存</td><td>节点存"邻居表+路由表"，协调器存"全局快照"</td></tr>
+<tr><td>拓扑怎么维护</td><td>HELLO 老化定时器 + 链路状态增量更新 + 失效重路由</td></tr>
+<tr><td>路由表存什么</td><td>到<b>全网每个目的地</b>的下一跳，不是只存邻居</td></tr>
+<tr><td>目的地是什么</td><td>每个节点的唯一 ID（地址）</td></tr>
+<tr><td>目的地怎么定</td><td><b>业务层指定</b>（我要发给 C），路由层只负责转发</td></tr>
+</table>
+<p><b>和 4G/5G 的本质区别</b>：蜂窝网拓扑是"静态的、核心网集中管的"；自组网拓扑是"动态的、每个节点自己算自己维护的"，协调器只是"全局参谋"，不是"唯一大脑"。</p>
+
+</body>
+</html>

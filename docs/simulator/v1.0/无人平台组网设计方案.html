@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>无人平台组网设计方案</title>
+<style>
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #222; max-width: 900px; margin: 0 auto; padding: 24px; }
+h1 { font-size: 24px; border-bottom: 2px solid #2b6cb0; padding-bottom: 8px; }
+h2 { font-size: 19px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-top: 28px; color: #2b6cb0; }
+h3 { font-size: 16px; color: #2c5282; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+th, td { border: 1px solid #bbb; padding: 6px 8px; text-align: left; vertical-align: top; }
+th { background: #edf2f7; }
+code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-family: "SF Mono", Menlo, monospace; font-size: 12px; }
+pre { background: #f6f8fa; border: 1px solid #ddd; padding: 12px; overflow-x: auto; font-family: "SF Mono", Menlo, monospace; font-size: 12px; line-height: 1.4; }
+blockquote { border-left: 4px solid #2b6cb0; margin: 12px 0; padding: 8px 16px; background: #f0f7ff; color: #2c3e50; }
+ol, ul { padding-left: 24px; }
+</style>
+</head>
+<body>
+
+<h1>无人平台组网设计方案</h1>
+<blockquote>面向「资源受限环境下通信网络资源管控」竞赛：无人平台的组网方式、链路建立、资源分配调度、数据传输，以及可参考的协议标准与成熟方案。</blockquote>
+
+<h2>1. 无人平台概述</h2>
+<p><b>无人平台（Unmanned Platform / Unmanned System）</b>：不搭载机上操作人员、可自主或遥控执行任务的装备/载具。在通信网络语境下，它是网络中的<b>机动节点（mobile node）</b>，通过无线链路接入机动通信网络，向指挥/协同节点回传数据和接收指令。</p>
+<table>
+<tr><th>类型</th><th>名称</th><th>典型任务</th></tr>
+<tr><td>空中</td><td>无人机（UAV）</td><td>侦察、测绘、中继、打击</td></tr>
+<tr><td>地面</td><td>无人车（UGV）</td><td>巡逻、运输、排爆</td></tr>
+<tr><td>水面</td><td>无人艇（USV）</td><td>巡逻、探测、反潜</td></tr>
+<tr><td>水下</td><td>无人潜航器（UUV/AUV）</td><td>探测、布雷、水下中继</td></tr>
+</table>
+<p><b>关键背景</b>：无人平台处于高速机动、高动态拓扑、窄带宽、强干扰环境下，链路随机通断、带宽动态收缩，因此通信网络需要从"人工配置、中心调度"转向"分布式、自感知、自决策、自协同"的智能化自治模式。</p>
+<p><b>链路质量五要素</b>（对应赛题链路参数模型）：<code>delayMs</code>（时延）、<code>jitterMs</code>（抖动）、<code>bandwidthBps</code>（带宽）、<code>ber</code>（误码率）、<code>packetLossRate</code>（丢包率）。</p>
+<p><b>业务类型与 QoS 门槛</b>：</p>
+<table>
+<tr><th>业务类型</th><th>QoS 敏感点</th></tr>
+<tr><td>话音</td><td>时延、抖动敏感</td></tr>
+<tr><td>视频</td><td>带宽敏感</td></tr>
+<tr><td>数据</td><td>丢包敏感</td></tr>
+<tr><td>图片</td><td>带宽 + 可靠性</td></tr>
+</table>
+
+<h2>2. 组网方式：分级混合 + 控制/数据面分离</h2>
+<p>无人平台组网<b>不是单一模式</b>，而是在三种基本形态之上，针对"高机动 + 资源受限 + 抗毁"需求演化出的<b>分级混合式</b>。核心结论：</p>
+<blockquote><b>数据面分布式自组网 + 管控面分层协调（协调器统一编排、仲裁，支持降级自治）</b></blockquote>
+
+<h3>2.1 三种基本组网形态</h3>
+<table>
+<tr><th>组网方式</th><th>结构</th><th>决策方式</th><th>典型实例</th><th>优点</th><th>缺点</th></tr>
+<tr><td>集中式（有中心）</td><td>星型/树型，节点统一连中心基站/AP</td><td>中心统一调度</td><td>蜂窝网（基站）、IEEE 802.11 基础设施模式</td><td>资源分配集中高效、接入管理简单、QoS 可控</td><td>单点故障、抗毁性差、覆盖受限、不适应高速机动节点</td></tr>
+<tr><td>分布式自组网（Ad Hoc / MANET）</td><td>无中心、对等多跳</td><td>各节点本地决策</td><td>AODV（RFC 3561）、OLSR（RFC 3626）、IEEE 802.11 ad-hoc / 802.11s mesh</td><td>抗毁强、即插即用、拓扑自适应、适合机动</td><td>路由/控制开销大、容量受限、全局优化困难</td></tr>
+<tr><td>分级/分层混合式（分簇）</td><td>簇头 + 簇成员，骨干 + 接入</td><td>簇头局部协调 + 骨干全局协调</td><td>分簇路由（如 LEACH/HEED 思想）、战术数据链分层组网</td><td>兼顾抗毁与效率、扩展性好</td><td>簇头选举/维护有开销、簇头成为局部关键节点</td></tr>
+</table>
+<p><b>形态选择的分析</b>：</p>
+<ul>
+<li><b>纯集中式不可行</b>：无人平台高速机动、链路随机通断，中心链路一旦中断全网失联；且中心基站覆盖受限，无法跟随平台机动。</li>
+<li><b>纯分布式在窄带宽下开销过大</b>：资源受限（窄带宽）场景下，分布式路由的洪泛/控制报文开销占比高，且缺乏全局视图，难以做带宽、路由的全局优化和冲突仲裁。</li>
+<li><b>分级混合是折中</b>：数据面用分布式自组网保证抗毁与自愈，管控面用分层协调保证全局优化与冲突仲裁，是军用机动通信的成熟思路（参考 Link 16/TTNT 的分层组网理念）。</li>
+</ul>
+
+<h3>2.2 控制面与数据面分离</h3>
+<p>借鉴 <b>SDN（软件定义网络，OpenFlow/ONF）</b> 的"控制与转发分离"思想，但<b>不是</b>照搬集中式 SDN 控制器，而是适配无人平台场景的"<b>分布式数据面 + 分层/半集中管控面</b>"：</p>
+<table>
+<tr><th>层面</th><th>模式</th><th>职责</th><th>成熟技术</th></tr>
+<tr><td>数据面（连通 + 转发）</td><td>分布式为主</td><td>邻居发现、多跳转发、拓扑自愈</td><td>MANET 路由（OLSR/AODV）、DTN 存储转发</td></tr>
+<tr><td>管控面（决策 + 仲裁）</td><td>分层、可降级</td><td>态势汇总、资源优化、冲突仲裁、策略校验</td><td>协调器 Coordinator + 策略中心</td></tr>
+</table>
+<p><b>协调器 ≠ 数据必经中心</b>：协调器是管控面的编排者（任务调度、冲突仲裁、策略校验），<b>业务数据流不经过协调器</b>，底层数据转发仍由分布式路由完成。协调器只下发"策略"（路由、带宽、优先级），不转发"数据"。</p>
+<p><b>降级自治机制（抗毁关键）</b>：协调器是"逻辑协调中心"而非"物理唯一中心"。当协调器或骨干链路被毁，系统应能逐级降级：</p>
+<ol>
+<li>协调器失效 → 区域<b>簇头/汇聚节点</b>临时接管本区域协调；</li>
+<li>簇头也失效 → 退化为<b>预置规则 + 节点本地自治</b>（按固化优先级、最短路径规则运行）；</li>
+<li>链路恢复 → 重新选举/上报，恢复全局协调。</li>
+</ol>
+<p>这一"可降级、可替换"设计是无人平台网络抗毁性的核心，也是赛题"从中心调度转向自协同"的落地体现。</p>
+
+<h3>2.3 自组织网络（SON）思想</h3>
+<p>3GPP 定义的<b>自组织网络（Self-Organizing Network, SON）</b>三大能力，与赛题理念一一对应：</p>
+<table>
+<tr><th>SON 能力</th><th>含义</th><th>赛题对应</th></tr>
+<tr><td>自配置（Self-Configuration）</td><td>节点即插即用、自动入网、自动获取参数</td><td>分布式组网、邻居发现</td></tr>
+<tr><td>自优化（Self-Optimization）</td><td>自动调路由/带宽/功率等参数</td><td>自决策、资源动态调度</td></tr>
+<tr><td>自愈（Self-Healing）</td><td>故障自动检测与恢复</td><td>自感知、故障诊断、自愈建议</td></tr>
+</table>
+<p>无人平台组网可视为 SON 思想在"高动态、抗毁、资源受限"场景下的强化版本。</p>
+
+<h2>3. "分布式、自感知、自决策、自协同"的工程化落地</h2>
+<p>四个理念不是口号，每一项都能落到具体机制与协议上。<b>关键区分</b>："分布式/自感知"主要在<b>数据面</b>（用成熟网络协议实现），"自决策/自协同"主要在<b>管控面</b>（用多智能体 + 确定性算法实现）；LLM 只负责意图理解、故障解释、工具选择，<b>不直接跑路由协议、不做精确数值计算</b>。</p>
+
+<h3>3.1 分布式：去中心化组网与决策</h3>
+<table>
+<tr><th>机制</th><th>技术手段</th><th>说明</th></tr>
+<tr><td>邻居发现</td><td>HELLO 报文周期广播</td><td>节点周期广播自身 ID、位置、序列号，收到应答即建立邻居关系</td></tr>
+<tr><td>分布式路由（主动式）</td><td>OLSR（RFC 3626）/ OLSRv2（RFC 7181）</td><td>周期洪泛链路状态，全网维护一致拓扑视图，低时延</td></tr>
+<tr><td>分布式路由（反应式）</td><td>AODV（RFC 3561）</td><td>有数据才发起路由发现（RREQ/RREP），省开销</td></tr>
+<tr><td>分簇</td><td>LEACH、HEED 等分簇算法</td><td>节点聚簇、簇头局部协调，降低全局控制开销</td></tr>
+<tr><td>去中心化决策</td><td>每节点本地计算下一跳</td><td>用 Dijkstra/K 最短路本地算路，无需全局控制器</td></tr>
+</table>
+
+<h3>3.2 自感知：网络状态与频谱感知</h3>
+<table>
+<tr><th>感知维度</th><th>技术手段</th><th>赛题映射</th></tr>
+<tr><td>邻居/拓扑感知</td><td>HELLO 信标、链路状态通告（LSA）、全网快照</td><td>拓扑感知、连通分量分析</td></tr>
+<tr><td>链路质量感知</td><td><b>ETX（期望传输次数，De Couto 等 2003）</b>、SNR、RSSI、误码率、丢包率</td><td><code>ber</code>、<code>packetLossRate</code>、<code>delayMs</code>、<code>jitterMs</code></td></tr>
+<tr><td>频谱/干扰感知</td><td>认知无线电、频谱扫描、干扰检测、动态频谱接入（IEEE 802.22 WRAN）</td><td>强干扰场景下的自适应换频/跳频</td></tr>
+<tr><td>异常感知</td><td>阈值规则 + 时序异常检测</td><td>故障诊断、异常事件检测</td></tr>
+</table>
+<p>其中 <b>ETX</b> 是自组织网络最常用的链路代价度量：ETX = 1 /（正向成功投递率 × 反向成功投递率），可由误码率、丢包率换算而来，直接作为路由权重，使算法"感知"链路质量。这是把赛题的链路五要素接入路由决策的关键桥梁。</p>
+
+<h3>3.3 自决策：本地路由 + 智能体策略</h3>
+<p>决策分<b>两个层次</b>，各司其职：</p>
+<table>
+<tr><th>层次</th><th>决策主体</th><th>决策内容</th><th>技术</th></tr>
+<tr><td>本地（数据面）</td><td>每个节点</td><td>下一跳选择、本地转发</td><td>分布式路由 + Dijkstra/K 最短路</td></tr>
+<tr><td>全局（管控面）</td><td>运维 Agent → 资源 Agent → 协调器</td><td>故障定位、候选路由、带宽分配、QoS 优先级</td><td>LLM 意图理解 + OR-Tools/NetworkX 确定性算法 + 策略校验</td></tr>
+</table>
+<p><b>LLM 的定位边界</b>（赛题评分点 2.3 的关键）：LLM 负责解析业务约束、解释故障、判断调用哪类工具、生成规范的工具调用参数、总结决策依据；<b>不负责</b>精确算最短路径/最大流/带宽分配（这些由确定性算法保证可复现、可校验），<b>不绕过</b>策略校验直接改网络状态。</p>
+
+<h3>3.4 自协同：冲突仲裁与协作传输</h3>
+<table>
+<tr><th>协同机制</th><th>技术手段</th><th>说明</th></tr>
+<tr><td>资源冲突仲裁</td><td>优先级调度、多维资源加锁、快照版本校验</td><td>多业务争用链路时按优先级/最低保障带宽分配</td></tr>
+<tr><td>资源协商</td><td>博弈论、拍卖/竞价机制</td><td>分布式频谱/带宽竞价，避免互相抢占</td></tr>
+<tr><td>协作传输</td><td>多路径并行、协作分集、中继协作</td><td>提高可靠性与吞吐</td></tr>
+<tr><td>Agent 协同</td><td>A2A 消息（运维 ↔ 资源 ↔ 协调器）</td><td>交换诊断结果、约束、候选策略</td></tr>
+</table>
+
+<h3>3.5 四者闭环</h3>
+<p>"分布式、自感知、自决策、自协同"构成一个闭环，对应赛题要求的"状态采集 → 异常识别 → 故障诊断 → 资源评估 → 策略生成 → 策略校验 → 策略下发 → 效果反馈 → 再评估"：</p>
+<pre>
+自感知（采集/诊断）
+   │ 态势 + 约束
+   ▼
+自决策（本地路由 + 智能体生成策略）
+   │ 候选策略
+   ▼
+自协同（冲突仲裁 + 校验 + 协作传输）
+   │ 已校验策略下发 + 执行反馈
+   ▼
+分布式数据面执行 → 再自感知（闭环）
+</pre>
+
+<h2>4. 组网分层与节点角色</h2>
+<p>无人平台网络是典型的<b>"接入网 — 中继层 — 骨干网"三层结构</b>，各层职责、带宽、机动性不同。</p>
+<pre>
+        ┌───────────── 骨干网 (Backbone) ─────────────┐
+        地面站/指挥所 ◄──高带宽微波/卫星──► 卫星/预警机
+                     │                    │
+        ┌────────────▼──── 中继层 (Relay) ────────────┐
+        中继机/中继节点（多跳转发、扩展覆盖、绕视距遮挡）
+                     │                    │
+        ┌────────────▼──── 接入网 (Access) ───────────┐
+        末端无人平台（UAV/UGV/UUV，单跳或多跳接入）
+</pre>
+
+<h3>4.1 三层结构详述</h3>
+<table>
+<tr><th>层次</th><th>组成</th><th>链路特点</th><th>主要功能</th></tr>
+<tr><td>接入网（Access）</td><td>末端无人平台</td><td>近距离、带宽较小、机动性强、链路断续</td><td>业务产生/接收、单跳或多跳接入中继/骨干</td></tr>
+<tr><td>中继层（Relay）</td><td>中继机、升空平台</td><td>中距、承上启下、需覆盖/绕遮挡</td><td>多跳转发、扩展覆盖、克服视距遮挡、延伸接入范围</td></tr>
+<tr><td>骨干网（Backbone）</td><td>地面站、预警机、卫星终端</td><td>高带宽、长距、相对稳定</td><td>跨区域互联、上联卫星/指挥所、承接大容量回传</td></tr>
+</table>
+<p><b>层次间关系</b>：接入层末端平台先接入最近的<b>中继节点</b>，中继节点逐跳把数据汇聚到<b>骨干节点</b>，再由骨干网通过微波/卫星链路送抵<b>地面指挥所/卫星</b>。带宽自接入层向骨干层逐级增大，机动性自骨干层向接入层逐级增强。</p>
+
+<h3>4.2 节点角色与功能</h3>
+<table>
+<tr><th>角色</th><th>职责</th><th>典型载体</th></tr>
+<tr><td>普通节点（member）</td><td>业务源/宿，接入网络</td><td>末端无人机、无人车</td></tr>
+<tr><td>中继节点（relay）</td><td>多跳转发、扩大覆盖、克服遮挡</td><td>中继机、升空平台</td></tr>
+<tr><td>簇头/汇聚节点（cluster head / sink）</td><td>区域内局部协调、数据汇聚、临时接管</td><td>区域中心节点</td></tr>
+<tr><td>骨干节点/网关（backbone / gateway）</td><td>跨区域互联、上联卫星/指挥所、异构网互联</td><td>地面站、预警机、卫星终端</td></tr>
+<tr><td>指挥控制节点（C2）</td><td>全局态势汇总、任务下达</td><td>指挥所、地面站</td></tr>
+</table>
+
+<h3>4.3 层次间的链路建立与入网/退网</h3>
+<p>链路建立遵循"邻居发现 → 质量测量 → 拓扑建立 → 路由计算"四步（详见第 5 章），层次间连接的核心动作：</p>
+<ol>
+<li><b>接入选择</b>：末端平台入网时广播接入请求，选择信号最强/路径最优的邻近中继或簇头接入。</li>
+<li><b>中继建立</b>：中继节点之间以及中继到骨干之间建立转发路径，形成多跳链。</li>
+<li><b>骨干上联</b>：骨干节点通过微波/卫星链路与地面站、卫星建立高带宽回传。</li>
+<li><b>入网/退网</b>：节点上线广播 → 拓扑更新（链路状态通告）→ 触发路由重算 → 智能体感知连通度变化 → 生成替代路径/自愈建议。</li>
+</ol>
+
+<h3>4.4 分簇与簇头机制</h3>
+<p>分级混合组网中，<b>分簇</b>是控制开销、提升扩展性的关键手段：</p>
+<table>
+<tr><th>分簇算法</th><th>来源</th><th>思想</th></tr>
+<tr><td>LEACH</td><td>Heinzelman 等，2000（WSN 经典）</td><td>簇头轮换、簇内单跳，均衡能耗</td></tr>
+<tr><td>HEED</td><td>Younis &amp; Fahmy，2004</td><td>混合分布式分簇，考虑剩余能量与通信代价</td></tr>
+</table>
+<p>无人平台场景可借鉴其"簇头轮换 + 簇头降级"思想：簇头不是固定节点，可轮换选举，簇头失效时成员重新选簇头，避免单点故障。</p>
+
+<h3>4.5 与赛题节点/链路的对应</h3>
+<p>赛题样例数据中 <code>GND</code>（地面）→ <code>AIR</code>（空中）的 <code>microwave</code>（微波）链路，正对应"骨干/地面指挥节点 ↔ 空中中继/机动节点"的骨干-接入关系。链路类型字段 <code>linkType</code> 可扩展为 <code>microwave</code>（微波）、<code>satellite</code>（卫星）、<code>vhf/uhf</code>（超短波）等，对应本章的骨干、中继、接入各层。</p>
+
+<h2>5. 链路建立过程</h2>
+<p>一条链路从"节点开机"到"可承载业务"，遵循"<b>邻居发现 → 链路质量测量 → 拓扑建立 → 路由计算 → 链路维护/失效处理</b>"的完整生命周期。本节按此展开，并给出每步对应的协议标准与赛题落地。</p>
+
+<h3>5.1 总体流程</h3>
+<pre>
+节点开机/入网
+   │ ① 邻居发现（HELLO 广播 + 握手）
+   ▼
+链路质量测量（RSSI/SNR/BER → ETX 代价）
+   │ ② 生成链路代价，作为路由权重
+   ▼
+拓扑建立（主动式洪泛 / 反应式按需探测）
+   │ ③ 形成全网或局部拓扑视图
+   ▼
+路由计算（Dijkstra / K 最短路 / CSPF）
+   │ ④ 确定下一跳 / 候选路径
+   ▼
+链路维护（周期性探测 + 失效检测 + 重路由）
+</pre>
+
+<h3>5.2 邻居发现（Neighbor Discovery）</h3>
+<table>
+<tr><th>机制</th><th>说明</th><th>标准/来源</th></tr>
+<tr><td>HELLO 报文周期广播</td><td>节点周期广播自身 ID、位置、能力、序列号，收到即确认邻居</td><td>OLSR 的 HELLO 消息（RFC 3626）</td></tr>
+<tr><td>双向/三向握手</td><td>通过应答区分单向链路与双向链路</td><td>IPv6 邻居发现（RFC 4861）类比</td></tr>
+<tr><td>失效判定</td><td>连续若干周期未收到 HELLO，判定邻居失效</td><td>定时器超时机制</td></tr>
+</table>
+<p><b>要点</b>：</p>
+<ul>
+<li>HELLO 报文携带节点唯一标识、位置、移动性信息、当前时间，为后续链路测量和拓扑建立提供原始输入。</li>
+<li>只有确认<b>双向可达</b>的邻居才纳入路由计算，避免单向链路的"隐藏终端"问题。</li>
+<li>邻居表维护有效期（lifetime），超时未刷新即删除，对应赛题"节点下线"的自动感知。</li>
+</ul>
+
+<h3>5.3 链路质量测量（Link Quality Measurement）</h3>
+<p>链路质量是路由决策的核心输入，分<b>物理层原始指标</b>和<b>链路层综合代价</b>两层：</p>
+<table>
+<tr><th>指标</th><th>含义</th><th>来源</th></tr>
+<tr><td>RSSI</td><td>接收信号强度</td><td>物理层</td></tr>
+<tr><td>SNR</td><td>信噪比</td><td>物理层</td></tr>
+<tr><td>BER</td><td>误码率</td><td>物理层，赛题字段 <code>ber</code></td></tr>
+<tr><td>丢包率</td><td>数据包丢失比例</td><td>链路层，赛题字段 <code>packetLossRate</code></td></tr>
+<tr><td>时延/抖动</td><td>端到端时延、抖动</td><td>赛题字段 <code>delayMs</code>、<code>jitterMs</code></td></tr>
+</table>
+<p><b>ETX（期望传输次数，Expected Transmission Count）</b> 是最常用的综合链路代价（De Couto 等，2003）：</p>
+<blockquote>ETX = 1 /（正向投递率 df × 反向投递率 dr）</blockquote>
+<ul>
+<li>df = 1 − 正向丢包率，dr = 1 − 反向丢包率（可由 <code>packetLossRate</code>、<code>ber</code> 换算）。</li>
+<li>ETX 越小链路越好，作为 Dijkstra 等最短路算法的<b>边权</b>，让路由"感知"链路质量。</li>
+<li>进一步引入 <b>ETT（期望传输时间，Draves 等，2004）</b>，把带宽也纳入代价：ETT = ETX ×（平均包长 / 链路带宽），对应赛题 <code>bandwidthBps</code>。</li>
+</ul>
+<p><b>赛题落地</b>：把链路五要素（<code>delayMs</code>/<code>jitterMs</code>/<code>bandwidthBps</code>/<code>ber</code>/<code>packetLossRate</code>）加权合成一个综合代价（如 ETX 或 ETT），作为 NetworkX 图上的边权，即可实现"链路质量感知路由"。</p>
+
+<h3>5.4 拓扑建立（Topology Establishment）</h3>
+<p>按信息获取方式分三类路由协议的拓扑建立机制：</p>
+<table>
+<tr><th>类型</th><th>机制</th><th>代表协议</th><th>适用</th></tr>
+<tr><td>主动式（表驱动）</td><td>周期洪泛链路状态，全网维护一致拓扑</td><td>OLSR（RFC 3626）、OLSRv2（RFC 7181）、OSPF（RFC 2328）类比</td><td>密集、低时延要求</td></tr>
+<tr><td>反应式（按需）</td><td>有数据才发起路由发现（RREQ/RREP）</td><td>AODV（RFC 3561）、DSR（RFC 4728）</td><td>稀疏、流量少</td></tr>
+<tr><td>混合式</td><td>区域内主动 + 区域间反应</td><td>ZRP</td><td>大规模分层</td></tr>
+</table>
+<p><b>关键机制</b>：</p>
+<ul>
+<li><b>链路状态通告（LSA）</b>：主动式协议中，节点把与邻居的链路状态洪泛给全网，各节点拼出全网拓扑图（OSPF 的 LSA 思想，RFC 2328）。</li>
+<li><b>MPR（多点中继）</b>：OLSR 用于<b>减少洪泛冗余</b>的机制——每个节点只选少量邻居作为中继转发控制报文，降低控制开销，适合窄带宽场景（RFC 3626）。</li>
+<li><b>按需路由发现</b>：AODV 中源节点广播 RREQ，目标/中间节点回 RREP，沿途建立反向/正向路由，不维护全网拓扑，省开销。</li>
+</ul>
+<p><b>赛题落地</b>：仿真层可用"全网快照 + NetworkX 连通分量分析"简化实现主动式拓扑建立；动态场景下用事件驱动触发重算，模拟反应式的按需更新。</p>
+
+<h3>5.5 路由计算（Route Computation）</h3>
+<p>拓扑视图建立后，用图算法计算转发路径：</p>
+<table>
+<tr><th>算法</th><th>用途</th><th>来源</th></tr>
+<tr><td>Dijkstra</td><td>单源最短路</td><td>Dijkstra 1959，O((V+E) log V)</td></tr>
+<tr><td>Bellman-Ford</td><td>含负权/分布式距离向量</td><td>距离向量协议（Babel，RFC 6126）</td></tr>
+<tr><td>K 最短路（Yen）</td><td>多候选路径，供故障切换</td><td>Yen 1971</td></tr>
+<tr><td>CSPF（约束最短路）</td><td>带带宽/时延/丢包约束的路径选择</td><td>MPLS-TE（RFC 3209）思想</td></tr>
+</table>
+<p><b>关键区分</b>：</p>
+<ul>
+<li><b>分布式</b>：每节点本地算下一跳（Dijkstra/距离向量），对应数据面。</li>
+<li><b>集中式辅助</b>：由 Python 算法服务算 K 条候选路径 + CSPF 约束过滤，返回给智能体，对应管控面（方案中的算法层）。</li>
+</ul>
+
+<h3>5.6 链路维护与失效处理（Link Maintenance）</h3>
+<p>链路是动态的，建立后仍需持续维护：</p>
+<table>
+<tr><th>机制</th><th>说明</th><th>赛题对应</th></tr>
+<tr><td>失效检测</td><td>连续若干 HELLO 周期未收到，判定链路中断</td><td>异常事件检测</td></tr>
+<tr><td>局部修复</td><td>AODV 在断链处就近重路由，避免全局重算</td><td>替代路径生成</td></tr>
+<tr><td>拓扑更新</td><td>链路状态变化洪泛全网，触发重算</td><td>拓扑快速变化场景</td></tr>
+<tr><td>自愈建议</td><td>智能体基于诊断结果生成恢复策略</td><td>自愈建议生成</td></tr>
+</table>
+<p><b>赛题落地</b>：链路中断（<code>status</code> 变 down / 丢包率突增）→ 运维 Agent 感知 → 资源 Agent 计算替代路径 → 策略校验 → 下发 → 反馈，构成一个完整的故障恢复闭环。</p>
+
+<h3>5.7 与赛题指标/数据的对应</h3>
+<table>
+<tr><th>环节</th><th>赛题指标</th><th>赛题数据字段</th></tr>
+<tr><td>邻居发现 + 质量测量</td><td>状态感知时间</td><td><code>linkId</code>、<code>srcNodeId</code>、<code>dstNodeId</code>、<code>params.*</code></td></tr>
+<tr><td>拓扑建立 + 路由计算</td><td>策略生成时间</td><td>拓扑快照、连通分量</td></tr>
+<tr><td>路由计算 + 失效处理</td><td>策略下发时间、故障恢复时间</td><td><code>status</code>、<code>ber</code>、<code>packetLossRate</code></td></tr>
+<tr><td>全过程</td><td>网络连通度、业务 QoS 达标率</td><td><code>linkType</code>、<code>bandwidthBps</code></td></tr>
+</table>
+
+<h2>6. 资源分配与调度</h2>
+<table>
+<tr><th>资源维度</th><th>分配/调度方式</th><th>成熟技术</th></tr>
+<tr><td>带宽/时隙</td><td>按需分配、动态时分、优先级抢占</td><td>动态 TDMA、DAMA、OFDMA</td></tr>
+<tr><td>路由/路径</td><td>负载均衡、多路径、绕障重路由</td><td>分布式路由 + 约束最短路</td></tr>
+<tr><td>QoS/优先级</td><td>按业务类型分队列、预留、限流</td><td>DiffServ、RSVP、802.1p</td></tr>
+</table>
+<blockquote>赛题落地：带宽分配用线性规划/OR-Tools，路由用 Dijkstra/K 最短路；业务类型映射优先级队列。</blockquote>
+
+<h2>7. 数据传输</h2>
+<ul>
+<li><b>多跳转发</b>：源 → 中继 → 骨干逐跳传递。</li>
+<li><b>断续链路容错</b>：链路随机通断时用<b>容迟容断（DTN）"存储-转发"</b>，等链路恢复再传（对应赛题"链路断续多发"）。</li>
+<li><b>协同传输</b>：多路径并行、协作分集，提高可靠性和吞吐。</li>
+</ul>
+
+<h2>8. 协议标准与成熟方案</h2>
+<h3>8.1 MANET 自组网路由（IETF RFC）</h3>
+<table>
+<tr><th>协议</th><th>类型</th><th>标准</th><th>适用</th></tr>
+<tr><td>AODV</td><td>反应式（按需）</td><td>RFC 3561</td><td>拓扑稀疏、流量少</td></tr>
+<tr><td>DSR</td><td>反应式（源路由）</td><td>RFC 4728</td><td>小规模、全路径控制</td></tr>
+<tr><td>OLSR / OLSRv2</td><td>主动式（链路状态）</td><td>RFC 3626 / 7181</td><td>密集、高动态、需低时延</td></tr>
+<tr><td>Babel</td><td>主动式（距离向量）</td><td>RFC 6126</td><td>高动态、异构网络</td></tr>
+<tr><td>B.A.T.M.A.N.-adv</td><td>主动式</td><td>开源/Linux 内核</td><td>易部署、Mesh 成熟</td></tr>
+<tr><td>ZRP</td><td>混合式</td><td>学术参考</td><td>大规模分层网络</td></tr>
+</table>
+<blockquote>推荐组合：<b>OLSRv2（骨干/密集区）+ AODV（稀疏接入区）</b> 的混合，对应"分级混合组网"。</blockquote>
+<h3>8.2 无线 Mesh 与物理层（IEEE / LPWAN）</h3>
+<table>
+<tr><th>标准</th><th>用途</th></tr>
+<tr><td>IEEE 802.11s</td><td>Wi-Fi Mesh，内置 HWMP 混合路由</td></tr>
+<tr><td>IEEE 802.15.4 / Zigbee</td><td>低功耗短距（传感器/集群内部）</td></tr>
+<tr><td>LoRa / LoRaWAN</td><td>远距离低速率（长航时遥测）</td></tr>
+<tr><td>5G/NR 专网</td><td>大带宽低时延（营地/固定场景）</td></tr>
+</table>
+<h3>8.3 战术数据链（军用成熟方案，最贴合赛题）</h3>
+<table>
+<tr><th>系统</th><th>标准</th><th>特点</th></tr>
+<tr><td>Link 16</td><td>MIL-STD-6016 / STANAG 5516</td><td>TDMA、抗干扰、实时态势共享，全球广泛部署</td></tr>
+<tr><td>Link 22</td><td>STANAG 5522</td><td>超视距、抗干扰</td></tr>
+<tr><td>TTNT</td><td>美空军</td><td>基于 IP 的高动态 Ad Hoc，毫秒级接入，最适合高动态无人平台</td></tr>
+<tr><td>MADL</td><td>F-35 数据链</td><td>低截获、定向、高速</td></tr>
+<tr><td>JTRS/SCA</td><td>软件定义无线电架构</td><td>软件通信架构，波形可重构</td></tr>
+</table>
+<blockquote>TTNT 是"高动态、分布式、自组网、抗干扰"的标杆级成熟方案，作为参考案例引用有说服力。</blockquote>
+<h3>8.4 容迟容断 DTN（应对断续链路）</h3>
+<table>
+<tr><th>协议</th><th>标准</th><th>用途</th></tr>
+<tr><td>Bundle Protocol</td><td>RFC 9171（原 5050）</td><td>断续/大时延链路的存储转发</td></tr>
+<tr><td>DTN 架构</td><td>RFC 4838</td><td>深空、战术边缘、水下</td></tr>
+</table>
+<h3>8.5 QoS 与数据分发</h3>
+<table>
+<tr><th>标准/技术</th><th>用途</th></tr>
+<tr><td>DiffServ（RFC 2475）</td><td>分类队列、优先级调度</td></tr>
+<tr><td>RSVP/IntServ（RFC 2205/2210）</td><td>端到端资源预留</td></tr>
+<tr><td>DDS（OMG 标准）</td><td>实时发布/订阅数据分发，QoS 策略丰富，无人系统广泛使用</td></tr>
+<tr><td>MQTT / ZeroMQ</td><td>轻量消息分发</td></tr>
+</table>
+<h3>8.6 认知无线电（应对强干扰/频谱受限）</h3>
+<table>
+<tr><th>标准</th><th>用途</th></tr>
+<tr><td>IEEE 802.22 (WRAN)</td><td>动态频谱接入</td></tr>
+<tr><td>DSA（动态频谱接入）</td><td>检测干扰、自适应跳频/换频</td></tr>
+</table>
+
+<h2>9. 落地建议（仿真实现）</h2>
+<blockquote><b>数据面</b>采用 MANET 分布式自组网（OLSRv2 + AODV 混合，参考 TTNT/Link 16 设计理念），<b>管控面</b>采用多智能体（运维 Agent + 资源控制 Agent + Coordinator 协调仲裁），<b>控制面与数据面分离</b>，支持中心降级自治；断续链路用 DTN 存储转发兜底。</blockquote>
+<p>仿真环境无需实现完整协议栈，建议：</p>
+<ol>
+<li>用 <b>NetworkX 的连通分量 / 最短路径 / K 最短路</b> 简化实现"分布式路由"效果；</li>
+<li>用<b>链路代价 ETX</b>（由误码率、丢包率换算）作为路由权重，让算法"感知"链路质量；</li>
+<li>带宽分配用 <b>OR-Tools 线性/整数规划</b>，QoS 用 <b>DiffServ 式优先级队列</b>建模；</li>
+<li>文档中明确"参考 TTNT/Link 16/OLSRv2 标准，仿真层做协议简化"。</li>
+</ol>
+
+<h2>10. 可映射到的竞赛评分点</h2>
+<table>
+<tr><th>评分项</th><th>分值</th><th>本方案的对应</th></tr>
+<tr><td>1. 动态场景建模</td><td>18</td><td>分级混合组网、链路通断/带宽时变场景</td></tr>
+<tr><td>2.2 多智能体协同体系架构</td><td>12</td><td>控制/数据面分离、协调器仲裁、降级自治</td></tr>
+<tr><td>2.3 成员智能体技术选型</td><td>12</td><td>OLSRv2/AODV、TTNT 参考、RAG/工具调用</td></tr>
+</table>
+
+</body>
+</html>

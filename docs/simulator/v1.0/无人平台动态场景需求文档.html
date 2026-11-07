@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>无人平台动态场景需求文档</title>
+<style>
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.6; color: #222; max-width: 960px; margin: 0 auto; padding: 24px; }
+h1 { font-size: 24px; border-bottom: 2px solid #2b6cb0; padding-bottom: 8px; }
+h2 { font-size: 19px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-top: 28px; color: #2b6cb0; }
+h3 { font-size: 16px; color: #2c5282; margin-top: 20px; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+th, td { border: 1px solid #bbb; padding: 6px 8px; text-align: left; vertical-align: top; }
+th { background: #edf2f7; }
+code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-family: "SF Mono", Menlo, monospace; font-size: 12px; }
+pre { background: #f6f8fa; border: 1px solid #ddd; padding: 12px; overflow-x: auto; font-family: "SF Mono", Menlo, monospace; font-size: 12px; line-height: 1.4; }
+blockquote { border-left: 4px solid #2b6cb0; margin: 12px 0; padding: 8px 16px; background: #f0f7ff; color: #2c3e50; }
+ol, ul { padding-left: 24px; }
+.seq { border: 1px solid #ddd; background: #fff; padding: 12px; margin: 16px 0; }
+.seq-title { font-weight: bold; color: #2b6cb0; margin: 20px 0 4px; }
+</style>
+<script src="mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true, theme:'default', securityLevel:'loose'});</script>
+</head>
+<body>
+
+<h1>无人平台动态场景需求文档</h1>
+<blockquote>面向「资源受限环境下通信网络资源管控」竞赛：系统枚举无人平台网络的动态场景（大场景 + 小场景），每个小场景按统一模板描述背景、参与方、前置条件、步骤、后置状态，并论述"引入智能体"与"普通无 LLM 网络"的差别。</blockquote>
+
+<h2>0. 文档约定</h2>
+
+<h3>0.1 场景模板（6 部分）</h3>
+<p>每个小场景统一按以下 6 部分描述：</p>
+<ol>
+<li><b>背景</b>：场景发生的业务背景与触发原因。</li>
+<li><b>参与方</b>：涉及哪些节点/智能体。</li>
+<li><b>前置条件</b>（Precondition）：场景发生前网络必须满足的状态。</li>
+<li><b>步骤</b>：主体行为（谁发什么消息）→ 目标行为（谁收到、做什么动作）→ 数据操作 → 结果。</li>
+<li><b>后置状态</b>（Post-condition）：场景结束后网络的状态。</li>
+<li><b>智能体 vs 普通无 LLM 差别</b>：该场景下引入智能体带来的增益。</li>
+</ol>
+
+<h3>0.2 节点命名（沿用前文）</h3>
+<table>
+<tr><th>标识</th><th>角色</th><th>层次</th></tr>
+<tr><td>C</td><td>协调器（Coordinator）</td><td>管控面</td></tr>
+<tr><td>B1</td><td>骨干节点（地面站）</td><td>骨干网</td></tr>
+<tr><td>R1、R2</td><td>中继节点</td><td>中继层</td></tr>
+<tr><td>U1、U2</td><td>末端 UAV</td><td>接入网</td></tr>
+<tr><td>G1、G2</td><td>末端 UGV</td><td>接入网</td></tr>
+</table>
+<p><b>智能体</b>：运维智能体（O&amp;M Agent）、资源控制智能体（Resource Agent）、协调器 C。</p>
+
+<h3>0.3 通用消息与数据</h3>
+<table>
+<tr><th>消息/数据</th><th>内容</th><th>说明</th></tr>
+<tr><td>HELLO</td><td><code>{nodeId, type, position, seq}</code></td><td>邻居发现周期广播</td></tr>
+<tr><td>LSA</td><td><code>{nodeId, 邻居列表+代价}</code></td><td>链路状态通告</td></tr>
+<tr><td>邻居表</td><td><code>{邻居, ETX代价, 最近HELLO, 有效期}</code></td><td>每节点本地</td></tr>
+<tr><td>路由表</td><td><code>{目的地, 下一跳, 跳数, 代价}</code></td><td>每节点本地</td></tr>
+<tr><td>全局快照</td><td><code>{snapshotVersion, nodes[], links[]}</code></td><td>协调器保存</td></tr>
+<tr><td>A2A 消息</td><td><code>{messageId, traceId, taskId, fromAgent, toAgent, messageType, payload}</code></td><td>智能体间消息</td></tr>
+<tr><td>DIAGNOSIS_RESULT</td><td><code>{affectedLinks, failedNodes, constraints, impactedFlows}</code></td><td>运维→资源</td></tr>
+<tr><td>CANDIDATE_POLICY</td><td><code>{候选路由, 带宽分配, QoS调整}</code></td><td>资源→协调器</td></tr>
+<tr><td>POLICY_APPLY</td><td><code>{策略内容, 幂等键}</code></td><td>协调器→仿真器</td></tr>
+</table>
+
+<h2>1. 大场景：初始组网</h2>
+
+<h3>1.1 小场景：全网冷启动</h3>
+<p><b>1. 背景</b>：任务开始，所有节点同时开机，网络从零开始自组织成网，无任何预配置拓扑。</p>
+<p><b>2. 参与方</b>：C、B1、R1、R2、U1、U2、G1、G2（全部节点）。</p>
+<p><b>3. 前置条件</b>：所有节点已上电、无线模块就绪，但尚未建立任何链路；各节点只有自身 ID 和角色配置。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>U1 广播 <code>HELLO{nodeId:"U1",type:"UAV",seq:1}</code></td><td>R1 收到，回 <code>HELLO-ACK</code></td><td>R1 邻居表新增 <code>U1 → ETX 1.0</code></td><td>U1 与 R1 建立双向邻居</td></tr>
+<tr><td>2</td><td>R1 广播 <code>HELLO</code></td><td>B1、U1 收到并回 ACK</td><td>B1、U1 各自邻居表新增 R1</td><td>R1 同时连 B1 和 U1</td></tr>
+<tr><td>3</td><td>B1 广播 <code>HELLO</code></td><td>C、R1、R2 收到并回 ACK</td><td>各节点邻居表更新</td><td>B1 与 C、R1、R2 建邻居</td></tr>
+<tr><td>4</td><td>各节点洪泛 <code>LSA</code></td><td>全网节点收到并转发</td><td>每节点拓扑表拼出全网地图</td><td>全网拓扑视图一致</td></tr>
+<tr><td>5</td><td>各节点本地跑 Dijkstra</td><td>—</td><td>每节点路由表生成到全网目的地</td><td>全网路由建立</td></tr>
+<tr><td>6</td><td>C 向仿真器请求全局快照</td><td>仿真器返回 <code>nodes[]/links[]</code></td><td>C 保存 <code>snapshotVersion=1</code></td><td>协调器获得全局视图</td></tr>
+</table>
+<p><b>5. 后置状态</b>：全网连通，每节点有完整邻居表、拓扑表、路由表；C 持有初始快照；可承载业务。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络靠 HELLO+LSA+Dijkstra 也能自动成网（步骤 1-5 都是协议层，两者相同）。差别在<b>步骤 6 及之后</b>：智能体版本由运维 Agent 对初始拓扑做<b>主动评估</b>（连通度、关键节点、单点风险），并生成初始资源规划；无 LLM 版本只有"能连通"，没有"态势评估和初始优化"。</p>
+
+<h3>1.2 小场景：分批/增量入网</h3>
+<p><b>1. 背景</b>：R2 因故晚开机，网络已由其他节点组成，R2 现在加入。</p>
+<p><b>2. 参与方</b>：R2、B1、G1、G2、C。</p>
+<p><b>3. 前置条件</b>：除 R2 外全网已连通；R2 开机但未接入。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>R2 广播 <code>HELLO</code></td><td>B1、G1、G2 收到并回 ACK</td><td>各节点邻居表新增 R2</td><td>R2 与 B1、G1、G2 建邻居</td></tr>
+<tr><td>2</td><td>R2 洪泛自己的 <code>LSA</code></td><td>全网收到，触发增量拓扑更新</td><td>各节点拓扑表新增 R2 及其链路</td><td>全网拓扑增量刷新</td></tr>
+<tr><td>3</td><td>各节点重算路由</td><td>—</td><td>部分节点路由表更新（如 G1 改走 R2）</td><td>流量可能切到 R2</td></tr>
+<tr><td>4</td><td>C 更新全局快照</td><td>—</td><td>C 快照 <code>snapshotVersion+1</code></td><td>协调器感知新拓扑</td></tr>
+</table>
+<p><b>5. 后置状态</b>：R2 入网，拓扑更新，部分流量切换到经 R2 的更优路径。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络靠增量 LSA 也能把 R2 纳入（步骤 1-3）。差别：智能体版本由运维 Agent <b>识别"有新节点入网"事件</b>并评估其影响（是否成为更优中继、是否需要重分配带宽），资源 Agent 决定是否主动迁移业务；无 LLM 版本只做协议级路由收敛，不主动优化业务分布。</p>
+
+<div class="seq-title">时序图：初始组网（以全网冷启动为例）</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant U1
+    participant R1
+    participant B1
+    participant C
+    participant Sim as 仿真器
+    U1->>R1: HELLO{U1, UAV}
+    R1->>U1: HELLO-ACK
+    R1->>B1: HELLO{R1, relay}
+    B1->>R1: HELLO-ACK
+    Note over U1,B1: 各节点周期广播HELLO，建立双向邻居
+    R1->>B1: LSA{R1的邻居+代价}
+    Note over U1,B1: 全网洪泛LSA，拼出全网拓扑图
+    Note over U1,R1: 各节点本地跑Dijkstra生成路由表
+    C->>Sim: 请求全局快照
+    Sim->>C: nodes[]/links[]
+    Note over C: 保存 snapshotVersion=1
+</div></div>
+
+<h2>2. 大场景：节点动态</h2>
+
+<h3>2.1 小场景：节点上线</h3>
+<p>同 1.2 分批入网（单个节点上线可复用同一流程）。</p>
+
+<h3>2.2 小场景：节点下线（故障）</h3>
+<p><b>1. 背景</b>：U2 因被毁/故障突然失联，不再响应任何报文。这是赛题明确的"节点下线"建模手段。</p>
+<p><b>2. 参与方</b>：U2、R1、C、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：U2 通过 R1 接入，且有一条业务流（如 U2→C 的视频）正在传输。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>U2 停止广播（物理失联）</td><td>R1 连续 N 个周期收不到 U2 的 HELLO</td><td>R1 邻居表 U2 条目 lifetime 超时</td><td>R1 判定 U2 下线</td></tr>
+<tr><td>2</td><td>R1 洪泛 <code>LSA{U2 不可达}</code></td><td>全网收到，触发拓扑更新</td><td>各节点拓扑表移除 U2</td><td>全网知道 U2 下线</td></tr>
+<tr><td>3</td><td>C 检测到快照变化，创建诊断任务</td><td>运维 Agent 收到网络快照</td><td>C 分配 <code>traceId/taskId</code></td><td>进入智能体诊断</td></tr>
+<tr><td>4</td><td>运维 Agent 调用拓扑分析工具</td><td>返回连通分量、受影响业务</td><td>诊断结果：U2 下线、影响 FLOW(U2→C)</td><td>生成 DIAGNOSIS_RESULT</td></tr>
+<tr><td>5</td><td>运维 Agent 发 <code>DIAGNOSIS_RESULT</code></td><td>资源 Agent 收到</td><td>读取 affectedNodes、impactedFlows</td><td>资源 Agent 得知故障与约束</td></tr>
+<tr><td>6</td><td>资源 Agent 调用路由算法</td><td>返回替代路径或"业务无替代路径"</td><td>生成 CANDIDATE_POLICY</td><td>候选策略</td></tr>
+<tr><td>7</td><td>资源 Agent 发 <code>CANDIDATE_POLICY</code></td><td>C 收到并校验</td><td>C 校验拓扑有效性、容量</td><td>策略通过/拒绝</td></tr>
+<tr><td>8</td><td>C 下发 <code>POLICY_APPLY</code></td><td>仿真器执行</td><td>仿真器应用策略并反馈</td><td>业务恢复或标记不可恢复</td></tr>
+</table>
+<p><b>5. 后置状态</b>：U2 已从全网拓扑移除；U2 相关业务流或被重路由恢复、或被标记为中断；路由表收敛。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络靠"HELLO 超时 → LSA 洪泛 → 重算路由"也能把 U2 移除、恢复连通（步骤 1-2）。差别在<b>步骤 3-8</b>：智能体版本能<b>解释"为什么 U2 下线、影响了哪些业务、业务能否恢复"</b>，并给出可追溯的自愈建议；无 LLM 版本只知道"U2 断了、重路由了"，不区分业务影响、无根因、无解释。</p>
+
+<h3>2.3 小场景：节点移动</h3>
+<p><b>1. 背景</b>：U1 高速机动，位置变化导致原邻居链路质量下降、新邻居出现。</p>
+<p><b>2. 参与方</b>：U1、R1、R2、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：U1 经 R1 接入，移动到 R1/R2 覆盖交界处。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>U1 持续广播 HELLO（位置更新）</td><td>R1、R2 都收到</td><td>R1 邻居表 U1 代价升高；R2 邻居表新增 U1</td><td>链路质量动态变化</td></tr>
+<tr><td>2</td><td>各节点更新 LSA</td><td>全网触发拓扑更新</td><td>拓扑表链路代价刷新</td><td>全网感知 U1 移动</td></tr>
+<tr><td>3</td><td>运维 Agent 检测链路质量波动</td><td>调用质量评估工具</td><td>评估 R1-U1 代价 vs R2-U1 代价</td><td>识别"U1 应切换接入"</td></tr>
+<tr><td>4</td><td>资源 Agent 计算切换方案</td><td>返回新接入路径</td><td>生成 CANDIDATE_POLICY</td><td>候选切换策略</td></tr>
+<tr><td>5</td><td>C 校验并下发</td><td>仿真器执行</td><td>更新路由表</td><td>U1 切换到 R2 接入</td></tr>
+</table>
+<p><b>5. 后置状态</b>：U1 切换到更优邻居，业务不中断或短暂中断后恢复。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络靠 ETX 代价变化也能让路由自动切换（步骤 1-2，类似 handover）。差别：智能体版本<b>预测性切换</b>（提前评估、主动迁移业务），并解释切换原因；无 LLM 版本是<b>反应式</b>的，代价超过阈值才被动切换，可能已造成丢包。</p>
+
+<div class="seq-title">时序图：节点下线（故障）</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant U2
+    participant R1
+    participant C
+    participant OM as 运维Agent
+    participant RC as 资源Agent
+    participant Sim as 仿真器
+    U2-xR1: HELLO停止(失联)
+    Note over R1: 邻居表U2条目超时
+    R1->>R1: 洪泛 LSA{U2不可达}
+    C->>OM: 创建诊断任务(网络快照)
+    OM->>OM: 拓扑分析:U2下线,影响FLOW
+    OM->>RC: DIAGNOSIS_RESULT{affectedNodes:[U2]}
+    RC->>RC: 计算替代路径
+    RC->>C: CANDIDATE_POLICY
+    C->>C: 校验拓扑+容量
+    C->>Sim: POLICY_APPLY
+    Sim->>C: 执行反馈
+</div></div>
+
+<h2>3. 大场景：链路动态</h2>
+
+<h3>3.1 小场景：链路中断</h3>
+<p><b>1. 背景</b>：R1-B1 链路因遮挡/干扰中断（<code>status</code>→down）。这是赛题"链路随机通断"的核心场景。</p>
+<p><b>2. 参与方</b>：R1、B1、C、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：存在经 R1-B1 的业务流（如 U1→C 的话音）。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>链路 R1-B1 状态变 down</td><td>R1、B1 双向检测到失联</td><td>双方邻居表删除对方</td><td>判定链路中断</td></tr>
+<tr><td>2</td><td>R1、B1 洪泛 <code>LSA{R1-B1 中断}</code></td><td>全网拓扑更新</td><td>拓扑表移除该链路</td><td>全网知道中断</td></tr>
+<tr><td>3</td><td>运维 Agent 收到快照变化</td><td>调用故障诊断工具</td><td>定位"R1-B1 中断，影响 FLOW(U1→C)"</td><td>生成 DIAGNOSIS_RESULT</td></tr>
+<tr><td>4</td><td>运维 Agent 发 DIAGNOSIS_RESULT</td><td>资源 Agent 收到</td><td>读取 affectedLinks、constraints</td><td>得知约束"R1-B1 不可用"</td></tr>
+<tr><td>5</td><td>资源 Agent 调用 K 最短路算法</td><td>返回替代路径（如 U1→R1→R2→B1→C）</td><td>生成 CANDIDATE_POLICY</td><td>候选替代路由</td></tr>
+<tr><td>6</td><td>C 校验替代路径</td><td>校验拓扑有效、容量足够</td><td>通过校验</td><td>策略可下发</td></tr>
+<tr><td>7</td><td>C 下发 POLICY_APPLY</td><td>仿真器应用</td><td>更新相关节点路由表</td><td>业务切换到替代路径</td></tr>
+</table>
+<p><b>5. 后置状态</b>：业务经替代路径恢复，全网路由收敛；R1-B1 标记为 down。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络靠 LSA+Dijkstra 也能收敛到替代路径（步骤 1-2）。差别：智能体版本<b>主动生成多条候选路径并择优</b>（考虑业务 QoS 约束，不只"最短"），且能解释"为什么选这条路"；无 LLM 版本只算最短路径，不区分业务 QoS，可能把话音切到高时延路径导致 QoS 不达标。</p>
+
+<h3>3.2 小场景：链路质量退化</h3>
+<p><b>1. 背景</b>：R1-B1 链路未断，但误码率/丢包率/时延显著变差（如 <code>ber</code> 从 1e-4 升到 1e-2）。</p>
+<p><b>2. 参与方</b>：R1、B1、运维 Agent、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：R1-B1 链路 up 但质量恶化，承载的视频业务出现卡顿。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>R1 测量链路参数变化</td><td>更新邻居表 R1-B1 的 ETX 代价</td><td>ETX 显著升高</td><td>链路质量被感知</td></tr>
+<tr><td>2</td><td>R1 洪泛 <code>LSA{R1-B1 代价升高}</code></td><td>全网拓扑更新</td><td>拓扑表代价刷新</td><td>全网知道质量退化</td></tr>
+<tr><td>3</td><td>运维 Agent 检测 <code>ber/packetLossRate</code> 异常</td><td>调用阈值+时序检测</td><td>判定"质量退化事件"</td><td>识别退化</td></tr>
+<tr><td>4</td><td>运维 Agent 发 DIAGNOSIS_RESULT</td><td>资源 Agent 收到</td><td>constraints 含"R1-B1 质量不达标"</td><td>资源 Agent 知约束</td></tr>
+<tr><td>5</td><td>资源 Agent 评估业务 QoS</td><td>调用 QoS 评估工具</td><td>判断视频业务是否仍达标</td><td>决定切路径/降级</td></tr>
+<tr><td>6</td><td>资源 Agent 生成策略（切路径或降码率）</td><td>C 校验并下发</td><td>更新路由或业务参数</td><td>业务 QoS 恢复</td></tr>
+</table>
+<p><b>5. 后置状态</b>：业务切换到质量更好的路径，或降级保障；链路质量被持续监控。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：这是<b>差别最大的场景</b>。普通网络（如 OSPF）<b>感知不到</b>链路质量退化——链路仍 up，OSPF 不重路由，视频继续卡顿丢包。智能体版本通过运维 Agent 主动监测 <code>ber/packetLossRate/delayMs</code>，识别"质量退化但未断"，并主动切路径或降级保障。这是"自感知"能力的核心体现。</p>
+
+<h3>3.3 小场景：链路恢复</h3>
+<p><b>1. 背景</b>：此前中断的 R1-B1 链路恢复 up。</p>
+<p><b>2. 参与方</b>：R1、B1、C、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：R1-B1 之前为 down，业务正走替代路径。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>R1、B1 重新收到对方 HELLO</td><td>双向握手成功</td><td>邻居表恢复 R1-B1</td><td>链路恢复</td></tr>
+<tr><td>2</td><td>洪泛 <code>LSA{R1-B1 恢复}</code></td><td>全网拓扑更新</td><td>拓扑表恢复该链路</td><td>全网知道恢复</td></tr>
+<tr><td>3</td><td>运维 Agent 检测恢复事件</td><td>评估原路径质量</td><td>对比原路径 vs 替代路径代价</td><td>决定是否切回</td></tr>
+<tr><td>4</td><td>资源 Agent 决定切回或保持</td><td>C 校验下发</td><td>更新路由</td><td>业务回到最优路径</td></tr>
+</table>
+<p><b>5. 后置状态</b>：链路恢复，业务按代价择优走原路径或继续走替代路径。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络也会自动收敛回原路径（最短路径）。差别：智能体版本<b>有策略地判断"是否值得切回"</b>（避免频繁振荡），并记录决策；无 LLM 版本只要原路径更短就切回，可能在高动态下引起<b>路由振荡</b>。</p>
+
+<h3>3.4 小场景：链路随机通断（间歇性断续）</h3>
+<p><b>1. 背景</b>：链路 up↔down 频繁切换（间歇性），稳定路径不存在。</p>
+<p><b>2. 参与方</b>：R1、B1、运维 Agent、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：R1-B1 链路间歇性断续，业务时通时断。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>链路频繁 up↔down</td><td>各节点反复更新邻居表/LSA</td><td>拓扑频繁变更</td><td>路由频繁重算</td></tr>
+<tr><td>2</td><td>运维 Agent 检测"高频断续"模式</td><td>判定为间歇性故障</td><td>记录断续频率</td><td>识别不稳定链路</td></tr>
+<tr><td>3</td><td>资源 Agent 采取防抖策略</td><td>提高切换阈值、加迟滞</td><td>避免路由振荡</td><td>策略稳定</td></tr>
+<tr><td>4</td><td>数据面启用 DTN 存储转发</td><td>断续期间缓存数据，链路恢复再传</td><td>缓存队列</td><td>数据不丢失</td></tr>
+</table>
+<p><b>5. 后置状态</b>：业务通过 DTN 存储转发在断续链路下仍能送达；策略防抖避免振荡。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络面对间歇断续会<b>反复重路由、振荡、丢包</b>（协议只做"尽力转发"）。智能体版本通过运维 Agent <b>识别"断续模式"并加迟滞防抖</b>，同时启用 DTN 存储转发兜底。这是应对"链路随机通断"的关键增益。</p>
+
+<div class="seq-title">时序图：链路中断</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant R1
+    participant B1
+    participant C
+    participant OM as 运维Agent
+    participant RC as 资源Agent
+    participant Sim as 仿真器
+    Note over R1,B1: 链路R1-B1中断
+    R1-xB1: 检测失联
+    R1->>B1: 洪泛 LSA{R1-B1 down}
+    C->>OM: 快照变化,创建诊断任务
+    OM->>OM: 故障定位:影响FLOW(U1→C)
+    OM->>RC: DIAGNOSIS_RESULT{affectedLinks:[R1-B1]}
+    RC->>RC: K最短路算替代路径
+    RC->>C: CANDIDATE_POLICY{新路径}
+    C->>C: 校验拓扑+容量
+    C->>Sim: POLICY_APPLY
+    Sim->>C: 反馈:业务恢复
+</div></div>
+
+<h2>4. 大场景：拓扑结构</h2>
+
+<h3>4.1 小场景：网络分区/割裂</h3>
+<p><b>1. 背景</b>：多条关键链路同时断，网络裂成两个不连通子网。</p>
+<p><b>2. 参与方</b>：全网节点、C、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：存在把网络分成两半的关键链路集。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>关键链路集同时中断</td><td>各节点检测失联</td><td>拓扑表更新</td><td>网络分裂</td></tr>
+<tr><td>2</td><td>运维 Agent 调用连通分量分析</td><td>返回两个不连通分量</td><td>判定"拓扑分区"</td><td>识别分区</td></tr>
+<tr><td>3</td><td>运维 Agent 发 DIAGNOSIS_RESULT{topologyPartition:true}</td><td>资源 Agent 收到</td><td>得知分区</td><td>进入分区处理</td></tr>
+<tr><td>4</td><td>各分区内自治运行</td><td>分区内重算路由</td><td>分区内路由表</td><td>分区内仍连通</td></tr>
+<tr><td>5</td><td>资源 Agent 尝试跨分区恢复</td><td>若有可修复链路则下发</td><td>恢复策略</td><td>分区可能重新合并</td></tr>
+</table>
+<p><b>5. 后置状态</b>：网络分为两个自治分区，分区内业务正常，跨分区业务中断/降级。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络分区后只是"各自连通、跨区不通"，无全局感知。智能体版本通过运维 Agent <b>主动识别"这是分区而非普通故障"</b>，并触发分区自治 + 降级运行 + 恢复尝试，是抗毁性的体现。</p>
+
+<h3>4.2 小场景：分区合并</h3>
+<p><b>1. 背景</b>：隔离的两个分区之间的链路恢复，重新连通。</p>
+<p><b>2. 参与方</b>：两个分区的边界节点、C、运维 Agent。</p>
+<p><b>3. 前置条件</b>：网络处于分区状态，恢复链路出现。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>边界节点互相发现</td><td>HELLO 握手</td><td>邻居表恢复</td><td>跨区链路恢复</td></tr>
+<tr><td>2</td><td>洪泛 LSA</td><td>两分区拓扑融合</td><td>拓扑表合并</td><td>全网重连</td></tr>
+<tr><td>3</td><td>运维 Agent 检测合并事件</td><td>重算连通度</td><td>判定"分区已合并"</td><td>恢复全局视图</td></tr>
+</table>
+<p><b>5. 后置状态</b>：网络重新连通，全局路由收敛，跨区业务恢复。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络靠 LSA 洪泛自动合并。差别：智能体版本能<b>识别合并事件并协调跨区资源重新分配</b>，避免合并瞬间的资源冲突。</p>
+
+<h3>4.3 小场景：关键节点失效（割点/中继）</h3>
+<p><b>1. 背景</b>：R1 是多个末端节点的唯一上游（割点），R1 被毁导致其下所有末端失联。</p>
+<p><b>2. 参与方</b>：R1、其下末端节点、C、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：R1 是割点，U1、U2 只经 R1 上联。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>R1 失效</td><td>U1、U2 检测到 R1 失联</td><td>邻居表删除 R1</td><td>末端失联</td></tr>
+<tr><td>2</td><td>运维 Agent 识别"关键节点失效"</td><td>分析影响范围</td><td>判定 R1 是割点</td><td>识别单点风险</td></tr>
+<tr><td>3</td><td>资源 Agent 寻找备用中继</td><td>若有备用中继则切换</td><td>生成 CANDIDATE_POLICY</td><td>恢复或确认不可恢复</td></tr>
+<tr><td>4</td><td>簇头机制触发重选</td><td>区域内重选簇头</td><td>新簇头产生</td><td>局部自治接管</td></tr>
+</table>
+<p><b>5. 后置状态</b>：若存在备用中继则业务恢复；否则该区域业务中断，触发簇头重选降级运行。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络只知"R1 断了、末端失联"。智能体版本能<b>提前识别割点/单点风险</b>（运维 Agent 的关键节点分析），并在设计时通过冗余中继规避，故障时主动切换。这是"抗毁性设计"的体现。</p>
+
+<div class="seq-title">时序图：网络分区/割裂</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant A as 分区A节点
+    participant B as 分区B节点
+    participant OM as 运维Agent
+    participant RC as 资源Agent
+    Note over A,B: 关键链路集同时中断
+    A-xB: 失联
+    OM->>OM: 连通分量分析→两个分量
+    OM->>RC: DIAGNOSIS_RESULT{topologyPartition:true}
+    RC->>RC: 分区内自治+恢复尝试
+    Note over A,B: 各分区独立重算路由
+</div></div>
+
+<h2>5. 大场景：资源与带宽</h2>
+
+<h3>5.1 小场景：带宽下降</h3>
+<p><b>1. 背景</b>：R1-B1 链路可用带宽从 8Mbps 收缩到 1Mbps（<code>bandwidthBps</code> 下降）。</p>
+<p><b>2. 参与方</b>：R1、B1、运维 Agent、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：R1-B1 承载多条业务流，总需求 6Mbps。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>带宽动态收缩</td><td>各节点测量到 <code>bandwidthBps</code> 下降</td><td>更新链路参数</td><td>带宽受限被感知</td></tr>
+<tr><td>2</td><td>运维 Agent 检测带宽下降事件</td><td>评估总需求 vs 新容量</td><td>判定"带宽不足"</td><td>识别瓶颈</td></tr>
+<tr><td>3</td><td>运维 Agent 发 DIAGNOSIS_RESULT</td><td>资源 Agent 收到</td><td>constraints 含"带宽 1Mbps"</td><td>资源 Agent 知约束</td></tr>
+<tr><td>4</td><td>资源 Agent 调用带宽分配算法（OR-Tools）</td><td>返回重分配方案</td><td>按优先级分配 1Mbps</td><td>生成 CANDIDATE_POLICY</td></tr>
+<tr><td>5</td><td>C 校验（容量、优先级）</td><td>下发 POLICY_APPLY</td><td>更新带宽分配</td><td>关键业务保障、低优先级降级</td></tr>
+</table>
+<p><b>5. 后置状态</b>：带宽按业务优先级重新分配，话音等高优先级业务保障，低优先级业务降级/排队。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：<b>差别巨大的场景</b>。普通网络<b>感知不到带宽下降</b>（链路仍 up，协议不重路由），所有业务继续竞争 1Mbps，导致拥塞丢包、无差别劣化。智能体版本通过运维 Agent 感知 <code>bandwidthBps</code> 变化，资源 Agent 用优化算法<b>按优先级重分配</b>，实现"关键业务保障、普通业务降级"。这是"资源动态调度"的核心价值。</p>
+
+<h3>5.2 小场景：拥塞</h3>
+<p><b>1. 背景</b>：业务量突增超过链路容量，产生拥塞。</p>
+<p><b>2. 参与方</b>：R1、B1、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：某链路流量逼近或超过容量。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>流量突增</td><td>链路队列增长、时延上升</td><td>监测到拥塞指标</td><td>拥塞发生</td></tr>
+<tr><td>2</td><td>运维 Agent 检测拥塞</td><td>定位拥塞链路</td><td>判定拥塞点</td><td>识别瓶颈</td></tr>
+<tr><td>3</td><td>资源 Agent 执行限流/调度</td><td>优先级队列（DiffServ）</td><td>高优先级先发</td><td>拥塞缓解</td></tr>
+<tr><td>4</td><td>资源 Agent 可选切流到其他路径</td><td>C 校验下发</td><td>更新路由</td><td>负载均衡</td></tr>
+</table>
+<p><b>5. 后置状态</b>：拥塞缓解，高优先级业务不受影响，低优先级业务可能被限流。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络拥塞后只能被动丢包（TCP 降速）。智能体版本<b>主动限流 + 优先级调度 + 负载均衡</b>，把拥塞影响限定在低优先级业务。</p>
+
+<h3>5.3 小场景：多业务争抢同一链路</h3>
+<p><b>1. 背景</b>：话音、视频两条流同时竞争同一条有限带宽链路。</p>
+<p><b>2. 参与方</b>：两条业务流、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：两业务总需求超过链路容量。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>两业务同时请求带宽</td><td>资源 Agent 收到竞争</td><td>检测到冲突</td><td>资源冲突</td></tr>
+<tr><td>2</td><td>资源 Agent 按优先级仲裁</td><td>话音优先于视频</td><td>分配带宽</td><td>话音保障</td></tr>
+<tr><td>3</td><td>C 做冲突仲裁审批</td><td>下发分配结果</td><td>更新各流带宽</td><td>冲突解决</td></tr>
+</table>
+<p><b>5. 后置状态</b>：高优先级业务得到保障，低优先级业务被降级或拒绝，冲突消解。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络对两流<b>同等对待</b>（先到先得），无业务语义，话音可能被视频挤掉导致时延超标。智能体版本理解"话音时延敏感、视频带宽敏感"的差异，按优先级<b>差异化保障</b>。这是"冲突仲裁"能力的体现。</p>
+
+<div class="seq-title">时序图：带宽下降</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant R1
+    participant B1
+    participant OM as 运维Agent
+    participant RC as 资源Agent
+    participant C
+    participant Sim as 仿真器
+    Note over R1,B1: bandwidthBps 8M→1M
+    R1->>B1: LSA{带宽下降}
+    OM->>OM: 检测带宽下降,总需求6M>1M
+    OM->>RC: DIAGNOSIS_RESULT{constraints:[带宽1M]}
+    RC->>RC: OR-Tools按优先级分配
+    RC->>C: CANDIDATE_POLICY{重分配}
+    C->>Sim: POLICY_APPLY
+    Sim->>C: 反馈:关键业务保障
+</div></div>
+
+<h2>6. 大场景：干扰</h2>
+
+<h3>6.1 小场景：电磁干扰</h3>
+<p><b>1. 背景</b>：某频段随机出现强干扰，链路 SNR 下降、误码率飙升。</p>
+<p><b>2. 参与方</b>：受影响链路节点、运维 Agent、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：链路正常，干扰随机出现。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>干扰出现</td><td>节点测到 SNR 下降、ber 上升</td><td>链路质量恶化</td><td>干扰被感知</td></tr>
+<tr><td>2</td><td>运维 Agent 检测干扰特征</td><td>判定为干扰（非普通退化）</td><td>区分干扰与故障</td><td>识别干扰</td></tr>
+<tr><td>3</td><td>资源 Agent 触发换频/跳频</td><td>动态频谱接入（DSA）</td><td>切换到干净频段</td><td>抗干扰</td></tr>
+<tr><td>4</td><td>资源 Agent 可选降速率/纠错</td><td>C 校验下发</td><td>调整编码</td><td>维持链路</td></tr>
+</table>
+<p><b>5. 后置状态</b>：通过换频/跳频避开干扰，链路质量恢复或维持。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络无频谱感知能力，干扰下只能硬扛（误码率升高→丢包）。智能体版本通过运维 Agent <b>识别干扰并触发换频/跳频</b>（认知无线电思想，IEEE 802.22），主动规避。这是"频谱感知/自感知"在干扰场景的体现。</p>
+
+<div class="seq-title">时序图：电磁干扰</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant R1
+    participant B1
+    participant OM as 运维Agent
+    participant RC as 资源Agent
+    participant C
+    Note over R1,B1: 干扰出现,SNR降,ber升
+    R1->>B1: LSA{质量恶化}
+    OM->>OM: 识别干扰特征(区分普通退化)
+    OM->>RC: DIAGNOSIS_RESULT{干扰}
+    RC->>C: CANDIDATE_POLICY{换频/跳频}
+    C->>C: 校验下发
+    Note over R1,B1: 切换到干净频段
+</div></div>
+
+<h2>7. 大场景：业务需求</h2>
+
+<h3>7.1 小场景：新增业务流</h3>
+<p><b>1. 背景</b>：新任务产生一条新业务流（如新增一路视频回传）。</p>
+<p><b>2. 参与方</b>：新流源/宿节点、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：网络已运行，新业务流请求接入。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>新业务流请求建立</td><td>源节点发起路由请求</td><td>RREQ/RREP 找到路径</td><td>路由建立</td></tr>
+<tr><td>2</td><td>资源 Agent 做接入控制</td><td>判断剩余容量是否足够</td><td>接入判定</td><td>准入或拒绝</td></tr>
+<tr><td>3</td><td>资源 Agent 分配带宽/QoS</td><td>C 校验下发</td><td>更新资源分配</td><td>新流获得保障</td></tr>
+</table>
+<p><b>5. 后置状态</b>：新业务流接入并获 QoS 保障，或因资源不足被拒绝/降级。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络无接入控制，新流直接加入导致已有业务被挤占。智能体版本<b>接入控制 + 资源预留</b>，保护已有关键业务。</p>
+
+<h3>7.2 小场景：QoS 要求变化</h3>
+<p><b>1. 背景</b>：某业务流的最低带宽要求提高、时延上限降低（业务优先级提升）。</p>
+<p><b>2. 参与方</b>：该业务流、资源 Agent、C。</p>
+<p><b>3. 前置条件</b>：业务流在运行，QoS 要求突然收紧。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>业务 QoS 要求变化</td><td>资源 Agent 收到新约束</td><td>更新业务需求</td><td>需求变化</td></tr>
+<tr><td>2</td><td>资源 Agent 重算资源分配</td><td>判断当前路径/带宽是否满足</td><td>约束检查</td><td>是否达标</td></tr>
+<tr><td>3</td><td>资源 Agent 调整路由或带宽</td><td>C 校验下发</td><td>更新策略</td><td>满足新 QoS</td></tr>
+</table>
+<p><b>5. 后置状态</b>：业务按新 QoS 要求得到保障，或触发降级/拒绝。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络无业务语义，无法感知 QoS 要求变化。智能体版本理解业务需求，<b>动态调整资源满足新约束</b>。这是"业务 QoS 保障"的体现。</p>
+
+<div class="seq-title">时序图：新增业务流</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant Src as 新流源节点
+    participant Dst as 新流宿节点
+    participant RC as 资源Agent
+    participant C
+    participant Sim as 仿真器
+    Src->>Dst: RREQ(路由发现)
+    Dst->>Src: RREP(路径建立)
+    RC->>RC: 接入控制:剩余容量判断
+    RC->>C: CANDIDATE_POLICY{带宽+QoS}
+    C->>Sim: POLICY_APPLY
+    Sim->>C: 反馈:新流获保障
+</div></div>
+
+<h2>8. 大场景：复合与极端</h2>
+
+<h3>8.1 小场景：多重故障</h3>
+<p><b>1. 背景</b>：多个节点 + 多条链路同时异常（如 R1 下线同时 R2-B1 链路中断）。</p>
+<p><b>2. 参与方</b>：全网节点、C、运维 Agent、资源 Agent。</p>
+<p><b>3. 前置条件</b>：网络正常，多个故障同时注入。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>多故障同时注入</td><td>各节点检测各自失联</td><td>多处邻居表/拓扑更新</td><td>多重故障</td></tr>
+<tr><td>2</td><td>运维 Agent 综合分析</td><td>识别多个故障及其交互影响</td><td>关联分析</td><td>完整故障视图</td></tr>
+<tr><td>3</td><td>资源 Agent 联合优化</td><td>多约束下重算路由+带宽</td><td>联合调度</td><td>全局最优恢复</td></tr>
+<tr><td>4</td><td>C 仲裁多个候选策略</td><td>冲突消解</td><td>统一策略集</td><td>协调下发</td></tr>
+</table>
+<p><b>5. 后置状态</b>：系统在多重约束下尽可能恢复关键业务，可能部分业务降级。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：普通网络面对多重故障只能各自独立收敛，可能产生<b>冲突的路由决策</b>（各节点算各的）。智能体版本通过协调器<b>全局联合优化 + 冲突仲裁</b>，得到全局一致的恢复方案。这是"多 Agent 协作 + 复杂约束处理"的核心场景。</p>
+
+<h3>8.2 小场景：协调器失效 / 降级自治</h3>
+<p><b>1. 背景</b>：管控面协调器 C 被毁，系统需降级为区域自治继续运行。</p>
+<p><b>2. 参与方</b>：C、各簇头、区域节点。</p>
+<p><b>3. 前置条件</b>：C 正常运行，突然失效。</p>
+<p><b>4. 步骤</b>：</p>
+<table>
+<tr><th>#</th><th>主体行为</th><th>目标行为</th><th>数据操作</th><th>结果</th></tr>
+<tr><td>1</td><td>C 失效</td><td>各节点检测到 C 失联</td><td>管控面失去中心</td><td>协调器失效</td></tr>
+<tr><td>2</td><td>各区域簇头检测并接管</td><td>簇头广播接管声明</td><td>新协调角色产生</td><td>局部接管</td></tr>
+<tr><td>3</td><td>各区域自治运行</td><td>区域内本地调度</td><td>退化为预置规则</td><td>降级自治</td></tr>
+<tr><td>4</td><td>（可选）重新选举协调器</td><td>新协调器上任</td><td>恢复全局协调</td><td>重新集中</td></tr>
+</table>
+<p><b>5. 后置状态</b>：系统降级为区域自治，关键业务仍维持，全局优化暂停。</p>
+<p><b>6. 智能体 vs 普通无 LLM 差别</b>：这是智能体架构的<b>抗毁性优势</b>。集中式普通网络中心失效即瘫痪；智能体系统设计为"协调器可降级、簇头可接管"，失效后仍能<b>降级自治运行</b>。这是"中心可降级、可替换"设计的直接体现。</p>
+
+<div class="seq-title">时序图：协调器失效/降级自治</div>
+<div class="seq"><div class="mermaid">
+sequenceDiagram
+    participant C
+    participant CH1 as 簇头A
+    participant CH2 as 簇头B
+    Note over C: 协调器失效
+    CH1->>CH1: 检测C失联
+    CH2->>CH2: 检测C失联
+    CH1->>CH1: 广播接管声明
+    Note over CH1,CH2: 各区域自治运行(预置规则)
+    CH1->>CH2: 可选:重新选举协调器
+</div></div>
+
+<h2>附录：场景与赛题/评分的对应</h2>
+<table>
+<tr><th>大场景</th><th>赛题建模手段</th><th>赛题现象</th><th>评分点</th></tr>
+<tr><td>初始组网</td><td>—（基础）</td><td>拓扑形成</td><td>1 场景建模</td></tr>
+<tr><td>节点动态</td><td>节点下线</td><td>拓扑快速变化</td><td>1</td></tr>
+<tr><td>链路动态</td><td>链路参数调整</td><td>链路随机通断</td><td>1</td></tr>
+<tr><td>拓扑结构</td><td>节点下线</td><td>拓扑快速变化</td><td>1、2.2</td></tr>
+<tr><td>资源与带宽</td><td>链路参数调整</td><td>带宽时变、资源约束</td><td>1、2.3</td></tr>
+<tr><td>干扰</td><td>链路参数调整</td><td>强干扰</td><td>1</td></tr>
+<tr><td>业务需求</td><td>业务需求调整</td><td>资源约束</td><td>1、2.3</td></tr>
+<tr><td>复合与极端</td><td>组合</td><td>多重叠加</td><td>1、2.2、3</td></tr>
+</table>
+
+</body>
+</html>
