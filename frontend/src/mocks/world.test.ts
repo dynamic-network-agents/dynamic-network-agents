@@ -132,6 +132,22 @@ describe('MockWorld 事件生成（时间线）', () => {
     )
   })
 
+  it('触发时刻等于当前仿真时刻（含 0）的事件也会触发', () => {
+    const world = new MockWorld()
+    const run = world.createSimulation(DEFAULT_RUN)
+    world.injectEvent(run.runId, {
+      eventType: 'LINK_DOWN',
+      triggerAtMs: 0,
+      targetType: 'LINK',
+      targetId: 'L-05',
+      payload: {},
+    })
+    world.step(run.runId)
+    expect(world.getTopology(run.runId)?.links.find((l) => l.linkId === 'L-05')?.status).toBe(
+      LinkStatus.DOWN,
+    )
+  })
+
   it('未定义映射的事件类型不产生实时事件、不抛错', () => {
     const world = new MockWorld()
     const run = world.createSimulation(DEFAULT_RUN)

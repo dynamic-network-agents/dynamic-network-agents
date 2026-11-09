@@ -8,10 +8,21 @@ describe('createRealtimeProvider（Mock 开关）', () => {
     expect(createRealtimeProvider(true)).toBeInstanceOf(MockRealtimeProvider)
   })
 
-  it('useMock=false 返回真实实现（当前为空实现）', () => {
+  it('useMock=false 返回真实实现（通道未就绪时上报 error 而非抛异常）', () => {
     const provider = createRealtimeProvider(false)
     expect(provider).toBeInstanceOf(NativeRealtimeProvider)
-    expect(() => provider.subscribe('RUN-1', { onEvent: () => {} })).toThrow()
+
+    const statuses: string[] = []
+    const errors: Error[] = []
+    const connection = provider.subscribe('RUN-1', {
+      onEvent: () => {},
+      onStatus: (s) => statuses.push(s),
+      onError: (e) => errors.push(e),
+    })
+    expect(statuses).toContain('error')
+    expect(errors).toHaveLength(1)
+    expect(errors[0].message).toContain('尚未就绪')
+    expect(connection).toHaveProperty('close')
   })
 
   it('不传参时读取环境配置', () => {

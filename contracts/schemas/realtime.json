@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "realtime.json",
+  "title": "RealtimeEventEnvelope",
+  "description": "实时事件信封（接口规范 §8.2）。eventType/data 保持开放，具体窄化在消费方。",
+  "type": "object",
+  "properties": {
+    "eventId": { "type": "string" },
+    "eventType": { "type": "string", "description": "事件类型 RealtimeEventType：SIMULATION_STATUS_CHANGED/SIMULATION_TIME_UPDATED/NODE_STATUS_CHANGED/NODE_POSITION_UPDATED/LINK_STATUS_CHANGED/LINK_METRIC_UPDATED/TOPOLOGY_UPDATED/ROUTE_CHANGED/FLOW_STATUS_CHANGED/QOS_METRIC_UPDATED/SIMULATION_COMPLETED/SIMULATION_ERROR" },
+    "runId": { "type": "string" },
+    "seq": { "type": "number", "description": "事件序号" },
+    "version": { "type": "number" },
+    "simTimeMs": { "type": "number" },
+    "timestamp": { "type": "string" },
+    "traceId": { "type": "string" },
+    "data": { "description": "事件载荷（按 eventType 窄化）" }
+  },
+  "required": ["eventId", "eventType", "runId", "seq", "data"]
+}

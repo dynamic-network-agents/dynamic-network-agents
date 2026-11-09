@@ -1,0 +1,39 @@
+# 工作区根（虚拟根，非包）：统一管理 backend / simulator / agent-platform / algorithms
+# 四个成员与共享开发依赖（ruff / mypy / pytest / pre-commit / jsonschema）。
+#
+# 首次在目标机（Ubuntu 22.04 + Python 3.12）执行 `uv sync` 生成 uv.lock 并安装全部成员与开发依赖。
+# 注：开发依赖经 `[tool.uv] dev-dependencies` 声明（uv 对「虚拟工作区根」的字段，PEP 735 `[dependency-groups]`
+# 需根为可构建 project，故未采用）。若未来 uv 弃用该字段，将开发依赖迁入任一成员的 dependency-group 即可。
+
+[tool.uv.workspace]
+members = ["backend", "simulator", "agent-platform", "algorithms"]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "pytest>=8.3",
+    "pre-commit>=3.8",
+    "jsonschema>=4.23",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = [
+    "backend/backend",
+    "simulator/simulator",
+    "agent-platform/agent_platform",
+    "algorithms/algorithms",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests", "simulator/tests", "agent-platform/tests", "algorithms/tests"]
+addopts = "-q"

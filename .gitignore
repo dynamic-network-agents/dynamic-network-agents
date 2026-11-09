@@ -11,12 +11,15 @@ coverage/
 .env.*
 !.env.example
 
-# Python（后端，后续）
+# Python（backend/simulator/agent-platform/algorithms）
 __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
 venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # 系统与编辑器
 .DS_Store

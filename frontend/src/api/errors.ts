@@ -60,6 +60,22 @@ export class ApiError extends Error {
       cause,
     })
   }
+
+  /**
+   * 由「HTTP 2xx 但业务 code 非 OK」的响应体构造业务错误（HTTP 层未报错、但业务失败）。
+   * 这种响应属于规范外兜底：HTTP 成功但信封 `code` 表示失败，不能当作成功解包。
+   */
+  static fromBusinessError(body: unknown, status: number, cause?: unknown): ApiError {
+    const parsed = parseErrorBody(body)
+    const code = parsed?.code ?? 'BUSINESS_ERROR'
+    const message = parsed?.message ?? '业务处理失败'
+    return new ApiError(code, message, status, {
+      requestId: parsed?.requestId,
+      details: parsed?.details,
+      fieldErrors: extractFieldErrors(parsed?.details),
+      cause,
+    })
+  }
 }
 
 function parseErrorBody(body: unknown): ApiErrorBody | undefined {

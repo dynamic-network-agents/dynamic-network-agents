@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "network_snapshot.json",
+  "title": "TopologySnapshot",
+  "description": "拓扑快照（接口规范 §5.5）。links[] 必须保留 linkPlane，不根据节点对推导链路。",
+  "type": "object",
+  "properties": {
+    "runId": { "type": "string" },
+    "version": { "type": "number" },
+    "simTimeMs": { "type": "number" },
+    "generatedAt": { "type": "string" },
+    "nodes": { "type": "array", "items": { "$ref": "node.json" } },
+    "links": { "type": "array", "items": { "$ref": "link.json" } },
+    "flows": { "type": "array", "items": { "$ref": "flow.json" } },
+    "summary": { "$ref": "#/$defs/TopologySummary" }
+  },
+  "required": ["runId", "version", "simTimeMs", "nodes", "links"],
+  "$defs": {
+    "TopologySummary": {
+      "type": "object",
+      "description": "拓扑汇总",
+      "properties": {
+        "nodeCount": { "type": "number" },
+        "onlineNodeCount": { "type": "number" },
+        "linkCount": { "type": "number" },
+        "upLinkCount": { "type": "number" },
+        "connectedComponents": { "type": "number" }
+      },
+      "required": ["nodeCount", "onlineNodeCount", "linkCount", "upLinkCount", "connectedComponents"]
+    }
+  }
+}

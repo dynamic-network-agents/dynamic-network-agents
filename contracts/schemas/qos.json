@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qos.json",
+  "title": "QosSummary",
+  "description": "业务 QoS 汇总（接口规范 §7.9）。byServiceType 结构规范未明确，保持开放对象。",
+  "type": "object",
+  "properties": {
+    "totalFlows": { "type": "number", "description": "业务流总数" },
+    "compliantFlows": { "type": "number", "description": "达标业务流数" },
+    "nonCompliantFlows": { "type": "number", "description": "不达标业务流数" },
+    "complianceRate": { "type": "number", "description": "达标率" },
+    "byServiceType": { "type": "object", "description": "按业务类型分组（结构待与官方确认，宽松透传）" },
+    "violations": { "type": "array", "items": { "$ref": "flow.json#/$defs/QosViolation" } }
+  },
+  "required": ["totalFlows", "compliantFlows", "nonCompliantFlows", "complianceRate"]
+}

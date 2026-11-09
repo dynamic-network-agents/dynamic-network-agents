@@ -399,7 +399,7 @@ export class MockWorld {
       speed: rs.run.speed,
     })
     const due = rs.timeline
-      .filter((t) => !t.fired && t.triggerAtMs > from && t.triggerAtMs <= to)
+      .filter((t) => !t.fired && t.triggerAtMs >= from && t.triggerAtMs <= to)
       .sort((a, b) => a.triggerAtMs - b.triggerAtMs)
     for (const entry of due) {
       entry.fired = true

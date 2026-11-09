@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "node.json",
+  "title": "NetworkNode",
+  "description": "网络节点（接口规范 §5.1）。枚举字段为开放字符串，已知值见各字段 description；未知值保留原样由适配层兜底。",
+  "type": "object",
+  "properties": {
+    "nodeId": { "type": "string", "description": "节点唯一标识" },
+    "name": { "type": "string", "description": "节点显示名" },
+    "nodeType": { "type": "string", "description": "节点类型 NodeType：UAV/UGV/USV/UUV/RELAY/BASE/C2/EDGE/OTHER" },
+    "role": { "type": "string", "description": "节点角色 NodeRole：MEMBER/RELAY/CLUSTER_HEAD/BACKBONE/GATEWAY/COORDINATOR" },
+    "status": { "type": "string", "description": "节点状态 NodeStatus：ONLINE/OFFLINE/DEGRADED/UNKNOWN" },
+    "position": { "$ref": "#/$defs/Position" },
+    "mobility": { "$ref": "#/$defs/Mobility" },
+    "resources": { "$ref": "#/$defs/NodeResources" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "createdAt": { "type": "string", "description": "创建时间戳（格式以接口规范 §2 为准）" },
+    "updatedAt": { "type": "string", "description": "更新时间戳（格式以接口规范 §2 为准）" }
+  },
+  "required": ["nodeId", "name", "nodeType", "status"],
+  "$defs": {
+    "Position": {
+      "type": "object",
+      "description": "节点位置",
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "z": { "type": "number" },
+        "coordinateSystem": { "type": "string" }
+      },
+      "required": ["x", "y"]
+    },
+    "Mobility": {
+      "type": "object",
+      "description": "节点机动参数",
+      "properties": {
+        "speedMps": { "type": "number", "description": "速率（m/s）" },
+        "headingDeg": { "type": "number", "description": "航向（°）" }
+      }
+    },
+    "NodeResources": {
+      "type": "object",
+      "description": "节点资源状态",
+      "properties": {
+        "energyPercent": { "type": "number", "minimum": 0, "maximum": 100 },
+        "computeCapacity": { "type": "number" },
+        "availableBandwidthBps": { "type": "number", "description": "可用带宽（bps）" }
+      }
+    }
+  }
+}

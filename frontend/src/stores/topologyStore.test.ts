@@ -215,6 +215,39 @@ describe('applyTopologyEvent（纯函数）', () => {
   })
 })
 
+describe('拓扑 selector 索引引用稳定性', () => {
+  beforeEach(() => {
+    useTopologyStore.getState().resetRun()
+  })
+
+  it('数据未变时返回同一 Map 引用', async () => {
+    server.use(http.get(`${API}/simulations/RUN-1/topology`, () => apiOk(topologyDto())))
+    await useTopologyStore.getState().loadTopology('RUN-1')
+    const s = useTopologyStore.getState()
+    expect(selectNodesById(s)).toBe(selectNodesById(s))
+    expect(selectLinksById(s)).toBe(selectLinksById(s))
+    expect(selectFlowsById(s)).toBe(selectFlowsById(s))
+  })
+
+  it('实时事件更新快照后返回新的 Map（内容已更新）', async () => {
+    server.use(http.get(`${API}/simulations/RUN-1/topology`, () => apiOk(topologyDto())))
+    await useTopologyStore.getState().loadTopology('RUN-1')
+    const before = selectNodesById(useTopologyStore.getState())
+
+    useTopologyStore.getState().applyRealtimeEvent({
+      eventId: 'E-1',
+      eventType: RealtimeEventType.NODE_STATUS_CHANGED,
+      runId: 'RUN-1',
+      seq: 1,
+      data: { nodeId: 'N-1', newStatus: 'OFFLINE' },
+    })
+
+    const after = selectNodesById(useTopologyStore.getState())
+    expect(after).not.toBe(before)
+    expect(after.get('N-1')?.status).toBe(NodeStatus.OFFLINE)
+  })
+})
+
 describe('updateFlow 无 flows', () => {
   it('无 flows 原样返回同一引用', () => {
     const noFlows = { ...snapshot, flows: undefined }

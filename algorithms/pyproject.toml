@@ -1,0 +1,16 @@
+[project]
+name = "dynamic-network-algorithms"
+version = "0.1.0"
+description = "确定性算法库（进程内 Python 库：NetworkX + OR-Tools）——拓扑分析/路由/带宽分配/故障诊断"
+requires-python = ">=3.12"
+dependencies = [
+    "networkx>=3.0",
+    "ortools>=9.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["algorithms"]

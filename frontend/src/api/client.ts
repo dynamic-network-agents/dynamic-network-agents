@@ -46,7 +46,11 @@ export function getApiClient(): AxiosInstance {
 
   instance.interceptors.response.use(
     (response) => {
-      const body = response.data as { data?: unknown } | undefined
+      const body = response.data as { code?: unknown; data?: unknown } | undefined
+      // 2xx 但业务 code 非 OK：按业务错误抛出，避免把失败当作成功解包。
+      if (body && typeof body.code === 'string' && body.code !== 'OK') {
+        return Promise.reject(ApiError.fromBusinessError(body, response.status, response))
+      }
       return body?.data as unknown as typeof response
     },
     (error) => Promise.reject(toApiError(error)),

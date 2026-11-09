@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "api_payloads.json",
+  "title": "ApiPayloads",
+  "description": "REST API 响应载荷（接口规范 §7.6/§7.7）。统一响应封包（§7.2）为横切约定，此处只收规范明确字段名的载荷。",
+  "$defs": {
+    "FieldError": {
+      "type": "object",
+      "description": "字段错误",
+      "properties": {
+        "code": { "type": "string" },
+        "path": { "type": "string" },
+        "message": { "type": "string" }
+      },
+      "required": ["code", "path", "message"]
+    },
+    "ScenarioValidateResult": {
+      "type": "object",
+      "description": "场景校验结果（§7.6）",
+      "properties": {
+        "valid": { "type": "boolean" },
+        "errors": { "type": "array", "items": { "$ref": "#/$defs/FieldError" } },
+        "warnings": { "type": "array", "items": { "$ref": "#/$defs/FieldError" } }
+      },
+      "required": ["valid", "errors", "warnings"]
+    },
+    "EventInjectionResult": {
+      "type": "object",
+      "description": "运行时事件注入结果（§7.7）",
+      "properties": {
+        "eventId": { "type": "string" },
+        "accepted": { "type": "boolean" },
+        "scheduledAtSimTimeMs": { "type": "number" }
+      },
+      "required": ["eventId", "accepted", "scheduledAtSimTimeMs"]
+    }
+  }
+}

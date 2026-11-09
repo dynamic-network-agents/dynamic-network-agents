@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { delay, http, HttpResponse } from 'msw'
 import { apiOk, server } from '../test/server'
 import {
+  isApiError,
   isCancelledError,
   isConflictError,
   isNetworkError,
@@ -19,6 +20,17 @@ describe('API client 集成（MSW）', () => {
     await expect(request<{ hello: string }>({ method: 'get', url: '/ping' })).resolves.toEqual({
       hello: 'world',
     })
+  })
+
+  it('200 但业务 code 非 OK：按业务错误拒绝（不当作成功解包）', async () => {
+    server.use(
+      http.get(`${API}/ping`, () =>
+        HttpResponse.json({ code: 'QUOTA_EXCEEDED', message: '额度不足' }, { status: 200 }),
+      ),
+    )
+    const promise = request({ method: 'get', url: '/ping' })
+    await expect(promise).rejects.toSatisfy(isApiError)
+    await expect(promise).rejects.toMatchObject({ code: 'QUOTA_EXCEEDED', status: 200 })
   })
 
   it('409：冲突错误并保留 requestId', async () => {

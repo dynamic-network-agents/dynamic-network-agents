@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "simulation.json",
+  "title": "SimulationRun",
+  "description": "仿真运行（接口规范 §5.5）。simTimeMs 为仿真时间，status 为生命周期枚举。",
+  "type": "object",
+  "properties": {
+    "runId": { "type": "string", "description": "运行唯一标识" },
+    "scenarioId": { "type": "string" },
+    "scenarioVersion": { "type": "number" },
+    "status": { "type": "string", "description": "仿真状态 SimulationStatus：CREATED/VALIDATING/READY/RUNNING/PAUSED/STOPPING/STOPPED/COMPLETED/FAILED" },
+    "simTimeMs": { "type": "number", "description": "仿真时间（ms）" },
+    "speed": { "type": "number", "description": "仿真速度倍率" },
+    "seed": { "type": "number", "description": "随机种子" },
+    "startedAt": { "type": "string" },
+    "finishedAt": { "type": "string" },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" },
+    "error": { "type": "object", "description": "错误详情（失败时）" }
+  },
+  "required": ["runId", "scenarioId", "scenarioVersion", "status", "simTimeMs", "speed"]
+}

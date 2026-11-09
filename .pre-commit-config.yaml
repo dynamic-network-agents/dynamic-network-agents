@@ -1,0 +1,10 @@
+# 阶段一工程基线：pre-commit 只挂快速检查（ruff lint + format）。
+# mypy 经 `make typecheck` 运行，避免 pre-commit 隔离环境重复装依赖、拖慢提交。
+# 首次安装：`pre-commit install`；更新版本：`pre-commit autoupdate`。
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format

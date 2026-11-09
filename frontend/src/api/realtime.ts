@@ -13,6 +13,8 @@ export type RealtimeConnectionStatus = 'connecting' | 'open' | 'closed' | 'error
 export interface RealtimeSubscriber {
   onEvent: (event: RealtimeEventEnvelope) => void
   onStatus?: (status: RealtimeConnectionStatus) => void
+  /** 连接失败/通道不可用时的错误回调（如真实通道尚未就绪）。 */
+  onError?: (error: Error) => void
 }
 
 export interface RealtimeConnection {
@@ -36,9 +38,18 @@ export interface RealtimeProvider {
 
 /** 真实 WebSocket 客户端（§8.1 `ws(s)://{host}/ws/v1/runs/{runId}`）。 */
 export class NativeRealtimeProvider implements RealtimeProvider {
-  subscribe(): RealtimeConnection {
-    throw new Error(
-      '真实 WebSocket 通道尚未就绪（§8.1 鉴权、§8.4 心跳待与官方确认），当前请使用 Mock 模式。',
+  subscribe(
+    runId: string,
+    subscriber: RealtimeSubscriber,
+    _options?: RealtimeSubscribeOptions,
+  ): RealtimeConnection {
+    void _options
+    const error = new Error(
+      `真实 WebSocket 通道尚未就绪（runId=${runId}，§8.1 鉴权、§8.4 心跳待与官方确认），当前请使用 Mock 模式。`,
     )
+    // 通道不可用时不上抛异常，而是经 onError / onStatus 上报，避免生产模式订阅即崩溃。
+    subscriber.onError?.(error)
+    subscriber.onStatus?.('error')
+    return { close: () => subscriber.onStatus?.('closed') }
   }
 }

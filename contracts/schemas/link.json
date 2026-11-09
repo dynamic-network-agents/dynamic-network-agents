@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "link.json",
+  "title": "NetworkLink",
+  "description": "网络链路（接口规范 §5.2）。控制/数据链路按独立 linkId + linkPlane 表达，不根据节点对推导；linkType 为介质小写自由串。",
+  "type": "object",
+  "properties": {
+    "linkId": { "type": "string", "description": "链路唯一标识" },
+    "linkPlane": { "type": "string", "description": "链路平面 LinkPlane：CONTROL/DATA" },
+    "linkType": { "type": "string", "description": "介质类型（小写自由格式，与 linkPlane 正交）" },
+    "srcNodeId": { "type": "string" },
+    "dstNodeId": { "type": "string" },
+    "direction": { "type": "string", "description": "链路方向 LinkDirection：BIDIRECTIONAL/UNIDIRECTIONAL" },
+    "status": { "type": "string", "description": "链路状态 LinkStatus：UP/DEGRADED/DOWN/UNKNOWN" },
+    "params": { "$ref": "#/$defs/LinkParams" },
+    "allocatedBandwidthBps": { "type": "number", "description": "已分配带宽（bps）" },
+    "availableBandwidthBps": { "type": "number", "description": "可用带宽（bps）" },
+    "utilization": { "type": "number", "minimum": 0, "maximum": 1, "description": "利用率（0–1）" },
+    "qualityScore": { "type": "number" },
+    "tsUs": { "type": "number", "description": "源时间戳（微秒）" },
+    "time": { "type": "string", "description": "展示用时间串" },
+    "updatedAt": { "type": "string" }
+  },
+  "required": ["linkId", "linkPlane", "linkType", "srcNodeId", "dstNodeId", "direction", "status", "params"],
+  "$defs": {
+    "LinkParams": {
+      "type": "object",
+      "description": "链路参数（接口规范 §5.2.2）",
+      "properties": {
+        "delayMs": { "type": "number", "description": "时延（ms）" },
+        "jitterMs": { "type": "number", "description": "抖动（ms）" },
+        "bandwidthBps": { "type": "number", "description": "带宽（bps）" },
+        "ber": { "type": "number", "minimum": 0, "maximum": 1, "description": "误码率（0–1）" },
+        "packetLossRate": { "type": "number", "minimum": 0, "maximum": 1, "description": "丢包率（0–1）" },
+        "rssiDbm": { "type": "number", "description": "接收信号强度（dBm）" },
+        "snrDb": { "type": "number", "description": "信噪比（dB）" },
+        "frequencyHz": { "type": "number", "description": "频率（Hz）" }
+      },
+      "required": ["delayMs", "jitterMs", "bandwidthBps", "ber", "packetLossRate"]
+    }
+  }
+}

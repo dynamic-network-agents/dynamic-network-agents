@@ -181,14 +181,48 @@ export const selectTopologySnapshot = (state: TopologyState) => state.snapshot.d
 export const selectTopologySnapshotStatus = (state: TopologyState) => state.snapshot.status
 export const selectTopologyRunId = (state: TopologyState) => state.runId
 
+/**
+ * 索引 selector 的稳定引用缓存。
+ * 数据未变（snapshot 引用相同）时返回同一个 Map，避免 useStore 订阅时每次得到新引用而触发
+ * 不必要的重渲染；数据变化（snapshot 被替换）时重新构建。空态返回共享的空 Map。
+ */
+const EMPTY_NODES = new Map<string, NetworkNode>()
+const EMPTY_LINKS = new Map<string, NetworkLink>()
+const EMPTY_FLOWS = new Map<string, BusinessFlow>()
+
+const nodesByIdCache = new WeakMap<TopologySnapshot, Map<string, NetworkNode>>()
+const linksByIdCache = new WeakMap<TopologySnapshot, Map<string, NetworkLink>>()
+const flowsByIdCache = new WeakMap<TopologySnapshot, Map<string, BusinessFlow>>()
+
 export function selectNodesById(state: TopologyState): Map<string, NetworkNode> {
-  return new Map((state.snapshot.data?.nodes ?? []).map((n) => [n.nodeId, n]))
+  const snapshot = state.snapshot.data
+  if (!snapshot) return EMPTY_NODES
+  let map = nodesByIdCache.get(snapshot)
+  if (!map) {
+    map = new Map(snapshot.nodes.map((n) => [n.nodeId, n]))
+    nodesByIdCache.set(snapshot, map)
+  }
+  return map
 }
 
 export function selectLinksById(state: TopologyState): Map<string, NetworkLink> {
-  return new Map((state.snapshot.data?.links ?? []).map((l) => [l.linkId, l]))
+  const snapshot = state.snapshot.data
+  if (!snapshot) return EMPTY_LINKS
+  let map = linksByIdCache.get(snapshot)
+  if (!map) {
+    map = new Map(snapshot.links.map((l) => [l.linkId, l]))
+    linksByIdCache.set(snapshot, map)
+  }
+  return map
 }
 
 export function selectFlowsById(state: TopologyState): Map<string, BusinessFlow> {
-  return new Map((state.snapshot.data?.flows ?? []).map((f) => [f.flowId, f]))
+  const snapshot = state.snapshot.data
+  if (!snapshot) return EMPTY_FLOWS
+  let map = flowsByIdCache.get(snapshot)
+  if (!map) {
+    map = new Map((snapshot.flows ?? []).map((f) => [f.flowId, f]))
+    flowsByIdCache.set(snapshot, map)
+  }
+  return map
 }

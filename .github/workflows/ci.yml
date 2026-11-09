@@ -42,3 +42,28 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+  python-quality:
+    name: python / lint / typecheck / test / contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Lint
+        run: uv run ruff check
+
+      - name: Typecheck
+        run: uv run mypy
+
+      - name: Test
+        run: uv run pytest
+
+      - name: Contract schemas
+        run: uv run python scripts/check_contracts.py

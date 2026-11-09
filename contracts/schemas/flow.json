@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "flow.json",
+  "title": "BusinessFlow",
+  "description": "业务流（接口规范 §5.3），含 QoS 需求与实测。",
+  "type": "object",
+  "properties": {
+    "flowId": { "type": "string", "description": "业务流唯一标识" },
+    "name": { "type": "string" },
+    "serviceType": { "type": "string", "description": "业务类型 ServiceType：VOICE/VIDEO/IMAGE/DATA" },
+    "srcNodeId": { "type": "string" },
+    "dstNodeId": { "type": "string" },
+    "priority": { "type": "number" },
+    "requiredBandwidthBps": { "type": "number", "description": "需求带宽（bps）" },
+    "qos": { "$ref": "#/$defs/QosRequirement" },
+    "status": { "type": "string", "description": "业务流状态 FlowStatus：PENDING/ACTIVE/DEGRADED/INTERRUPTED/FINISHED/REJECTED" },
+    "currentPath": { "type": "array", "items": { "type": "string" }, "description": "当前路径（节点 ID 序列）" },
+    "allocatedBandwidthBps": { "type": "number", "description": "已分配带宽（bps）" },
+    "measuredQos": { "$ref": "#/$defs/QosMeasurement" },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  },
+  "required": ["flowId", "name", "serviceType", "srcNodeId", "dstNodeId", "priority", "requiredBandwidthBps", "qos", "status"],
+  "$defs": {
+    "QosRequirement": {
+      "type": "object",
+      "description": "业务 QoS 需求",
+      "properties": {
+        "maxDelayMs": { "type": "number", "description": "最大时延（ms）" },
+        "maxJitterMs": { "type": "number", "description": "最大抖动（ms）" },
+        "maxPacketLossRate": { "type": "number", "minimum": 0, "maximum": 1, "description": "最大丢包率（0–1）" },
+        "minBandwidthBps": { "type": "number", "description": "最小带宽（bps）" },
+        "minReliability": { "type": "number", "minimum": 0, "maximum": 1, "description": "最小可靠性（0–1）" },
+        "availabilityTarget": { "type": "number", "description": "可用性目标" }
+      }
+    },
+    "QosViolation": {
+      "type": "object",
+      "description": "QoS 超限记录",
+      "properties": {
+        "flowId": { "type": "string" },
+        "metric": { "type": "string", "description": "超限指标名" },
+        "actual": { "type": "number", "description": "实际值" },
+        "threshold": { "type": "number", "description": "阈值" },
+        "direction": { "type": "string", "description": "超限方向" }
+      },
+      "required": ["metric", "actual", "threshold"]
+    },
+    "QosMeasurement": {
+      "type": "object",
+      "description": "业务 QoS 实测",
+      "properties": {
+        "delayMs": { "type": "number", "description": "实测时延（ms）" },
+        "jitterMs": { "type": "number", "description": "实测抖动（ms）" },
+        "packetLossRate": { "type": "number", "minimum": 0, "maximum": 1, "description": "实测丢包率（0–1）" },
+        "throughputBps": { "type": "number", "description": "吞吐（bps）" },
+        "availability": { "type": "number", "minimum": 0, "maximum": 1, "description": "可用性（0–1）" },
+        "isCompliant": { "type": "boolean", "description": "是否达标" },
+        "violations": { "type": "array", "items": { "$ref": "#/$defs/QosViolation" } }
+      }
+    }
+  }
+}
