@@ -1,0 +1,72 @@
+name: dna-mac-trial
+
+# Local adaptation for THIS machine: the real simulator data lives in the
+# top-level simulator/ directory, not 仿真环境-参赛包/simulator/ (which is an
+# empty skeleton here). Everything else mirrors mac-docker-trial/compose.yml.
+x-sim-volumes: &sim-volumes
+  - ../simulator/conf:/opt/simulator/conf
+  - ../simulator/data:/opt/simulator/data
+  - ../simulator/assets:/opt/simulator/assets
+  - ../simulator/logs:/opt/simulator/logs
+
+services:
+  netsim:
+    image: netsim:latest
+    platform: linux/amd64
+    privileged: true
+    entrypoint: ["/bin/bash", "/opt/mac-trial/start-netsim.sh"]
+    environment:
+      TZ: CST-8
+      SUITE: sce20261031-conf02
+      SCENARIO: sce01
+      SIM_CONF_EXTERNAL: "1"
+    ports:
+      - "127.0.0.1:10000:9988"
+      - "127.0.0.1:10100:8080"
+      - "127.0.0.1:10001:10001"
+      - "127.0.0.1:10002:10002"
+    volumes:
+      - ../simulator/conf:/opt/simulator/conf
+      - ../simulator/data:/opt/simulator/data
+      - ../simulator/assets:/opt/simulator/assets
+      - ../simulator/logs:/opt/simulator/logs
+      - ./start-netsim.sh:/opt/mac-trial/start-netsim.sh:ro
+    stop_grace_period: 90s
+
+  tx:
+    image: servicesim-tx:latest
+    platform: linux/amd64
+    privileged: true
+    depends_on:
+      - netsim
+    pid: service:netsim
+    network_mode: service:netsim
+    environment:
+      TZ: CST-8
+      SIM_ROLE: servicesim-tx
+      SIM_NODES: /opt/simulator/conf/sim-nodes.json
+      SIM_WEB_PORT: "10001"
+      SERVICESIM_TOKEN: sim-internal-token-2026
+      SDN_SUITE: sce20261031-conf02
+      SDN_SCENARIO: sce01
+    volumes: *sim-volumes
+    stop_grace_period: 90s
+
+  rx:
+    image: servicesim-rx:latest
+    platform: linux/amd64
+    privileged: true
+    depends_on:
+      - netsim
+    pid: service:netsim
+    network_mode: service:netsim
+    environment:
+      TZ: CST-8
+      SIM_ROLE: servicesim-rx
+      SIM_NODES: /opt/simulator/conf/sim-nodes.json
+      SIM_WEB_PORT: "10002"
+      SERVICESIM_TOKEN: sim-internal-token-2026
+      SDN_SUITE: sce20261031-conf02
+      SDN_SCENARIO: sce01
+    volumes: *sim-volumes
+    stop_grace_period: 90s

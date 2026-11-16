@@ -1,0 +1,166 @@
+[
+ {
+  "time": 120,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00010",
+   "delayMs": 1.4,
+   "jitterMs": 10.4,
+   "bandwidthBps": 7200000,
+   "ber": 8e-05,
+   "packetLossRate": 0.03
+  }
+ },
+ {
+  "time": 137,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00010",
+   "delayMs": 4.5,
+   "jitterMs": 7.0,
+   "bandwidthBps": 4800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  }
+ },
+ {
+  "time": 327,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00123",
+   "delayMs": 38.5,
+   "jitterMs": 33.0,
+   "bandwidthBps": 26000,
+   "ber": 0.0005,
+   "packetLossRate": 0.01
+  }
+ },
+ {
+  "time": 627,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00010",
+   "delayMs": 6.0,
+   "jitterMs": 18.4,
+   "bandwidthBps": 11000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.06
+  }
+ },
+ {
+  "time": 814,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00010",
+   "delayMs": 7.0,
+   "jitterMs": 4.9,
+   "bandwidthBps": 15000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  }
+ },
+ {
+  "time": 847,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00001",
+   "delayMs": 8.4,
+   "jitterMs": 27.8,
+   "bandwidthBps": 12000000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  }
+ },
+ {
+  "time": 875,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00001",
+   "delayMs": 9.5,
+   "jitterMs": 26.5,
+   "bandwidthBps": 15000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.007
+  }
+ },
+ {
+  "time": 1093,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00050",
+   "delayMs": 1.4,
+   "jitterMs": 8.6,
+   "bandwidthBps": 10000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1114,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00101",
+   "delayMs": 47.4,
+   "jitterMs": 9.9,
+   "bandwidthBps": 110000,
+   "ber": 6e-05,
+   "packetLossRate": 0.04
+  }
+ },
+ {
+  "time": 1310,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0016",
+   "serviceType": "video",
+   "srcNodeId": "UAV0010",
+   "dstNodeId": "UAV0036",
+   "requirement": {
+    "delayMs": 160,
+    "jitterMs": 43,
+    "bandwidthBps": 5100000,
+    "ber": 5e-05,
+    "packetLossRate": 0.03
+   },
+   "priority": 7
+  }
+ },
+ {
+  "time": 1347,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0005",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1374,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00076",
+   "delayMs": 0.6,
+   "jitterMs": 2.9,
+   "bandwidthBps": 4200000000,
+   "ber": 9e-07,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 1620,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00171",
+   "delayMs": 36.0,
+   "jitterMs": 35.7,
+   "bandwidthBps": 68000,
+   "ber": 0.0007,
+   "packetLossRate": 0.09
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

@@ -1,0 +1,8 @@
+# 应用运行配置
+agent_id: "dna-agent-01"      # X-Agent-Id 请求头，同队多实例区分
+poll_interval_sec: 1.0        # 事件/状态轮询间隔（评测要求 ≤10s）
+http_timeout_sec: 6.0         # API 调用超时
+event_page_limit: 100         # 事件分页大小
+k_shortest_paths: 30          # 候选路径条数 K
+reroute_min_gain: 0.05        # 切换门槛 Δmin（代价需降低比例才切换）
+bandwidth_headroom: 0.2       # 链路容量预留裕度 ρ

@@ -1,0 +1,31 @@
+[
+ {
+  "time": 1330,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00004",
+   "delayMs": 9.9,
+   "jitterMs": 14.8,
+   "bandwidthBps": 11000000,
+   "ber": 7e-05,
+   "packetLossRate": 0.007
+  }
+ },
+ {
+  "time": 1548,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00001",
+   "delayMs": 17.5,
+   "jitterMs": 25.3,
+   "bandwidthBps": 11000000,
+   "ber": 5e-05,
+   "packetLossRate": 0.009
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

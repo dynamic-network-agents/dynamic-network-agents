@@ -1,0 +1,67 @@
+[
+ {
+  "time": 261,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00015",
+   "delayMs": 8.2,
+   "jitterMs": 0.6,
+   "bandwidthBps": 12000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 513,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00001",
+   "delayMs": 10.9,
+   "jitterMs": 20.5,
+   "bandwidthBps": 18000000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 789,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00084",
+   "delayMs": 32.1,
+   "jitterMs": 44.8,
+   "bandwidthBps": 28000,
+   "ber": 0.0009,
+   "packetLossRate": 0.04
+  }
+ },
+ {
+  "time": 1033,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00056",
+   "delayMs": 393.6,
+   "jitterMs": 342.4,
+   "bandwidthBps": 640000,
+   "ber": 0.0008,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1369,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00008",
+   "delayMs": 9.4,
+   "jitterMs": 13.8,
+   "bandwidthBps": 19000000,
+   "ber": 2e-07,
+   "packetLossRate": 0.0007
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

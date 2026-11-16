@@ -1,0 +1,62 @@
+[
+ {
+  "time": 543,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0004",
+   "fromX": 6187.5,
+   "fromY": 62253.1,
+   "toX": 5177.1,
+   "toY": 52714.7
+  }
+ },
+ {
+  "time": 895,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00011",
+   "delayMs": 14.8,
+   "jitterMs": 16.4,
+   "bandwidthBps": 12000000,
+   "ber": 2e-05,
+   "packetLossRate": 0.0005
+  }
+ },
+ {
+  "time": 1213,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00012",
+   "delayMs": 9.9,
+   "jitterMs": 22.2,
+   "bandwidthBps": 15000000,
+   "ber": 7e-05,
+   "packetLossRate": 0.004
+  }
+ },
+ {
+  "time": 1230,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00039",
+   "delayMs": 2.3,
+   "jitterMs": 17.5,
+   "bandwidthBps": 11000000,
+   "ber": 9e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1447,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00087",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

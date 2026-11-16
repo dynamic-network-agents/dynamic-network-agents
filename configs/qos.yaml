@@ -1,0 +1,20 @@
+# QoS 约束与计算配置
+
+# 静态口径容差（与仿真器 openapi.py 硬编码一致，勿改）
+tolerances:
+  delay_ms: 1.0
+  jitter_ms: 1e-9
+  packet_loss: 1e-9
+  ber: 1e-12
+  bandwidth: 0.0
+
+# 链路综合代价权重（和为 1；软代价仅用于排序，不用于 QoS 判定）
+link_cost_weights:
+  delay: 0.4
+  jitter: 0.15
+  bandwidth: 0.25
+  packet_loss: 0.1
+  ber: 0.1
+
+# 链路类型参数区间来源（权威源，勿改）
+link_types_file: "simulator/conf/linkTypes.json"

@@ -1,0 +1,4821 @@
+{
+ "scenarioId": "sce04",
+ "area": {
+  "w": 120000.0,
+  "h": 120000.0
+ },
+ "nodes": [
+  {
+   "nodeId": "GND001",
+   "name": "地面节点1",
+   "nodeType": "ground",
+   "ip": "10.2.1.1",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 32918.7,
+    "y": 20410.9
+   }
+  },
+  {
+   "nodeId": "GND002",
+   "name": "地面节点2",
+   "nodeType": "ground",
+   "ip": "10.2.1.2",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 7907.1,
+    "y": 20077.6
+   }
+  },
+  {
+   "nodeId": "GND003",
+   "name": "地面节点3",
+   "nodeType": "ground",
+   "ip": "10.2.1.3",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 26962.8,
+    "y": 28187.6
+   }
+  },
+  {
+   "nodeId": "GND004",
+   "name": "地面节点4",
+   "nodeType": "ground",
+   "ip": "10.2.1.4",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 5323.6,
+    "y": 11783.8
+   }
+  },
+  {
+   "nodeId": "GND005",
+   "name": "地面节点5",
+   "nodeType": "ground",
+   "ip": "10.2.1.5",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 8453.7,
+    "y": 16582.1
+   }
+  },
+  {
+   "nodeId": "GND006",
+   "name": "地面节点6",
+   "nodeType": "ground",
+   "ip": "10.2.1.6",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 51995.6,
+    "y": 12523.1
+   }
+  },
+  {
+   "nodeId": "GND007",
+   "name": "地面节点7",
+   "nodeType": "ground",
+   "ip": "10.2.1.7",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 52310.9,
+    "y": 20880.8
+   }
+  },
+  {
+   "nodeId": "GND008",
+   "name": "地面节点8",
+   "nodeType": "ground",
+   "ip": "10.2.1.8",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 48334.7,
+    "y": 22383.6
+   }
+  },
+  {
+   "nodeId": "GND009",
+   "name": "地面节点9",
+   "nodeType": "ground",
+   "ip": "10.2.1.9",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 39982.1,
+    "y": 33219.4
+   }
+  },
+  {
+   "nodeId": "GND010",
+   "name": "地面节点10",
+   "nodeType": "ground",
+   "ip": "10.2.1.10",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 42000.3,
+    "y": 22689.6
+   }
+  },
+  {
+   "nodeId": "GND011",
+   "name": "地面节点11",
+   "nodeType": "ground",
+   "ip": "10.2.1.11",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 66679.4,
+    "y": 20719.8
+   }
+  },
+  {
+   "nodeId": "GND012",
+   "name": "地面节点12",
+   "nodeType": "ground",
+   "ip": "10.2.1.12",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 79372.1,
+    "y": 10002.1
+   }
+  },
+  {
+   "nodeId": "GND013",
+   "name": "地面节点13",
+   "nodeType": "ground",
+   "ip": "10.2.1.13",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 77292.8,
+    "y": 32693.4
+   }
+  },
+  {
+   "nodeId": "GND014",
+   "name": "地面节点14",
+   "nodeType": "ground",
+   "ip": "10.2.1.14",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 64799.0,
+    "y": 23030.1
+   }
+  },
+  {
+   "nodeId": "GND015",
+   "name": "地面节点15",
+   "nodeType": "ground",
+   "ip": "10.2.1.15",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 88974.2,
+    "y": 13825.5
+   }
+  },
+  {
+   "nodeId": "GND016",
+   "name": "地面节点16",
+   "nodeType": "ground",
+   "ip": "10.2.1.16",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 116836.4,
+    "y": 19495.9
+   }
+  },
+  {
+   "nodeId": "GND017",
+   "name": "地面节点17",
+   "nodeType": "ground",
+   "ip": "10.2.1.17",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 98356.2,
+    "y": 22854.8
+   }
+  },
+  {
+   "nodeId": "GND018",
+   "name": "地面节点18",
+   "nodeType": "ground",
+   "ip": "10.2.1.18",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 108263.4,
+    "y": 18780.0
+   }
+  },
+  {
+   "nodeId": "GND019",
+   "name": "地面节点19",
+   "nodeType": "ground",
+   "ip": "10.2.1.19",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 109311.4,
+    "y": 12096.5
+   }
+  },
+  {
+   "nodeId": "GND020",
+   "name": "地面节点20",
+   "nodeType": "ground",
+   "ip": "10.2.1.20",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 108077.2,
+    "y": 26163.0
+   }
+  },
+  {
+   "nodeId": "GND021",
+   "name": "地面节点21",
+   "nodeType": "ground",
+   "ip": "10.2.1.21",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 2400.0,
+    "y": 62369.0
+   }
+  },
+  {
+   "nodeId": "GND022",
+   "name": "地面节点22",
+   "nodeType": "ground",
+   "ip": "10.2.1.22",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 26380.6,
+    "y": 76749.6
+   }
+  },
+  {
+   "nodeId": "GND023",
+   "name": "地面节点23",
+   "nodeType": "ground",
+   "ip": "10.2.1.23",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 13778.7,
+    "y": 59673.6
+   }
+  },
+  {
+   "nodeId": "GND024",
+   "name": "地面节点24",
+   "nodeType": "ground",
+   "ip": "10.2.1.24",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 7971.5,
+    "y": 60122.6
+   }
+  },
+  {
+   "nodeId": "GND025",
+   "name": "地面节点25",
+   "nodeType": "ground",
+   "ip": "10.2.1.25",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 13752.3,
+    "y": 71089.1
+   }
+  },
+  {
+   "nodeId": "GND026",
+   "name": "地面节点26",
+   "nodeType": "ground",
+   "ip": "10.2.1.26",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 49321.5,
+    "y": 48572.8
+   }
+  },
+  {
+   "nodeId": "GND027",
+   "name": "地面节点27",
+   "nodeType": "ground",
+   "ip": "10.2.1.27",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 57736.6,
+    "y": 46551.8
+   }
+  },
+  {
+   "nodeId": "GND028",
+   "name": "地面节点28",
+   "nodeType": "ground",
+   "ip": "10.2.1.28",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 39939.7,
+    "y": 66551.1
+   }
+  },
+  {
+   "nodeId": "GND029",
+   "name": "地面节点29",
+   "nodeType": "ground",
+   "ip": "10.2.1.29",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 48598.0,
+    "y": 45208.5
+   }
+  },
+  {
+   "nodeId": "GND030",
+   "name": "地面节点30",
+   "nodeType": "ground",
+   "ip": "10.2.1.30",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 46164.7,
+    "y": 76204.8
+   }
+  },
+  {
+   "nodeId": "GND031",
+   "name": "地面节点31",
+   "nodeType": "ground",
+   "ip": "10.2.1.31",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 61066.6,
+    "y": 66296.2
+   }
+  },
+  {
+   "nodeId": "GND032",
+   "name": "地面节点32",
+   "nodeType": "ground",
+   "ip": "10.2.1.32",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 85213.9,
+    "y": 72736.9
+   }
+  },
+  {
+   "nodeId": "GND033",
+   "name": "地面节点33",
+   "nodeType": "ground",
+   "ip": "10.2.1.33",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 79801.0,
+    "y": 76764.3
+   }
+  },
+  {
+   "nodeId": "GND034",
+   "name": "地面节点34",
+   "nodeType": "ground",
+   "ip": "10.2.1.34",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 85863.0,
+    "y": 50348.7
+   }
+  },
+  {
+   "nodeId": "GND035",
+   "name": "地面节点35",
+   "nodeType": "ground",
+   "ip": "10.2.1.35",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 79142.3,
+    "y": 63396.5
+   }
+  },
+  {
+   "nodeId": "GND036",
+   "name": "地面节点36",
+   "nodeType": "ground",
+   "ip": "10.2.1.36",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 114778.5,
+    "y": 64529.9
+   }
+  },
+  {
+   "nodeId": "GND037",
+   "name": "地面节点37",
+   "nodeType": "ground",
+   "ip": "10.2.1.37",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 102963.0,
+    "y": 75296.9
+   }
+  },
+  {
+   "nodeId": "GND038",
+   "name": "地面节点38",
+   "nodeType": "ground",
+   "ip": "10.2.1.38",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 99192.6,
+    "y": 55416.2
+   }
+  },
+  {
+   "nodeId": "GND039",
+   "name": "地面节点39",
+   "nodeType": "ground",
+   "ip": "10.2.1.39",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 116757.7,
+    "y": 65421.5
+   }
+  },
+  {
+   "nodeId": "GND040",
+   "name": "地面节点40",
+   "nodeType": "ground",
+   "ip": "10.2.1.40",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 112978.0,
+    "y": 71814.9
+   }
+  },
+  {
+   "nodeId": "GND041",
+   "name": "地面节点41",
+   "nodeType": "ground",
+   "ip": "10.2.1.41",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 5939.8,
+    "y": 107724.0
+   }
+  },
+  {
+   "nodeId": "GND042",
+   "name": "地面节点42",
+   "nodeType": "ground",
+   "ip": "10.2.1.42",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 19000.0,
+    "y": 84177.4
+   }
+  },
+  {
+   "nodeId": "GND043",
+   "name": "地面节点43",
+   "nodeType": "ground",
+   "ip": "10.2.1.43",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 6503.7,
+    "y": 109782.5
+   }
+  },
+  {
+   "nodeId": "GND044",
+   "name": "地面节点44",
+   "nodeType": "ground",
+   "ip": "10.2.1.44",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 31240.0,
+    "y": 101194.3
+   }
+  },
+  {
+   "nodeId": "GND045",
+   "name": "地面节点45",
+   "nodeType": "ground",
+   "ip": "10.2.1.45",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 13757.1,
+    "y": 84587.6
+   }
+  },
+  {
+   "nodeId": "GND046",
+   "name": "地面节点46",
+   "nodeType": "ground",
+   "ip": "10.2.1.46",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 57875.5,
+    "y": 98478.1
+   }
+  },
+  {
+   "nodeId": "GND047",
+   "name": "地面节点47",
+   "nodeType": "ground",
+   "ip": "10.2.1.47",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 55704.8,
+    "y": 84731.9
+   }
+  },
+  {
+   "nodeId": "GND048",
+   "name": "地面节点48",
+   "nodeType": "ground",
+   "ip": "10.2.1.48",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 40647.3,
+    "y": 85294.9
+   }
+  },
+  {
+   "nodeId": "GND049",
+   "name": "地面节点49",
+   "nodeType": "ground",
+   "ip": "10.2.1.49",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 42263.5,
+    "y": 114674.1
+   }
+  },
+  {
+   "nodeId": "GND050",
+   "name": "地面节点50",
+   "nodeType": "ground",
+   "ip": "10.2.1.50",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 56125.5,
+    "y": 99322.4
+   }
+  },
+  {
+   "nodeId": "GND051",
+   "name": "地面节点51",
+   "nodeType": "ground",
+   "ip": "10.2.1.51",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 58963.5,
+    "y": 104764.7
+   }
+  },
+  {
+   "nodeId": "GND052",
+   "name": "地面节点52",
+   "nodeType": "ground",
+   "ip": "10.2.1.52",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 58328.2,
+    "y": 99498.1
+   }
+  },
+  {
+   "nodeId": "AIR001",
+   "name": "空中节点1",
+   "nodeType": "air",
+   "ip": "10.3.0.1",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 30000.0,
+    "y": 30000.0
+   }
+  },
+  {
+   "nodeId": "AIR002",
+   "name": "空中节点2",
+   "nodeType": "air",
+   "ip": "10.3.0.2",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 56666.7,
+    "y": 30000.0
+   }
+  },
+  {
+   "nodeId": "AIR003",
+   "name": "空中节点3",
+   "nodeType": "air",
+   "ip": "10.3.0.3",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 83333.3,
+    "y": 30000.0
+   }
+  },
+  {
+   "nodeId": "UAV0001",
+   "name": "无人平台1",
+   "nodeType": "uav",
+   "ip": "10.1.1.1",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 15807.4,
+    "y": 9051.3
+   }
+  },
+  {
+   "nodeId": "UAV0002",
+   "name": "无人平台2",
+   "nodeType": "uav",
+   "ip": "10.1.1.2",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 38018.4,
+    "y": 12915.3
+   }
+  },
+  {
+   "nodeId": "UAV0003",
+   "name": "无人平台3",
+   "nodeType": "uav",
+   "ip": "10.1.1.3",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 87993.8,
+    "y": 10426.0
+   }
+  },
+  {
+   "nodeId": "UAV0004",
+   "name": "无人平台4",
+   "nodeType": "uav",
+   "ip": "10.1.1.4",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 85751.5,
+    "y": 28567.4
+   }
+  },
+  {
+   "nodeId": "UAV0005",
+   "name": "无人平台5",
+   "nodeType": "uav",
+   "ip": "10.1.1.5",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 14042.8,
+    "y": 55442.1
+   }
+  },
+  {
+   "nodeId": "UAV0006",
+   "name": "无人平台6",
+   "nodeType": "uav",
+   "ip": "10.1.1.6",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 29412.4,
+    "y": 57127.7
+   }
+  },
+  {
+   "nodeId": "UAV0007",
+   "name": "无人平台7",
+   "nodeType": "uav",
+   "ip": "10.1.1.7",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 65600.1,
+    "y": 62989.2
+   }
+  },
+  {
+   "nodeId": "UAV0008",
+   "name": "无人平台8",
+   "nodeType": "uav",
+   "ip": "10.1.1.8",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 108620.0,
+    "y": 51605.6
+   }
+  },
+  {
+   "nodeId": "UAV0009",
+   "name": "无人平台9",
+   "nodeType": "uav",
+   "ip": "10.1.1.9",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 4310.5,
+    "y": 100855.2
+   }
+  },
+  {
+   "nodeId": "UAV0010",
+   "name": "无人平台10",
+   "nodeType": "uav",
+   "ip": "10.1.1.10",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 42273.2,
+    "y": 109385.9
+   }
+  },
+  {
+   "nodeId": "UAV0011",
+   "name": "无人平台11",
+   "nodeType": "uav",
+   "ip": "10.1.1.11",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 78402.4,
+    "y": 106869.0
+   }
+  },
+  {
+   "nodeId": "UAV0012",
+   "name": "无人平台12",
+   "nodeType": "uav",
+   "ip": "10.1.1.12",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 37067.2,
+    "y": 19068.6
+   }
+  },
+  {
+   "nodeId": "UAV0013",
+   "name": "无人平台13",
+   "nodeType": "uav",
+   "ip": "10.1.1.13",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 45467.9,
+    "y": 11800.6
+   }
+  },
+  {
+   "nodeId": "UAV0014",
+   "name": "无人平台14",
+   "nodeType": "uav",
+   "ip": "10.1.1.14",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 63965.2,
+    "y": 19707.4
+   }
+  },
+  {
+   "nodeId": "UAV0015",
+   "name": "无人平台15",
+   "nodeType": "uav",
+   "ip": "10.1.1.15",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 91949.9,
+    "y": 19079.8
+   }
+  },
+  {
+   "nodeId": "UAV0016",
+   "name": "无人平台16",
+   "nodeType": "uav",
+   "ip": "10.1.1.16",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 5255.9,
+    "y": 51042.1
+   }
+  },
+  {
+   "nodeId": "UAV0017",
+   "name": "无人平台17",
+   "nodeType": "uav",
+   "ip": "10.1.1.17",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 60045.2,
+    "y": 50603.2
+   }
+  },
+  {
+   "nodeId": "UAV0018",
+   "name": "无人平台18",
+   "nodeType": "uav",
+   "ip": "10.1.1.18",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 74675.3,
+    "y": 71488.2
+   }
+  },
+  {
+   "nodeId": "UAV0019",
+   "name": "无人平台19",
+   "nodeType": "uav",
+   "ip": "10.1.1.19",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 109438.3,
+    "y": 60581.6
+   }
+  },
+  {
+   "nodeId": "UAV0020",
+   "name": "无人平台20",
+   "nodeType": "uav",
+   "ip": "10.1.1.20",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 33223.0,
+    "y": 88717.0
+   }
+  },
+  {
+   "nodeId": "UAV0021",
+   "name": "无人平台21",
+   "nodeType": "uav",
+   "ip": "10.1.1.21",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 53937.8,
+    "y": 94710.5
+   }
+  },
+  {
+   "nodeId": "UAV0022",
+   "name": "无人平台22",
+   "nodeType": "uav",
+   "ip": "10.1.1.22",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 65944.1,
+    "y": 90591.3
+   }
+  },
+  {
+   "nodeId": "UAV0023",
+   "name": "无人平台23",
+   "nodeType": "uav",
+   "ip": "10.1.1.23",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 6877.4,
+    "y": 8093.8
+   }
+  },
+  {
+   "nodeId": "UAV0024",
+   "name": "无人平台24",
+   "nodeType": "uav",
+   "ip": "10.1.1.24",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 43762.5,
+    "y": 34049.4
+   }
+  },
+  {
+   "nodeId": "UAV0025",
+   "name": "无人平台25",
+   "nodeType": "uav",
+   "ip": "10.1.1.25",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 69819.6,
+    "y": 20868.1
+   }
+  },
+  {
+   "nodeId": "UAV0026",
+   "name": "无人平台26",
+   "nodeType": "uav",
+   "ip": "10.1.1.26",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 114805.5,
+    "y": 18771.1
+   }
+  },
+  {
+   "nodeId": "UAV0027",
+   "name": "无人平台27",
+   "nodeType": "uav",
+   "ip": "10.1.1.27",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 32390.6,
+    "y": 54669.2
+   }
+  },
+  {
+   "nodeId": "UAV0028",
+   "name": "无人平台28",
+   "nodeType": "uav",
+   "ip": "10.1.1.28",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 42550.8,
+    "y": 62334.7
+   }
+  },
+  {
+   "nodeId": "UAV0029",
+   "name": "无人平台29",
+   "nodeType": "uav",
+   "ip": "10.1.1.29",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 70589.4,
+    "y": 54011.1
+   }
+  },
+  {
+   "nodeId": "UAV0030",
+   "name": "无人平台30",
+   "nodeType": "uav",
+   "ip": "10.1.1.30",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 105697.1,
+    "y": 74251.3
+   }
+  },
+  {
+   "nodeId": "UAV0031",
+   "name": "无人平台31",
+   "nodeType": "uav",
+   "ip": "10.1.1.31",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 13794.5,
+    "y": 116529.3
+   }
+  },
+  {
+   "nodeId": "UAV0032",
+   "name": "无人平台32",
+   "nodeType": "uav",
+   "ip": "10.1.1.32",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 48244.5,
+    "y": 107765.8
+   }
+  },
+  {
+   "nodeId": "UAV0033",
+   "name": "无人平台33",
+   "nodeType": "uav",
+   "ip": "10.1.1.33",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 78219.4,
+    "y": 111555.1
+   }
+  },
+  {
+   "nodeId": "UAV0034",
+   "name": "无人平台34",
+   "nodeType": "uav",
+   "ip": "10.1.1.34",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 19942.8,
+    "y": 7941.5
+   }
+  },
+  {
+   "nodeId": "UAV0035",
+   "name": "无人平台35",
+   "nodeType": "uav",
+   "ip": "10.1.1.35",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 44930.4,
+    "y": 13945.7
+   }
+  },
+  {
+   "nodeId": "UAV0036",
+   "name": "无人平台36",
+   "nodeType": "uav",
+   "ip": "10.1.1.36",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 55971.9,
+    "y": 18842.3
+   }
+  },
+  {
+   "nodeId": "UAV0037",
+   "name": "无人平台37",
+   "nodeType": "uav",
+   "ip": "10.1.1.37",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 87468.4,
+    "y": 11578.2
+   }
+  },
+  {
+   "nodeId": "UAV0038",
+   "name": "无人平台38",
+   "nodeType": "uav",
+   "ip": "10.1.1.38",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 28890.5,
+    "y": 46818.4
+   }
+  },
+  {
+   "nodeId": "UAV0039",
+   "name": "无人平台39",
+   "nodeType": "uav",
+   "ip": "10.1.1.39",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 53979.7,
+    "y": 64322.7
+   }
+  },
+  {
+   "nodeId": "UAV0040",
+   "name": "无人平台40",
+   "nodeType": "uav",
+   "ip": "10.1.1.40",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 87084.6,
+    "y": 70086.5
+   }
+  },
+  {
+   "nodeId": "UAV0041",
+   "name": "无人平台41",
+   "nodeType": "uav",
+   "ip": "10.1.1.41",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 91628.5,
+    "y": 68291.4
+   }
+  },
+  {
+   "nodeId": "UAV0042",
+   "name": "无人平台42",
+   "nodeType": "uav",
+   "ip": "10.1.1.42",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 37932.9,
+    "y": 101474.9
+   }
+  },
+  {
+   "nodeId": "UAV0043",
+   "name": "无人平台43",
+   "nodeType": "uav",
+   "ip": "10.1.1.43",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 50546.0,
+    "y": 85705.2
+   }
+  },
+  {
+   "nodeId": "UAV0044",
+   "name": "无人平台44",
+   "nodeType": "uav",
+   "ip": "10.1.1.44",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 65436.6,
+    "y": 111097.4
+   }
+  },
+  {
+   "nodeId": "UAV0045",
+   "name": "无人平台45",
+   "nodeType": "uav",
+   "ip": "10.1.1.45",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 30895.0,
+    "y": 29982.5
+   }
+  },
+  {
+   "nodeId": "UAV0046",
+   "name": "无人平台46",
+   "nodeType": "uav",
+   "ip": "10.1.1.46",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 31477.9,
+    "y": 28869.6
+   }
+  },
+  {
+   "nodeId": "UAV0047",
+   "name": "无人平台47",
+   "nodeType": "uav",
+   "ip": "10.1.1.47",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 71192.6,
+    "y": 15673.4
+   }
+  },
+  {
+   "nodeId": "UAV0048",
+   "name": "无人平台48",
+   "nodeType": "uav",
+   "ip": "10.1.1.48",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 112043.9,
+    "y": 16027.3
+   }
+  },
+  {
+   "nodeId": "UAV0049",
+   "name": "无人平台49",
+   "nodeType": "uav",
+   "ip": "10.1.1.49",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 10131.0,
+    "y": 58528.5
+   }
+  },
+  {
+   "nodeId": "UAV0050",
+   "name": "无人平台50",
+   "nodeType": "uav",
+   "ip": "10.1.1.50",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 52506.1,
+    "y": 60443.8
+   }
+  },
+  {
+   "nodeId": "UAV0051",
+   "name": "无人平台51",
+   "nodeType": "uav",
+   "ip": "10.1.1.51",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 75033.7,
+    "y": 42952.1
+   }
+  },
+  {
+   "nodeId": "UAV0052",
+   "name": "无人平台52",
+   "nodeType": "uav",
+   "ip": "10.1.1.52",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 99135.3,
+    "y": 53592.3
+   }
+  },
+  {
+   "nodeId": "UAV0053",
+   "name": "无人平台53",
+   "nodeType": "uav",
+   "ip": "10.1.1.53",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 18598.0,
+    "y": 98471.0
+   }
+  },
+  {
+   "nodeId": "UAV0054",
+   "name": "无人平台54",
+   "nodeType": "uav",
+   "ip": "10.1.1.54",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 53592.5,
+    "y": 93344.8
+   }
+  },
+  {
+   "nodeId": "UAV0055",
+   "name": "无人平台55",
+   "nodeType": "uav",
+   "ip": "10.1.1.55",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 57424.8,
+    "y": 103893.2
+   }
+  },
+  {
+   "nodeId": "UAV0056",
+   "name": "无人平台56",
+   "nodeType": "uav",
+   "ip": "10.1.1.56",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 14115.0,
+    "y": 21763.7
+   }
+  },
+  {
+   "nodeId": "UAV0057",
+   "name": "无人平台57",
+   "nodeType": "uav",
+   "ip": "10.1.1.57",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 43273.8,
+    "y": 9997.7
+   }
+  },
+  {
+   "nodeId": "UAV0058",
+   "name": "无人平台58",
+   "nodeType": "uav",
+   "ip": "10.1.1.58",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 64959.1,
+    "y": 18298.6
+   }
+  },
+  {
+   "nodeId": "UAV0059",
+   "name": "无人平台59",
+   "nodeType": "uav",
+   "ip": "10.1.1.59",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 104716.8,
+    "y": 24288.4
+   }
+  },
+  {
+   "nodeId": "UAV0060",
+   "name": "无人平台60",
+   "nodeType": "uav",
+   "ip": "10.1.1.60",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 11489.0,
+    "y": 72080.0
+   }
+  },
+  {
+   "nodeId": "UAV0061",
+   "name": "无人平台61",
+   "nodeType": "uav",
+   "ip": "10.1.1.61",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 43650.4,
+    "y": 64569.9
+   }
+  },
+  {
+   "nodeId": "UAV0062",
+   "name": "无人平台62",
+   "nodeType": "uav",
+   "ip": "10.1.1.62",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 67467.5,
+    "y": 48860.1
+   }
+  },
+  {
+   "nodeId": "UAV0063",
+   "name": "无人平台63",
+   "nodeType": "uav",
+   "ip": "10.1.1.63",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 105693.0,
+    "y": 52451.0
+   }
+  },
+  {
+   "nodeId": "UAV0064",
+   "name": "无人平台64",
+   "nodeType": "uav",
+   "ip": "10.1.1.64",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 20004.1,
+    "y": 102086.3
+   }
+  },
+  {
+   "nodeId": "UAV0065",
+   "name": "无人平台65",
+   "nodeType": "uav",
+   "ip": "10.1.1.65",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 62030.3,
+    "y": 102548.1
+   }
+  },
+  {
+   "nodeId": "UAV0066",
+   "name": "无人平台66",
+   "nodeType": "uav",
+   "ip": "10.1.1.66",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 85176.0,
+    "y": 96975.9
+   }
+  },
+  {
+   "nodeId": "UAV0067",
+   "name": "无人平台67",
+   "nodeType": "uav",
+   "ip": "10.1.1.67",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 19483.3,
+    "y": 26597.5
+   }
+  },
+  {
+   "nodeId": "UAV0068",
+   "name": "无人平台68",
+   "nodeType": "uav",
+   "ip": "10.1.1.68",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 35916.6,
+    "y": 28128.6
+   }
+  },
+  {
+   "nodeId": "UAV0069",
+   "name": "无人平台69",
+   "nodeType": "uav",
+   "ip": "10.1.1.69",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 78356.6,
+    "y": 23051.9
+   }
+  },
+  {
+   "nodeId": "UAV0070",
+   "name": "无人平台70",
+   "nodeType": "uav",
+   "ip": "10.1.1.70",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 116552.1,
+    "y": 16003.8
+   }
+  },
+  {
+   "nodeId": "UAV0071",
+   "name": "无人平台71",
+   "nodeType": "uav",
+   "ip": "10.1.1.71",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 12683.5,
+    "y": 67276.2
+   }
+  },
+  {
+   "nodeId": "UAV0072",
+   "name": "无人平台72",
+   "nodeType": "uav",
+   "ip": "10.1.1.72",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 40027.4,
+    "y": 51938.5
+   }
+  },
+  {
+   "nodeId": "UAV0073",
+   "name": "无人平台73",
+   "nodeType": "uav",
+   "ip": "10.1.1.73",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 59928.9,
+    "y": 60511.9
+   }
+  },
+  {
+   "nodeId": "UAV0074",
+   "name": "无人平台74",
+   "nodeType": "uav",
+   "ip": "10.1.1.74",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 89833.8,
+    "y": 52695.7
+   }
+  },
+  {
+   "nodeId": "UAV0075",
+   "name": "无人平台75",
+   "nodeType": "uav",
+   "ip": "10.1.1.75",
+   "mask": "255.255.0.0",
+   "position": {
+    "x": 10674.5,
+    "y": 88303.6
+   }
+  }
+ ],
+ "links": [
+  {
+   "linkId": "L00001",
+   "linkType": "5g",
+   "srcNodeId": "GND001",
+   "dstNodeId": "GND002",
+   "params": {
+    "delayMs": 5.0,
+    "jitterMs": 1.2,
+    "bandwidthBps": 29000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00002",
+   "linkType": "5g",
+   "srcNodeId": "GND002",
+   "dstNodeId": "GND003",
+   "params": {
+    "delayMs": 4.4,
+    "jitterMs": 3.8,
+    "bandwidthBps": 23000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00003",
+   "linkType": "5g",
+   "srcNodeId": "GND003",
+   "dstNodeId": "GND004",
+   "params": {
+    "delayMs": 6.2,
+    "jitterMs": 8.9,
+    "bandwidthBps": 28000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00004",
+   "linkType": "microwave",
+   "srcNodeId": "GND004",
+   "dstNodeId": "GND005",
+   "params": {
+    "delayMs": 7.2,
+    "jitterMs": 4.4,
+    "bandwidthBps": 31000000,
+    "ber": 1e-05,
+    "packetLossRate": 3e-05
+   }
+  },
+  {
+   "linkId": "L00005",
+   "linkType": "microwave",
+   "srcNodeId": "GND005",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 3.2,
+    "bandwidthBps": 21000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00006",
+   "linkType": "5g",
+   "srcNodeId": "GND003",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 7.4,
+    "jitterMs": 2.5,
+    "bandwidthBps": 25000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00007",
+   "linkType": "microwave",
+   "srcNodeId": "GND005",
+   "dstNodeId": "GND002",
+   "params": {
+    "delayMs": 1.5,
+    "jitterMs": 6.0,
+    "bandwidthBps": 28000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00008",
+   "linkType": "5g",
+   "srcNodeId": "GND006",
+   "dstNodeId": "GND007",
+   "params": {
+    "delayMs": 7.1,
+    "jitterMs": 10.3,
+    "bandwidthBps": 30000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00009",
+   "linkType": "5g",
+   "srcNodeId": "GND007",
+   "dstNodeId": "GND008",
+   "params": {
+    "delayMs": 3.9,
+    "jitterMs": 1.0,
+    "bandwidthBps": 26000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00010",
+   "linkType": "microwave",
+   "srcNodeId": "GND008",
+   "dstNodeId": "GND009",
+   "params": {
+    "delayMs": 0.6,
+    "jitterMs": 3.1,
+    "bandwidthBps": 23000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00011",
+   "linkType": "5g",
+   "srcNodeId": "GND009",
+   "dstNodeId": "GND010",
+   "params": {
+    "delayMs": 0.5,
+    "jitterMs": 11.3,
+    "bandwidthBps": 28000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00012",
+   "linkType": "5g",
+   "srcNodeId": "GND010",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 8.3,
+    "bandwidthBps": 27000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00013",
+   "linkType": "5g",
+   "srcNodeId": "GND008",
+   "dstNodeId": "GND007",
+   "params": {
+    "delayMs": 5.7,
+    "jitterMs": 1.1,
+    "bandwidthBps": 30000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00014",
+   "linkType": "microwave",
+   "srcNodeId": "GND010",
+   "dstNodeId": "GND008",
+   "params": {
+    "delayMs": 3.8,
+    "jitterMs": 5.2,
+    "bandwidthBps": 22000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00015",
+   "linkType": "microwave",
+   "srcNodeId": "GND011",
+   "dstNodeId": "GND012",
+   "params": {
+    "delayMs": 7.6,
+    "jitterMs": 0.9,
+    "bandwidthBps": 30000000,
+    "ber": 6e-09,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00016",
+   "linkType": "microwave",
+   "srcNodeId": "GND012",
+   "dstNodeId": "GND013",
+   "params": {
+    "delayMs": 6.5,
+    "jitterMs": 4.0,
+    "bandwidthBps": 31000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00017",
+   "linkType": "5g",
+   "srcNodeId": "GND013",
+   "dstNodeId": "GND014",
+   "params": {
+    "delayMs": 6.3,
+    "jitterMs": 11.5,
+    "bandwidthBps": 31000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00018",
+   "linkType": "5g",
+   "srcNodeId": "GND014",
+   "dstNodeId": "GND015",
+   "params": {
+    "delayMs": 1.2,
+    "jitterMs": 5.5,
+    "bandwidthBps": 29000000,
+    "ber": 6e-06,
+    "packetLossRate": 2e-05
+   }
+  },
+  {
+   "linkId": "L00019",
+   "linkType": "microwave",
+   "srcNodeId": "GND015",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 2.7,
+    "jitterMs": 4.0,
+    "bandwidthBps": 22000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00020",
+   "linkType": "5g",
+   "srcNodeId": "GND014",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 4.1,
+    "jitterMs": 5.6,
+    "bandwidthBps": 26000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00021",
+   "linkType": "microwave",
+   "srcNodeId": "GND015",
+   "dstNodeId": "GND012",
+   "params": {
+    "delayMs": 4.8,
+    "jitterMs": 7.5,
+    "bandwidthBps": 20000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00022",
+   "linkType": "5g",
+   "srcNodeId": "GND016",
+   "dstNodeId": "GND017",
+   "params": {
+    "delayMs": 6.6,
+    "jitterMs": 3.6,
+    "bandwidthBps": 30000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00023",
+   "linkType": "5g",
+   "srcNodeId": "GND017",
+   "dstNodeId": "GND018",
+   "params": {
+    "delayMs": 5.8,
+    "jitterMs": 6.1,
+    "bandwidthBps": 24000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00024",
+   "linkType": "microwave",
+   "srcNodeId": "GND018",
+   "dstNodeId": "GND019",
+   "params": {
+    "delayMs": 2.2,
+    "jitterMs": 5.6,
+    "bandwidthBps": 21000000,
+    "ber": 2e-07,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00025",
+   "linkType": "microwave",
+   "srcNodeId": "GND019",
+   "dstNodeId": "GND020",
+   "params": {
+    "delayMs": 5.2,
+    "jitterMs": 2.2,
+    "bandwidthBps": 21000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00026",
+   "linkType": "microwave",
+   "srcNodeId": "GND020",
+   "dstNodeId": "GND016",
+   "params": {
+    "delayMs": 7.0,
+    "jitterMs": 7.4,
+    "bandwidthBps": 26000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00027",
+   "linkType": "microwave",
+   "srcNodeId": "GND019",
+   "dstNodeId": "GND018",
+   "params": {
+    "delayMs": 3.6,
+    "jitterMs": 7.3,
+    "bandwidthBps": 22000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00028",
+   "linkType": "5g",
+   "srcNodeId": "GND020",
+   "dstNodeId": "GND018",
+   "params": {
+    "delayMs": 6.7,
+    "jitterMs": 9.8,
+    "bandwidthBps": 26000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00029",
+   "linkType": "5g",
+   "srcNodeId": "GND021",
+   "dstNodeId": "GND022",
+   "params": {
+    "delayMs": 4.0,
+    "jitterMs": 8.2,
+    "bandwidthBps": 30000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00030",
+   "linkType": "microwave",
+   "srcNodeId": "GND022",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 7.6,
+    "jitterMs": 5.8,
+    "bandwidthBps": 21000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00031",
+   "linkType": "5g",
+   "srcNodeId": "GND023",
+   "dstNodeId": "GND024",
+   "params": {
+    "delayMs": 1.6,
+    "jitterMs": 1.4,
+    "bandwidthBps": 31000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00032",
+   "linkType": "5g",
+   "srcNodeId": "GND024",
+   "dstNodeId": "GND025",
+   "params": {
+    "delayMs": 0.3,
+    "jitterMs": 0.8,
+    "bandwidthBps": 25000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00033",
+   "linkType": "5g",
+   "srcNodeId": "GND025",
+   "dstNodeId": "GND021",
+   "params": {
+    "delayMs": 5.3,
+    "jitterMs": 11.4,
+    "bandwidthBps": 29000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00034",
+   "linkType": "5g",
+   "srcNodeId": "GND024",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 0.2,
+    "jitterMs": 5.2,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00035",
+   "linkType": "5g",
+   "srcNodeId": "GND025",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 4.2,
+    "jitterMs": 9.4,
+    "bandwidthBps": 24000000,
+    "ber": 9e-06,
+    "packetLossRate": 7e-06
+   }
+  },
+  {
+   "linkId": "L00036",
+   "linkType": "microwave",
+   "srcNodeId": "GND026",
+   "dstNodeId": "GND027",
+   "params": {
+    "delayMs": 1.5,
+    "jitterMs": 2.0,
+    "bandwidthBps": 26000000,
+    "ber": 6e-07,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00037",
+   "linkType": "5g",
+   "srcNodeId": "GND027",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 3.1,
+    "jitterMs": 7.5,
+    "bandwidthBps": 25000000,
+    "ber": 1e-07,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00038",
+   "linkType": "5g",
+   "srcNodeId": "GND028",
+   "dstNodeId": "GND029",
+   "params": {
+    "delayMs": 2.9,
+    "jitterMs": 9.6,
+    "bandwidthBps": 30000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00039",
+   "linkType": "5g",
+   "srcNodeId": "GND029",
+   "dstNodeId": "GND030",
+   "params": {
+    "delayMs": 0.6,
+    "jitterMs": 2.4,
+    "bandwidthBps": 26000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00040",
+   "linkType": "5g",
+   "srcNodeId": "GND030",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 3.9,
+    "jitterMs": 5.2,
+    "bandwidthBps": 23000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00041",
+   "linkType": "microwave",
+   "srcNodeId": "GND027",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 2.7,
+    "jitterMs": 4.6,
+    "bandwidthBps": 21000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00042",
+   "linkType": "microwave",
+   "srcNodeId": "GND029",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 0.8,
+    "jitterMs": 0.9,
+    "bandwidthBps": 25000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00043",
+   "linkType": "microwave",
+   "srcNodeId": "GND030",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 4.2,
+    "jitterMs": 0.6,
+    "bandwidthBps": 27000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00044",
+   "linkType": "5g",
+   "srcNodeId": "GND031",
+   "dstNodeId": "GND032",
+   "params": {
+    "delayMs": 1.4,
+    "jitterMs": 6.9,
+    "bandwidthBps": 24000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00045",
+   "linkType": "microwave",
+   "srcNodeId": "GND032",
+   "dstNodeId": "GND033",
+   "params": {
+    "delayMs": 5.7,
+    "jitterMs": 0.5,
+    "bandwidthBps": 24000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00046",
+   "linkType": "microwave",
+   "srcNodeId": "GND033",
+   "dstNodeId": "GND034",
+   "params": {
+    "delayMs": 5.6,
+    "jitterMs": 2.5,
+    "bandwidthBps": 28000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00047",
+   "linkType": "microwave",
+   "srcNodeId": "GND034",
+   "dstNodeId": "GND035",
+   "params": {
+    "delayMs": 8.0,
+    "jitterMs": 3.5,
+    "bandwidthBps": 30000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00048",
+   "linkType": "5g",
+   "srcNodeId": "GND035",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 4.0,
+    "jitterMs": 4.8,
+    "bandwidthBps": 24000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00049",
+   "linkType": "5g",
+   "srcNodeId": "GND033",
+   "dstNodeId": "GND032",
+   "params": {
+    "delayMs": 0.5,
+    "jitterMs": 1.3,
+    "bandwidthBps": 31000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00050",
+   "linkType": "5g",
+   "srcNodeId": "GND035",
+   "dstNodeId": "GND032",
+   "params": {
+    "delayMs": 2.8,
+    "jitterMs": 6.1,
+    "bandwidthBps": 30000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0001
+   }
+  },
+  {
+   "linkId": "L00051",
+   "linkType": "5g",
+   "srcNodeId": "GND036",
+   "dstNodeId": "GND037",
+   "params": {
+    "delayMs": 4.1,
+    "jitterMs": 0.6,
+    "bandwidthBps": 30000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00052",
+   "linkType": "microwave",
+   "srcNodeId": "GND037",
+   "dstNodeId": "GND038",
+   "params": {
+    "delayMs": 2.7,
+    "jitterMs": 4.1,
+    "bandwidthBps": 29000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00053",
+   "linkType": "5g",
+   "srcNodeId": "GND038",
+   "dstNodeId": "GND039",
+   "params": {
+    "delayMs": 1.3,
+    "jitterMs": 3.2,
+    "bandwidthBps": 30000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0001
+   }
+  },
+  {
+   "linkId": "L00054",
+   "linkType": "microwave",
+   "srcNodeId": "GND039",
+   "dstNodeId": "GND040",
+   "params": {
+    "delayMs": 7.3,
+    "jitterMs": 2.9,
+    "bandwidthBps": 24000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00055",
+   "linkType": "5g",
+   "srcNodeId": "GND040",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 5.1,
+    "jitterMs": 1.9,
+    "bandwidthBps": 25000000,
+    "ber": 5e-07,
+    "packetLossRate": 6e-05
+   }
+  },
+  {
+   "linkId": "L00056",
+   "linkType": "5g",
+   "srcNodeId": "GND038",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 3.7,
+    "jitterMs": 5.0,
+    "bandwidthBps": 28000000,
+    "ber": 3e-06,
+    "packetLossRate": 2e-05
+   }
+  },
+  {
+   "linkId": "L00057",
+   "linkType": "5g",
+   "srcNodeId": "GND039",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 0.2,
+    "jitterMs": 3.3,
+    "bandwidthBps": 31000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00058",
+   "linkType": "5g",
+   "srcNodeId": "GND040",
+   "dstNodeId": "GND039",
+   "params": {
+    "delayMs": 1.7,
+    "jitterMs": 7.4,
+    "bandwidthBps": 25000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00059",
+   "linkType": "5g",
+   "srcNodeId": "GND041",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 2.6,
+    "jitterMs": 4.6,
+    "bandwidthBps": 23000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00060",
+   "linkType": "5g",
+   "srcNodeId": "GND042",
+   "dstNodeId": "GND043",
+   "params": {
+    "delayMs": 4.0,
+    "jitterMs": 0.6,
+    "bandwidthBps": 28000000,
+    "ber": 1e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00061",
+   "linkType": "5g",
+   "srcNodeId": "GND043",
+   "dstNodeId": "GND044",
+   "params": {
+    "delayMs": 6.2,
+    "jitterMs": 0.7,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00062",
+   "linkType": "microwave",
+   "srcNodeId": "GND044",
+   "dstNodeId": "GND045",
+   "params": {
+    "delayMs": 2.5,
+    "jitterMs": 2.5,
+    "bandwidthBps": 23000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00063",
+   "linkType": "microwave",
+   "srcNodeId": "GND045",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 3.7,
+    "jitterMs": 5.4,
+    "bandwidthBps": 24000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00064",
+   "linkType": "microwave",
+   "srcNodeId": "GND043",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 4.4,
+    "jitterMs": 4.2,
+    "bandwidthBps": 25000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00065",
+   "linkType": "microwave",
+   "srcNodeId": "GND044",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 1.0,
+    "jitterMs": 7.0,
+    "bandwidthBps": 25000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00066",
+   "linkType": "microwave",
+   "srcNodeId": "GND045",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 6.9,
+    "bandwidthBps": 25000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00067",
+   "linkType": "microwave",
+   "srcNodeId": "GND046",
+   "dstNodeId": "GND047",
+   "params": {
+    "delayMs": 4.5,
+    "jitterMs": 1.6,
+    "bandwidthBps": 29000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00068",
+   "linkType": "5g",
+   "srcNodeId": "GND047",
+   "dstNodeId": "GND048",
+   "params": {
+    "delayMs": 1.4,
+    "jitterMs": 5.4,
+    "bandwidthBps": 24000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00069",
+   "linkType": "microwave",
+   "srcNodeId": "GND048",
+   "dstNodeId": "GND049",
+   "params": {
+    "delayMs": 2.4,
+    "jitterMs": 6.0,
+    "bandwidthBps": 21000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00070",
+   "linkType": "microwave",
+   "srcNodeId": "GND049",
+   "dstNodeId": "GND050",
+   "params": {
+    "delayMs": 0.2,
+    "jitterMs": 1.7,
+    "bandwidthBps": 28000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00071",
+   "linkType": "5g",
+   "srcNodeId": "GND050",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 2.5,
+    "jitterMs": 8.7,
+    "bandwidthBps": 23000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00072",
+   "linkType": "microwave",
+   "srcNodeId": "GND047",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 7.5,
+    "jitterMs": 1.9,
+    "bandwidthBps": 23000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00073",
+   "linkType": "microwave",
+   "srcNodeId": "GND048",
+   "dstNodeId": "GND047",
+   "params": {
+    "delayMs": 5.0,
+    "jitterMs": 7.4,
+    "bandwidthBps": 26000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00074",
+   "linkType": "microwave",
+   "srcNodeId": "GND050",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 0.7,
+    "jitterMs": 5.7,
+    "bandwidthBps": 20000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00075",
+   "linkType": "5g",
+   "srcNodeId": "GND051",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 1.0,
+    "jitterMs": 3.5,
+    "bandwidthBps": 27000000,
+    "ber": 9e-08,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00076",
+   "linkType": "5g",
+   "srcNodeId": "GND052",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 2.7,
+    "jitterMs": 11.4,
+    "bandwidthBps": 26000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00077",
+   "linkType": "fiber",
+   "srcNodeId": "GND001",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 0.1,
+    "jitterMs": 1.5,
+    "bandwidthBps": 7600000000,
+    "ber": 1e-07,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00078",
+   "linkType": "satcom",
+   "srcNodeId": "GND001",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 232.0,
+    "jitterMs": 158.1,
+    "bandwidthBps": 13000000,
+    "ber": 3e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00079",
+   "linkType": "fiber",
+   "srcNodeId": "GND006",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 1.0,
+    "bandwidthBps": 9200000000,
+    "ber": 2e-08,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00080",
+   "linkType": "satcom",
+   "srcNodeId": "GND006",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 424.1,
+    "jitterMs": 74.6,
+    "bandwidthBps": 19000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00081",
+   "linkType": "fiber",
+   "srcNodeId": "GND011",
+   "dstNodeId": "GND016",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 0.3,
+    "bandwidthBps": 7400000000,
+    "ber": 9e-08,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00082",
+   "linkType": "satcom",
+   "srcNodeId": "GND011",
+   "dstNodeId": "GND016",
+   "params": {
+    "delayMs": 341.2,
+    "jitterMs": 191.8,
+    "bandwidthBps": 12000000,
+    "ber": 0.0001,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00083",
+   "linkType": "fiber",
+   "srcNodeId": "GND016",
+   "dstNodeId": "GND021",
+   "params": {
+    "delayMs": 0.3,
+    "jitterMs": 1.6,
+    "bandwidthBps": 9800000000,
+    "ber": 1e-07,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00084",
+   "linkType": "satcom",
+   "srcNodeId": "GND016",
+   "dstNodeId": "GND021",
+   "params": {
+    "delayMs": 377.7,
+    "jitterMs": 116.4,
+    "bandwidthBps": 16000000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00085",
+   "linkType": "fiber",
+   "srcNodeId": "GND021",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 0.4,
+    "bandwidthBps": 7500000000,
+    "ber": 6e-09,
+    "packetLossRate": 1e-06
+   }
+  },
+  {
+   "linkId": "L00086",
+   "linkType": "satcom",
+   "srcNodeId": "GND021",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 452.7,
+    "jitterMs": 164.0,
+    "bandwidthBps": 13000000,
+    "ber": 9e-05,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00087",
+   "linkType": "fiber",
+   "srcNodeId": "GND026",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 0.1,
+    "jitterMs": 1.0,
+    "bandwidthBps": 7900000000,
+    "ber": 2e-09,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00088",
+   "linkType": "satcom",
+   "srcNodeId": "GND026",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 374.3,
+    "jitterMs": 78.1,
+    "bandwidthBps": 18000000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00089",
+   "linkType": "fiber",
+   "srcNodeId": "GND031",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 0.3,
+    "jitterMs": 0.9,
+    "bandwidthBps": 9300000000,
+    "ber": 1e-08,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00090",
+   "linkType": "satcom",
+   "srcNodeId": "GND031",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 346.3,
+    "jitterMs": 190.9,
+    "bandwidthBps": 18000000,
+    "ber": 9e-07,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00091",
+   "linkType": "fiber",
+   "srcNodeId": "GND036",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 0.3,
+    "jitterMs": 0.1,
+    "bandwidthBps": 7400000000,
+    "ber": 5e-08,
+    "packetLossRate": 2e-05
+   }
+  },
+  {
+   "linkId": "L00092",
+   "linkType": "satcom",
+   "srcNodeId": "GND036",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 426.7,
+    "jitterMs": 191.9,
+    "bandwidthBps": 18000000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00093",
+   "linkType": "fiber",
+   "srcNodeId": "GND041",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 2.0,
+    "bandwidthBps": 8800000000,
+    "ber": 3e-08,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00094",
+   "linkType": "satcom",
+   "srcNodeId": "GND041",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 358.8,
+    "jitterMs": 185.5,
+    "bandwidthBps": 19000000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00095",
+   "linkType": "fiber",
+   "srcNodeId": "GND046",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 0.2,
+    "jitterMs": 0.3,
+    "bandwidthBps": 9000000000,
+    "ber": 4e-08,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00096",
+   "linkType": "satcom",
+   "srcNodeId": "GND046",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 289.1,
+    "jitterMs": 4.6,
+    "bandwidthBps": 13000000,
+    "ber": 0.0001,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00097",
+   "linkType": "fiber",
+   "srcNodeId": "GND051",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 0.7,
+    "bandwidthBps": 9200000000,
+    "ber": 6e-08,
+    "packetLossRate": 3e-05
+   }
+  },
+  {
+   "linkId": "L00098",
+   "linkType": "satcom",
+   "srcNodeId": "GND051",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 414.8,
+    "jitterMs": 61.8,
+    "bandwidthBps": 14000000,
+    "ber": 0.0001,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00099",
+   "linkType": "5g",
+   "srcNodeId": "UAV0001",
+   "dstNodeId": "GND005",
+   "params": {
+    "delayMs": 6.0,
+    "jitterMs": 4.5,
+    "bandwidthBps": 28000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00100",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0001",
+   "dstNodeId": "GND004",
+   "params": {
+    "delayMs": 8.1,
+    "jitterMs": 18.1,
+    "bandwidthBps": 63000,
+    "ber": 4e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00101",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0002",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 6.0,
+    "jitterMs": 1.1,
+    "bandwidthBps": 31000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00102",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0002",
+   "dstNodeId": "GND010",
+   "params": {
+    "delayMs": 14.8,
+    "jitterMs": 1.2,
+    "bandwidthBps": 230000,
+    "ber": 3e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00103",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0003",
+   "dstNodeId": "GND015",
+   "params": {
+    "delayMs": 2.5,
+    "jitterMs": 6.5,
+    "bandwidthBps": 29000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00104",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0003",
+   "dstNodeId": "GND012",
+   "params": {
+    "delayMs": 2.2,
+    "jitterMs": 4.0,
+    "bandwidthBps": 44000,
+    "ber": 5e-05,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00105",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0004",
+   "dstNodeId": "GND013",
+   "params": {
+    "delayMs": 2.4,
+    "jitterMs": 6.1,
+    "bandwidthBps": 25000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00106",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0004",
+   "dstNodeId": "GND017",
+   "params": {
+    "delayMs": 6.0,
+    "jitterMs": 17.2,
+    "bandwidthBps": 180000,
+    "ber": 8e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00107",
+   "linkType": "5g",
+   "srcNodeId": "UAV0005",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 1.8,
+    "jitterMs": 11.0,
+    "bandwidthBps": 23000000,
+    "ber": 2e-07,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00108",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0005",
+   "dstNodeId": "GND024",
+   "params": {
+    "delayMs": 377.2,
+    "jitterMs": 140.8,
+    "bandwidthBps": 15000000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00109",
+   "linkType": "5g",
+   "srcNodeId": "UAV0006",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 1.9,
+    "jitterMs": 9.5,
+    "bandwidthBps": 23000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00110",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0006",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 2.7,
+    "jitterMs": 7.3,
+    "bandwidthBps": 52000,
+    "ber": 9e-05,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00111",
+   "linkType": "5g",
+   "srcNodeId": "UAV0007",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 1.8,
+    "jitterMs": 4.0,
+    "bandwidthBps": 26000000,
+    "ber": 4e-06,
+    "packetLossRate": 1e-05
+   }
+  },
+  {
+   "linkId": "L00112",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0007",
+   "dstNodeId": "GND035",
+   "params": {
+    "delayMs": 438.5,
+    "jitterMs": 150.5,
+    "bandwidthBps": 14000000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00113",
+   "linkType": "5g",
+   "srcNodeId": "UAV0008",
+   "dstNodeId": "GND038",
+   "params": {
+    "delayMs": 3.4,
+    "jitterMs": 4.6,
+    "bandwidthBps": 27000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00114",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0008",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 4.1,
+    "jitterMs": 2.5,
+    "bandwidthBps": 42000,
+    "ber": 6e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00115",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0009",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 6.2,
+    "jitterMs": 6.3,
+    "bandwidthBps": 27000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00116",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0009",
+   "dstNodeId": "GND043",
+   "params": {
+    "delayMs": 4.7,
+    "jitterMs": 18.0,
+    "bandwidthBps": 210000,
+    "ber": 2e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00117",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0010",
+   "dstNodeId": "GND049",
+   "params": {
+    "delayMs": 5.4,
+    "jitterMs": 5.3,
+    "bandwidthBps": 20000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00118",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0010",
+   "dstNodeId": "GND044",
+   "params": {
+    "delayMs": 13.9,
+    "jitterMs": 4.5,
+    "bandwidthBps": 50000,
+    "ber": 4e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00119",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0011",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 2.6,
+    "jitterMs": 4.5,
+    "bandwidthBps": 23000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00120",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0011",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 340.2,
+    "jitterMs": 188.7,
+    "bandwidthBps": 13000000,
+    "ber": 9e-05,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00121",
+   "linkType": "5g",
+   "srcNodeId": "UAV0012",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 3.6,
+    "jitterMs": 3.5,
+    "bandwidthBps": 26000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00122",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0012",
+   "dstNodeId": "GND010",
+   "params": {
+    "delayMs": 11.6,
+    "jitterMs": 18.6,
+    "bandwidthBps": 220000,
+    "ber": 2e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00123",
+   "linkType": "5g",
+   "srcNodeId": "UAV0013",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 1.5,
+    "jitterMs": 5.1,
+    "bandwidthBps": 24000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00124",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0013",
+   "dstNodeId": "GND008",
+   "params": {
+    "delayMs": 16.3,
+    "jitterMs": 11.6,
+    "bandwidthBps": 190000,
+    "ber": 0.0001,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00125",
+   "linkType": "5g",
+   "srcNodeId": "UAV0014",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 1.7,
+    "jitterMs": 2.7,
+    "bandwidthBps": 29000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00126",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0014",
+   "dstNodeId": "GND014",
+   "params": {
+    "delayMs": 368.1,
+    "jitterMs": 95.2,
+    "bandwidthBps": 19000000,
+    "ber": 4e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00127",
+   "linkType": "5g",
+   "srcNodeId": "UAV0015",
+   "dstNodeId": "GND015",
+   "params": {
+    "delayMs": 6.6,
+    "jitterMs": 11.6,
+    "bandwidthBps": 28000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00128",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0015",
+   "dstNodeId": "GND017",
+   "params": {
+    "delayMs": 18.7,
+    "jitterMs": 9.2,
+    "bandwidthBps": 44000,
+    "ber": 3e-05,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00129",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0016",
+   "dstNodeId": "GND024",
+   "params": {
+    "delayMs": 6.4,
+    "jitterMs": 2.6,
+    "bandwidthBps": 31000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00130",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0016",
+   "dstNodeId": "GND021",
+   "params": {
+    "delayMs": 13.4,
+    "jitterMs": 7.0,
+    "bandwidthBps": 49000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00131",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0017",
+   "dstNodeId": "GND027",
+   "params": {
+    "delayMs": 6.0,
+    "jitterMs": 7.2,
+    "bandwidthBps": 24000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00132",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0017",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 503.4,
+    "jitterMs": 191.6,
+    "bandwidthBps": 12000000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00133",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0018",
+   "dstNodeId": "GND033",
+   "params": {
+    "delayMs": 2.1,
+    "jitterMs": 7.3,
+    "bandwidthBps": 24000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00134",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0018",
+   "dstNodeId": "GND035",
+   "params": {
+    "delayMs": 1.4,
+    "jitterMs": 12.3,
+    "bandwidthBps": 230000,
+    "ber": 2e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00135",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0019",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 8.0,
+    "jitterMs": 1.2,
+    "bandwidthBps": 24000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00136",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0019",
+   "dstNodeId": "GND039",
+   "params": {
+    "delayMs": 11.9,
+    "jitterMs": 7.8,
+    "bandwidthBps": 59000,
+    "ber": 4e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00137",
+   "linkType": "5g",
+   "srcNodeId": "UAV0020",
+   "dstNodeId": "GND048",
+   "params": {
+    "delayMs": 1.6,
+    "jitterMs": 3.4,
+    "bandwidthBps": 28000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00138",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0020",
+   "dstNodeId": "GND044",
+   "params": {
+    "delayMs": 11.6,
+    "jitterMs": 6.1,
+    "bandwidthBps": 240000,
+    "ber": 0.0001,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00139",
+   "linkType": "5g",
+   "srcNodeId": "UAV0021",
+   "dstNodeId": "GND050",
+   "params": {
+    "delayMs": 0.3,
+    "jitterMs": 2.3,
+    "bandwidthBps": 26000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00140",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0021",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 338.0,
+    "jitterMs": 118.0,
+    "bandwidthBps": 14000000,
+    "ber": 2e-05,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00141",
+   "linkType": "5g",
+   "srcNodeId": "UAV0022",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 7.8,
+    "jitterMs": 4.4,
+    "bandwidthBps": 29000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00142",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0022",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 18.6,
+    "jitterMs": 1.8,
+    "bandwidthBps": 210000,
+    "ber": 9e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00143",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0023",
+   "dstNodeId": "GND004",
+   "params": {
+    "delayMs": 4.4,
+    "jitterMs": 5.8,
+    "bandwidthBps": 31000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00144",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0023",
+   "dstNodeId": "GND005",
+   "params": {
+    "delayMs": 484.5,
+    "jitterMs": 67.9,
+    "bandwidthBps": 14000000,
+    "ber": 9e-05,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00145",
+   "linkType": "5g",
+   "srcNodeId": "UAV0024",
+   "dstNodeId": "GND009",
+   "params": {
+    "delayMs": 2.1,
+    "jitterMs": 7.8,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00146",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0024",
+   "dstNodeId": "GND010",
+   "params": {
+    "delayMs": 15.7,
+    "jitterMs": 18.2,
+    "bandwidthBps": 240000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00147",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0025",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 5.2,
+    "jitterMs": 2.9,
+    "bandwidthBps": 22000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00148",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0025",
+   "dstNodeId": "GND014",
+   "params": {
+    "delayMs": 18.9,
+    "jitterMs": 13.1,
+    "bandwidthBps": 51000,
+    "ber": 6e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00149",
+   "linkType": "5g",
+   "srcNodeId": "UAV0026",
+   "dstNodeId": "GND016",
+   "params": {
+    "delayMs": 4.8,
+    "jitterMs": 0.9,
+    "bandwidthBps": 23000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00150",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0026",
+   "dstNodeId": "GND018",
+   "params": {
+    "delayMs": 16.9,
+    "jitterMs": 12.6,
+    "bandwidthBps": 48000,
+    "ber": 3e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00151",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0027",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 4.1,
+    "jitterMs": 6.6,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00152",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0027",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 371.0,
+    "jitterMs": 99.0,
+    "bandwidthBps": 17000000,
+    "ber": 3e-05,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00153",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0028",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 7.3,
+    "jitterMs": 1.0,
+    "bandwidthBps": 29000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00154",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0028",
+   "dstNodeId": "GND030",
+   "params": {
+    "delayMs": 231.3,
+    "jitterMs": 121.3,
+    "bandwidthBps": 14000000,
+    "ber": 6e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00155",
+   "linkType": "5g",
+   "srcNodeId": "UAV0029",
+   "dstNodeId": "GND035",
+   "params": {
+    "delayMs": 7.3,
+    "jitterMs": 11.0,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00156",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0029",
+   "dstNodeId": "GND027",
+   "params": {
+    "delayMs": 5.3,
+    "jitterMs": 8.7,
+    "bandwidthBps": 190000,
+    "ber": 2e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00157",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0030",
+   "dstNodeId": "GND037",
+   "params": {
+    "delayMs": 7.3,
+    "jitterMs": 7.5,
+    "bandwidthBps": 21000000,
+    "ber": 1e-07,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00158",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0030",
+   "dstNodeId": "GND040",
+   "params": {
+    "delayMs": 274.3,
+    "jitterMs": 46.6,
+    "bandwidthBps": 14000000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00159",
+   "linkType": "5g",
+   "srcNodeId": "UAV0031",
+   "dstNodeId": "GND043",
+   "params": {
+    "delayMs": 6.5,
+    "jitterMs": 4.9,
+    "bandwidthBps": 25000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00160",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0031",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 10.3,
+    "jitterMs": 10.6,
+    "bandwidthBps": 190000,
+    "ber": 7e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00161",
+   "linkType": "5g",
+   "srcNodeId": "UAV0032",
+   "dstNodeId": "GND049",
+   "params": {
+    "delayMs": 6.2,
+    "jitterMs": 11.8,
+    "bandwidthBps": 26000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00162",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0032",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 14.3,
+    "jitterMs": 0.9,
+    "bandwidthBps": 58000,
+    "ber": 6e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00163",
+   "linkType": "5g",
+   "srcNodeId": "UAV0033",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 4.7,
+    "jitterMs": 9.4,
+    "bandwidthBps": 24000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00164",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0033",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 12.2,
+    "jitterMs": 9.4,
+    "bandwidthBps": 160000,
+    "ber": 9e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00165",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0034",
+   "dstNodeId": "GND005",
+   "params": {
+    "delayMs": 4.1,
+    "jitterMs": 0.2,
+    "bandwidthBps": 24000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00166",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0034",
+   "dstNodeId": "GND004",
+   "params": {
+    "delayMs": 324.1,
+    "jitterMs": 49.7,
+    "bandwidthBps": 15000000,
+    "ber": 4e-07,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00167",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0035",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 5.5,
+    "jitterMs": 5.9,
+    "bandwidthBps": 25000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00168",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0035",
+   "dstNodeId": "GND008",
+   "params": {
+    "delayMs": 428.1,
+    "jitterMs": 104.9,
+    "bandwidthBps": 17000000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00169",
+   "linkType": "5g",
+   "srcNodeId": "UAV0036",
+   "dstNodeId": "GND007",
+   "params": {
+    "delayMs": 0.7,
+    "jitterMs": 6.8,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00170",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0036",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 0.5,
+    "jitterMs": 14.2,
+    "bandwidthBps": 63000,
+    "ber": 9e-05,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00171",
+   "linkType": "5g",
+   "srcNodeId": "UAV0037",
+   "dstNodeId": "GND015",
+   "params": {
+    "delayMs": 2.4,
+    "jitterMs": 6.4,
+    "bandwidthBps": 25000000,
+    "ber": 2e-07,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00172",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0037",
+   "dstNodeId": "GND012",
+   "params": {
+    "delayMs": 211.7,
+    "jitterMs": 158.4,
+    "bandwidthBps": 14000000,
+    "ber": 0.0001,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00173",
+   "linkType": "5g",
+   "srcNodeId": "UAV0038",
+   "dstNodeId": "GND009",
+   "params": {
+    "delayMs": 4.0,
+    "jitterMs": 3.4,
+    "bandwidthBps": 24000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00174",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0038",
+   "dstNodeId": "GND003",
+   "params": {
+    "delayMs": 2.8,
+    "jitterMs": 12.4,
+    "bandwidthBps": 62000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00175",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0039",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 1.2,
+    "jitterMs": 2.5,
+    "bandwidthBps": 30000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00176",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0039",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 0.3,
+    "jitterMs": 5.0,
+    "bandwidthBps": 63000,
+    "ber": 7e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00177",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0040",
+   "dstNodeId": "GND032",
+   "params": {
+    "delayMs": 0.5,
+    "jitterMs": 6.4,
+    "bandwidthBps": 27000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00178",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0040",
+   "dstNodeId": "GND033",
+   "params": {
+    "delayMs": 19.4,
+    "jitterMs": 9.6,
+    "bandwidthBps": 240000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00179",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0041",
+   "dstNodeId": "GND032",
+   "params": {
+    "delayMs": 5.8,
+    "jitterMs": 1.2,
+    "bandwidthBps": 25000000,
+    "ber": 4e-07,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00180",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0041",
+   "dstNodeId": "GND037",
+   "params": {
+    "delayMs": 8.7,
+    "jitterMs": 15.8,
+    "bandwidthBps": 49000,
+    "ber": 4e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00181",
+   "linkType": "5g",
+   "srcNodeId": "UAV0042",
+   "dstNodeId": "GND044",
+   "params": {
+    "delayMs": 1.0,
+    "jitterMs": 5.9,
+    "bandwidthBps": 30000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00182",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0042",
+   "dstNodeId": "GND049",
+   "params": {
+    "delayMs": 503.2,
+    "jitterMs": 32.3,
+    "bandwidthBps": 14000000,
+    "ber": 7e-05,
+    "packetLossRate": 3e-05
+   }
+  },
+  {
+   "linkId": "L00183",
+   "linkType": "5g",
+   "srcNodeId": "UAV0043",
+   "dstNodeId": "GND047",
+   "params": {
+    "delayMs": 3.6,
+    "jitterMs": 8.5,
+    "bandwidthBps": 25000000,
+    "ber": 6e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00184",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0043",
+   "dstNodeId": "GND048",
+   "params": {
+    "delayMs": 7.7,
+    "jitterMs": 13.1,
+    "bandwidthBps": 250000,
+    "ber": 7e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00185",
+   "linkType": "5g",
+   "srcNodeId": "UAV0044",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 0.8,
+    "jitterMs": 11.9,
+    "bandwidthBps": 24000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00186",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0044",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 11.8,
+    "jitterMs": 16.2,
+    "bandwidthBps": 190000,
+    "ber": 2e-05,
+    "packetLossRate": 2e-05
+   }
+  },
+  {
+   "linkId": "L00187",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0045",
+   "dstNodeId": "GND003",
+   "params": {
+    "delayMs": 2.9,
+    "jitterMs": 3.1,
+    "bandwidthBps": 26000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00188",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0045",
+   "dstNodeId": "GND009",
+   "params": {
+    "delayMs": 317.9,
+    "jitterMs": 62.8,
+    "bandwidthBps": 15000000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00189",
+   "linkType": "5g",
+   "srcNodeId": "UAV0046",
+   "dstNodeId": "GND003",
+   "params": {
+    "delayMs": 7.3,
+    "jitterMs": 8.3,
+    "bandwidthBps": 30000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00190",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0046",
+   "dstNodeId": "GND001",
+   "params": {
+    "delayMs": 4.7,
+    "jitterMs": 8.8,
+    "bandwidthBps": 57000,
+    "ber": 5e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00191",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0047",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 3.7,
+    "jitterMs": 0.1,
+    "bandwidthBps": 29000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00192",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0047",
+   "dstNodeId": "GND014",
+   "params": {
+    "delayMs": 296.9,
+    "jitterMs": 67.6,
+    "bandwidthBps": 16000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00193",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0048",
+   "dstNodeId": "GND018",
+   "params": {
+    "delayMs": 4.5,
+    "jitterMs": 3.8,
+    "bandwidthBps": 28000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00194",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0048",
+   "dstNodeId": "GND019",
+   "params": {
+    "delayMs": 359.6,
+    "jitterMs": 6.1,
+    "bandwidthBps": 18000000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00195",
+   "linkType": "5g",
+   "srcNodeId": "UAV0049",
+   "dstNodeId": "GND024",
+   "params": {
+    "delayMs": 4.2,
+    "jitterMs": 1.8,
+    "bandwidthBps": 24000000,
+    "ber": 8e-07,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00196",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0049",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 18.6,
+    "jitterMs": 19.2,
+    "bandwidthBps": 190000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00197",
+   "linkType": "5g",
+   "srcNodeId": "UAV0050",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 2.4,
+    "jitterMs": 11.5,
+    "bandwidthBps": 23000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00198",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0050",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 4.1,
+    "jitterMs": 10.9,
+    "bandwidthBps": 42000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00199",
+   "linkType": "5g",
+   "srcNodeId": "UAV0051",
+   "dstNodeId": "GND013",
+   "params": {
+    "delayMs": 5.1,
+    "jitterMs": 4.0,
+    "bandwidthBps": 29000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00200",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0051",
+   "dstNodeId": "GND034",
+   "params": {
+    "delayMs": 1.3,
+    "jitterMs": 7.8,
+    "bandwidthBps": 48000,
+    "ber": 2e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00201",
+   "linkType": "5g",
+   "srcNodeId": "UAV0052",
+   "dstNodeId": "GND038",
+   "params": {
+    "delayMs": 4.2,
+    "jitterMs": 4.5,
+    "bandwidthBps": 29000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00202",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0052",
+   "dstNodeId": "GND034",
+   "params": {
+    "delayMs": 9.2,
+    "jitterMs": 6.9,
+    "bandwidthBps": 240000,
+    "ber": 4e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00203",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0053",
+   "dstNodeId": "GND044",
+   "params": {
+    "delayMs": 2.9,
+    "jitterMs": 7.2,
+    "bandwidthBps": 27000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00204",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0053",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 360.9,
+    "jitterMs": 157.3,
+    "bandwidthBps": 15000000,
+    "ber": 4e-05,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00205",
+   "linkType": "5g",
+   "srcNodeId": "UAV0054",
+   "dstNodeId": "GND050",
+   "params": {
+    "delayMs": 3.4,
+    "jitterMs": 1.1,
+    "bandwidthBps": 24000000,
+    "ber": 1e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00206",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0054",
+   "dstNodeId": "GND046",
+   "params": {
+    "delayMs": 17.3,
+    "jitterMs": 12.5,
+    "bandwidthBps": 190000,
+    "ber": 9e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00207",
+   "linkType": "5g",
+   "srcNodeId": "UAV0055",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 0.7,
+    "jitterMs": 11.3,
+    "bandwidthBps": 28000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00208",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0055",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 8.1,
+    "jitterMs": 12.9,
+    "bandwidthBps": 46000,
+    "ber": 0.0001,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00209",
+   "linkType": "5g",
+   "srcNodeId": "UAV0056",
+   "dstNodeId": "GND002",
+   "params": {
+    "delayMs": 7.0,
+    "jitterMs": 11.2,
+    "bandwidthBps": 29000000,
+    "ber": 7e-06,
+    "packetLossRate": 5e-05
+   }
+  },
+  {
+   "linkId": "L00210",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0056",
+   "dstNodeId": "GND005",
+   "params": {
+    "delayMs": 10.6,
+    "jitterMs": 7.9,
+    "bandwidthBps": 60000,
+    "ber": 7e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00211",
+   "linkType": "5g",
+   "srcNodeId": "UAV0057",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 1.3,
+    "jitterMs": 5.9,
+    "bandwidthBps": 26000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00212",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0057",
+   "dstNodeId": "GND010",
+   "params": {
+    "delayMs": 17.3,
+    "jitterMs": 14.4,
+    "bandwidthBps": 43000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00213",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0058",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 3.2,
+    "jitterMs": 3.9,
+    "bandwidthBps": 21000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00214",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0058",
+   "dstNodeId": "GND014",
+   "params": {
+    "delayMs": 15.3,
+    "jitterMs": 7.6,
+    "bandwidthBps": 170000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00215",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0059",
+   "dstNodeId": "GND020",
+   "params": {
+    "delayMs": 8.0,
+    "jitterMs": 2.2,
+    "bandwidthBps": 28000000,
+    "ber": 2e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00216",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0059",
+   "dstNodeId": "GND017",
+   "params": {
+    "delayMs": 445.4,
+    "jitterMs": 95.2,
+    "bandwidthBps": 16000000,
+    "ber": 3e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00217",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0060",
+   "dstNodeId": "GND025",
+   "params": {
+    "delayMs": 2.4,
+    "jitterMs": 6.8,
+    "bandwidthBps": 29000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00218",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0060",
+   "dstNodeId": "GND024",
+   "params": {
+    "delayMs": 12.1,
+    "jitterMs": 1.7,
+    "bandwidthBps": 190000,
+    "ber": 5e-06,
+    "packetLossRate": 7e-05
+   }
+  },
+  {
+   "linkId": "L00219",
+   "linkType": "5g",
+   "srcNodeId": "UAV0061",
+   "dstNodeId": "GND028",
+   "params": {
+    "delayMs": 3.3,
+    "jitterMs": 0.3,
+    "bandwidthBps": 31000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00220",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0061",
+   "dstNodeId": "GND030",
+   "params": {
+    "delayMs": 13.9,
+    "jitterMs": 10.7,
+    "bandwidthBps": 170000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00221",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0062",
+   "dstNodeId": "GND027",
+   "params": {
+    "delayMs": 3.0,
+    "jitterMs": 2.7,
+    "bandwidthBps": 26000000,
+    "ber": 9e-07,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00222",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0062",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 14.6,
+    "jitterMs": 19.5,
+    "bandwidthBps": 240000,
+    "ber": 8e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00223",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0063",
+   "dstNodeId": "GND038",
+   "params": {
+    "delayMs": 6.3,
+    "jitterMs": 4.0,
+    "bandwidthBps": 23000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00224",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0063",
+   "dstNodeId": "GND036",
+   "params": {
+    "delayMs": 11.0,
+    "jitterMs": 14.3,
+    "bandwidthBps": 47000,
+    "ber": 9e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00225",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0064",
+   "dstNodeId": "GND044",
+   "params": {
+    "delayMs": 6.8,
+    "jitterMs": 7.8,
+    "bandwidthBps": 24000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00226",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0064",
+   "dstNodeId": "GND041",
+   "params": {
+    "delayMs": 7.2,
+    "jitterMs": 11.1,
+    "bandwidthBps": 56000,
+    "ber": 3e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00227",
+   "linkType": "5g",
+   "srcNodeId": "UAV0065",
+   "dstNodeId": "GND051",
+   "params": {
+    "delayMs": 5.7,
+    "jitterMs": 11.1,
+    "bandwidthBps": 30000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00228",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0065",
+   "dstNodeId": "GND052",
+   "params": {
+    "delayMs": 1.3,
+    "jitterMs": 13.4,
+    "bandwidthBps": 42000,
+    "ber": 2e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00229",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0066",
+   "dstNodeId": "GND033",
+   "params": {
+    "delayMs": 5.6,
+    "jitterMs": 0.4,
+    "bandwidthBps": 21000000,
+    "ber": 9e-06,
+    "packetLossRate": 0.0009
+   }
+  },
+  {
+   "linkId": "L00230",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0066",
+   "dstNodeId": "GND032",
+   "params": {
+    "delayMs": 398.3,
+    "jitterMs": 136.5,
+    "bandwidthBps": 16000000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00231",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0067",
+   "dstNodeId": "GND003",
+   "params": {
+    "delayMs": 0.4,
+    "jitterMs": 0.5,
+    "bandwidthBps": 24000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.001
+   }
+  },
+  {
+   "linkId": "L00232",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0067",
+   "dstNodeId": "GND002",
+   "params": {
+    "delayMs": 0.6,
+    "jitterMs": 6.6,
+    "bandwidthBps": 170000,
+    "ber": 0.0001,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00233",
+   "linkType": "5g",
+   "srcNodeId": "UAV0068",
+   "dstNodeId": "GND009",
+   "params": {
+    "delayMs": 6.6,
+    "jitterMs": 11.7,
+    "bandwidthBps": 31000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.0005
+   }
+  },
+  {
+   "linkId": "L00234",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0068",
+   "dstNodeId": "GND010",
+   "params": {
+    "delayMs": 4.2,
+    "jitterMs": 0.9,
+    "bandwidthBps": 180000,
+    "ber": 6e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00235",
+   "linkType": "5g",
+   "srcNodeId": "UAV0069",
+   "dstNodeId": "GND013",
+   "params": {
+    "delayMs": 3.0,
+    "jitterMs": 3.4,
+    "bandwidthBps": 28000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00236",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0069",
+   "dstNodeId": "GND011",
+   "params": {
+    "delayMs": 417.1,
+    "jitterMs": 197.9,
+    "bandwidthBps": 18000000,
+    "ber": 1e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00237",
+   "linkType": "5g",
+   "srcNodeId": "UAV0070",
+   "dstNodeId": "GND016",
+   "params": {
+    "delayMs": 0.8,
+    "jitterMs": 0.4,
+    "bandwidthBps": 27000000,
+    "ber": 4e-06,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00238",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0070",
+   "dstNodeId": "GND019",
+   "params": {
+    "delayMs": 17.1,
+    "jitterMs": 12.6,
+    "bandwidthBps": 51000,
+    "ber": 4e-05,
+    "packetLossRate": 0.0003
+   }
+  },
+  {
+   "linkId": "L00239",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0071",
+   "dstNodeId": "GND025",
+   "params": {
+    "delayMs": 6.6,
+    "jitterMs": 6.3,
+    "bandwidthBps": 30000000,
+    "ber": 7e-06,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00240",
+   "linkType": "uhf",
+   "srcNodeId": "UAV0071",
+   "dstNodeId": "GND023",
+   "params": {
+    "delayMs": 6.2,
+    "jitterMs": 4.1,
+    "bandwidthBps": 170000,
+    "ber": 5e-05,
+    "packetLossRate": 0.003
+   }
+  },
+  {
+   "linkId": "L00241",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0072",
+   "dstNodeId": "GND026",
+   "params": {
+    "delayMs": 5.6,
+    "jitterMs": 6.4,
+    "bandwidthBps": 24000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00242",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0072",
+   "dstNodeId": "GND029",
+   "params": {
+    "delayMs": 242.2,
+    "jitterMs": 182.3,
+    "bandwidthBps": 17000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00243",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0073",
+   "dstNodeId": "GND031",
+   "params": {
+    "delayMs": 4.6,
+    "jitterMs": 4.8,
+    "bandwidthBps": 20000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00244",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0073",
+   "dstNodeId": "GND027",
+   "params": {
+    "delayMs": 256.0,
+    "jitterMs": 70.7,
+    "bandwidthBps": 19000000,
+    "ber": 6e-05,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00245",
+   "linkType": "5g",
+   "srcNodeId": "UAV0074",
+   "dstNodeId": "GND034",
+   "params": {
+    "delayMs": 2.0,
+    "jitterMs": 6.7,
+    "bandwidthBps": 28000000,
+    "ber": 8e-06,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00246",
+   "linkType": "satcom",
+   "srcNodeId": "UAV0074",
+   "dstNodeId": "GND038",
+   "params": {
+    "delayMs": 480.6,
+    "jitterMs": 26.3,
+    "bandwidthBps": 14000000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0006
+   }
+  },
+  {
+   "linkId": "L00247",
+   "linkType": "microwave",
+   "srcNodeId": "UAV0075",
+   "dstNodeId": "GND045",
+   "params": {
+    "delayMs": 5.7,
+    "jitterMs": 6.0,
+    "bandwidthBps": 20000000,
+    "ber": 3e-06,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00248",
+   "linkType": "vhf",
+   "srcNodeId": "UAV0075",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 9.2,
+    "jitterMs": 6.9,
+    "bandwidthBps": 51000,
+    "ber": 2e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00249",
+   "linkType": "vhf",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND003",
+   "params": {
+    "delayMs": 10.4,
+    "jitterMs": 9.5,
+    "bandwidthBps": 57000,
+    "ber": 4e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00250",
+   "linkType": "uhf",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND029",
+   "params": {
+    "delayMs": 12.7,
+    "jitterMs": 2.2,
+    "bandwidthBps": 250000,
+    "ber": 9e-05,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00251",
+   "linkType": "vhf",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND006",
+   "params": {
+    "delayMs": 9.3,
+    "jitterMs": 5.7,
+    "bandwidthBps": 62000,
+    "ber": 5e-05,
+    "packetLossRate": 0.002
+   }
+  },
+  {
+   "linkId": "L00252",
+   "linkType": "uhf",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND024",
+   "params": {
+    "delayMs": 3.6,
+    "jitterMs": 17.7,
+    "bandwidthBps": 170000,
+    "ber": 8e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00253",
+   "linkType": "satcom",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND022",
+   "params": {
+    "delayMs": 484.0,
+    "jitterMs": 139.7,
+    "bandwidthBps": 12000000,
+    "ber": 3e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00254",
+   "linkType": "satcom",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 268.7,
+    "jitterMs": 15.7,
+    "bandwidthBps": 14000000,
+    "ber": 7e-05,
+    "packetLossRate": 0.0008
+   }
+  },
+  {
+   "linkId": "L00255",
+   "linkType": "satcom",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND047",
+   "params": {
+    "delayMs": 338.1,
+    "jitterMs": 112.3,
+    "bandwidthBps": 13000000,
+    "ber": 5e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00258",
+   "linkType": "satcom",
+   "srcNodeId": "AIR001",
+   "dstNodeId": "GND043",
+   "params": {
+    "delayMs": 326.8,
+    "jitterMs": 80.8,
+    "bandwidthBps": 13000000,
+    "ber": 4e-05,
+    "packetLossRate": 0.0007
+   }
+  },
+  {
+   "linkId": "L00259",
+   "linkType": "uhf",
+   "srcNodeId": "AIR002",
+   "dstNodeId": "GND007",
+   "params": {
+    "delayMs": 1.8,
+    "jitterMs": 19.6,
+    "bandwidthBps": 190000,
+    "ber": 7e-05,
+    "packetLossRate": 0.004
+   }
+  },
+  {
+   "linkId": "L00268",
+   "linkType": "satcom",
+   "srcNodeId": "AIR002",
+   "dstNodeId": "GND039",
+   "params": {
+    "delayMs": 471.0,
+    "jitterMs": 10.0,
+    "bandwidthBps": 16000000,
+    "ber": 2e-05,
+    "packetLossRate": 0.0004
+   }
+  },
+  {
+   "linkId": "L00269",
+   "linkType": "vhf",
+   "srcNodeId": "AIR003",
+   "dstNodeId": "GND013",
+   "params": {
+    "delayMs": 16.1,
+    "jitterMs": 15.2,
+    "bandwidthBps": 45000,
+    "ber": 6e-05,
+    "packetLossRate": 0.0002
+   }
+  },
+  {
+   "linkId": "L00278",
+   "linkType": "satcom",
+   "srcNodeId": "AIR003",
+   "dstNodeId": "GND042",
+   "params": {
+    "delayMs": 205.9,
+    "jitterMs": 72.2,
+    "bandwidthBps": 16000000,
+    "ber": 5e-06,
+    "packetLossRate": 0.0007
+   }
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+[
+ {
+  "time": 272,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00007",
+   "delayMs": 14.0,
+   "jitterMs": 7.2,
+   "bandwidthBps": 10000000,
+   "ber": 9e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 511,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0019",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 841,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0011",
+   "serviceType": "voice",
+   "srcNodeId": "UAV0007",
+   "dstNodeId": "UAV0001",
+   "requirement": {
+    "delayMs": 125,
+    "jitterMs": 18,
+    "bandwidthBps": 20000,
+    "ber": 3e-05,
+    "packetLossRate": 0.006
+   },
+   "priority": 6
+  }
+ },
+ {
+  "time": 1374,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00046",
+   "delayMs": 914.5,
+   "jitterMs": 128.1,
+   "bandwidthBps": 3200000,
+   "ber": 0.0004,
+   "packetLossRate": 0.009
+  }
+ },
+ {
+  "time": 1402,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00034",
+   "delayMs": 15.6,
+   "jitterMs": 9.3,
+   "bandwidthBps": 14000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.007
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

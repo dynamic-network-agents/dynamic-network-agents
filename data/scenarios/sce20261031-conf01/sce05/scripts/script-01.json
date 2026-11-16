@@ -1,0 +1,137 @@
+[
+ {
+  "time": 180,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0052",
+   "fromX": 32219.5,
+   "fromY": 109851.3,
+   "toX": 19598.0,
+   "toY": 112311.8
+  }
+ },
+ {
+  "time": 215,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00032",
+   "delayMs": 16.2,
+   "jitterMs": 2.3,
+   "bandwidthBps": 2300000,
+   "ber": 8e-05,
+   "packetLossRate": 0.004
+  }
+ },
+ {
+  "time": 471,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00046",
+   "delayMs": 18.9,
+   "jitterMs": 0.1,
+   "bandwidthBps": 16000000,
+   "ber": 3e-09,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 497,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00191",
+   "delayMs": 31.0,
+   "jitterMs": 24.5,
+   "bandwidthBps": 23000,
+   "ber": 0.0007,
+   "packetLossRate": 0.05
+  }
+ },
+ {
+  "time": 702,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00002",
+   "delayMs": 15.6,
+   "jitterMs": 29.8,
+   "bandwidthBps": 16000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.009
+  }
+ },
+ {
+  "time": 726,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0026",
+   "serviceType": "data",
+   "srcNodeId": "UAV0044",
+   "dstNodeId": "UAV0037",
+   "requirement": {
+    "delayMs": 795,
+    "jitterMs": 28,
+    "bandwidthBps": 1700000,
+    "ber": 0.0002,
+    "packetLossRate": 0.08
+   },
+   "priority": 4
+  }
+ },
+ {
+  "time": 996,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0031",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1015,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00121",
+   "delayMs": 30.4,
+   "jitterMs": 1.4,
+   "bandwidthBps": 21000,
+   "ber": 0.0007,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1233,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00203",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1264,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00015",
+   "delayMs": 5.6,
+   "jitterMs": 5.2,
+   "bandwidthBps": 10000000,
+   "ber": 8e-05,
+   "packetLossRate": 0.06
+  }
+ },
+ {
+  "time": 1551,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00107",
+   "delayMs": 985.0,
+   "jitterMs": 275.7,
+   "bandwidthBps": 6900000,
+   "ber": 0.001,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

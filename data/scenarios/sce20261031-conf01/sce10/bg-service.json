@@ -1,0 +1,9577 @@
+[
+ {
+  "serviceId": "BGV0001",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0153",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 340,
+   "jitterMs": 15,
+   "bandwidthBps": 5700000,
+   "ber": 9e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0002",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0087",
+  "dstNodeId": "UAV0166",
+  "requirement": {
+   "delayMs": 610,
+   "jitterMs": 44,
+   "bandwidthBps": 210000,
+   "ber": 8e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0003",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0079",
+  "dstNodeId": "UAV0112",
+  "requirement": {
+   "delayMs": 530,
+   "jitterMs": 35,
+   "bandwidthBps": 1400000,
+   "ber": 6e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0004",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0048",
+  "dstNodeId": "UAV0020",
+  "requirement": {
+   "delayMs": 250,
+   "jitterMs": 24,
+   "bandwidthBps": 59000,
+   "ber": 0.0005,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0005",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0087",
+  "dstNodeId": "UAV0152",
+  "requirement": {
+   "delayMs": 415,
+   "jitterMs": 24,
+   "bandwidthBps": 1900000,
+   "ber": 0.0008,
+   "packetLossRate": 0.05
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0006",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0187",
+  "dstNodeId": "UAV0188",
+  "requirement": {
+   "delayMs": 195,
+   "jitterMs": 47,
+   "bandwidthBps": 1600000,
+   "ber": 9e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0007",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0159",
+  "dstNodeId": "UAV0152",
+  "requirement": {
+   "delayMs": 565,
+   "jitterMs": 27,
+   "bandwidthBps": 870000,
+   "ber": 0.0003,
+   "packetLossRate": 0.1
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0008",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 46,
+   "bandwidthBps": 2700000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0009",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0153",
+  "dstNodeId": "UAV0043",
+  "requirement": {
+   "delayMs": 130,
+   "jitterMs": 19,
+   "bandwidthBps": 31000,
+   "ber": 0.0003,
+   "packetLossRate": 0.009
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0010",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0168",
+  "dstNodeId": "UAV0101",
+  "requirement": {
+   "delayMs": 395,
+   "jitterMs": 44,
+   "bandwidthBps": 5100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0011",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0188",
+  "dstNodeId": "UAV0028",
+  "requirement": {
+   "delayMs": 410,
+   "jitterMs": 33,
+   "bandwidthBps": 430000,
+   "ber": 0.0009,
+   "packetLossRate": 0.05
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0012",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0055",
+  "dstNodeId": "UAV0136",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 21,
+   "bandwidthBps": 3500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0013",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0060",
+  "dstNodeId": "UAV0126",
+  "requirement": {
+   "delayMs": 515,
+   "jitterMs": 15,
+   "bandwidthBps": 1800000,
+   "ber": 0.0006,
+   "packetLossRate": 0.08
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0014",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0101",
+  "dstNodeId": "UAV0168",
+  "requirement": {
+   "delayMs": 315,
+   "jitterMs": 10,
+   "bandwidthBps": 1200000,
+   "ber": 5e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0015",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0016",
+  "dstNodeId": "UAV0049",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 37,
+   "bandwidthBps": 1500000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0016",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0175",
+  "dstNodeId": "UAV0037",
+  "requirement": {
+   "delayMs": 390,
+   "jitterMs": 16,
+   "bandwidthBps": 490000,
+   "ber": 0.0003,
+   "packetLossRate": 0.09
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0017",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0143",
+  "dstNodeId": "UAV0107",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 18,
+   "bandwidthBps": 1800000,
+   "ber": 7e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0018",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0054",
+  "dstNodeId": "UAV0016",
+  "requirement": {
+   "delayMs": 110,
+   "jitterMs": 11,
+   "bandwidthBps": 960000,
+   "ber": 9e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0019",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0124",
+  "dstNodeId": "UAV0110",
+  "requirement": {
+   "delayMs": 130,
+   "jitterMs": 44,
+   "bandwidthBps": 3600000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0020",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0077",
+  "dstNodeId": "UAV0169",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 30,
+   "bandwidthBps": 7900000,
+   "ber": 2e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0021",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0025",
+  "dstNodeId": "UAV0180",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 23,
+   "bandwidthBps": 47000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0022",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0039",
+  "dstNodeId": "UAV0006",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 46,
+   "bandwidthBps": 5100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0023",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0185",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 17,
+   "bandwidthBps": 6200000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0024",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0164",
+  "dstNodeId": "UAV0006",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 22,
+   "bandwidthBps": 41000,
+   "ber": 0.0004,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0025",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0047",
+  "dstNodeId": "UAV0022",
+  "requirement": {
+   "delayMs": 490,
+   "jitterMs": 12,
+   "bandwidthBps": 1900000,
+   "ber": 0.0003,
+   "packetLossRate": 0.06
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0026",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0099",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 390,
+   "jitterMs": 50,
+   "bandwidthBps": 670000,
+   "ber": 4e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0027",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0088",
+  "dstNodeId": "UAV0035",
+  "requirement": {
+   "delayMs": 685,
+   "jitterMs": 37,
+   "bandwidthBps": 550000,
+   "ber": 3e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0028",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0002",
+  "dstNodeId": "UAV0127",
+  "requirement": {
+   "delayMs": 175,
+   "jitterMs": 17,
+   "bandwidthBps": 7900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0029",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0089",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 475,
+   "jitterMs": 14,
+   "bandwidthBps": 1900000,
+   "ber": 0.0003,
+   "packetLossRate": 0.1
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0030",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0141",
+  "dstNodeId": "UAV0031",
+  "requirement": {
+   "delayMs": 535,
+   "jitterMs": 26,
+   "bandwidthBps": 920000,
+   "ber": 5e-05,
+   "packetLossRate": 0.09
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0031",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0174",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 95,
+   "jitterMs": 42,
+   "bandwidthBps": 790000,
+   "ber": 3e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0032",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0163",
+  "dstNodeId": "UAV0093",
+  "requirement": {
+   "delayMs": 580,
+   "jitterMs": 20,
+   "bandwidthBps": 520000,
+   "ber": 3e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0033",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0005",
+  "dstNodeId": "UAV0103",
+  "requirement": {
+   "delayMs": 330,
+   "jitterMs": 41,
+   "bandwidthBps": 1800000,
+   "ber": 0.0008,
+   "packetLossRate": 0.06
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0034",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0190",
+  "dstNodeId": "UAV0024",
+  "requirement": {
+   "delayMs": 590,
+   "jitterMs": 23,
+   "bandwidthBps": 1700000,
+   "ber": 0.0007,
+   "packetLossRate": 0.09
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0035",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0127",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 27,
+   "bandwidthBps": 3500000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0036",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0119",
+  "dstNodeId": "UAV0100",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 33,
+   "bandwidthBps": 6200000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0037",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0061",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 390,
+   "jitterMs": 38,
+   "bandwidthBps": 2700000,
+   "ber": 9e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0038",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0083",
+  "requirement": {
+   "delayMs": 215,
+   "jitterMs": 22,
+   "bandwidthBps": 1400000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0039",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0020",
+  "requirement": {
+   "delayMs": 395,
+   "jitterMs": 28,
+   "bandwidthBps": 7700000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0040",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0156",
+  "dstNodeId": "UAV0046",
+  "requirement": {
+   "delayMs": 555,
+   "jitterMs": 19,
+   "bandwidthBps": 140000,
+   "ber": 0.0006,
+   "packetLossRate": 0.09
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0041",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0032",
+  "dstNodeId": "UAV0049",
+  "requirement": {
+   "delayMs": 190,
+   "jitterMs": 46,
+   "bandwidthBps": 3900000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0042",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0058",
+  "dstNodeId": "UAV0003",
+  "requirement": {
+   "delayMs": 775,
+   "jitterMs": 42,
+   "bandwidthBps": 320000,
+   "ber": 0.0003,
+   "packetLossRate": 0.05
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0043",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0083",
+  "dstNodeId": "UAV0174",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 49,
+   "bandwidthBps": 3700000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0044",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0189",
+  "dstNodeId": "UAV0091",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 18,
+   "bandwidthBps": 38000,
+   "ber": 0.001,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0045",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0094",
+  "dstNodeId": "UAV0074",
+  "requirement": {
+   "delayMs": 730,
+   "jitterMs": 43,
+   "bandwidthBps": 830000,
+   "ber": 0.0007,
+   "packetLossRate": 0.09
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0046",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0119",
+  "dstNodeId": "UAV0100",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 33,
+   "bandwidthBps": 6100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0047",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0104",
+  "dstNodeId": "UAV0064",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 37,
+   "bandwidthBps": 3300000,
+   "ber": 8e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0048",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0029",
+  "dstNodeId": "UAV0187",
+  "requirement": {
+   "delayMs": 430,
+   "jitterMs": 38,
+   "bandwidthBps": 1200000,
+   "ber": 0.0004,
+   "packetLossRate": 0.06
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0049",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0046",
+  "requirement": {
+   "delayMs": 370,
+   "jitterMs": 45,
+   "bandwidthBps": 6200000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0050",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0004",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 17,
+   "bandwidthBps": 7500000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0051",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0108",
+  "dstNodeId": "UAV0003",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 25,
+   "bandwidthBps": 2300000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0052",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0121",
+  "dstNodeId": "UAV0188",
+  "requirement": {
+   "delayMs": 320,
+   "jitterMs": 46,
+   "bandwidthBps": 610000,
+   "ber": 0.0008,
+   "packetLossRate": 0.08
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0053",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0157",
+  "dstNodeId": "UAV0058",
+  "requirement": {
+   "delayMs": 380,
+   "jitterMs": 47,
+   "bandwidthBps": 1900000,
+   "ber": 4e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0054",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0040",
+  "dstNodeId": "UAV0090",
+  "requirement": {
+   "delayMs": 405,
+   "jitterMs": 46,
+   "bandwidthBps": 1800000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0055",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0117",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 400,
+   "jitterMs": 44,
+   "bandwidthBps": 7100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0056",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0054",
+  "requirement": {
+   "delayMs": 480,
+   "jitterMs": 35,
+   "bandwidthBps": 900000,
+   "ber": 0.0003,
+   "packetLossRate": 0.06
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0057",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0088",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 12,
+   "bandwidthBps": 5000000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0058",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0090",
+  "dstNodeId": "UAV0021",
+  "requirement": {
+   "delayMs": 345,
+   "jitterMs": 16,
+   "bandwidthBps": 5100000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0059",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0131",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 690,
+   "jitterMs": 15,
+   "bandwidthBps": 430000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0060",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0044",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 765,
+   "jitterMs": 38,
+   "bandwidthBps": 820000,
+   "ber": 0.0009,
+   "packetLossRate": 0.07
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0061",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0047",
+  "dstNodeId": "UAV0152",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 21,
+   "bandwidthBps": 210000,
+   "ber": 0.0002,
+   "packetLossRate": 0.06
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0062",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0152",
+  "dstNodeId": "UAV0123",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 37,
+   "bandwidthBps": 1700000,
+   "ber": 6e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0063",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0063",
+  "dstNodeId": "UAV0125",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 40,
+   "bandwidthBps": 360000,
+   "ber": 0.0002,
+   "packetLossRate": 0.09
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0064",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0030",
+  "dstNodeId": "UAV0186",
+  "requirement": {
+   "delayMs": 225,
+   "jitterMs": 22,
+   "bandwidthBps": 5900000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0065",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0028",
+  "dstNodeId": "UAV0014",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 12,
+   "bandwidthBps": 58000,
+   "ber": 0.0006,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0066",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0005",
+  "dstNodeId": "UAV0129",
+  "requirement": {
+   "delayMs": 250,
+   "jitterMs": 28,
+   "bandwidthBps": 6700000,
+   "ber": 8e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0067",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0056",
+  "dstNodeId": "UAV0062",
+  "requirement": {
+   "delayMs": 135,
+   "jitterMs": 43,
+   "bandwidthBps": 890000,
+   "ber": 0.0003,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0068",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0040",
+  "dstNodeId": "UAV0026",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 50,
+   "bandwidthBps": 3000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0069",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0044",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 435,
+   "jitterMs": 39,
+   "bandwidthBps": 2600000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0070",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0197",
+  "dstNodeId": "UAV0121",
+  "requirement": {
+   "delayMs": 55,
+   "jitterMs": 43,
+   "bandwidthBps": 1600000,
+   "ber": 0.0002,
+   "packetLossRate": 0.07
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0071",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0153",
+  "dstNodeId": "UAV0080",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 24,
+   "bandwidthBps": 52000,
+   "ber": 0.0003,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0072",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0132",
+  "dstNodeId": "UAV0130",
+  "requirement": {
+   "delayMs": 165,
+   "jitterMs": 16,
+   "bandwidthBps": 730000,
+   "ber": 4e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0073",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0007",
+  "dstNodeId": "UAV0181",
+  "requirement": {
+   "delayMs": 430,
+   "jitterMs": 48,
+   "bandwidthBps": 520000,
+   "ber": 0.0009,
+   "packetLossRate": 0.04
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0074",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0143",
+  "dstNodeId": "UAV0061",
+  "requirement": {
+   "delayMs": 355,
+   "jitterMs": 42,
+   "bandwidthBps": 710000,
+   "ber": 0.0004,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0075",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0057",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 27,
+   "bandwidthBps": 7300000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0076",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0014",
+  "dstNodeId": "UAV0017",
+  "requirement": {
+   "delayMs": 525,
+   "jitterMs": 60,
+   "bandwidthBps": 2700000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0077",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0028",
+  "dstNodeId": "UAV0182",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 59,
+   "bandwidthBps": 2700000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0078",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0103",
+  "dstNodeId": "UAV0014",
+  "requirement": {
+   "delayMs": 430,
+   "jitterMs": 17,
+   "bandwidthBps": 380000,
+   "ber": 0.0004,
+   "packetLossRate": 0.07
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0079",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0025",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 370,
+   "jitterMs": 28,
+   "bandwidthBps": 2300000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0080",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0068",
+  "dstNodeId": "UAV0021",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 58,
+   "bandwidthBps": 3100000,
+   "ber": 7e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0081",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0095",
+  "dstNodeId": "UAV0042",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 44,
+   "bandwidthBps": 1400000,
+   "ber": 0.0006,
+   "packetLossRate": 0.06
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0082",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0048",
+  "dstNodeId": "UAV0164",
+  "requirement": {
+   "delayMs": 345,
+   "jitterMs": 47,
+   "bandwidthBps": 3100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0083",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0008",
+  "dstNodeId": "UAV0159",
+  "requirement": {
+   "delayMs": 190,
+   "jitterMs": 24,
+   "bandwidthBps": 58000,
+   "ber": 0.0002,
+   "packetLossRate": 0.008
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0084",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0158",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 745,
+   "jitterMs": 47,
+   "bandwidthBps": 1000000,
+   "ber": 0.0003,
+   "packetLossRate": 0.06
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0085",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0162",
+  "dstNodeId": "UAV0048",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 16,
+   "bandwidthBps": 1600000,
+   "ber": 0.0008,
+   "packetLossRate": 0.06
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0086",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0185",
+  "dstNodeId": "UAV0061",
+  "requirement": {
+   "delayMs": 520,
+   "jitterMs": 34,
+   "bandwidthBps": 1400000,
+   "ber": 0.0002,
+   "packetLossRate": 0.09
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0087",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0132",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 36,
+   "bandwidthBps": 87000,
+   "ber": 0.0008,
+   "packetLossRate": 0.08
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0088",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0149",
+  "dstNodeId": "UAV0071",
+  "requirement": {
+   "delayMs": 565,
+   "jitterMs": 23,
+   "bandwidthBps": 440000,
+   "ber": 3e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0089",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0063",
+  "dstNodeId": "UAV0132",
+  "requirement": {
+   "delayMs": 370,
+   "jitterMs": 15,
+   "bandwidthBps": 730000,
+   "ber": 4e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0090",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0058",
+  "dstNodeId": "UAV0188",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 14,
+   "bandwidthBps": 3100000,
+   "ber": 9e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0091",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0082",
+  "dstNodeId": "UAV0175",
+  "requirement": {
+   "delayMs": 240,
+   "jitterMs": 13,
+   "bandwidthBps": 24000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0092",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0026",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 46,
+   "bandwidthBps": 1400000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0093",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0014",
+  "dstNodeId": "UAV0101",
+  "requirement": {
+   "delayMs": 505,
+   "jitterMs": 49,
+   "bandwidthBps": 1400000,
+   "ber": 0.0005,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0094",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0109",
+  "dstNodeId": "UAV0062",
+  "requirement": {
+   "delayMs": 265,
+   "jitterMs": 21,
+   "bandwidthBps": 47000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0095",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0184",
+  "dstNodeId": "UAV0074",
+  "requirement": {
+   "delayMs": 295,
+   "jitterMs": 32,
+   "bandwidthBps": 1800000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0096",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0073",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 37,
+   "bandwidthBps": 7500000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0097",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0094",
+  "dstNodeId": "UAV0181",
+  "requirement": {
+   "delayMs": 375,
+   "jitterMs": 21,
+   "bandwidthBps": 1300000,
+   "ber": 8e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0098",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0176",
+  "dstNodeId": "UAV0179",
+  "requirement": {
+   "delayMs": 425,
+   "jitterMs": 70,
+   "bandwidthBps": 2000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0099",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0030",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 15,
+   "bandwidthBps": 59000,
+   "ber": 0.0008,
+   "packetLossRate": 0.006
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0100",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0055",
+  "dstNodeId": "UAV0096",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 67,
+   "bandwidthBps": 2000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.04
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0101",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0062",
+  "dstNodeId": "UAV0093",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 24,
+   "bandwidthBps": 1700000,
+   "ber": 0.0002,
+   "packetLossRate": 0.06
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0102",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0083",
+  "dstNodeId": "UAV0183",
+  "requirement": {
+   "delayMs": 80,
+   "jitterMs": 13,
+   "bandwidthBps": 180000,
+   "ber": 3e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0103",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0134",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 130,
+   "jitterMs": 21,
+   "bandwidthBps": 49000,
+   "ber": 0.0007,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0104",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0063",
+  "dstNodeId": "UAV0169",
+  "requirement": {
+   "delayMs": 565,
+   "jitterMs": 62,
+   "bandwidthBps": 1300000,
+   "ber": 6e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0105",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0137",
+  "dstNodeId": "UAV0106",
+  "requirement": {
+   "delayMs": 590,
+   "jitterMs": 54,
+   "bandwidthBps": 2900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0106",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0020",
+  "dstNodeId": "UAV0110",
+  "requirement": {
+   "delayMs": 375,
+   "jitterMs": 13,
+   "bandwidthBps": 5200000,
+   "ber": 9e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0107",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0102",
+  "dstNodeId": "UAV0106",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 49,
+   "bandwidthBps": 6600000,
+   "ber": 9e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0108",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0172",
+  "dstNodeId": "UAV0087",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 31,
+   "bandwidthBps": 6700000,
+   "ber": 6e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0109",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0167",
+  "requirement": {
+   "delayMs": 140,
+   "jitterMs": 17,
+   "bandwidthBps": 7000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0110",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0004",
+  "dstNodeId": "UAV0110",
+  "requirement": {
+   "delayMs": 115,
+   "jitterMs": 45,
+   "bandwidthBps": 2600000,
+   "ber": 5e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0111",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0150",
+  "dstNodeId": "UAV0163",
+  "requirement": {
+   "delayMs": 275,
+   "jitterMs": 50,
+   "bandwidthBps": 1700000,
+   "ber": 4e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0112",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0133",
+  "dstNodeId": "UAV0172",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 18,
+   "bandwidthBps": 2800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0113",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0083",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 160,
+   "jitterMs": 59,
+   "bandwidthBps": 2700000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0114",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0183",
+  "dstNodeId": "UAV0189",
+  "requirement": {
+   "delayMs": 195,
+   "jitterMs": 33,
+   "bandwidthBps": 1400000,
+   "ber": 5e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0115",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0047",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 225,
+   "jitterMs": 49,
+   "bandwidthBps": 6500000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0116",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0150",
+  "dstNodeId": "UAV0034",
+  "requirement": {
+   "delayMs": 385,
+   "jitterMs": 29,
+   "bandwidthBps": 1900000,
+   "ber": 0.0007,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0117",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0133",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 43,
+   "bandwidthBps": 1800000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0118",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0115",
+  "dstNodeId": "UAV0091",
+  "requirement": {
+   "delayMs": 185,
+   "jitterMs": 46,
+   "bandwidthBps": 3600000,
+   "ber": 4e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0119",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0062",
+  "dstNodeId": "UAV0057",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 22,
+   "bandwidthBps": 37000,
+   "ber": 0.0006,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0120",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0045",
+  "dstNodeId": "UAV0092",
+  "requirement": {
+   "delayMs": 585,
+   "jitterMs": 33,
+   "bandwidthBps": 910000,
+   "ber": 0.0002,
+   "packetLossRate": 0.1
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0121",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0107",
+  "dstNodeId": "UAV0089",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 25,
+   "bandwidthBps": 20000,
+   "ber": 0.0005,
+   "packetLossRate": 0.006
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0122",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0115",
+  "dstNodeId": "UAV0014",
+  "requirement": {
+   "delayMs": 385,
+   "jitterMs": 50,
+   "bandwidthBps": 3500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0123",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0045",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 50,
+   "bandwidthBps": 6300000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0124",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0096",
+  "dstNodeId": "UAV0046",
+  "requirement": {
+   "delayMs": 295,
+   "jitterMs": 21,
+   "bandwidthBps": 60000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0125",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0148",
+  "dstNodeId": "UAV0122",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 49,
+   "bandwidthBps": 5900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0126",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0107",
+  "dstNodeId": "UAV0143",
+  "requirement": {
+   "delayMs": 225,
+   "jitterMs": 45,
+   "bandwidthBps": 470000,
+   "ber": 0.0004,
+   "packetLossRate": 0.07
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0127",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0117",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 36,
+   "bandwidthBps": 3700000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0128",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0017",
+  "dstNodeId": "UAV0107",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 29,
+   "bandwidthBps": 7800000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0129",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0152",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 40,
+   "bandwidthBps": 3200000,
+   "ber": 5e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0130",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0193",
+  "dstNodeId": "UAV0087",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 25,
+   "bandwidthBps": 23000,
+   "ber": 0.0004,
+   "packetLossRate": 0.008
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0131",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0195",
+  "dstNodeId": "UAV0196",
+  "requirement": {
+   "delayMs": 195,
+   "jitterMs": 24,
+   "bandwidthBps": 1200000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0132",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0109",
+  "dstNodeId": "UAV0042",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 18,
+   "bandwidthBps": 1800000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0133",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0096",
+  "dstNodeId": "UAV0070",
+  "requirement": {
+   "delayMs": 565,
+   "jitterMs": 32,
+   "bandwidthBps": 1600000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0134",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0085",
+  "dstNodeId": "UAV0090",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 28,
+   "bandwidthBps": 270000,
+   "ber": 0.0008,
+   "packetLossRate": 0.1
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0135",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0047",
+  "dstNodeId": "UAV0088",
+  "requirement": {
+   "delayMs": 170,
+   "jitterMs": 18,
+   "bandwidthBps": 6200000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0136",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0022",
+  "dstNodeId": "UAV0099",
+  "requirement": {
+   "delayMs": 295,
+   "jitterMs": 15,
+   "bandwidthBps": 8600,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0137",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0034",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 425,
+   "jitterMs": 29,
+   "bandwidthBps": 890000,
+   "ber": 4e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0138",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0165",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 645,
+   "jitterMs": 15,
+   "bandwidthBps": 1800000,
+   "ber": 0.0003,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0139",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0085",
+  "dstNodeId": "UAV0009",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 26,
+   "bandwidthBps": 1700000,
+   "ber": 3e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0140",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0125",
+  "dstNodeId": "UAV0052",
+  "requirement": {
+   "delayMs": 540,
+   "jitterMs": 13,
+   "bandwidthBps": 620000,
+   "ber": 0.0002,
+   "packetLossRate": 0.1
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0141",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0018",
+  "dstNodeId": "UAV0137",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 46,
+   "bandwidthBps": 1700000,
+   "ber": 0.0008,
+   "packetLossRate": 0.1
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0142",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0084",
+  "dstNodeId": "UAV0048",
+  "requirement": {
+   "delayMs": 370,
+   "jitterMs": 19,
+   "bandwidthBps": 2900000,
+   "ber": 9e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0143",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0173",
+  "dstNodeId": "UAV0126",
+  "requirement": {
+   "delayMs": 765,
+   "jitterMs": 26,
+   "bandwidthBps": 260000,
+   "ber": 0.0005,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0144",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0150",
+  "dstNodeId": "UAV0009",
+  "requirement": {
+   "delayMs": 480,
+   "jitterMs": 77,
+   "bandwidthBps": 3900000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0145",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0042",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 275,
+   "jitterMs": 21,
+   "bandwidthBps": 1400000,
+   "ber": 0.0002,
+   "packetLossRate": 0.07
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0146",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0111",
+  "dstNodeId": "UAV0050",
+  "requirement": {
+   "delayMs": 770,
+   "jitterMs": 47,
+   "bandwidthBps": 1000000,
+   "ber": 7e-05,
+   "packetLossRate": 0.09
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0147",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0050",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 540,
+   "jitterMs": 50,
+   "bandwidthBps": 120000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0148",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0009",
+  "dstNodeId": "UAV0083",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 23,
+   "bandwidthBps": 1000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0149",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0170",
+  "dstNodeId": "UAV0141",
+  "requirement": {
+   "delayMs": 105,
+   "jitterMs": 13,
+   "bandwidthBps": 1500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0150",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0032",
+  "dstNodeId": "UAV0164",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 24,
+   "bandwidthBps": 1000000,
+   "ber": 0.0005,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0151",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0088",
+  "dstNodeId": "UAV0101",
+  "requirement": {
+   "delayMs": 355,
+   "jitterMs": 42,
+   "bandwidthBps": 2000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0152",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0190",
+  "dstNodeId": "UAV0003",
+  "requirement": {
+   "delayMs": 470,
+   "jitterMs": 21,
+   "bandwidthBps": 3300000,
+   "ber": 6e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0153",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0078",
+  "dstNodeId": "UAV0022",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 36,
+   "bandwidthBps": 1500000,
+   "ber": 8e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0154",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0048",
+  "dstNodeId": "UAV0084",
+  "requirement": {
+   "delayMs": 430,
+   "jitterMs": 38,
+   "bandwidthBps": 1200000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0155",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0090",
+  "dstNodeId": "UAV0052",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 25,
+   "bandwidthBps": 1000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.09
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0156",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0171",
+  "dstNodeId": "UAV0116",
+  "requirement": {
+   "delayMs": 135,
+   "jitterMs": 21,
+   "bandwidthBps": 31000,
+   "ber": 0.0004,
+   "packetLossRate": 0.009
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0157",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0030",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 75,
+   "jitterMs": 31,
+   "bandwidthBps": 1100000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0158",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0195",
+  "dstNodeId": "UAV0156",
+  "requirement": {
+   "delayMs": 240,
+   "jitterMs": 26,
+   "bandwidthBps": 1600000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0159",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 49,
+   "bandwidthBps": 820000,
+   "ber": 0.0008,
+   "packetLossRate": 0.09
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0160",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0069",
+  "dstNodeId": "UAV0161",
+  "requirement": {
+   "delayMs": 485,
+   "jitterMs": 34,
+   "bandwidthBps": 1000000,
+   "ber": 0.0002,
+   "packetLossRate": 0.08
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0161",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0149",
+  "dstNodeId": "UAV0182",
+  "requirement": {
+   "delayMs": 415,
+   "jitterMs": 42,
+   "bandwidthBps": 350000,
+   "ber": 3e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0162",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0055",
+  "dstNodeId": "UAV0137",
+  "requirement": {
+   "delayMs": 105,
+   "jitterMs": 20,
+   "bandwidthBps": 7300000,
+   "ber": 4e-05,
+   "packetLossRate": 0.006
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0163",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0071",
+  "dstNodeId": "UAV0044",
+  "requirement": {
+   "delayMs": 100,
+   "jitterMs": 39,
+   "bandwidthBps": 470000,
+   "ber": 5e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0164",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0149",
+  "dstNodeId": "UAV0178",
+  "requirement": {
+   "delayMs": 470,
+   "jitterMs": 17,
+   "bandwidthBps": 2100000,
+   "ber": 7e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0165",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0180",
+  "dstNodeId": "UAV0015",
+  "requirement": {
+   "delayMs": 195,
+   "jitterMs": 14,
+   "bandwidthBps": 52000,
+   "ber": 0.0008,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0166",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0150",
+  "dstNodeId": "UAV0001",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 50,
+   "bandwidthBps": 3300000,
+   "ber": 7e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0167",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0081",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 62,
+   "bandwidthBps": 840000,
+   "ber": 9e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0168",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0093",
+  "requirement": {
+   "delayMs": 355,
+   "jitterMs": 46,
+   "bandwidthBps": 5100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0169",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0069",
+  "dstNodeId": "UAV0060",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 24,
+   "bandwidthBps": 55000,
+   "ber": 7e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0170",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0017",
+  "dstNodeId": "UAV0018",
+  "requirement": {
+   "delayMs": 95,
+   "jitterMs": 27,
+   "bandwidthBps": 21000,
+   "ber": 0.0004,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0171",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0033",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 160,
+   "jitterMs": 13,
+   "bandwidthBps": 57000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0172",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0169",
+  "requirement": {
+   "delayMs": 100,
+   "jitterMs": 13,
+   "bandwidthBps": 60000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0173",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0052",
+  "dstNodeId": "UAV0001",
+  "requirement": {
+   "delayMs": 110,
+   "jitterMs": 67,
+   "bandwidthBps": 2800000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0174",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0092",
+  "dstNodeId": "UAV0143",
+  "requirement": {
+   "delayMs": 765,
+   "jitterMs": 19,
+   "bandwidthBps": 1000000,
+   "ber": 5e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0175",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0148",
+  "dstNodeId": "UAV0027",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 18,
+   "bandwidthBps": 15000,
+   "ber": 0.0004,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0176",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0183",
+  "dstNodeId": "UAV0127",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 13,
+   "bandwidthBps": 19000,
+   "ber": 0.0004,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0177",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0192",
+  "dstNodeId": "UAV0004",
+  "requirement": {
+   "delayMs": 680,
+   "jitterMs": 24,
+   "bandwidthBps": 1100000,
+   "ber": 0.0005,
+   "packetLossRate": 0.09
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0178",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0154",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 315,
+   "jitterMs": 40,
+   "bandwidthBps": 3000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0179",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0086",
+  "dstNodeId": "UAV0034",
+  "requirement": {
+   "delayMs": 60,
+   "jitterMs": 46,
+   "bandwidthBps": 950000,
+   "ber": 0.001,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0180",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0151",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 320,
+   "jitterMs": 21,
+   "bandwidthBps": 4600000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0181",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0002",
+  "dstNodeId": "UAV0042",
+  "requirement": {
+   "delayMs": 165,
+   "jitterMs": 24,
+   "bandwidthBps": 6900000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0182",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0162",
+  "dstNodeId": "UAV0069",
+  "requirement": {
+   "delayMs": 525,
+   "jitterMs": 77,
+   "bandwidthBps": 860000,
+   "ber": 3e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0183",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0186",
+  "dstNodeId": "UAV0088",
+  "requirement": {
+   "delayMs": 115,
+   "jitterMs": 78,
+   "bandwidthBps": 3100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0184",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0020",
+  "dstNodeId": "UAV0008",
+  "requirement": {
+   "delayMs": 590,
+   "jitterMs": 23,
+   "bandwidthBps": 1600000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0185",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0152",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 340,
+   "jitterMs": 41,
+   "bandwidthBps": 2100000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0186",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0060",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 675,
+   "jitterMs": 25,
+   "bandwidthBps": 100000,
+   "ber": 0.0007,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0187",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0159",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 16,
+   "bandwidthBps": 4500000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0188",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0178",
+  "dstNodeId": "UAV0050",
+  "requirement": {
+   "delayMs": 285,
+   "jitterMs": 19,
+   "bandwidthBps": 770000,
+   "ber": 0.0004,
+   "packetLossRate": 0.08
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0189",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0168",
+  "dstNodeId": "UAV0131",
+  "requirement": {
+   "delayMs": 445,
+   "jitterMs": 21,
+   "bandwidthBps": 1900000,
+   "ber": 0.0002,
+   "packetLossRate": 0.04
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0190",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0002",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 340,
+   "jitterMs": 37,
+   "bandwidthBps": 5800000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0191",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0074",
+  "requirement": {
+   "delayMs": 105,
+   "jitterMs": 33,
+   "bandwidthBps": 1900000,
+   "ber": 9e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0192",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0109",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 21,
+   "bandwidthBps": 2500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0193",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0110",
+  "dstNodeId": "UAV0049",
+  "requirement": {
+   "delayMs": 200,
+   "jitterMs": 18,
+   "bandwidthBps": 7400000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0194",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0001",
+  "dstNodeId": "UAV0167",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 25,
+   "bandwidthBps": 860000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0195",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0102",
+  "dstNodeId": "UAV0025",
+  "requirement": {
+   "delayMs": 390,
+   "jitterMs": 23,
+   "bandwidthBps": 1800000,
+   "ber": 8e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0196",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0025",
+  "dstNodeId": "UAV0062",
+  "requirement": {
+   "delayMs": 475,
+   "jitterMs": 49,
+   "bandwidthBps": 1300000,
+   "ber": 5e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0197",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0162",
+  "dstNodeId": "UAV0169",
+  "requirement": {
+   "delayMs": 475,
+   "jitterMs": 40,
+   "bandwidthBps": 1400000,
+   "ber": 5e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0198",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0104",
+  "dstNodeId": "UAV0179",
+  "requirement": {
+   "delayMs": 510,
+   "jitterMs": 35,
+   "bandwidthBps": 1100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0199",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0066",
+  "dstNodeId": "UAV0083",
+  "requirement": {
+   "delayMs": 160,
+   "jitterMs": 45,
+   "bandwidthBps": 5300000,
+   "ber": 8e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0200",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0033",
+  "dstNodeId": "UAV0187",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 44,
+   "bandwidthBps": 1800000,
+   "ber": 0.0004,
+   "packetLossRate": 0.08
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0201",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0190",
+  "dstNodeId": "UAV0012",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 21,
+   "bandwidthBps": 60000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0202",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0075",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 470,
+   "jitterMs": 26,
+   "bandwidthBps": 1300000,
+   "ber": 0.0001,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0203",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0188",
+  "dstNodeId": "UAV0042",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 25,
+   "bandwidthBps": 2400000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0204",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0184",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 340,
+   "jitterMs": 49,
+   "bandwidthBps": 7500000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0205",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0072",
+  "dstNodeId": "UAV0101",
+  "requirement": {
+   "delayMs": 495,
+   "jitterMs": 80,
+   "bandwidthBps": 1100000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0206",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0088",
+  "dstNodeId": "UAV0024",
+  "requirement": {
+   "delayMs": 560,
+   "jitterMs": 27,
+   "bandwidthBps": 750000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0207",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0196",
+  "dstNodeId": "UAV0159",
+  "requirement": {
+   "delayMs": 105,
+   "jitterMs": 30,
+   "bandwidthBps": 410000,
+   "ber": 3e-05,
+   "packetLossRate": 0.07
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0208",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0125",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 170,
+   "jitterMs": 14,
+   "bandwidthBps": 1800000,
+   "ber": 0.0008,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0209",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0034",
+  "dstNodeId": "UAV0092",
+  "requirement": {
+   "delayMs": 650,
+   "jitterMs": 33,
+   "bandwidthBps": 370000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0210",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0130",
+  "dstNodeId": "UAV0049",
+  "requirement": {
+   "delayMs": 160,
+   "jitterMs": 18,
+   "bandwidthBps": 1900000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0211",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0141",
+  "dstNodeId": "UAV0088",
+  "requirement": {
+   "delayMs": 120,
+   "jitterMs": 22,
+   "bandwidthBps": 16000,
+   "ber": 0.0004,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0212",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0185",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 25,
+   "bandwidthBps": 1600000,
+   "ber": 2e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0213",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0062",
+  "requirement": {
+   "delayMs": 100,
+   "jitterMs": 32,
+   "bandwidthBps": 1300000,
+   "ber": 0.0008,
+   "packetLossRate": 0.06
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0214",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 22,
+   "bandwidthBps": 1000000,
+   "ber": 8e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0215",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0097",
+  "dstNodeId": "UAV0048",
+  "requirement": {
+   "delayMs": 725,
+   "jitterMs": 25,
+   "bandwidthBps": 730000,
+   "ber": 0.0003,
+   "packetLossRate": 0.07
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0216",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0185",
+  "requirement": {
+   "delayMs": 330,
+   "jitterMs": 43,
+   "bandwidthBps": 4100000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0217",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0036",
+  "dstNodeId": "UAV0172",
+  "requirement": {
+   "delayMs": 415,
+   "jitterMs": 13,
+   "bandwidthBps": 1400000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0218",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0170",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 55,
+   "bandwidthBps": 1000000,
+   "ber": 8e-05,
+   "packetLossRate": 0.006
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0219",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0071",
+  "dstNodeId": "UAV0138",
+  "requirement": {
+   "delayMs": 250,
+   "jitterMs": 19,
+   "bandwidthBps": 9300,
+   "ber": 6e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0220",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0088",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 435,
+   "jitterMs": 59,
+   "bandwidthBps": 1900000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0221",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0030",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 335,
+   "jitterMs": 19,
+   "bandwidthBps": 340000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0222",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0175",
+  "dstNodeId": "UAV0113",
+  "requirement": {
+   "delayMs": 175,
+   "jitterMs": 29,
+   "bandwidthBps": 7400000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0223",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0063",
+  "dstNodeId": "UAV0101",
+  "requirement": {
+   "delayMs": 305,
+   "jitterMs": 59,
+   "bandwidthBps": 2500000,
+   "ber": 6e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0224",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0139",
+  "dstNodeId": "UAV0019",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 58,
+   "bandwidthBps": 2800000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0225",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0141",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 31,
+   "bandwidthBps": 6900000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0226",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0177",
+  "dstNodeId": "UAV0157",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 22,
+   "bandwidthBps": 26000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0227",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0032",
+  "dstNodeId": "UAV0168",
+  "requirement": {
+   "delayMs": 660,
+   "jitterMs": 21,
+   "bandwidthBps": 120000,
+   "ber": 0.0008,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0228",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0064",
+  "dstNodeId": "UAV0021",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 34,
+   "bandwidthBps": 1600000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0229",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0091",
+  "dstNodeId": "UAV0166",
+  "requirement": {
+   "delayMs": 515,
+   "jitterMs": 44,
+   "bandwidthBps": 1500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0230",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0051",
+  "dstNodeId": "UAV0121",
+  "requirement": {
+   "delayMs": 250,
+   "jitterMs": 79,
+   "bandwidthBps": 2100000,
+   "ber": 8e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0231",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0190",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 490,
+   "jitterMs": 74,
+   "bandwidthBps": 1800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0232",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0059",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 350,
+   "jitterMs": 35,
+   "bandwidthBps": 4300000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0233",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0106",
+  "dstNodeId": "UAV0146",
+  "requirement": {
+   "delayMs": 400,
+   "jitterMs": 18,
+   "bandwidthBps": 520000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0234",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0009",
+  "dstNodeId": "UAV0034",
+  "requirement": {
+   "delayMs": 305,
+   "jitterMs": 18,
+   "bandwidthBps": 5100000,
+   "ber": 8e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0235",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0135",
+  "dstNodeId": "UAV0028",
+  "requirement": {
+   "delayMs": 670,
+   "jitterMs": 23,
+   "bandwidthBps": 1900000,
+   "ber": 0.0003,
+   "packetLossRate": 0.08
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0236",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0175",
+  "requirement": {
+   "delayMs": 800,
+   "jitterMs": 14,
+   "bandwidthBps": 1000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0237",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0073",
+  "dstNodeId": "UAV0107",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 44,
+   "bandwidthBps": 2500000,
+   "ber": 0.0001,
+   "packetLossRate": 0.006
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0238",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0056",
+  "dstNodeId": "UAV0110",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 50,
+   "bandwidthBps": 6200000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0239",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0026",
+  "dstNodeId": "UAV0022",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 74,
+   "bandwidthBps": 2600000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0240",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0078",
+  "dstNodeId": "UAV0033",
+  "requirement": {
+   "delayMs": 330,
+   "jitterMs": 14,
+   "bandwidthBps": 750000,
+   "ber": 0.0003,
+   "packetLossRate": 0.04
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0241",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0007",
+  "dstNodeId": "UAV0146",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 25,
+   "bandwidthBps": 1600000,
+   "ber": 4e-05,
+   "packetLossRate": 0.09
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0242",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0136",
+  "dstNodeId": "UAV0027",
+  "requirement": {
+   "delayMs": 335,
+   "jitterMs": 33,
+   "bandwidthBps": 800000,
+   "ber": 7e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0243",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0044",
+  "dstNodeId": "UAV0005",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 20,
+   "bandwidthBps": 3200000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0244",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0008",
+  "requirement": {
+   "delayMs": 195,
+   "jitterMs": 41,
+   "bandwidthBps": 6700000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0245",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 545,
+   "jitterMs": 46,
+   "bandwidthBps": 1900000,
+   "ber": 0.0003,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0246",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0113",
+  "dstNodeId": "UAV0108",
+  "requirement": {
+   "delayMs": 200,
+   "jitterMs": 65,
+   "bandwidthBps": 2600000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0247",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0132",
+  "dstNodeId": "UAV0079",
+  "requirement": {
+   "delayMs": 215,
+   "jitterMs": 22,
+   "bandwidthBps": 28000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0248",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0046",
+  "requirement": {
+   "delayMs": 520,
+   "jitterMs": 58,
+   "bandwidthBps": 3400000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0249",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0031",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 620,
+   "jitterMs": 22,
+   "bandwidthBps": 1800000,
+   "ber": 0.0003,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0250",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0135",
+  "dstNodeId": "UAV0104",
+  "requirement": {
+   "delayMs": 60,
+   "jitterMs": 22,
+   "bandwidthBps": 1600000,
+   "ber": 0.0004,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0251",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0075",
+  "dstNodeId": "UAV0179",
+  "requirement": {
+   "delayMs": 515,
+   "jitterMs": 38,
+   "bandwidthBps": 630000,
+   "ber": 5e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0252",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0189",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 215,
+   "jitterMs": 42,
+   "bandwidthBps": 7300000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0253",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0018",
+  "dstNodeId": "UAV0013",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 15,
+   "bandwidthBps": 15000,
+   "ber": 0.0002,
+   "packetLossRate": 0.01
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0254",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0022",
+  "dstNodeId": "UAV0161",
+  "requirement": {
+   "delayMs": 190,
+   "jitterMs": 24,
+   "bandwidthBps": 2500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0255",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0156",
+  "dstNodeId": "UAV0166",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 43,
+   "bandwidthBps": 1400000,
+   "ber": 0.001,
+   "packetLossRate": 0.08
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0256",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0139",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 380,
+   "jitterMs": 43,
+   "bandwidthBps": 5000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0257",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0060",
+  "dstNodeId": "UAV0164",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 16,
+   "bandwidthBps": 6900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0258",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0025",
+  "dstNodeId": "UAV0115",
+  "requirement": {
+   "delayMs": 100,
+   "jitterMs": 23,
+   "bandwidthBps": 24000,
+   "ber": 0.0003,
+   "packetLossRate": 0.009
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0259",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0150",
+  "dstNodeId": "UAV0108",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 55,
+   "bandwidthBps": 1900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0260",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0170",
+  "dstNodeId": "UAV0139",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 14,
+   "bandwidthBps": 57000,
+   "ber": 0.0004,
+   "packetLossRate": 0.009
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0261",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0078",
+  "dstNodeId": "UAV0139",
+  "requirement": {
+   "delayMs": 375,
+   "jitterMs": 28,
+   "bandwidthBps": 2000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0262",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0045",
+  "dstNodeId": "UAV0146",
+  "requirement": {
+   "delayMs": 185,
+   "jitterMs": 38,
+   "bandwidthBps": 1000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0263",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0190",
+  "dstNodeId": "UAV0069",
+  "requirement": {
+   "delayMs": 345,
+   "jitterMs": 50,
+   "bandwidthBps": 920000,
+   "ber": 0.0003,
+   "packetLossRate": 0.08
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0264",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0040",
+  "dstNodeId": "UAV0085",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 41,
+   "bandwidthBps": 6800000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0265",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0122",
+  "dstNodeId": "UAV0006",
+  "requirement": {
+   "delayMs": 200,
+   "jitterMs": 34,
+   "bandwidthBps": 2000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.006
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0266",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0005",
+  "dstNodeId": "UAV0121",
+  "requirement": {
+   "delayMs": 140,
+   "jitterMs": 71,
+   "bandwidthBps": 2100000,
+   "ber": 2e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0267",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0076",
+  "dstNodeId": "UAV0175",
+  "requirement": {
+   "delayMs": 595,
+   "jitterMs": 11,
+   "bandwidthBps": 1100000,
+   "ber": 2e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0268",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0144",
+  "dstNodeId": "UAV0033",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 13,
+   "bandwidthBps": 18000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0269",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0060",
+  "dstNodeId": "UAV0174",
+  "requirement": {
+   "delayMs": 335,
+   "jitterMs": 32,
+   "bandwidthBps": 2500000,
+   "ber": 2e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0270",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0007",
+  "dstNodeId": "UAV0062",
+  "requirement": {
+   "delayMs": 160,
+   "jitterMs": 31,
+   "bandwidthBps": 1800000,
+   "ber": 0.0006,
+   "packetLossRate": 0.08
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0271",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0123",
+  "dstNodeId": "UAV0086",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 47,
+   "bandwidthBps": 1500000,
+   "ber": 9e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0272",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0112",
+  "dstNodeId": "UAV0043",
+  "requirement": {
+   "delayMs": 115,
+   "jitterMs": 41,
+   "bandwidthBps": 1000000,
+   "ber": 0.0002,
+   "packetLossRate": 0.07
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0273",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0094",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 535,
+   "jitterMs": 25,
+   "bandwidthBps": 730000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0274",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0128",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 170,
+   "jitterMs": 47,
+   "bandwidthBps": 1500000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0275",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0095",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 22,
+   "bandwidthBps": 1900000,
+   "ber": 0.0009,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0276",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0018",
+  "dstNodeId": "UAV0178",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 27,
+   "bandwidthBps": 210000,
+   "ber": 4e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0277",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0146",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 330,
+   "jitterMs": 36,
+   "bandwidthBps": 890000,
+   "ber": 3e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0278",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0016",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 790,
+   "jitterMs": 35,
+   "bandwidthBps": 1500000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0279",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0135",
+  "dstNodeId": "UAV0081",
+  "requirement": {
+   "delayMs": 490,
+   "jitterMs": 44,
+   "bandwidthBps": 750000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0280",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0138",
+  "dstNodeId": "UAV0122",
+  "requirement": {
+   "delayMs": 420,
+   "jitterMs": 17,
+   "bandwidthBps": 240000,
+   "ber": 0.0007,
+   "packetLossRate": 0.07
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0281",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0027",
+  "dstNodeId": "UAV0062",
+  "requirement": {
+   "delayMs": 450,
+   "jitterMs": 46,
+   "bandwidthBps": 1100000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0282",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0115",
+  "dstNodeId": "UAV0112",
+  "requirement": {
+   "delayMs": 385,
+   "jitterMs": 15,
+   "bandwidthBps": 7900000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0283",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0156",
+  "dstNodeId": "UAV0080",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 24,
+   "bandwidthBps": 5500000,
+   "ber": 0.0001,
+   "packetLossRate": 0.007
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0284",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0083",
+  "dstNodeId": "UAV0021",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 28,
+   "bandwidthBps": 4300000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0285",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0021",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 265,
+   "jitterMs": 40,
+   "bandwidthBps": 910000,
+   "ber": 0.0005,
+   "packetLossRate": 0.04
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0286",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0054",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 42,
+   "bandwidthBps": 3900000,
+   "ber": 7e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0287",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0070",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 120,
+   "jitterMs": 25,
+   "bandwidthBps": 170000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0288",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0180",
+  "dstNodeId": "UAV0181",
+  "requirement": {
+   "delayMs": 75,
+   "jitterMs": 33,
+   "bandwidthBps": 160000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0289",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0004",
+  "dstNodeId": "UAV0161",
+  "requirement": {
+   "delayMs": 405,
+   "jitterMs": 34,
+   "bandwidthBps": 3800000,
+   "ber": 0.0001,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0290",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0021",
+  "dstNodeId": "UAV0104",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 28,
+   "bandwidthBps": 3100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0291",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0172",
+  "dstNodeId": "UAV0168",
+  "requirement": {
+   "delayMs": 565,
+   "jitterMs": 12,
+   "bandwidthBps": 440000,
+   "ber": 0.0005,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0292",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0039",
+  "dstNodeId": "UAV0126",
+  "requirement": {
+   "delayMs": 345,
+   "jitterMs": 15,
+   "bandwidthBps": 5000000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0293",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0072",
+  "dstNodeId": "UAV0121",
+  "requirement": {
+   "delayMs": 60,
+   "jitterMs": 49,
+   "bandwidthBps": 1100000,
+   "ber": 0.0003,
+   "packetLossRate": 0.07
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0294",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0182",
+  "dstNodeId": "UAV0189",
+  "requirement": {
+   "delayMs": 625,
+   "jitterMs": 17,
+   "bandwidthBps": 1600000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0295",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0029",
+  "dstNodeId": "UAV0003",
+  "requirement": {
+   "delayMs": 175,
+   "jitterMs": 46,
+   "bandwidthBps": 5600000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0296",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0122",
+  "dstNodeId": "UAV0095",
+  "requirement": {
+   "delayMs": 190,
+   "jitterMs": 15,
+   "bandwidthBps": 18000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0297",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0166",
+  "dstNodeId": "UAV0177",
+  "requirement": {
+   "delayMs": 450,
+   "jitterMs": 14,
+   "bandwidthBps": 630000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0298",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0124",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 315,
+   "jitterMs": 23,
+   "bandwidthBps": 1100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.07
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0299",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0044",
+  "dstNodeId": "UAV0166",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 40,
+   "bandwidthBps": 1200000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0300",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0048",
+  "dstNodeId": "UAV0172",
+  "requirement": {
+   "delayMs": 170,
+   "jitterMs": 26,
+   "bandwidthBps": 35000,
+   "ber": 0.001,
+   "packetLossRate": 0.007
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0301",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0052",
+  "dstNodeId": "UAV0122",
+  "requirement": {
+   "delayMs": 480,
+   "jitterMs": 47,
+   "bandwidthBps": 1000000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0302",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0139",
+  "dstNodeId": "UAV0061",
+  "requirement": {
+   "delayMs": 190,
+   "jitterMs": 19,
+   "bandwidthBps": 37000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0303",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0003",
+  "dstNodeId": "UAV0058",
+  "requirement": {
+   "delayMs": 775,
+   "jitterMs": 32,
+   "bandwidthBps": 1400000,
+   "ber": 4e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0304",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0133",
+  "dstNodeId": "UAV0015",
+  "requirement": {
+   "delayMs": 150,
+   "jitterMs": 15,
+   "bandwidthBps": 2300000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0305",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0173",
+  "dstNodeId": "UAV0110",
+  "requirement": {
+   "delayMs": 115,
+   "jitterMs": 49,
+   "bandwidthBps": 1800000,
+   "ber": 9e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0306",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0143",
+  "dstNodeId": "UAV0163",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 49,
+   "bandwidthBps": 970000,
+   "ber": 0.0004,
+   "packetLossRate": 0.04
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0307",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0026",
+  "dstNodeId": "UAV0069",
+  "requirement": {
+   "delayMs": 515,
+   "jitterMs": 80,
+   "bandwidthBps": 560000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0308",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0043",
+  "dstNodeId": "UAV0108",
+  "requirement": {
+   "delayMs": 315,
+   "jitterMs": 20,
+   "bandwidthBps": 780000,
+   "ber": 2e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0309",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0186",
+  "dstNodeId": "UAV0189",
+  "requirement": {
+   "delayMs": 240,
+   "jitterMs": 28,
+   "bandwidthBps": 920000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0310",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0001",
+  "dstNodeId": "UAV0044",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 63,
+   "bandwidthBps": 2300000,
+   "ber": 8e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0311",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0140",
+  "dstNodeId": "UAV0112",
+  "requirement": {
+   "delayMs": 675,
+   "jitterMs": 44,
+   "bandwidthBps": 310000,
+   "ber": 7e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0312",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0182",
+  "dstNodeId": "UAV0121",
+  "requirement": {
+   "delayMs": 240,
+   "jitterMs": 76,
+   "bandwidthBps": 1400000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0313",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0053",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 130,
+   "jitterMs": 20,
+   "bandwidthBps": 24000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0314",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0122",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 790,
+   "jitterMs": 17,
+   "bandwidthBps": 1900000,
+   "ber": 0.0006,
+   "packetLossRate": 0.09
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0315",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0192",
+  "dstNodeId": "UAV0077",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 16,
+   "bandwidthBps": 54000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0316",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0020",
+  "dstNodeId": "UAV0001",
+  "requirement": {
+   "delayMs": 655,
+   "jitterMs": 33,
+   "bandwidthBps": 560000,
+   "ber": 0.0008,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0317",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0162",
+  "dstNodeId": "UAV0048",
+  "requirement": {
+   "delayMs": 170,
+   "jitterMs": 39,
+   "bandwidthBps": 5800000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0318",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0119",
+  "dstNodeId": "UAV0061",
+  "requirement": {
+   "delayMs": 315,
+   "jitterMs": 36,
+   "bandwidthBps": 1400000,
+   "ber": 6e-05,
+   "packetLossRate": 0.07
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0319",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0078",
+  "dstNodeId": "UAV0043",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 48,
+   "bandwidthBps": 3400000,
+   "ber": 9e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0320",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0138",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 130,
+   "jitterMs": 28,
+   "bandwidthBps": 1600000,
+   "ber": 0.0003,
+   "packetLossRate": 0.07
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0321",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0009",
+  "dstNodeId": "UAV0052",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 36,
+   "bandwidthBps": 1000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0322",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0054",
+  "dstNodeId": "UAV0106",
+  "requirement": {
+   "delayMs": 275,
+   "jitterMs": 23,
+   "bandwidthBps": 52000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0323",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0075",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 525,
+   "jitterMs": 11,
+   "bandwidthBps": 1100000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0324",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0064",
+  "dstNodeId": "UAV0117",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 40,
+   "bandwidthBps": 630000,
+   "ber": 4e-05,
+   "packetLossRate": 0.07
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0325",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0126",
+  "dstNodeId": "UAV0071",
+  "requirement": {
+   "delayMs": 570,
+   "jitterMs": 35,
+   "bandwidthBps": 1900000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0326",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0063",
+  "dstNodeId": "UAV0024",
+  "requirement": {
+   "delayMs": 350,
+   "jitterMs": 27,
+   "bandwidthBps": 3900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0327",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0079",
+  "dstNodeId": "UAV0042",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 62,
+   "bandwidthBps": 2800000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0328",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0122",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 200,
+   "jitterMs": 44,
+   "bandwidthBps": 2900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0329",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0008",
+  "dstNodeId": "UAV0028",
+  "requirement": {
+   "delayMs": 710,
+   "jitterMs": 40,
+   "bandwidthBps": 790000,
+   "ber": 0.0002,
+   "packetLossRate": 0.08
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0330",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0030",
+  "dstNodeId": "UAV0081",
+  "requirement": {
+   "delayMs": 685,
+   "jitterMs": 48,
+   "bandwidthBps": 540000,
+   "ber": 6e-05,
+   "packetLossRate": 0.09
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0331",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0045",
+  "dstNodeId": "UAV0023",
+  "requirement": {
+   "delayMs": 570,
+   "jitterMs": 29,
+   "bandwidthBps": 1100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0332",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0170",
+  "dstNodeId": "UAV0004",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 55,
+   "bandwidthBps": 3900000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0333",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0119",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 105,
+   "jitterMs": 15,
+   "bandwidthBps": 19000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0334",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0070",
+  "dstNodeId": "UAV0003",
+  "requirement": {
+   "delayMs": 210,
+   "jitterMs": 26,
+   "bandwidthBps": 41000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0335",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0015",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 550,
+   "jitterMs": 12,
+   "bandwidthBps": 2500000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0336",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0045",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 560,
+   "jitterMs": 14,
+   "bandwidthBps": 1400000,
+   "ber": 0.0006,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0337",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0034",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 310,
+   "jitterMs": 75,
+   "bandwidthBps": 1900000,
+   "ber": 8e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0338",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0012",
+  "dstNodeId": "UAV0021",
+  "requirement": {
+   "delayMs": 375,
+   "jitterMs": 38,
+   "bandwidthBps": 4900000,
+   "ber": 0.0001,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0339",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0053",
+  "dstNodeId": "UAV0100",
+  "requirement": {
+   "delayMs": 60,
+   "jitterMs": 23,
+   "bandwidthBps": 290000,
+   "ber": 0.0003,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0340",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0105",
+  "dstNodeId": "UAV0003",
+  "requirement": {
+   "delayMs": 165,
+   "jitterMs": 19,
+   "bandwidthBps": 920000,
+   "ber": 0.0004,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0341",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0159",
+  "dstNodeId": "UAV0126",
+  "requirement": {
+   "delayMs": 335,
+   "jitterMs": 35,
+   "bandwidthBps": 1700000,
+   "ber": 0.0005,
+   "packetLossRate": 0.09
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0342",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0068",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 95,
+   "jitterMs": 15,
+   "bandwidthBps": 45000,
+   "ber": 0.0004,
+   "packetLossRate": 0.008
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0343",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 45,
+   "bandwidthBps": 2700000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0344",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0173",
+  "dstNodeId": "UAV0040",
+  "requirement": {
+   "delayMs": 130,
+   "jitterMs": 29,
+   "bandwidthBps": 3800000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0345",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0053",
+  "dstNodeId": "UAV0008",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 38,
+   "bandwidthBps": 1100000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0346",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0196",
+  "dstNodeId": "UAV0107",
+  "requirement": {
+   "delayMs": 265,
+   "jitterMs": 44,
+   "bandwidthBps": 2500000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0347",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0007",
+  "dstNodeId": "UAV0181",
+  "requirement": {
+   "delayMs": 790,
+   "jitterMs": 36,
+   "bandwidthBps": 910000,
+   "ber": 0.0008,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0348",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0073",
+  "dstNodeId": "UAV0087",
+  "requirement": {
+   "delayMs": 385,
+   "jitterMs": 14,
+   "bandwidthBps": 2500000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0349",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0162",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 330,
+   "jitterMs": 14,
+   "bandwidthBps": 1700000,
+   "ber": 0.0001,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0350",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0005",
+  "dstNodeId": "UAV0089",
+  "requirement": {
+   "delayMs": 125,
+   "jitterMs": 13,
+   "bandwidthBps": 35000,
+   "ber": 2e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0351",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0157",
+  "dstNodeId": "UAV0095",
+  "requirement": {
+   "delayMs": 340,
+   "jitterMs": 14,
+   "bandwidthBps": 1200000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0352",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0142",
+  "requirement": {
+   "delayMs": 550,
+   "jitterMs": 71,
+   "bandwidthBps": 2800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0353",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0086",
+  "dstNodeId": "UAV0093",
+  "requirement": {
+   "delayMs": 250,
+   "jitterMs": 21,
+   "bandwidthBps": 560000,
+   "ber": 0.0004,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0354",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0049",
+  "dstNodeId": "UAV0044",
+  "requirement": {
+   "delayMs": 530,
+   "jitterMs": 19,
+   "bandwidthBps": 450000,
+   "ber": 0.0005,
+   "packetLossRate": 0.08
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0355",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0158",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 37,
+   "bandwidthBps": 140000,
+   "ber": 0.0003,
+   "packetLossRate": 0.1
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0356",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0007",
+  "dstNodeId": "UAV0106",
+  "requirement": {
+   "delayMs": 700,
+   "jitterMs": 46,
+   "bandwidthBps": 1100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.08
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0357",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0029",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 15,
+   "bandwidthBps": 9300,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0358",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0002",
+  "dstNodeId": "UAV0036",
+  "requirement": {
+   "delayMs": 295,
+   "jitterMs": 21,
+   "bandwidthBps": 40000,
+   "ber": 0.001,
+   "packetLossRate": 0.007
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0359",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0013",
+  "dstNodeId": "UAV0023",
+  "requirement": {
+   "delayMs": 200,
+   "jitterMs": 23,
+   "bandwidthBps": 6400000,
+   "ber": 7e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0360",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0175",
+  "dstNodeId": "UAV0148",
+  "requirement": {
+   "delayMs": 400,
+   "jitterMs": 30,
+   "bandwidthBps": 5000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0361",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0080",
+  "dstNodeId": "UAV0136",
+  "requirement": {
+   "delayMs": 125,
+   "jitterMs": 32,
+   "bandwidthBps": 6000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.007
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0362",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0120",
+  "dstNodeId": "UAV0005",
+  "requirement": {
+   "delayMs": 225,
+   "jitterMs": 26,
+   "bandwidthBps": 3700000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0363",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0071",
+  "dstNodeId": "UAV0079",
+  "requirement": {
+   "delayMs": 120,
+   "jitterMs": 15,
+   "bandwidthBps": 59000,
+   "ber": 0.0002,
+   "packetLossRate": 0.008
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0364",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0106",
+  "dstNodeId": "UAV0179",
+  "requirement": {
+   "delayMs": 410,
+   "jitterMs": 68,
+   "bandwidthBps": 2500000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0365",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0077",
+  "dstNodeId": "UAV0194",
+  "requirement": {
+   "delayMs": 250,
+   "jitterMs": 22,
+   "bandwidthBps": 590000,
+   "ber": 2e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0366",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0100",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 32,
+   "bandwidthBps": 2100000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0367",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0046",
+  "dstNodeId": "UAV0014",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 14,
+   "bandwidthBps": 11000,
+   "ber": 0.001,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0368",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0105",
+  "dstNodeId": "UAV0024",
+  "requirement": {
+   "delayMs": 365,
+   "jitterMs": 24,
+   "bandwidthBps": 4200000,
+   "ber": 7e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0369",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0119",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 375,
+   "jitterMs": 24,
+   "bandwidthBps": 1300000,
+   "ber": 0.0003,
+   "packetLossRate": 0.04
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0370",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0154",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 740,
+   "jitterMs": 19,
+   "bandwidthBps": 1700000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0371",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0139",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 270,
+   "jitterMs": 46,
+   "bandwidthBps": 3900000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0372",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0109",
+  "dstNodeId": "UAV0001",
+  "requirement": {
+   "delayMs": 65,
+   "jitterMs": 13,
+   "bandwidthBps": 180000,
+   "ber": 0.0005,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0373",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0188",
+  "dstNodeId": "UAV0124",
+  "requirement": {
+   "delayMs": 410,
+   "jitterMs": 73,
+   "bandwidthBps": 3000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0374",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0159",
+  "dstNodeId": "UAV0157",
+  "requirement": {
+   "delayMs": 480,
+   "jitterMs": 53,
+   "bandwidthBps": 1700000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0375",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0025",
+  "dstNodeId": "UAV0052",
+  "requirement": {
+   "delayMs": 95,
+   "jitterMs": 13,
+   "bandwidthBps": 10000,
+   "ber": 5e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0376",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0065",
+  "dstNodeId": "UAV0149",
+  "requirement": {
+   "delayMs": 450,
+   "jitterMs": 19,
+   "bandwidthBps": 270000,
+   "ber": 6e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0377",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0067",
+  "dstNodeId": "UAV0183",
+  "requirement": {
+   "delayMs": 525,
+   "jitterMs": 24,
+   "bandwidthBps": 1500000,
+   "ber": 5e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0378",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0147",
+  "dstNodeId": "UAV0019",
+  "requirement": {
+   "delayMs": 265,
+   "jitterMs": 42,
+   "bandwidthBps": 1500000,
+   "ber": 7e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0379",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0184",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 310,
+   "jitterMs": 39,
+   "bandwidthBps": 840000,
+   "ber": 8e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0380",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0044",
+  "dstNodeId": "UAV0063",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 44,
+   "bandwidthBps": 6800000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0381",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0095",
+  "dstNodeId": "UAV0100",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 35,
+   "bandwidthBps": 900000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0382",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0021",
+  "dstNodeId": "UAV0097",
+  "requirement": {
+   "delayMs": 185,
+   "jitterMs": 23,
+   "bandwidthBps": 20000,
+   "ber": 4e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0383",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0082",
+  "dstNodeId": "UAV0161",
+  "requirement": {
+   "delayMs": 670,
+   "jitterMs": 14,
+   "bandwidthBps": 1000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0384",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0064",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 125,
+   "jitterMs": 47,
+   "bandwidthBps": 1800000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0385",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0124",
+  "dstNodeId": "UAV0040",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 42,
+   "bandwidthBps": 5000000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0386",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0114",
+  "dstNodeId": "UAV0055",
+  "requirement": {
+   "delayMs": 430,
+   "jitterMs": 39,
+   "bandwidthBps": 910000,
+   "ber": 0.0001,
+   "packetLossRate": 0.09
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0387",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0188",
+  "dstNodeId": "UAV0160",
+  "requirement": {
+   "delayMs": 320,
+   "jitterMs": 35,
+   "bandwidthBps": 280000,
+   "ber": 0.0004,
+   "packetLossRate": 0.1
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0388",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0050",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 440,
+   "jitterMs": 41,
+   "bandwidthBps": 3300000,
+   "ber": 0.0001,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0389",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0124",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 26,
+   "bandwidthBps": 6800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0390",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0154",
+  "dstNodeId": "UAV0012",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 43,
+   "bandwidthBps": 710000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0391",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0015",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 22,
+   "bandwidthBps": 1100000,
+   "ber": 7e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0392",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0147",
+  "dstNodeId": "UAV0167",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 47,
+   "bandwidthBps": 1300000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0393",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0082",
+  "dstNodeId": "UAV0167",
+  "requirement": {
+   "delayMs": 600,
+   "jitterMs": 39,
+   "bandwidthBps": 670000,
+   "ber": 0.0006,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0394",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0089",
+  "dstNodeId": "UAV0063",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 28,
+   "bandwidthBps": 13000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0395",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0197",
+  "dstNodeId": "UAV0091",
+  "requirement": {
+   "delayMs": 160,
+   "jitterMs": 32,
+   "bandwidthBps": 540000,
+   "ber": 3e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0396",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0105",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 115,
+   "jitterMs": 19,
+   "bandwidthBps": 2800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0397",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0033",
+  "dstNodeId": "UAV0117",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 32,
+   "bandwidthBps": 2900000,
+   "ber": 5e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0398",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0153",
+  "dstNodeId": "UAV0064",
+  "requirement": {
+   "delayMs": 515,
+   "jitterMs": 50,
+   "bandwidthBps": 3500000,
+   "ber": 7e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0399",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0144",
+  "dstNodeId": "UAV0178",
+  "requirement": {
+   "delayMs": 210,
+   "jitterMs": 23,
+   "bandwidthBps": 56000,
+   "ber": 0.0007,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0400",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0191",
+  "dstNodeId": "UAV0146",
+  "requirement": {
+   "delayMs": 380,
+   "jitterMs": 74,
+   "bandwidthBps": 1600000,
+   "ber": 0.0001,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0401",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0117",
+  "dstNodeId": "UAV0179",
+  "requirement": {
+   "delayMs": 480,
+   "jitterMs": 46,
+   "bandwidthBps": 460000,
+   "ber": 0.0002,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0402",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0108",
+  "dstNodeId": "UAV0008",
+  "requirement": {
+   "delayMs": 495,
+   "jitterMs": 45,
+   "bandwidthBps": 2100000,
+   "ber": 8e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0403",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0173",
+  "dstNodeId": "UAV0096",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 17,
+   "bandwidthBps": 23000,
+   "ber": 0.0005,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0404",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0086",
+  "dstNodeId": "UAV0117",
+  "requirement": {
+   "delayMs": 265,
+   "jitterMs": 11,
+   "bandwidthBps": 40000,
+   "ber": 0.0004,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0405",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0105",
+  "dstNodeId": "UAV0149",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 13,
+   "bandwidthBps": 2600000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0406",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0004",
+  "dstNodeId": "UAV0085",
+  "requirement": {
+   "delayMs": 185,
+   "jitterMs": 34,
+   "bandwidthBps": 2400000,
+   "ber": 9e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0407",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0156",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 34,
+   "bandwidthBps": 2200000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0408",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0102",
+  "dstNodeId": "UAV0194",
+  "requirement": {
+   "delayMs": 175,
+   "jitterMs": 23,
+   "bandwidthBps": 48000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0409",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0054",
+  "dstNodeId": "UAV0067",
+  "requirement": {
+   "delayMs": 120,
+   "jitterMs": 25,
+   "bandwidthBps": 2900000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0410",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0113",
+  "dstNodeId": "UAV0019",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 28,
+   "bandwidthBps": 10000,
+   "ber": 0.0003,
+   "packetLossRate": 0.009
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0411",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0190",
+  "dstNodeId": "UAV0090",
+  "requirement": {
+   "delayMs": 305,
+   "jitterMs": 34,
+   "bandwidthBps": 1400000,
+   "ber": 0.0003,
+   "packetLossRate": 0.1
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0412",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0048",
+  "dstNodeId": "UAV0023",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 50,
+   "bandwidthBps": 3200000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0413",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0175",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 525,
+   "jitterMs": 79,
+   "bandwidthBps": 1200000,
+   "ber": 7e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0414",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0187",
+  "dstNodeId": "UAV0015",
+  "requirement": {
+   "delayMs": 485,
+   "jitterMs": 70,
+   "bandwidthBps": 1100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0415",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0061",
+  "dstNodeId": "UAV0178",
+  "requirement": {
+   "delayMs": 560,
+   "jitterMs": 19,
+   "bandwidthBps": 1500000,
+   "ber": 0.0007,
+   "packetLossRate": 0.05
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0416",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0015",
+  "dstNodeId": "UAV0132",
+  "requirement": {
+   "delayMs": 140,
+   "jitterMs": 28,
+   "bandwidthBps": 14000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0417",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0187",
+  "dstNodeId": "UAV0081",
+  "requirement": {
+   "delayMs": 325,
+   "jitterMs": 39,
+   "bandwidthBps": 4800000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0418",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0142",
+  "dstNodeId": "UAV0117",
+  "requirement": {
+   "delayMs": 765,
+   "jitterMs": 50,
+   "bandwidthBps": 1300000,
+   "ber": 2e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0419",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0114",
+  "dstNodeId": "UAV0097",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 25,
+   "bandwidthBps": 37000,
+   "ber": 0.0002,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0420",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0161",
+  "dstNodeId": "UAV0152",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 16,
+   "bandwidthBps": 430000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0421",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0118",
+  "dstNodeId": "UAV0183",
+  "requirement": {
+   "delayMs": 560,
+   "jitterMs": 15,
+   "bandwidthBps": 150000,
+   "ber": 0.0004,
+   "packetLossRate": 0.07
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0422",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0048",
+  "dstNodeId": "UAV0161",
+  "requirement": {
+   "delayMs": 405,
+   "jitterMs": 13,
+   "bandwidthBps": 3200000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0423",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0165",
+  "dstNodeId": "UAV0101",
+  "requirement": {
+   "delayMs": 390,
+   "jitterMs": 32,
+   "bandwidthBps": 5000000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0424",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0123",
+  "dstNodeId": "UAV0095",
+  "requirement": {
+   "delayMs": 190,
+   "jitterMs": 24,
+   "bandwidthBps": 58000,
+   "ber": 0.0006,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0425",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0110",
+  "dstNodeId": "UAV0128",
+  "requirement": {
+   "delayMs": 455,
+   "jitterMs": 27,
+   "bandwidthBps": 3000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0426",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0193",
+  "dstNodeId": "UAV0065",
+  "requirement": {
+   "delayMs": 260,
+   "jitterMs": 53,
+   "bandwidthBps": 1800000,
+   "ber": 0.0001,
+   "packetLossRate": 0.04
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0427",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0192",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 200,
+   "jitterMs": 36,
+   "bandwidthBps": 4100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0428",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0045",
+  "dstNodeId": "UAV0117",
+  "requirement": {
+   "delayMs": 555,
+   "jitterMs": 23,
+   "bandwidthBps": 110000,
+   "ber": 0.0003,
+   "packetLossRate": 0.08
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0429",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0043",
+  "dstNodeId": "UAV0022",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 44,
+   "bandwidthBps": 440000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0430",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0029",
+  "dstNodeId": "UAV0088",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 27,
+   "bandwidthBps": 2200000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0431",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0111",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 625,
+   "jitterMs": 25,
+   "bandwidthBps": 850000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0432",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0051",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 24,
+   "bandwidthBps": 2400000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0433",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0050",
+  "dstNodeId": "UAV0179",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 50,
+   "bandwidthBps": 4800000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0434",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0128",
+  "dstNodeId": "UAV0102",
+  "requirement": {
+   "delayMs": 380,
+   "jitterMs": 9,
+   "bandwidthBps": 290000,
+   "ber": 0.0008,
+   "packetLossRate": 0.04
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0435",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0044",
+  "dstNodeId": "UAV0168",
+  "requirement": {
+   "delayMs": 775,
+   "jitterMs": 36,
+   "bandwidthBps": 510000,
+   "ber": 5e-05,
+   "packetLossRate": 0.07
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0436",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0107",
+  "dstNodeId": "UAV0187",
+  "requirement": {
+   "delayMs": 135,
+   "jitterMs": 13,
+   "bandwidthBps": 3200000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0437",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0101",
+  "dstNodeId": "UAV0126",
+  "requirement": {
+   "delayMs": 540,
+   "jitterMs": 40,
+   "bandwidthBps": 640000,
+   "ber": 0.0004,
+   "packetLossRate": 0.05
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0438",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0183",
+  "dstNodeId": "UAV0181",
+  "requirement": {
+   "delayMs": 115,
+   "jitterMs": 38,
+   "bandwidthBps": 7200000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0439",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0150",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 180,
+   "jitterMs": 24,
+   "bandwidthBps": 1100000,
+   "ber": 6e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0440",
+  "category": "background",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0004",
+  "dstNodeId": "UAV0153",
+  "requirement": {
+   "delayMs": 285,
+   "jitterMs": 16,
+   "bandwidthBps": 22000,
+   "ber": 0.0004,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0441",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0010",
+  "dstNodeId": "UAV0028",
+  "requirement": {
+   "delayMs": 360,
+   "jitterMs": 15,
+   "bandwidthBps": 3700000,
+   "ber": 6e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0442",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0035",
+  "dstNodeId": "UAV0039",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 17,
+   "bandwidthBps": 3100000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0443",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0107",
+  "dstNodeId": "UAV0194",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 27,
+   "bandwidthBps": 6400000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0444",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0051",
+  "dstNodeId": "UAV0083",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 17,
+   "bandwidthBps": 3800000,
+   "ber": 7e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0445",
+  "category": "background",
+  "serviceType": "image",
+  "srcNodeId": "UAV0152",
+  "dstNodeId": "UAV0141",
+  "requirement": {
+   "delayMs": 430,
+   "jitterMs": 45,
+   "bandwidthBps": 1200000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "BGV0446",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0097",
+  "dstNodeId": "UAV0070",
+  "requirement": {
+   "delayMs": 255,
+   "jitterMs": 46,
+   "bandwidthBps": 1000000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0447",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0082",
+  "dstNodeId": "UAV0169",
+  "requirement": {
+   "delayMs": 380,
+   "jitterMs": 22,
+   "bandwidthBps": 900000,
+   "ber": 4e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0448",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0132",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 50,
+   "bandwidthBps": 990000,
+   "ber": 0.0006,
+   "packetLossRate": 0.02
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0449",
+  "category": "background",
+  "serviceType": "data",
+  "srcNodeId": "UAV0013",
+  "dstNodeId": "UAV0061",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 14,
+   "bandwidthBps": 1900000,
+   "ber": 0.001,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "BGV0450",
+  "category": "background",
+  "serviceType": "video",
+  "srcNodeId": "UAV0027",
+  "dstNodeId": "UAV0168",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 41,
+   "bandwidthBps": 7600000,
+   "ber": 3e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0001",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0095",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 77,
+   "bandwidthBps": 770000,
+   "ber": 7e-05,
+   "packetLossRate": 0.006
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0002",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0030",
+  "dstNodeId": "UAV0043",
+  "requirement": {
+   "delayMs": 310,
+   "jitterMs": 38,
+   "bandwidthBps": 6800000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0003",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0076",
+  "dstNodeId": "UAV0043",
+  "requirement": {
+   "delayMs": 330,
+   "jitterMs": 34,
+   "bandwidthBps": 4600000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0004",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0166",
+  "dstNodeId": "UAV0100",
+  "requirement": {
+   "delayMs": 485,
+   "jitterMs": 28,
+   "bandwidthBps": 550000,
+   "ber": 0.0002,
+   "packetLossRate": 0.07
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0005",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0182",
+  "dstNodeId": "UAV0187",
+  "requirement": {
+   "delayMs": 140,
+   "jitterMs": 17,
+   "bandwidthBps": 2400000,
+   "ber": 2e-05,
+   "packetLossRate": 0.008
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0006",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0115",
+  "dstNodeId": "UAV0093",
+  "requirement": {
+   "delayMs": 300,
+   "jitterMs": 79,
+   "bandwidthBps": 2500000,
+   "ber": 5e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0007",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0126",
+  "dstNodeId": "UAV0040",
+  "requirement": {
+   "delayMs": 520,
+   "jitterMs": 31,
+   "bandwidthBps": 2900000,
+   "ber": 8e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0008",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0192",
+  "dstNodeId": "UAV0100",
+  "requirement": {
+   "delayMs": 375,
+   "jitterMs": 19,
+   "bandwidthBps": 590000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0009",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0051",
+  "dstNodeId": "UAV0041",
+  "requirement": {
+   "delayMs": 745,
+   "jitterMs": 14,
+   "bandwidthBps": 1700000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0010",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0031",
+  "dstNodeId": "UAV0107",
+  "requirement": {
+   "delayMs": 320,
+   "jitterMs": 62,
+   "bandwidthBps": 1600000,
+   "ber": 4e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0011",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0111",
+  "dstNodeId": "UAV0192",
+  "requirement": {
+   "delayMs": 110,
+   "jitterMs": 14,
+   "bandwidthBps": 16000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0012",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0191",
+  "dstNodeId": "UAV0002",
+  "requirement": {
+   "delayMs": 705,
+   "jitterMs": 36,
+   "bandwidthBps": 1200000,
+   "ber": 0.001,
+   "packetLossRate": 0.09
+  },
+  "priority": 2,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0013",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0163",
+  "dstNodeId": "UAV0015",
+  "requirement": {
+   "delayMs": 245,
+   "jitterMs": 26,
+   "bandwidthBps": 13000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0014",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0153",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 550,
+   "jitterMs": 21,
+   "bandwidthBps": 1200000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0015",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0112",
+  "dstNodeId": "UAV0013",
+  "requirement": {
+   "delayMs": 195,
+   "jitterMs": 41,
+   "bandwidthBps": 5100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0016",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0194",
+  "dstNodeId": "UAV0007",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 76,
+   "bandwidthBps": 3400000,
+   "ber": 3e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0017",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0012",
+  "dstNodeId": "UAV0042",
+  "requirement": {
+   "delayMs": 235,
+   "jitterMs": 47,
+   "bandwidthBps": 1300000,
+   "ber": 0.0001,
+   "packetLossRate": 0.04
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0018",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0066",
+  "dstNodeId": "UAV0122",
+  "requirement": {
+   "delayMs": 175,
+   "jitterMs": 22,
+   "bandwidthBps": 4100000,
+   "ber": 5e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0019",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0195",
+  "dstNodeId": "UAV0088",
+  "requirement": {
+   "delayMs": 570,
+   "jitterMs": 69,
+   "bandwidthBps": 2800000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0020",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0147",
+  "dstNodeId": "UAV0184",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 73,
+   "bandwidthBps": 3700000,
+   "ber": 4e-05,
+   "packetLossRate": 0.04
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0021",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0131",
+  "dstNodeId": "UAV0009",
+  "requirement": {
+   "delayMs": 220,
+   "jitterMs": 17,
+   "bandwidthBps": 39000,
+   "ber": 0.0005,
+   "packetLossRate": 0.02
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0022",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0132",
+  "dstNodeId": "UAV0183",
+  "requirement": {
+   "delayMs": 60,
+   "jitterMs": 30,
+   "bandwidthBps": 1600000,
+   "ber": 7e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0023",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0167",
+  "dstNodeId": "UAV0033",
+  "requirement": {
+   "delayMs": 345,
+   "jitterMs": 38,
+   "bandwidthBps": 600000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0024",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0197",
+  "dstNodeId": "UAV0129",
+  "requirement": {
+   "delayMs": 150,
+   "jitterMs": 30,
+   "bandwidthBps": 18000,
+   "ber": 0.0005,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0025",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0138",
+  "dstNodeId": "UAV0080",
+  "requirement": {
+   "delayMs": 525,
+   "jitterMs": 41,
+   "bandwidthBps": 340000,
+   "ber": 0.0003,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0026",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0186",
+  "dstNodeId": "UAV0193",
+  "requirement": {
+   "delayMs": 615,
+   "jitterMs": 43,
+   "bandwidthBps": 640000,
+   "ber": 0.0009,
+   "packetLossRate": 0.09
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0027",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0108",
+  "dstNodeId": "UAV0122",
+  "requirement": {
+   "delayMs": 280,
+   "jitterMs": 23,
+   "bandwidthBps": 6900000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 4,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0028",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0117",
+  "dstNodeId": "UAV0164",
+  "requirement": {
+   "delayMs": 145,
+   "jitterMs": 23,
+   "bandwidthBps": 16000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0029",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0171",
+  "dstNodeId": "UAV0082",
+  "requirement": {
+   "delayMs": 120,
+   "jitterMs": 28,
+   "bandwidthBps": 4200000,
+   "ber": 8e-05,
+   "packetLossRate": 0.01
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0030",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0055",
+  "dstNodeId": "UAV0009",
+  "requirement": {
+   "delayMs": 185,
+   "jitterMs": 40,
+   "bandwidthBps": 3800000,
+   "ber": 8e-05,
+   "packetLossRate": 0.05
+  },
+  "priority": 1,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0031",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0151",
+  "dstNodeId": "UAV0099",
+  "requirement": {
+   "delayMs": 460,
+   "jitterMs": 43,
+   "bandwidthBps": 1700000,
+   "ber": 0.0003,
+   "packetLossRate": 0.05
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0032",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0169",
+  "dstNodeId": "UAV0019",
+  "requirement": {
+   "delayMs": 580,
+   "jitterMs": 12,
+   "bandwidthBps": 360000,
+   "ber": 0.0002,
+   "packetLossRate": 0.05
+  },
+  "priority": 6,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0033",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0124",
+  "dstNodeId": "UAV0036",
+  "requirement": {
+   "delayMs": 230,
+   "jitterMs": 29,
+   "bandwidthBps": 44000,
+   "ber": 0.0004,
+   "packetLossRate": 0.03
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0034",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0094",
+  "dstNodeId": "UAV0049",
+  "requirement": {
+   "delayMs": 755,
+   "jitterMs": 49,
+   "bandwidthBps": 790000,
+   "ber": 8e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0035",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0176",
+  "dstNodeId": "UAV0162",
+  "requirement": {
+   "delayMs": 750,
+   "jitterMs": 39,
+   "bandwidthBps": 900000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 8,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0036",
+  "category": "test",
+  "serviceType": "video",
+  "srcNodeId": "UAV0047",
+  "dstNodeId": "UAV0163",
+  "requirement": {
+   "delayMs": 295,
+   "jitterMs": 13,
+   "bandwidthBps": 5800000,
+   "ber": 6e-05,
+   "packetLossRate": 0.009
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/video",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0037",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0041",
+  "dstNodeId": "UAV0109",
+  "requirement": {
+   "delayMs": 390,
+   "jitterMs": 24,
+   "bandwidthBps": 1100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0038",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0102",
+  "dstNodeId": "UAV0109",
+  "requirement": {
+   "delayMs": 370,
+   "jitterMs": 68,
+   "bandwidthBps": 990000,
+   "ber": 7e-05,
+   "packetLossRate": 0.007
+  },
+  "priority": 6,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0039",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0008",
+  "dstNodeId": "UAV0134",
+  "requirement": {
+   "delayMs": 380,
+   "jitterMs": 17,
+   "bandwidthBps": 660000,
+   "ber": 0.0008,
+   "packetLossRate": 0.04
+  },
+  "priority": 1,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0040",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0161",
+  "dstNodeId": "UAV0008",
+  "requirement": {
+   "delayMs": 155,
+   "jitterMs": 30,
+   "bandwidthBps": 18000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  },
+  "priority": 2,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0041",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0106",
+  "dstNodeId": "UAV0033",
+  "requirement": {
+   "delayMs": 205,
+   "jitterMs": 20,
+   "bandwidthBps": 330000,
+   "ber": 4e-05,
+   "packetLossRate": 0.06
+  },
+  "priority": 7,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0042",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0135",
+  "dstNodeId": "UAV0092",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 18,
+   "bandwidthBps": 150000,
+   "ber": 0.0008,
+   "packetLossRate": 0.1
+  },
+  "priority": 3,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0043",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0101",
+  "dstNodeId": "UAV0047",
+  "requirement": {
+   "delayMs": 265,
+   "jitterMs": 44,
+   "bandwidthBps": 1300000,
+   "ber": 5e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0044",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0007",
+  "dstNodeId": "UAV0063",
+  "requirement": {
+   "delayMs": 290,
+   "jitterMs": 11,
+   "bandwidthBps": 1100000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 5,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0045",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0195",
+  "dstNodeId": "UAV0164",
+  "requirement": {
+   "delayMs": 140,
+   "jitterMs": 16,
+   "bandwidthBps": 52000,
+   "ber": 6e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0046",
+  "category": "test",
+  "serviceType": "image",
+  "srcNodeId": "UAV0133",
+  "dstNodeId": "UAV0146",
+  "requirement": {
+   "delayMs": 165,
+   "jitterMs": 51,
+   "bandwidthBps": 2400000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  },
+  "priority": 3,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/image",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0047",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0151",
+  "dstNodeId": "UAV0147",
+  "requirement": {
+   "delayMs": 500,
+   "jitterMs": 21,
+   "bandwidthBps": 1400000,
+   "ber": 0.0008,
+   "packetLossRate": 0.06
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0048",
+  "category": "test",
+  "serviceType": "voice",
+  "srcNodeId": "UAV0064",
+  "dstNodeId": "UAV0032",
+  "requirement": {
+   "delayMs": 170,
+   "jitterMs": 15,
+   "bandwidthBps": 26000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  },
+  "priority": 7,
+  "startAtSec": 0,
+  "media": {
+   "source": "file_select",
+   "dir": "assets/voice",
+   "loop": true
+  }
+ },
+ {
+  "serviceId": "TSV0049",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0034",
+  "dstNodeId": "UAV0008",
+  "requirement": {
+   "delayMs": 210,
+   "jitterMs": 31,
+   "bandwidthBps": 770000,
+   "ber": 0.001,
+   "packetLossRate": 0.08
+  },
+  "priority": 4,
+  "startAtSec": 0
+ },
+ {
+  "serviceId": "TSV0050",
+  "category": "test",
+  "serviceType": "data",
+  "srcNodeId": "UAV0149",
+  "dstNodeId": "UAV0011",
+  "requirement": {
+   "delayMs": 510,
+   "jitterMs": 19,
+   "bandwidthBps": 1400000,
+   "ber": 4e-05,
+   "packetLossRate": 0.1
+  },
+  "priority": 7,
+  "startAtSec": 0
+ }
+]

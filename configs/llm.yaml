@@ -1,0 +1,8 @@
+# 大模型及推理配置（旁路：解释/优先级增强，不直接生成链路）
+enabled: true
+base_url: "http://localhost:10110/v1"
+model: "待与官方确认"       # 模型名以 eval 环境为准，勿臆造
+temperature: 0.2
+max_tokens: 2048
+
+# 模型文件挂载与"模型选型"评分检测：见 simulator/docker/eval/readme.md

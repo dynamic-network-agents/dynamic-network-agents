@@ -1,0 +1,50 @@
+[
+ {
+  "time": 202,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00050",
+   "delayMs": 557.7,
+   "jitterMs": 121.8,
+   "bandwidthBps": 4200000,
+   "ber": 0.001,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 403,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00005",
+   "delayMs": 11.0,
+   "jitterMs": 12.2,
+   "bandwidthBps": 16000000,
+   "ber": 3e-06,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1560,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0011",
+   "serviceType": "video",
+   "srcNodeId": "UAV0006",
+   "dstNodeId": "UAV0005",
+   "requirement": {
+    "delayMs": 125,
+    "jitterMs": 43,
+    "bandwidthBps": 6200000,
+    "ber": 0.0001,
+    "packetLossRate": 0.03
+   },
+   "priority": 7
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

@@ -1,0 +1,367 @@
+[
+ {
+  "time": 180,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0051",
+   "serviceType": "voice",
+   "srcNodeId": "UAV0186",
+   "dstNodeId": "UAV0091",
+   "requirement": {
+    "delayMs": 180,
+    "jitterMs": 23,
+    "bandwidthBps": 20000,
+    "ber": 0.0003,
+    "packetLossRate": 0.03
+   },
+   "priority": 4
+  }
+ },
+ {
+  "time": 186,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00503",
+   "state": "down"
+  }
+ },
+ {
+  "time": 213,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00178",
+   "state": "down"
+  }
+ },
+ {
+  "time": 221,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0052",
+   "serviceType": "voice",
+   "srcNodeId": "UAV0122",
+   "dstNodeId": "UAV0082",
+   "requirement": {
+    "delayMs": 125,
+    "jitterMs": 18,
+    "bandwidthBps": 53000,
+    "ber": 2e-05,
+    "packetLossRate": 0.02
+   },
+   "priority": 6
+  }
+ },
+ {
+  "time": 231,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00503",
+   "state": "up"
+  }
+ },
+ {
+  "time": 387,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0022",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 426,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0053",
+   "serviceType": "voice",
+   "srcNodeId": "UAV0175",
+   "dstNodeId": "UAV0119",
+   "requirement": {
+    "delayMs": 245,
+    "jitterMs": 27,
+    "bandwidthBps": 42000,
+    "ber": 0.0002,
+    "packetLossRate": 0.01
+   },
+   "priority": 8
+  }
+ },
+ {
+  "time": 437,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00001",
+   "delayMs": 8.5,
+   "jitterMs": 19.2,
+   "bandwidthBps": 11000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.07
+  }
+ },
+ {
+  "time": 463,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0166",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 569,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00398",
+   "state": "down"
+  }
+ },
+ {
+  "time": 595,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00026",
+   "delayMs": 0.7,
+   "jitterMs": 7.4,
+   "bandwidthBps": 10000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.03
+  }
+ },
+ {
+  "time": 611,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0187",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 759,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0070",
+   "fromX": 97385.4,
+   "fromY": 37056.8,
+   "toX": 103343.3,
+   "toY": 44186.1
+  }
+ },
+ {
+  "time": 778,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00298",
+   "delayMs": 23.9,
+   "jitterMs": 26.0,
+   "bandwidthBps": 12000,
+   "ber": 0.0005,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 796,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0054",
+   "serviceType": "video",
+   "srcNodeId": "UAV0079",
+   "dstNodeId": "UAV0022",
+   "requirement": {
+    "delayMs": 265,
+    "jitterMs": 16,
+    "bandwidthBps": 1500000,
+    "ber": 8e-05,
+    "packetLossRate": 0.03
+   },
+   "priority": 6
+  }
+ },
+ {
+  "time": 803,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00001",
+   "delayMs": 0.6,
+   "jitterMs": 15.3,
+   "bandwidthBps": 4800000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  }
+ },
+ {
+  "time": 948,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0065",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 973,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0113",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 982,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0127",
+   "fromX": 32662.9,
+   "fromY": 57575.9,
+   "toX": 36092.6,
+   "toY": 64237.4
+  }
+ },
+ {
+  "time": 1085,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00156",
+   "delayMs": 582.5,
+   "jitterMs": 328.7,
+   "bandwidthBps": 5900000,
+   "ber": 0.0002,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1091,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0005",
+   "fromX": 104748.5,
+   "fromY": 9993.8,
+   "toX": 90234.2,
+   "toY": 7496.9
+  }
+ },
+ {
+  "time": 1102,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00364",
+   "delayMs": 38.6,
+   "jitterMs": 38.4,
+   "bandwidthBps": 84000,
+   "ber": 0.0006,
+   "packetLossRate": 0.2
+  }
+ },
+ {
+  "time": 1126,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0003",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1281,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0007",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1300,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0055",
+   "serviceType": "video",
+   "srcNodeId": "UAV0046",
+   "dstNodeId": "UAV0131",
+   "requirement": {
+    "delayMs": 140,
+    "jitterMs": 24,
+    "bandwidthBps": 7700000,
+    "ber": 6e-05,
+    "packetLossRate": 0.02
+   },
+   "priority": 6
+  }
+ },
+ {
+  "time": 1306,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00004",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1313,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "GND073",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1335,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00063",
+   "delayMs": 3.5,
+   "jitterMs": 9.9,
+   "bandwidthBps": 11000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.006
+  }
+ },
+ {
+  "time": 1499,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00101",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1506,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00055",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1533,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00004",
+   "delayMs": 12.6,
+   "jitterMs": 2.8,
+   "bandwidthBps": 10000000,
+   "ber": 7e-05,
+   "packetLossRate": 0.04
+  }
+ },
+ {
+  "time": 1542,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0063",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1560,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00001",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

@@ -1,0 +1,119 @@
+[
+ {
+  "time": 180,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0004",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 201,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00005",
+   "delayMs": 18.8,
+   "jitterMs": 9.1,
+   "bandwidthBps": 24000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 445,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00016",
+   "delayMs": 537.6,
+   "jitterMs": 45.6,
+   "bandwidthBps": 2700000,
+   "ber": 0.0003,
+   "packetLossRate": 0.008
+  }
+ },
+ {
+  "time": 469,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00006",
+   "delayMs": 7.6,
+   "jitterMs": 14.9,
+   "bandwidthBps": 16000000,
+   "ber": 1e-05,
+   "packetLossRate": 0.003
+  }
+ },
+ {
+  "time": 745,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00010",
+   "delayMs": 6.4,
+   "jitterMs": 25.3,
+   "bandwidthBps": 23000000,
+   "ber": 5e-05,
+   "packetLossRate": 0.009
+  }
+ },
+ {
+  "time": 796,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00005",
+   "state": "down"
+  }
+ },
+ {
+  "time": 989,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00005",
+   "delayMs": 14.7,
+   "jitterMs": 2.0,
+   "bandwidthBps": 12000000,
+   "ber": 8e-05,
+   "packetLossRate": 0.008
+  }
+ },
+ {
+  "time": 1309,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00023",
+   "delayMs": 3.2,
+   "jitterMs": 13.2,
+   "bandwidthBps": 23000000,
+   "ber": 4e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1512,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00004",
+   "delayMs": 6.1,
+   "jitterMs": 1.9,
+   "bandwidthBps": 12000000,
+   "ber": 0.0001,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1560,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00010",
+   "delayMs": 0.8,
+   "jitterMs": 0.3,
+   "bandwidthBps": 16000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

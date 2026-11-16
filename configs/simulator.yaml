@@ -1,0 +1,11 @@
+# 仿真环境及接口配置
+base_url: "http://localhost:10100/api/open/v1"
+llm_base_url: "http://localhost:10110/v1"     # eval 代理的 LLM（OpenAI 兼容）
+token_file: "simulator/conf/gateway.json"     # 运行时读 openTokens[0]/ctrlToken
+
+# 剔除的外部引接节点（合成的 EXT001，非业务端点，业务路径永不穿越）
+excluded_node_ids: ["EXT001"]
+
+# 令牌不入本文件：从 token_file 读取，勿打印到日志或提交。
+# requestId 幂等前缀，建议 {agentId}-{YYYYMMddHHmmss}-{序号}
+request_id_prefix: "dna-agent-01"

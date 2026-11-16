@@ -1,0 +1,130 @@
+[
+ {
+  "time": 180,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00002",
+   "delayMs": 16.3,
+   "jitterMs": 15.2,
+   "bandwidthBps": 18000000,
+   "ber": 9e-05,
+   "packetLossRate": 0.008
+  }
+ },
+ {
+  "time": 195,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0031",
+   "serviceType": "data",
+   "srcNodeId": "UAV0012",
+   "dstNodeId": "UAV0035",
+   "requirement": {
+    "delayMs": 650,
+    "jitterMs": 23,
+    "bandwidthBps": 3400000,
+    "ber": 4e-05,
+    "packetLossRate": 0.1
+   },
+   "priority": 5
+  }
+ },
+ {
+  "time": 209,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0041",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 232,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0032",
+   "serviceType": "data",
+   "srcNodeId": "UAV0043",
+   "dstNodeId": "UAV0026",
+   "requirement": {
+    "delayMs": 480,
+    "jitterMs": 30,
+    "bandwidthBps": 1500000,
+    "ber": 0.001,
+    "packetLossRate": 0.09
+   },
+   "priority": 7
+  }
+ },
+ {
+  "time": 1003,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0033",
+   "serviceType": "image",
+   "srcNodeId": "UAV0030",
+   "dstNodeId": "UAV0029",
+   "requirement": {
+    "delayMs": 385,
+    "jitterMs": 46,
+    "bandwidthBps": 3000000,
+    "ber": 0.0002,
+    "packetLossRate": 0.06
+   },
+   "priority": 4
+  }
+ },
+ {
+  "time": 1362,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0034",
+   "serviceType": "data",
+   "srcNodeId": "UAV0023",
+   "dstNodeId": "UAV0039",
+   "requirement": {
+    "delayMs": 745,
+    "jitterMs": 46,
+    "bandwidthBps": 990000,
+    "ber": 5e-05,
+    "packetLossRate": 0.04
+   },
+   "priority": 4
+  }
+ },
+ {
+  "time": 1548,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0022",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1560,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0035",
+   "serviceType": "video",
+   "srcNodeId": "UAV0034",
+   "dstNodeId": "UAV0037",
+   "requirement": {
+    "delayMs": 205,
+    "jitterMs": 29,
+    "bandwidthBps": 8000000,
+    "ber": 9e-05,
+    "packetLossRate": 0.02
+   },
+   "priority": 5
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

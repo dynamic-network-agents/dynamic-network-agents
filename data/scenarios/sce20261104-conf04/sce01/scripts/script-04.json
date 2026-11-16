@@ -1,0 +1,67 @@
+[
+ {
+  "time": 178,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00034",
+   "delayMs": 17.5,
+   "jitterMs": 14.9,
+   "bandwidthBps": 10000000,
+   "ber": 7e-05,
+   "packetLossRate": 0.04
+  }
+ },
+ {
+  "time": 191,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00029",
+   "delayMs": 15.4,
+   "jitterMs": 18.9,
+   "bandwidthBps": 11000000,
+   "ber": 9e-05,
+   "packetLossRate": 0.0007
+  }
+ },
+ {
+  "time": 417,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0008",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 702,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00016",
+   "delayMs": 15.2,
+   "jitterMs": 8.0,
+   "bandwidthBps": 16000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 977,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00040",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1284,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0003",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

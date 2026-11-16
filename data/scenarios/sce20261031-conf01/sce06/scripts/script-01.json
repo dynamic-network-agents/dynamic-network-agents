@@ -1,0 +1,182 @@
+[
+ {
+  "time": 180,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0007",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 218,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00043",
+   "state": "down"
+  }
+ },
+ {
+  "time": 436,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0031",
+   "serviceType": "image",
+   "srcNodeId": "UAV0078",
+   "dstNodeId": "UAV0114",
+   "requirement": {
+    "delayMs": 430,
+    "jitterMs": 15,
+    "bandwidthBps": 750000,
+    "ber": 6e-05,
+    "packetLossRate": 0.03
+   },
+   "priority": 4
+  }
+ },
+ {
+  "time": 469,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0029",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 480,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0069",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 629,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0006",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 660,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0015",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 839,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00109",
+   "delayMs": 18.9,
+   "jitterMs": 0.3,
+   "bandwidthBps": 3600000,
+   "ber": 2e-05,
+   "packetLossRate": 0.005
+  }
+ },
+ {
+  "time": 863,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00163",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1029,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00007",
+   "delayMs": 15.3,
+   "jitterMs": 0.3,
+   "bandwidthBps": 13000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.04
+  }
+ },
+ {
+  "time": 1047,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00003",
+   "delayMs": 19.6,
+   "jitterMs": 24.8,
+   "bandwidthBps": 12000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1062,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00003",
+   "delayMs": 7.6,
+   "jitterMs": 15.9,
+   "bandwidthBps": 18000000,
+   "ber": 2e-05,
+   "packetLossRate": 0.02
+  }
+ },
+ {
+  "time": 1251,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0062",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1286,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00099",
+   "delayMs": 11.6,
+   "jitterMs": 9.3,
+   "bandwidthBps": 17000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.002
+  }
+ },
+ {
+  "time": 1501,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00382",
+   "delayMs": 5.6,
+   "jitterMs": 48.4,
+   "bandwidthBps": 13000,
+   "ber": 0.0005,
+   "packetLossRate": 0.2
+  }
+ },
+ {
+  "time": 1536,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00243",
+   "state": "down"
+  }
+ },
+ {
+  "time": 1560,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00003",
+   "delayMs": 9.4,
+   "jitterMs": 29.4,
+   "bandwidthBps": 10000000,
+   "ber": 6e-05,
+   "packetLossRate": 0.008
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]

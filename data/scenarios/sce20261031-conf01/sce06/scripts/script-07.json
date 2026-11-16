@@ -1,0 +1,136 @@
+[
+ {
+  "time": 180,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0045",
+   "fromX": 84699.5,
+   "fromY": 107757.3,
+   "toX": 86702.8,
+   "toY": 109568.0
+  }
+ },
+ {
+  "time": 194,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00030",
+   "delayMs": 1.5,
+   "jitterMs": 3.0,
+   "bandwidthBps": 9300000,
+   "ber": 8e-05,
+   "packetLossRate": 0.03
+  }
+ },
+ {
+  "time": 405,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00013",
+   "delayMs": 15.9,
+   "jitterMs": 19.8,
+   "bandwidthBps": 16000000,
+   "ber": 3e-05,
+   "packetLossRate": 0.03
+  }
+ },
+ {
+  "time": 438,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00041",
+   "state": "down"
+  }
+ },
+ {
+  "time": 637,
+  "eventType": "node_move",
+  "attrs": {
+   "nodeId": "UAV0114",
+   "fromX": 12276.0,
+   "fromY": 79821.4,
+   "toX": 5000.0,
+   "toY": 71727.6
+  }
+ },
+ {
+  "time": 657,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00007",
+   "delayMs": 7.0,
+   "jitterMs": 8.1,
+   "bandwidthBps": 11000000,
+   "ber": 2e-05,
+   "packetLossRate": 0.06
+  }
+ },
+ {
+  "time": 871,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0075",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1121,
+  "eventType": "link_param_change",
+  "attrs": {
+   "linkId": "L00003",
+   "delayMs": 14.3,
+   "jitterMs": 17.9,
+   "bandwidthBps": 17000000,
+   "ber": 2e-05,
+   "packetLossRate": 0.009
+  }
+ },
+ {
+  "time": 1158,
+  "eventType": "service_adjust",
+  "attrs": {
+   "op": "add",
+   "serviceId": "TSV0032",
+   "serviceType": "voice",
+   "srcNodeId": "UAV0036",
+   "dstNodeId": "UAV0035",
+   "requirement": {
+    "delayMs": 205,
+    "jitterMs": 27,
+    "bandwidthBps": 14000,
+    "ber": 0.0009,
+    "packetLossRate": 0.03
+   },
+   "priority": 4
+  }
+ },
+ {
+  "time": 1332,
+  "eventType": "link_state",
+  "attrs": {
+   "linkId": "L00041",
+   "state": "up"
+  }
+ },
+ {
+  "time": 1366,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "UAV0083",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1560,
+  "eventType": "node_offline",
+  "attrs": {
+   "nodeId": "GND039",
+   "state": "offline"
+  }
+ },
+ {
+  "time": 1800,
+  "eventType": "stop",
+  "attrs": {}
+ }
+]
