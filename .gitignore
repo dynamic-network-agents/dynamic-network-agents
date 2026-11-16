@@ -18,6 +18,9 @@ uv.lock
 # 官方仿真器发布件（27GB：logs/images/data，且 conf/gateway.json 含真实令牌，勿提交）
 simulator/
 
+# 官方测试数据
+data/
+
 # 运行时产物
 logs/
 *.log
