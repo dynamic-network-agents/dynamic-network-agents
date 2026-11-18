@@ -8,6 +8,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 核心理念：**唯一可控杠杆是"重路由"** —— 智能体通过公开 HTTP API 观测网络，唯一的写动作是 `POST /services/{serviceId}/path` 重分配业务路径。没有带宽分配、队列调度、准入控制、跳频等接口，一切决策都归约为"为业务选路径"。
 
+## 赛题要点
+
+- 4 个子任务：① 动态场景建模 ② 多智能体协同体系设计 ③ 面向通信管控任务的智能体设计 ④ 仿真实验验证。
+- 至少两类智能体：运维智能体（态势采集/拓扑感知/链路质量评估/异常检测/故障诊断/自愈建议）、资源控制智能体（资源调度/路由调整/带宽分配/QoS 保障）。
+- 约束：小参数量 + 低比特量化大模型；Python 3.12+ / Java 21+ / JS；Ubuntu 22.04.5 x64。
+- 初赛评分：动态场景建模 18、多智能体体系设计 36、实验验证 24、结果分析 16、文档质量 6。初赛 12/15 前提交设计方案 + 实验结果分析报告。
+
 ## 工作准则
 
 - **不得修改仿真器发布件**：`simulator/` 下的代码、`gen_scripts/`、`conf/`、`data/` 均为官方发布件，只能读取、不能改代码（仅有的例外见「关键事实」）。智能体改动只落在 `src/`、`configs/`、`tests/`、`experiments/` 目录。
@@ -39,19 +46,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `src/` | 智能体源码：`api`（仿真 API client）、`math_modeling`（数据模型 + QoS 计算）、`algorithms`（构图 + 选路）、`agents`（智能体层）、`util`（公共工具） |
 | `configs/` | 全局配置（`app.yaml` / `simulator.yaml` / `qos.yaml` / `llm.yaml`） |
 | `tests/` | 集成测试与端到端测试（`integration/`、`e2e/`）；单元测试在 `src/*/tests/` 下跟随被测模块 |
-| `experiments/` | 场景库与结果报告 |
+| `experiments/` | 实验记录 + 问题清单（手工版）：`README.md` 工作流、`index.md` 编号登记、`exp/EXP-*.md`、`iss/ISS-*.md` |
+| `work_bench/` | B03 Work Bench 调试控制台（只读观测/诊断工作台）子项目，独立于 `src/`；当前仅 `README.md` + `CLAUDE.md`，工程代码未创建。工作约束见该目录 `CLAUDE.md` |
+| `docs/work_bench/` | Work Bench 规划文档（评审企划书、任务拆分） |
 | `.claude/`、`.vscode/` | 最小化编辑器/权限配置 |
 
 - 无关的兄弟项目 `../react/my-app`（React，有独立 CLAUDE.md）不属于本赛题。
 
-`src/` 分层依赖方向（自底向上，勿反向依赖）：`util`（配置/令牌）与 `math_modeling`（纯数据模型 + QoS 计算，无 IO）在最底；`algorithms`（NetworkX 构图 + K-最短 + 优化）依赖 `math_modeling`；`api`（HTTP client + 路径下发）与 `agents`（orchestrator 控制循环 + main 装配）在最顶，做 IO 与决策编排。
-
-## 赛题要点
-
-- 4 个子任务：① 动态场景建模 ② 多智能体协同体系设计 ③ 面向通信管控任务的智能体设计 ④ 仿真实验验证。
-- 至少两类智能体：运维智能体（态势采集/拓扑感知/链路质量评估/异常检测/故障诊断/自愈建议）、资源控制智能体（资源调度/路由调整/带宽分配/QoS 保障）。
-- 约束：小参数量 + 低比特量化大模型；Python 3.12+ / Java 21+ / JS；Ubuntu 22.04.5 x64。
-- 初赛评分：动态场景建模 18、多智能体体系设计 36、实验验证 24、结果分析 16、文档质量 6。初赛 12/15 前提交设计方案 + 实验结果分析报告。
 
 ## 技术栈
 
@@ -95,3 +96,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 企划书 / 目标架构（感知→图模型→协调器→运维/资源智能体→NetworkX + QoS 过滤→LLM）：`docs/overview/B03通信网络资源管控项目企划书.md`。
 - 数学建模（可实施版，公式对齐仿真器口径）：`docs/math_modeling/数学建模方案.md`；最小化工程任务清单：`docs/task_split/mini_run_task.md`。
 - 运维 runbook：`simulator/README.md`、`mac-docker-trial/README.md`、`simulator/docker/eval/readme.md`（两个 LLM/模型选型评分要求）。
+- **Work Bench 调试控制台**：`work_bench/CLAUDE.md`（工作约束与口径）、`work_bench/README.md`（概览）、`docs/work_bench/B03_调试控制台企划书.md`（评审与 V1.1 建议）、`docs/work_bench/B03_DebugConsole_task_split.md`（任务拆分，权威来源）。
+- **研发记录**：`docs/experiments/现阶段方案.md`（手工版方案 + 演进路线）、`docs/experiments/研发记录系统建设企划书.md`（完整工具化设想）、`docs/experiments/实验记录模板.md`、`docs/experiments/问题清单模板.md`；日常操作手册 `experiments/README.md`。
