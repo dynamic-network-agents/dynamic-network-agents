@@ -17,7 +17,7 @@ services:
     entrypoint: ["/bin/bash", "/opt/mac-trial/start-netsim.sh"]
     environment:
       TZ: CST-8
-      SUITE: sce20261031-conf02
+      SUITE: sce20261010-conf02
       SCENARIO: sce01
       SIM_CONF_EXTERNAL: "1"
     ports:
@@ -47,7 +47,7 @@ services:
       SIM_NODES: /opt/simulator/conf/sim-nodes.json
       SIM_WEB_PORT: "10001"
       SERVICESIM_TOKEN: sim-internal-token-2026
-      SDN_SUITE: sce20261031-conf02
+      SDN_SUITE: sce20261010-conf02
       SDN_SCENARIO: sce01
     volumes: *sim-volumes
     stop_grace_period: 90s
@@ -66,7 +66,7 @@ services:
       SIM_NODES: /opt/simulator/conf/sim-nodes.json
       SIM_WEB_PORT: "10002"
       SERVICESIM_TOKEN: sim-internal-token-2026
-      SDN_SUITE: sce20261031-conf02
+      SDN_SUITE: sce20261010-conf02
       SDN_SCENARIO: sce01
     volumes: *sim-volumes
     stop_grace_period: 90s
