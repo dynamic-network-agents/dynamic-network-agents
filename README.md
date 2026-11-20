@@ -13,7 +13,8 @@ src/
   api/           仿真 API client（鉴权、轮询、path 下发、事件）
   math_modeling/ 数学建模（node/link/service/event + 静态/实测 QoS）
   algorithms/    选路算法（NetworkX 构图 + K 最短路径）
-  agents/        智能体层（运维 + 资源控制 + 控制循环 + LLM 旁路）
+  baseline/      传统路径（确定性重路由闭环 + 入口，不含 Agent/LLM）
+  agents/        预留：未来 Agent 模块（运维 + 资源控制 + LLM 旁路）
   util/          公共工具
 tests/           测试（含针对真实 simulator 的集成测试）
 experiments/     场景库与结果报告
@@ -24,7 +25,7 @@ experiments/     场景库与结果报告
 ```bash
 uv sync                 # 安装依赖
 uv run pytest           # 跑测试
-uv run python -m src.agents.main   # 启动智能体控制循环
+uv run python -m src.baseline.main   # 启动传统路径控制循环
 ```
 
 ## 关键约定

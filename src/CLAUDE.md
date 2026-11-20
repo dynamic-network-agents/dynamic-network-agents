@@ -10,11 +10,13 @@
 | `math_modeling/` | 纯数据模型 + QoS 计算，**无 IO、无 NetworkX 图依赖** | `models.py`（数据模型）、`flow.py`（flow 分组/需求聚合）、`path_qos.py`（静态 QoS 合成）、`qos_checker.py`（容差判定）、`link_quality.py`（代价归一化）、`measured_qos.py`（实测达标率） | 仅自身模块间（`models` ← `path_qos` ← `qos_checker` / `link_quality`；`models` ← `flow`） |
 | `algorithms/` | NetworkX 构图 + K-最短 + 优化选路 | `graph.py`（`build_graph` / `validate_path`）、`k_shortest_paths.py`（Yen）、`optimize.py`（`optimize_flow`） | `math_modeling` + `networkx` |
 | `api/` | 仿真 HTTP client + 路径下发 | `client.py`（`SimulatorClient`）、`executor.py`（`PathExecutor`） | `client.py` 仅 `requests`；`executor.py` 依赖 `algorithms.graph`（校验用） |
-| `agents/` | orchestrator 控制循环 + main 装配 | `orchestrator.py`（`Orchestrator.step/run`）、`main.py`（入口） | `api` + `algorithms` + `math_modeling` + `util` |
+| `baseline/` | 传统路径：确定性事件驱动重路由闭环 + 入口（无 Agent/LLM） | `reroute_loop.py`（`Orchestrator.step/run`）、`main.py`（入口） | `api` + `algorithms` + `math_modeling` + `util` |
+| `agents/` | **预留**：未来 Agent 模块（运维/资源控制/LLM 旁路），当前仅有 `__init__.py` | 尚无 | 未来复用 `api` / `algorithms` / `math_modeling` / `util` |
 
 **硬约束（违反即架构异味）**：
-- `math_modeling` 不得 import `algorithms` / `api` / `agents` / `util`（必须保持纯、无 IO、可独立单测）。
-- `algorithms` 不得 import `api` / `agents`。
+- `math_modeling` 不得 import `algorithms` / `api` / `baseline` / `agents` / `util`（必须保持纯、无 IO、可独立单测）。
+- `algorithms` 不得 import `api` / `baseline` / `agents`。
+- `baseline` 是当前唯一入口层；`agents` 为预留目录，引入前不得被任何模块 import。
 - `util` 是唯一直接读 `simulator/conf/gateway.json` 令牌与 `configs/*.yaml` 的模块；其他层拿配置/令牌一律经由 `util` 或参数注入，不得自行拼路径读文件。
 
 ## 核心数据模型与口径（非显然，已在代码落地）
@@ -48,9 +50,9 @@
 
 ## 热路径：确定性算法 + LLM 冷路径
 
-- 重路由热路径（`orchestrator.step` → `optimize_flow`）用确定性算法：K-最短路径 → `compose_qos` 静态合成 → `check_qos` 硬过滤 → `path_cost` 代价排序。LLM 只做解释/优先级增强，**不直接生成链路**。
-- 当前 MVP 策略（`orchestrator.py`）：仅在「路径失效（断链/节点下线）或静态 QoS 违约」时重路由，**不做主动寻优**；状态更新是「事件触发 → 全量重拉 → 重建图」。
-- `optimize_flow` 默认 `k=30`；无可行路径返回 `None`（`orchestrator` 记 warning 并跳过该 flow，不崩）。
+- 重路由热路径（`baseline/reroute_loop.py` 的 `Orchestrator.step` → `optimize_flow`）用确定性算法：K-最短路径 → `compose_qos` 静态合成 → `check_qos` 硬过滤 → `path_cost` 代价排序。LLM 只做解释/优先级增强，**不直接生成链路**。
+- 当前 MVP 策略（`reroute_loop.py`）：仅在「路径失效（断链/节点下线）或静态 QoS 违约」时重路由，**不做主动寻优**；状态更新是「事件触发 → 全量重拉 → 重建图」。
+- `optimize_flow` 默认 `k=30`；无可行路径返回 `None`（`reroute_loop` 记 warning 并跳过该 flow，不崩）。
 
 ## 待核对事项（写代码前勿自行拍板，需对照仿真器/接口实测）
 

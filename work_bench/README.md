@@ -14,7 +14,9 @@
 - 业务 QoS 不达标，是路径本身不满足静态约束，还是路径可行但运行时发生拥塞？
 - 仿真脚本计划发生的扰动，是否真的在运行时发生了？
 
-**核心定位**：面向网络资源管控智能体的**只读观测、诊断与策略分析**工作台。首要职责是帮开发者快速定位问题，而非做成复杂运维平台。
+**核心定位**：面向网络资源管控智能体的**只读观测、诊断与策略分析**工作台（含唯一调试写例外：改路径）。首要职责是帮开发者快速定位问题，而非做成复杂运维平台。
+
+> 当前已实现「最小可运行版」（Mini Run）：拓扑图、节点/链路/业务/事件表格、1–2s 轮询、改 service 面板。见 [`docs/work_bench/B03_DebugConsole_mini_run_task.md`](../docs/work_bench/B03_DebugConsole_mini_run_task.md)。
 
 ## 技术栈
 
@@ -28,21 +30,56 @@
 
 ## 三条硬约束
 
-1. **只读**：后端只调用仿真器公开 API 的 GET 接口。禁止 `POST /services/{serviceId}/path`（路径下发）、`POST /simulation/start`（仿真启动）等任何写操作。
+1. **只读 + 唯一调试写例外**：后端对仿真器公开 API 只调用 GET。**唯一写例外**是 `POST /services/{serviceId}/path`（路径下发），仅经工作台自身 `POST /api/repath` 转发（写接口白名单仅此一个）。仍禁止 `POST /simulation/start` 等任何其他写操作。
 2. **独立**：不依赖尚未稳定的 Agent 目录，可独立启动、独立测试、独立开发。
 3. **Token 安全**：Token 只在后端，不向前端、WebSocket、日志泄露，默认绑定 localhost。
 
-## 目录结构（规划）
+## 快速开始（最小可运行版）
+
+**前提**：仿真器已启动（公开 API 在 `http://127.0.0.1:10100`）。
+
+```bash
+# 1) 后端依赖
+cd work_bench/backend && uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
+
+# 2) 前端依赖
+cd ../frontend && pnpm install
+
+# 3) 启动后端（Token 由 run.sh 自动从 simulator/conf/gateway.json 读取，不打印不落盘）
+cd ..
+BG_SERVICE_PATH=$PWD/../simulator/data/scenarios/<conf>/<sce>/bg-service.json \
+SERVICE_PATHS_PATH=$PWD/../simulator/data/scenarios/<conf>/<sce>/service-paths.json \
+./backend/run.sh
+
+# 4) 另开终端启动前端
+cd frontend && pnpm dev
+```
+
+打开 http://localhost:5173/ （前端已代理 `/api` 到后端 `127.0.0.1:8000`）。
+
+- `BG_SERVICE_PATH` / `SERVICE_PATHS_PATH` 可选：前者用于业务「背景/测试」分类，后者用于「改 service」候选路径；不设置则分类显示 `unknown`、候选路径为空。
+- 后端接口：`GET /api/health`、`GET /api/snapshot`（前端唯一数据源，2s 轮询）、`GET /api/candidates?serviceId=`、`POST /api/repath`（唯一写白名单）。
+
+## 目录结构（最小可运行版）
 
 ```
 work_bench/
-├── README.md           # 本文件：项目概览
-├── CLAUDE.md           # Claude Code 工作约束与口径
-├── backend/            # 规划：main.py / api / datasource / models / analysis / tests
-└── frontend/           # 规划：src/{app,views,components,hooks,stores,types}
+├── README.md               # 本文件：概览 + 快速开始
+├── CLAUDE.md               # Claude Code 工作约束与口径
+├── backend/                # FastAPI 后端（最小版）
+│   ├── main.py             # 路由：health / snapshot / candidates / repath
+│   ├── config.py           # env/.env 配置 + Token 读取
+│   ├── simulator_client.py # 独立仿真 API client（GET + 唯一 set_service_path）
+│   ├── offline.py          # bg-service.json / service-paths.json 加载
+│   ├── snapshot.py         # 统一快照聚合 + 采集器状态
+│   ├── requirements.txt
+│   ├── run.sh              # 一键启动
+│   └── .env.example
+└── frontend/               # React + Vite + TS 前端（最小版）
+    └── src/                # App.tsx（页面+轮询+表格+改 service）/ TopologyView.tsx / api.ts / types.ts
 ```
 
-> 当前仅有 `README.md` 与 `CLAUDE.md`，工程代码尚未创建；规划文档与任务拆分在 `docs/work_bench/`。
+> 规划文档与全量任务拆分在 `docs/work_bench/`；最小可运行版范围见 `docs/work_bench/B03_DebugConsole_mini_run_task.md`。
 
 ## 核心数据模型
 

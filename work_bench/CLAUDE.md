@@ -14,11 +14,11 @@
 
 **技术栈**：前端 React + Vite + TypeScript；后端 Python + FastAPI + WebSocket；图分析 NetworkX（控制台独立使用）。前后端分离，后端是唯一的仿真器 API 客户端。
 
-**文档依据**（`docs/work_bench/`）：`B03_调试控制台企划书.md`（评审与 V1.1 优化建议）、`B03_DebugConsole_task_split.md`（任务拆分，权威任务来源）。
+**文档依据**（`docs/work_bench/`）：`B03_调试控制台企划书.md`（评审与 V1.1 优化建议）、`B03_DebugConsole_task_split.md`（任务拆分，权威任务来源）、`B03_DebugConsole_mini_run_task.md`（最小可运行版任务拆分，当前实现范围）。
 
 ## 三条硬约束（最高优先级，任何任务不得违反）
 
-1. **只读**：控制台后端只实现仿真器公开 API 的 GET 调用。**禁止** `POST /services/{serviceId}/path`、`POST /simulation/start` 及任何写接口。What-if 只在本地分析模型执行，不下发任何变更。
+1. **只读 + 唯一调试写例外**：控制台后端对仿真器公开 API 只实现 GET 调用。**唯一写例外**是 `POST /services/{serviceId}/path`，且只经工作台自身的 `POST /api/repath` 转发——全项目写接口白名单仅此一个。仍**禁止** `POST /simulation/start` 及任何其他写接口。改一条业务 = 改整条 flow，会影响同源目的的其他业务，界面必须明确提示。其余 What-if 只在本地分析模型执行，不下发变更。
 2. **独立**：控制台不依赖尚未稳定的 Agent `src/algorithms`。Work Bench 拥有自己的数据模型与 NetworkX 分析模块，可独立启动、独立测试。Agent 公共模块稳定后再抽取共享。
 3. **Token 安全**：Token 只由后端读取；不进前端、不进 WebSocket 消息、不进日志、不入代码/提交。默认绑定 localhost。
 

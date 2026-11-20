@@ -18,6 +18,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 工作准则
 
 - **不得修改仿真器发布件**：`simulator/` 下的代码、`gen_scripts/`、`conf/`、`data/` 均为官方发布件，只能读取、不能改代码（仅有的例外见「关键事实」）。智能体改动只落在 `src/`、`configs/`、`tests/`、`experiments/` 目录。
+- **查仿真器实现先看 `sim_src/`**：这是从 `simulator/images/*.tar` 解出的只读源码副本（netsim 为 base85+zlib 解码件，servicesim 为明文），只供检索/核对，不参与构建、不被 `src/` import、不提交（已 gitignore）。运行行为仍以 `simulator/` 发布件与镜像为准；工作约束见 `sim_src/CLAUDE.md`。
 - **令牌/密钥不入代码**：`simulator/conf/gateway.json` 的 `openTokens[]`、`ctrlToken`，以及 `simulator/docker/eval/.env` 的 `LLM_API_KEY`、`LITELLM_MASTER_KEY` 都是真实密钥，禁止写入代码或提交。
 - **以官方口径为准**：QoS 判定、接口字段、错误码以权威文档为准；不确定的口径标注「待核对」，不臆造数值/字段/结论。
 - **场景生成走技能**：用 `.agents/skills/scenario-gen/` 生成场景库，不要手工改场景数据；生成后 `validate_library.py --conf gen_conf<NN>` 必须零违规才算完成。
@@ -40,10 +41,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 路径 | 角色 |
 |---|---|
 | `simulator/` | 官方仿真环境（发布件，勿改）。`conf/`（`gateway.json` 令牌、`linkTypes.json` 链路参数**权威源**、`servicesim.json`）、`data/`（场景生成参数 + 场景库）、`gen_scripts/`（生成器）、`docker/`（compose） |
+| `sim_src/` | 从官方镜像解出的只读源码副本（`netsim/` 解码件 + `servicesim/` 明文），供检索与口径核对；不参与构建、不 import、不提交。来源/体量/刷新见 `sim_src/README.md`，检索约束见 `sim_src/CLAUDE.md` |
 | `docs/` | 分析与设计文档主源（见「文档索引」） |
 | `mac-docker-trial/` | 本机跑 amd64 镜像的 Compose + `start-netsim.sh` |
 | `.agents/skills/scenario-gen/` | 场景库生成技能（SKILL.md + params 参考 + 校验脚本） |
-| `src/` | 智能体源码：`api`（仿真 API client）、`math_modeling`（数据模型 + QoS 计算）、`algorithms`（构图 + 选路）、`agents`（智能体层）、`util`（公共工具） |
+| `src/` | 源码：`api`（仿真 API client）、`math_modeling`（数据模型 + QoS 计算）、`algorithms`（构图 + 选路）、`baseline`（传统路径：确定性重路由闭环 + 入口）、`agents`（**预留**，未来 Agent 模块）、`util`（公共工具） |
 | `configs/` | 全局配置（`app.yaml` / `simulator.yaml` / `qos.yaml` / `llm.yaml`） |
 | `tests/` | 集成测试与端到端测试（`integration/`、`e2e/`）；单元测试在 `src/*/tests/` 下跟随被测模块 |
 | `experiments/` | 实验记录 + 问题清单（手工版）：`README.md` 工作流、`index.md` 编号登记、`exp/EXP-*.md`、`iss/ISS-*.md` |
@@ -75,6 +77,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **`eval/.env` 有真实密钥与过期路径**：含 `LLM_API_KEY`、`LITELLM_MASTER_KEY`（勿入代码），且 `DEPLOY_*_HOST` 指向 `/Users/cc/freelancer/feature/env-sim/simulator`（不存在），本地跑 eval 前要改成本仓库的 `simulator/`。
 - **`conf/`、`data/`、`assets/`、`logs/` bind-mount 进容器**：镜像本身不带 conf；改 `simulator/conf/...` 在容器内生效（需重启）。
 - **无害日志噪音**：`sch_htb: quantum of class ... is big`（tc 把 >1Gbps 限到 1000Mbps）、`上报重试 ... Connection refused (8091)`（禁用的 WS 通道）均属预期。
+- **`sim_src/` 是解码副本，不是上游源码**：netsim 的 `.py` 由 `base85+zlib` 包装，变量名被重命名（`x001` 等）、注释被剥离；引用行号时注明是解码件行号。带宽 1000Mbps 封顶发生在 `sdncommon._bw_mbit()`（建 Mininet 链路时）；`ctrl.seed_baseline_link_params()` 会用 `net-topo.json` 原始值重新 `apply_link`，`/links` 的返回值又受运行期覆盖，因此不要只凭一处代码断言带宽，以运行期 `/links` 与启动日志为准。
 - **两套 QoS 判定必须统一**（公式见 `docs/agents/智能体设计文档.md` 第 7 节）：静态 $D=\sum d$、$J=\sqrt{\sum j^2}$、$B=\min b$、$L=1-\prod(1-p)$、$E\approx\sum\varepsilon$；实测用逐秒统计。容差：时延 +1.0、抖动/丢包 +1e-9、误码 +1e-12、带宽无容差。
 - **`POST /simulation/start` 当前镜像未实现**（自测返回 1003「未知接口」）；起测试走 UI 的 `POST /sdn-ui/start`（nginx 服务端注入 ctrl 令牌，非公开 token）。
 - **Rosetta 下控制面会打挂**：40 业务跑约 11 分钟后单线程 `ctrl.py(:8080)` 全接口超时，属已知 Mac 转译限制；正式评测应在 Linux x64，闭环下发宜尽早验证。
@@ -86,6 +89,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **跑单个测试**：`uv run pytest src/math_modeling/tests/test_qos_checker.py::test_xxx`。
 - **起仿真器（Mac）**：`docker compose -f mac-docker-trial/compose.local.yml up -d netsim` → 等 `[start] 就绪` → `up -d tx rx`；停止 `... down`。重建网络后 tx/rx 要**重启**（不是 `up -d`）。
 - **生成场景库**：走 `.agents/skills/scenario-gen/` 技能；生成后 `validate_library.py --conf gen_conf<NN>` 零违规。
+- **检索仿真器实现**：`rg -n "netem|tbf|corrupt" sim_src/netsim/`、`rg -n "qos_meet|errPct" sim_src/servicesim/`。先看 `sim_src/netsim/openapi.py`（API/QoS/选路）与 `sim_src/netsim/ctrl.py`（tc/OVS/事件）。
 - **查令牌**：`python3 -c "import json;print(json.load(open('simulator/conf/gateway.json'))['openTokens'][0])"`（勿打印到日志/提交）。
 
 ## 文档索引
@@ -96,5 +100,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 企划书 / 目标架构（感知→图模型→协调器→运维/资源智能体→NetworkX + QoS 过滤→LLM）：`docs/overview/B03通信网络资源管控项目企划书.md`。
 - 数学建模（可实施版，公式对齐仿真器口径）：`docs/math_modeling/数学建模方案.md`；最小化工程任务清单：`docs/task_split/mini_run_task.md`。
 - 运维 runbook：`simulator/README.md`、`mac-docker-trial/README.md`、`simulator/docker/eval/readme.md`（两个 LLM/模型选型评分要求）。
+- **仿真器源码副本**：`sim_src/README.md`（来源、体量、排除项、刷新方式）、`sim_src/CLAUDE.md`（检索口径、核心入口、硬约束）。
+- **仿真器会话整理版**：`docs/simulator/仿真器相关.md`（架构/端口/部署、netem+tbf 落地细节、Mac 控制面超时、路径/QoS、光纤瓶颈画像、源码地图）。
 - **Work Bench 调试控制台**：`work_bench/CLAUDE.md`（工作约束与口径）、`work_bench/README.md`（概览）、`docs/work_bench/B03_调试控制台企划书.md`（评审与 V1.1 建议）、`docs/work_bench/B03_DebugConsole_task_split.md`（任务拆分，权威来源）。
 - **研发记录**：`docs/experiments/现阶段方案.md`（手工版方案 + 演进路线）、`docs/experiments/研发记录系统建设企划书.md`（完整工具化设想）、`docs/experiments/实验记录模板.md`、`docs/experiments/问题清单模板.md`；日常操作手册 `experiments/README.md`。

@@ -1,10 +1,14 @@
-"""智能体入口：加载配置/令牌 → 构建 client → 启动控制循环。"""
+"""传统路径入口：加载配置/令牌 → 构建 client → 启动重路由控制循环。
+
+当前最小运行版本不含 Agent/LLM，闭环由确定性算法驱动；
+未来 Agent 模块的入口应另建于 `src/agents/`，复用 `api` / `algorithms` / `math_modeling` / `util`。
+"""
 from __future__ import annotations
 
 import logging
 
 from api.client import SimulatorClient
-from agents.orchestrator import Orchestrator, OrchestratorConfig
+from baseline.reroute_loop import Orchestrator, OrchestratorConfig
 from util.config import load_open_token, load_settings
 
 

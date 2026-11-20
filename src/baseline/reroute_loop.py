@@ -20,7 +20,7 @@ from math_modeling.models import Requirement, Service
 from math_modeling.path_qos import compose_qos
 from math_modeling.qos_checker import check_qos
 
-log = logging.getLogger("orchestrator")
+log = logging.getLogger("reroute_loop")
 
 
 @dataclass
@@ -121,7 +121,7 @@ class Orchestrator:
         return handled
 
     def run(self) -> None:
-        log.info("orchestrator 启动，轮询间隔 %.1fs", self.config.poll_interval)
+        log.info("reroute_loop 启动，轮询间隔 %.1fs", self.config.poll_interval)
         while True:
             try:
                 self.step()

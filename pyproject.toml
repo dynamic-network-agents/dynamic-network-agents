@@ -24,6 +24,7 @@ packages = [
     "src/api",
     "src/math_modeling",
     "src/algorithms",
+    "src/baseline",
     "src/agents",
     "src/util",
 ]
