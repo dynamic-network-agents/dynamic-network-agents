@@ -34,3 +34,25 @@ def flow_requirement(services: list[Service]) -> Requirement | None:
         ber=min(r.ber for r in reqs),
         packet_loss_rate=min(r.packet_loss_rate for r in reqs),
     )
+
+
+TEST_ID_PREFIX = "TSV"  # 当前场景库的 test 业务前缀，仅作 category 缺失时的兜底
+
+
+def service_is_test(service: Service) -> bool:
+    """test/background 判定（A2：只保 test）。
+
+    优先 `service.category`（来自内部 svc-meta）；缺失时用 serviceId 前缀兜底
+    （仅对当前场景库 `TSV*` 有效，官方无命名约定）。
+    """
+    if service.category:
+        return service.category == "test"
+    return service.service_id.startswith(TEST_ID_PREFIX)
+
+
+def flow_weight(services: list[Service]) -> float:
+    """flow 权重 = Σ 2^priority（只算 test；background 权重 0）。
+
+    优先级方向按现状采用「8 最高、1 最低」（等官方确认）。
+    """
+    return float(sum(2 ** s.priority for s in services if service_is_test(s)))

@@ -56,8 +56,8 @@
 
 ## 待核对事项（写代码前勿自行拍板，需对照仿真器/接口实测）
 
-1. **flow 键控口径不一致**：代码 `flow_key = (src_node_id, dst_node_id)`，而根 `CLAUDE.md`/文档写的是「路径按源/目的 **IP** 键控」。二者是否一致须对照仿真器 `_flow_for` 真实实现确认——若仿真器按 IP 键控，而 agent 按 nodeId 传 `srcNodeId/dstNodeId`，可能产生偏差。
-2. **`category` 无字段**：公开 API 无 `category`，`Service.category` 恒为空、`is_test` 恒 False、`measured_qos.test_meet_rate` 经公开 API 恒返回 `None`。test/background 分层需 ctrlToken 调内部 `/api/ctrl/v1/svc-meta`；MVP 统一保护所有 `running` 业务。
+1. **flow 键控口径（已定 A3：改无序）**：代码原 `flow_key = (src_node_id, dst_node_id)` 是**有序**的，而仿真器 `_flow_for` 按**无序**端点对匹配。**决定改为 `tuple(sorted(...))`**，与仿真器对齐；改动见 `docs/task_split/flow_planner_task.md` T0.1。
+2. **`category` 无字段（已定 A2：只保 test）**：公开 API 无 `category`。**决定只保 test**：主路径用 `ctrlToken` 调内部 `/api/ctrl/v1/svc-meta` 取 `category`；拿不到 `ctrlToken` 时用 `serviceId` 前缀 `TSV*` 兜底或退化为统一保护所有 `running`。不再以「MVP 统一保护所有 running」为默认策略。
 3. 其余「待核对」口径以根 `CLAUDE.md`「关键事实」为准（`node_move` 失效、`simulation/start` 未实现、`extraLinkIds` 真义等）。
 
 ## 测试布局（与根一致）

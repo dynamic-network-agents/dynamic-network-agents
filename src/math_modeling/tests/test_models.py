@@ -72,5 +72,6 @@ def test_service_flow_grouping():
     groups: dict = {}
     for s in svcs:
         groups.setdefault(s.flow_key, []).append(s)
-    assert len(groups) == 2
-    assert len(groups[("UAV1", "UAV2")]) == 2
+    # flow_key 是无序端点对：A→B 与 B→A 合并为 1 个 flow
+    assert len(groups) == 1
+    assert len(groups[("UAV1", "UAV2")]) == 3

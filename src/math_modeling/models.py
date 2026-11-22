@@ -185,16 +185,23 @@ class Service:
 
     @property
     def is_test(self) -> bool:
-        """是否 test 业务。注意：公开 API 无 `category` 字段（「待核对」），
-        实机自测确认详情仅含 requirement/path/actual/priority/status；
-        test/background 分层只在内部 /api/ctrl/v1/svc-meta（需 ctrlToken）。
-        MVP 阶段统一保护所有 running 业务，不依赖此字段。"""
+        """是否 test 业务（A2：只保 test），**仅看 `category`**。
+
+        `category` 优先来自内部 `/api/ctrl/v1/svc-meta`（需 ctrlToken）；公开
+        API 不返回该字段。需要 `TSV*` 前缀兜底时，用
+        `math_modeling.flow.service_is_test(service)`（本属性不做兜底，避免
+        models ↔ flow 反向依赖）。
+        """
         return self.category == "test"
 
     @property
     def flow_key(self) -> tuple[str, str]:
-        """flow 键 = (源, 目的)，同对 UAV 的业务共用一条路径。"""
-        return (self.src_node_id, self.dst_node_id)
+        """flow 键 = 无序端点对（与仿真器 `_flow_for` 的 (ip1,ip2)/(ip2,ip1) 匹配对齐）。
+
+        同一对 UAV 的正反两条业务落在同一个 flow 下，共用一条路径。
+        """
+        a, b = self.src_node_id, self.dst_node_id
+        return (a, b) if a <= b else (b, a)
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Service":
