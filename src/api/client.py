@@ -10,6 +10,9 @@ from datetime import datetime
 from typing import Any, Optional
 
 import requests
+import logging
+
+log = logging.getLogger("SimulatorClient")
 
 
 class SimulatorError(Exception):
@@ -39,6 +42,9 @@ class SimulatorClient:
         self.max_retries = max_retries
         self.backoff_base = backoff_base
         self._req_seq = 0
+        # 最近一次成功响应包络里的仿真器时间戳（Unix 纪元微秒），供时间对齐/延迟测量
+        self.last_ts_us = 0
+        log.info("SimulatorClient base_url=%s", self.base_url)
 
     # ------------------------------------------------------------------ 基础
     def _headers(self, retry_of: Optional[str] = None) -> dict[str, str]:
@@ -92,6 +98,9 @@ class SimulatorClient:
             except ValueError:
                 raise SimulatorError(2000, f"非 JSON 响应: {resp.status_code}") from None
 
+            # 包络自带仿真器时钟快照（time/tsUs，见接口文档「响应包络」），
+            # 只返回 data 会丢掉它，这里留一份供时间对齐用。
+            self.last_ts_us = int(envelope.get("tsUs") or 0)
             code = envelope.get("code")
             if code == 0:
                 return envelope.get("data")

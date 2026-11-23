@@ -39,6 +39,17 @@ SERVICE_PATHS_PATH = os.environ.get("SERVICE_PATHS_PATH", "")
 HOST = os.environ.get("WORKBENCH_HOST", "127.0.0.1")
 PORT = int(os.environ.get("WORKBENCH_PORT", "8000"))
 
+# 前端静态目录：默认 work_bench/frontend/dist，存在则后端一并托管（同源单进程部署，免 CORS、免 Node）
+STATIC_DIR = os.environ.get("WORKBENCH_STATIC_DIR", str(_BASE_DIR.parent / "frontend" / "dist"))
+# CORS 白名单（逗号分隔）：仅 dev 模式（vite :5173）跨域需要；同源托管时虽无跨域但也无碍
+CORS_ORIGINS = [
+    o.strip()
+    for o in os.environ.get(
+        "WORKBENCH_CORS_ORIGINS", "http://127.0.0.1:5173,http://localhost:5173"
+    ).split(",")
+    if o.strip()
+]
+
 
 def resolve_token() -> str:
     """优先 SIM_TOKEN；否则从 SIM_TOKEN_FILE（gateway.json 风格）读 openTokens[0]。"""

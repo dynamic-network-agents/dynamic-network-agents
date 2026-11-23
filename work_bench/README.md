@@ -60,6 +60,35 @@ cd frontend && pnpm dev
 - `BG_SERVICE_PATH` / `SERVICE_PATHS_PATH` 可选：前者用于业务「背景/测试」分类，后者用于「改 service」候选路径；不设置则分类显示 `unknown`、候选路径为空。
 - 后端接口：`GET /api/health`、`GET /api/snapshot`（前端唯一数据源，2s 轮询）、`GET /api/candidates?serviceId=`、`POST /api/repath`（唯一写白名单）。
 
+## 服务器部署（单进程，仅本机/SSH 隧道）
+
+服务器（Ubuntu 22.04.5 x64，Python 3.12+）**无需 Node**——前端 `frontend/dist/` 已在本地构建好，后端会自动同源托管。
+
+```bash
+# 1) 把整个 work_bench/ 拷到服务器（含 frontend/dist/）
+# 2) 装后端依赖（服务器装 uv，或改用 python3 -m venv + pip）
+cd work_bench/backend
+uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
+# 3) 配置（写 backend/.env，或导出环境变量）
+#    SIM_BASE_URL=http://<仿真器IP>:10100/api/open/v1
+#    SIM_TOKEN=<公开令牌>   或   SIM_TOKEN_FILE=/path/to/gateway.json
+#    BG_SERVICE_PATH=/path/to/bg-service.json          # 可选：业务背景/测试分类
+#    SERVICE_PATHS_PATH=/path/to/service-paths.json    # 可选：改 service 候选路径
+# 4) 启动（默认绑 127.0.0.1:8000，自动托管 frontend/dist，同源免 CORS）
+cd ..
+./backend/run.sh
+```
+
+远程访问走 SSH 隧道（不对外暴露，`/api/repath` 写接口不外泄）：
+
+```bash
+ssh -L 8000:127.0.0.1:8000 user@<服务器IP>
+# 本地浏览器打开 http://127.0.0.1:8000/
+```
+
+- 后端自动检测 `frontend/dist/`：存在则同源托管前端（一条进程一个端口），不存在则退回纯 API（dev 模式走 `pnpm dev` + vite 代理）。
+- 若确需局域网直连，可 `WORKBENCH_HOST=0.0.0.0 ./backend/run.sh`，但**写接口 `/api/repath` 会暴露给网内**，务必配合防火墙/反向代理加认证。
+
 ## 目录结构（最小可运行版）
 
 ```

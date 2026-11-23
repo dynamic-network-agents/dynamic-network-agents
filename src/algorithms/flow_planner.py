@@ -75,9 +75,21 @@ class UavDemand:
     out_all: dict[str, int] = field(default_factory=lambda: defaultdict(int))
     in_all: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
-
 def access_links(graph: nx.MultiGraph) -> dict[str, tuple[str, int]]:
-    """UAV -> (接入链路 id, 带宽)；取连到该 UAV 的最大带宽链路。"""
+    """UAV -> (接入链路 id, 单方向带宽)。
+
+    返回的是「每个 UAV 一条链路」的查表，**不是 flow**：键是单个 UAV 节点，
+    值是该 UAV 相邻链路里带宽最大的一条。只用于 `classify_flow` 判 F1/F2，
+    不参与容量记账（容量按 `capacity_map` + `DirKey` 逐链路逐方向算）。
+
+    为什么 UAV 有「接入链路」：仿真器端别模型把 ground→sN(交换机)、uav/air→hN(主机)，
+    且两端都是主机的链路直接报错「端别模型不成立」（`sim_src/netsim/sdncommon.py`
+    的 `adapt_spec`），所以 UAV 的流量只能经「UAV—地面」这类接入链路出入。
+
+    近似口径：一个 UAV 有多条接入链路时只取最粗的那条，判 F1/F2 得到的是
+    **乐观上界**（窄链路不参与比较）；要精确应改成该 UAV 全部接入链路容量之和，
+    或用实际规划路径的首/末跳判定。
+    """
     out: dict[str, tuple[str, int]] = {}
     for u, v, key, data in graph.edges(keys=True, data=True):
         for nd in (u, v):

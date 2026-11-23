@@ -3,14 +3,20 @@ from baseline.reroute_loop import Orchestrator, OrchestratorConfig
 
 
 class MockClient:
-    def __init__(self, topology, links, services, current_paths=None):
+    def __init__(self, topology, links, services, current_paths=None, server_ts_us=1_800_000_000_000_000):
         self._topology = topology
         self._links = links
         self._services = services
         self._current_paths = current_paths or {}
+        self._server_ts_us = server_ts_us
+        self.event_cursors: list[int] = []
         self.applied: list[tuple[str, list[str]]] = []
 
+    def get_time(self):
+        return {"time": "00:00:00.000000", "tsUs": self._server_ts_us}
+
     def get_events(self, since_ts_us=0, limit=100):
+        self.event_cursors.append(since_ts_us)
         return {"events": [], "nextSinceTsUs": since_ts_us}
 
     def get_topology(self, type=None):
@@ -90,3 +96,30 @@ def test_step_skips_when_path_unchanged():
     orch = Orchestrator(client, OrchestratorConfig(k=5, switch_min_interval_s=0))
     assert orch.step(force=True) == 0
     assert client.applied == []
+
+
+def test_event_cursor_starts_from_server_time():
+    # skip_history=True：首轮用 GET /time 的 tsUs 初始化游标，不重放历史事件
+    client = MockClient(_topology(), _links(), {}, server_ts_us=1_800_000_123_456_789)
+    orch = Orchestrator(client, OrchestratorConfig(k=5, skip_history=True))
+    orch.step()
+    assert client.event_cursors == [1_800_000_123_456_789]
+    assert orch.since_ts_us == 1_800_000_123_456_789
+
+
+def test_event_cursor_replays_history_when_disabled():
+    client = MockClient(_topology(), _links(), {}, server_ts_us=1_800_000_123_456_789)
+    orch = Orchestrator(client, OrchestratorConfig(k=5, skip_history=False))
+    orch.step()
+    assert client.event_cursors == [0]
+
+
+def test_event_cursor_falls_back_to_zero_without_server_time():
+    class NoTimeClient(MockClient):
+        def get_time(self):
+            raise RuntimeError("boom")
+
+    client = NoTimeClient(_topology(), _links(), {})
+    orch = Orchestrator(client, OrchestratorConfig(k=5, skip_history=True))
+    orch.step()
+    assert client.event_cursors == [0]

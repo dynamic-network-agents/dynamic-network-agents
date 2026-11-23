@@ -21,6 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **查仿真器实现先看 `sim_src/`**：这是从 `simulator/images/*.tar` 解出的只读源码副本（netsim 为 base85+zlib 解码件，servicesim 为明文），只供检索/核对，不参与构建、不被 `src/` import、不提交（已 gitignore）。运行行为仍以 `simulator/` 发布件与镜像为准；工作约束见 `sim_src/CLAUDE.md`。
 - **令牌/密钥不入代码**：`simulator/conf/gateway.json` 的 `openTokens[]`、`ctrlToken`，以及 `simulator/docker/eval/.env` 的 `LLM_API_KEY`、`LITELLM_MASTER_KEY` 都是真实密钥，禁止写入代码或提交。
 - **以官方口径为准**：QoS 判定、接口字段、错误码以权威文档为准；不确定的口径标注「待核对」，不臆造数值/字段/结论。
+- **证据纪律（硬性）**：任何结论都必须有**需求文档、官方接口文档或仿真器源码（`sim_src/`）**的直达依据，并给出可核对的位置（文件+行/函数）。**场景数据、抽样观测、经验推断只能当佐证，不能当依据**；不得由"某几个场景里是这样"推出"系统/模型一定是这样"。依据不足时写「待核对」并说明**缺哪份证据**，不要用"通常/一般都是/应该是"填补。
 - **场景生成走技能**：用 `.agents/skills/scenario-gen/` 生成场景库，不要手工改场景数据；生成后 `validate_library.py --conf gen_conf<NN>` 必须零违规才算完成。
 
 ## 编码规则

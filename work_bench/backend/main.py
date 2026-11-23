@@ -8,11 +8,13 @@
 """
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from . import config
@@ -35,10 +37,7 @@ app = FastAPI(title="B03 Work Bench", version="mini-run")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:5173",
-        "http://localhost:5173",
-    ],
+    allow_origins=config.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
@@ -98,3 +97,10 @@ def repath(req: RepathRequest) -> JSONResponse:
             content={"ok": False, "code": exc.code, "msg": exc.msg, "envelope": exc.envelope},
         )
     return JSONResponse(status_code=200, content={"ok": True, **result})
+
+
+# 托管前端构建产物（单进程部署：后端同源服务前端，免 CORS、免 Node）。
+# 置于所有 /api 路由之后注册，确保 API 优先匹配；dist 不存在则退回纯 API（dev 模式走 vite）。
+_static_dir = config.STATIC_DIR
+if _static_dir and Path(_static_dir).is_dir():
+    app.mount("/", StaticFiles(directory=_static_dir, html=True), name="frontend")

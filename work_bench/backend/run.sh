@@ -3,7 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."   # 进入 work_bench/
 
-if [ -z "${SIM_TOKEN:-}" ]; then
+if [ -z "${SIM_TOKEN:-}" ] && [ -z "${SIM_TOKEN_FILE:-}" ]; then
+  # 均未提供时才自动探测 gateway.json（若设置了 SIM_TOKEN_FILE，交由 config.py 读取）
   GW="${SIM_GATEWAY_JSON:-$(pwd)/../simulator/conf/gateway.json}"
   if [ -f "$GW" ]; then
     SIM_TOKEN="$(python3 - "$GW" <<'PY'
