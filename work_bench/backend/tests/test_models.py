@@ -9,7 +9,7 @@ from backend.models import Actual, Link, Node, Service, Snapshot
 
 def test_snapshot_defaults():
     snap = Snapshot(health="live", received_at="2026-11-24T00:00:00Z")
-    assert snap.snapshot_version == 1
+    assert snap.snapshot_version == 2  # v2：新增 sim / riskLinks / riskSummary / overallStatus
     assert snap.offline is False
     assert snap.nodes == [] and snap.services == []
     assert snap.pagination.links.complete is True

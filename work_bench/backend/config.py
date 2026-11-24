@@ -74,6 +74,8 @@ DETAIL_TTL_S = float(os.environ.get("SIM_DETAIL_TTL_S", "4"))
 
 # 业务分类优先取仿真器实时 svc-meta（/api/ctrl/v1/svc-meta），失败再退回离线 bg-service.json
 SVCMETA_ENABLED = _bool("WORKBENCH_SVCMETA", True)
+# 仿真运行态取内部控制接口 run-info（只认 ctrl 令牌；open 通道自动关闭）
+RUNINFO_ENABLED = _bool("WORKBENCH_RUNINFO", True)
 # 正式录分时建议置 0：改路径会被仿真器记成 source=agent 的 path 事件，无法用令牌隔离
 ALLOW_REPATH = _bool("WORKBENCH_ALLOW_REPATH", True)
 
@@ -186,4 +188,9 @@ def svcmeta_allowed(auth_mode: str, enabled: bool = True) -> bool:
     open 模式下强行调用会被 1006 拒绝，而且请求带 `X-Open-Token` 会写进
     agent 统计台账；所以这里直接按通道关闭，避免每轮快照制造噪声。
     """
+    return bool(enabled) and auth_mode == AUTH_CTRL
+
+
+def runinfo_allowed(auth_mode: str, enabled: bool = True) -> bool:
+    """run-info 同样是控制面接口，规则与 svc-meta 一致（open 通道关闭）。"""
     return bool(enabled) and auth_mode == AUTH_CTRL

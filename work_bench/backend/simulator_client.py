@@ -63,6 +63,11 @@ class SimulatorClient:
     def svc_meta_available(self) -> bool:
         return bool(self.ctrl_base_url)
 
+    @property
+    def run_info_available(self) -> bool:
+        """run-info 需要控制面基址 + ctrl 通道（open 令牌会被 1006 拒绝）。"""
+        return self.svc_meta_available and self.auth_mode == AUTH_CTRL
+
     def _headers(self, retry_of: Optional[str] = None) -> dict[str, str]:
         headers = {self.header_name: self.token}
         if self.agent_id:
@@ -187,6 +192,19 @@ class SimulatorClient:
         data = self._request("GET", "/svc-meta", base=self.ctrl_base_url)
         meta = (data or {}).get("meta") if isinstance(data, dict) else None
         return meta if isinstance(meta, dict) else {}
+
+    def get_run_info(self) -> dict:
+        """控制面接口：仿真运行态（status/instanceId/t0TsUs/engine/services）。
+
+        只认 ctrl 令牌；`open` 通道调用会 1006，且会把请求写进 agent 统计台账，
+        因此这里按通道直接拒绝（1006），由采集层记 `sim.error` 而不是每轮重试。
+        """
+        if not self.run_info_available:
+            if not self.svc_meta_available:
+                raise SimulatorError(1003, "未配置控制面基址（SIM_CTRL_BASE_URL）")
+            raise SimulatorError(1006, "run-info 只认 ctrl 令牌")
+        data = self._request("GET", "/run-info", base=self.ctrl_base_url)
+        return data if isinstance(data, dict) else {}
 
     # ------------------------------------------------------------------ 唯一写接口
     def set_service_path(

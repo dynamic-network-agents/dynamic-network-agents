@@ -78,7 +78,7 @@ def test_server_readonly_contract_and_pagination():
         f"[server] health={snap.health} snapshot_version={snap.snapshot_version} "
         f"services={len(snap.services)} flows={len(snap.flows)} instance={snap.instance_id}"
     )
-    assert snap.snapshot_version == 1
+    assert snap.snapshot_version == 2
     assert snap.health in ("live", "partial", "stale", "disconnected")
     assert snap.pagination.consistent is not False
 

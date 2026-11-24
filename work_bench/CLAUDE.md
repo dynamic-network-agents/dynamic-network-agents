@@ -56,9 +56,9 @@ work_bench/
 ├── README.md                 # 项目概览 + 部署/快速开始
 ├── CLAUDE.md                 # 本文件：工作约束与口径
 ├── backend/
-│   ├── main.py               # 路由：health / snapshot / candidates / repath（含写开关）
+│   ├── main.py               # 路由：health / snapshot / candidates / flow-candidates / repath（含写开关）
 │   ├── models/               # pydantic 数据契约（Snapshot/Node/Link/Service/Flow/Path/Actual）
-│   ├── analysis/             # 本地分析：flow.py（无序 IP 对聚合）/ path.py（连续性+反序归一）
+│   ├── analysis/             # 本地分析：flow / path / qos / load / risk（规则 A/B）/ candidates（候选可行性）
 │   ├── config.py             # env/.env + 令牌解析（ctrl/open 两种通道）
 │   ├── simulator_client.py   # 仿真 API client（GET + 唯一 set_service_path + svc-meta）
 │   ├── snapshot.py           # 统一快照聚合（含 svc-meta 分类与降级）
@@ -66,7 +66,7 @@ work_bench/
 │   ├── policy.py             # 写动作放行判定（repath 开关/留痕提示）
 │   ├── run.sh                # 一键启动（自动读 gateway.json 的 ctrlToken）
 │   └── tests/                # 单测：令牌解析 / 请求头 / svc-meta 降级 / 写开关
-└── frontend/src/             # App.tsx / TopologyView.tsx / api.ts / types.ts
+└── frontend/src/             # App.tsx（外壳/轮询）/ TopologyView.tsx / components/（页面组件）/ lib/（口径与格式化）/ api.ts / types.ts
 ```
 
 规划目标态（`api/`、`datasource/`、`models/`、`analysis/` 分层）见 `docs/work_bench/B03_DebugConsole_task_split.md`；当前已拆出 `models/` 与 `analysis/`，路由仍集中在 `main.py`。

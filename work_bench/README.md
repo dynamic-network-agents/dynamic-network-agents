@@ -48,6 +48,7 @@ SIM_AUTH=ctrl                # 默认：ctrl 令牌；open=显式降级（会污
 SIM_CTRL_TOKEN=              # 可直接给；留空则 run.sh 自动读 gateway.json 的 ctrlToken
 SIM_TOKEN_FILE=              # 或指向 gateway.json（按 SIM_AUTH 取对应键）
 WORKBENCH_SVCMETA=1          # 用 /api/ctrl/v1/svc-meta 取实时业务分类
+WORKBENCH_RUNINFO=1          # 用 /api/ctrl/v1/run-info 取运行态（状态/实例/脚本进度）
 WORKBENCH_ALLOW_REPATH=1     # 正式录制置 0
 ```
 
@@ -58,6 +59,8 @@ WORKBENCH_ALLOW_REPATH=1     # 正式录制置 0
 - **契约**：`backend/models/` 用 pydantic 固化 Snapshot/Node/Link/Service/Path/Requirement/Actual；`snapshot_version` 只在破坏性变更时 +1。未知字段保留（`extra="allow"`），不因仿真器加字段而报错。
 - **分页**：仿真器 `page/size` 默认 500、上限 2000。`GET /links`、`GET /services` **默认不是全量**，后端已改为循环取全，并用 `/topology` 的链路总数对账；不一致或页数超限会写进 `pagination.note` 并降级健康状态。
 - **健康状态**：`live` / `partial`（部分核心失败、缓存仍新鲜）/ `stale`（有数据但超过 `WORKBENCH_STALE_AFTER_S`）/ `disconnected`（核心全失败，返回缓存并标注 `data_age_s`）/ `offline`（显式离线模式）。
+- **运行态（`sim`）**：来自控制面 `GET /api/ctrl/v1/run-info`（只认 ctrl 令牌），含 `status`（running/paused/joining/finished/idle）、当前实例/场景/脚本、`t0TsUs` 仿真起点与引擎进度。取不到时 `status=unknown` + `error` 说明原因，不伪造。注意 `t0TsUs` 是起点，**当前仿真时间**仍取 `/time` 的 `tsUs`。
+- **风险链路与整体状态**：`riskLinks`（规则 A：R1 断 / R2 需求超订 / R3 相对上一快照劣化）、`riskSummary`（`unknown=true` 时 `total=null`，不显示成 0）、`overallStatus`（规则 B）。R2 是**需求侧估算**，文案写"需求超订"不写"带宽阻塞"；口径见 `docs/work_bench/B03_Network_Workbench_UI_可行性分析.md` §8 与 `backend/analysis/risk.py`。
 - **离线模式**：`WORKBENCH_OFFLINE=1` + `NET_TOPO_PATH`（+ `BG_SERVICE_PATH`）只读场景文件，服务状态标 `unknown`、`actual=null`，不会伪装成实时数据。
 
 ## 快速开始（最小可运行版）
@@ -136,20 +139,28 @@ work_bench/
 ├── README.md               # 本文件：概览 + 快速开始 + 部署
 ├── CLAUDE.md               # Claude Code 工作约束与口径
 ├── backend/                # FastAPI 后端（最小版）
-│   ├── main.py             # 路由：health / snapshot / candidates / repath（含写开关）
+│   ├── main.py             # 路由：health / snapshot / candidates / flow-candidates / repath（含写开关）
 │   ├── models/             # pydantic 数据契约（Snapshot/Flow/Service/...）
-│   ├── analysis/           # flow 聚合 + path 解析（不依赖 Agent src/）
+│   ├── analysis/           # flow 聚合 / path / 静态 QoS / 链路负载 / 风险规则 / 候选可行性
 │   ├── config.py           # env/.env 配置 + ctrl/open 令牌解析
 │   ├── simulator_client.py # 独立仿真 API client（GET + 唯一 set_service_path + svc-meta）
 │   ├── offline.py          # bg-service.json / service-paths.json 加载
 │   ├── snapshot.py         # 统一快照聚合 + svc-meta 分类降级
 │   ├── policy.py           # 写动作放行判定（repath 开关）
-│   ├── tests/              # 单测（令牌/请求头/分类降级/写开关）
+│   ├── tests/              # 单测（契约/分页/健康/Flow/QoS/风险/run-info/只读回归）
 │   ├── requirements.txt
 │   ├── run.sh              # 一键启动（自动读 ctrlToken）
 │   └── .env.example
-└── frontend/               # React + Vite + TS 前端（最小版）
-    └── src/                # App.tsx（页面+轮询+表格+改 service）/ TopologyView.tsx / api.ts / types.ts
+└── frontend/               # React + Vite + TS 前端
+    └── src/
+        ├── App.tsx         # 外壳：2s 轮询 + 选中态 + 实例切换清理
+        ├── TopologyView.tsx# SVG 拓扑（真实坐标、缩放/平移、风险虚线与节点形状）
+        ├── components/     # Sidebar/TopBar/KpiCards/TopologyPanel/DiagnosticsPanel/FlowAnalysisPage/
+        │                   # CriticalServicesTable/LinkLoadTable/EventTimeline/
+        │                   # DetailDrawer（Service/Flow/Link/Node）/DataInspector/RepathPanel
+        ├── lib/            # format.ts（空值/单位）/ derive.ts（KPI 与达标率口径）/ selection.ts
+        ├── api.ts          # 只读 GET + /api/repath 转发
+        └── types.ts        # 与后端快照契约对齐
 ```
 
 > 规划文档与全量任务拆分在 `docs/work_bench/`；最小可运行版范围见 `docs/work_bench/B03_DebugConsole_mini_run_task.md`。

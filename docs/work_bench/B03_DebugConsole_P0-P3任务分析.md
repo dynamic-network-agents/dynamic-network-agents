@@ -56,18 +56,20 @@
 | 只读 client（含唯一写例外 `set_service_path`） | ✅ | `backend/simulator_client.py` |
 | 统一数据契约（models / `snapshot_version`） | ✅ | `backend/models/` pydantic 契约 |
 | 写开关（`WORKBENCH_ALLOW_REPATH`） | ✅ | `backend/policy.py` |
-| 安全回归测试 | ⚠️ | 有 policy 单测，无全项目扫描 |
+| 安全回归测试 | ✅ | `tests/test_readonly_surface.py`：写接口白名单 / 禁止仿真控制 / 令牌不入前端 |
 | 离线加载（bg-service / service-paths） | ✅ | `backend/offline.py` |
 | 实时采集（topology / links / services+详情 / events / time） | ✅ | `backend/snapshot.py` |
 | 分页完整性 | ✅ | `page/size` 循环取全 + `/topology` 对账 |
 | 统一快照 + 事件游标 | ⚠️ | 已有 `snapshot_version`；跨接口 `tsUs` 一致性仍待补（B-05） |
-| 2D 拓扑（真实坐标、缩放/平移/自适应） | ✅ | `frontend/src/TopologyView.tsx` |
+| 2D 拓扑（真实坐标、缩放/平移/自适应、节点形状、风险虚线、点击下钻） | ✅ | `frontend/src/TopologyView.tsx` + `components/TopologyPanel.tsx` |
 | 数据健康状态 | ✅ | live/partial/stale/disconnected/offline + `data_age_s` |
 | 业务分类（实时 svc-meta + 离线兜底 + 来源标注） | ✅ | `snapshot.py`、`config.py` |
 | Service ↔ Flow ↔ Path | ✅ | Flow 聚合/视图/筛选 + Service 详情跨对象跳转 |
 | 静态 QoS 合成 | ✅ | `analysis/qos.py`（公式+容差），逐业务/逐 Flow 标注 |
 | 实测 QoS 逐项展示 | ✅ | 6 字段 + `qosMeet`，需求 vs 实测对照 |
 | 链路负载 / 热点 | ⚠️ | 需求侧链路负载已做；热点排序 E-04/E-05 延后 |
+| 仿真运行态（run-info） | ✅ | `snapshot.py` `_load_sim_status`；契约 `sim_src/netsim/openapi.py:2110` `_run_info()` |
+| 风险链路 / 整体状态（规则 A/B） | ✅ | `analysis/risk.py` + 快照 `riskLinks`/`riskSummary`/`overallStatus`（2026-11-24 接线） |
 
 ---
 
@@ -81,7 +83,7 @@
 | A-04 | **pydantic 数据契约 + `snapshot_version`**：Snapshot/Node/Link/Service/Path 模型；前后端字段对齐 | ✅ | A-02 | M |
 | A-05 | 写白名单口径统一：默认开 = 调试例外，录分置 0；文档与代码一致 | ✅/⚠️ | A-02 | S |
 | A-06 | 调用治理：错误码映射（1001/1003/1004/1005/1006/2000）、重试幂等 | ⚠️ | A-02 | S |
-| A-07 | 只读安全回归：全项目扫描写接口仅 repath 且可关；Token 不出前端/日志 | ❌ | A-02/A-05 | S |
+| A-07 | 只读安全回归：全项目扫描写接口仅 repath 且可关；Token 不出前端/日志 | ✅ | A-02/A-05 | S |
 
 **P0 验收**：`/api/health` 能说明通道与开关；前端产物与日志中 grep 不到令牌；写接口只有 `repath`，且 `WORKBENCH_ALLOW_REPATH=0` 时 403。
 
@@ -99,8 +101,8 @@
 | B-06 | 数据健康补全：`STALE`/`OFFLINE`；展示最近成功采集、游标、快照时间 | ✅ | A-04 | S |
 | B-07 | **分页完整性（新增，P1 正确性）**：`page/size` 循环取全；与 `/topology` 的链路总数对账；不一致标 `PARTIAL` | ✅ | A-02 | M |
 | C-01 | 2D 拓扑画布 | ✅ | — | — |
-| C-02 | 节点/链路状态渲染 + 参数劣化标记（对比离线基线） | ⚠️ | B-01 | S |
-| C-03 | 总览指标区：业务数、test 达标率、未达标数、数据健康、仿真时间；热点 Top N 后置到 P3 | ✅（Top N 随 E-04 延后） | B-05、B-06 | M |
+| C-02 | 节点/链路状态渲染 + 参数劣化标记（R3 已做「对比上一快照」；对比离线基线未做） | ⚠️ | B-01 | S |
+| C-03 | 总览指标区：5 张 KPI（在线节点/活动链路/测试业务/风险链路/整体状态）+ 诊断栏热点 Top 5 | ✅ | B-05、B-06、E-03 | M |
 
 **P1 验收**：一次真实运行（≥40 业务）下，分页累计的链路/业务数与 `/topology`、`/services` 全量一致；断连→`DISCONNECTED`、数据滞后→`STALE`、部分接口失败→`PARTIAL` 均可见。
 
@@ -184,3 +186,45 @@ S ≈ 半天内；M ≈ 半天到一天；L ≈ 一天以上。**仅用于排序
 - 链路负载（需求侧）：31 条链路；Top 需求/容量：L00013 2.57、L00017 2.51、L00005 2.31（需求带宽超过容量，但每条业务路径静态均可行）。
 - 路径解析：抽查 5 个 Flow 全部 `continuous=true`、`direction=forward`。
 - 复跑：`pytest backend/tests`（含自动服务器联调）49 项通过；与主项目 `src/math_modeling` 的静态 QoS 对拍 4 例通过（`tests/integration/test_workbench_qos_crosscheck.py`）。
+
+### 11.1 期 1 后端批次（2026-11-24，本地）
+
+对齐 `B03_Network_Workbench_UI_可行性分析.md` §7「期 1」的后端部分，新增：
+
+- **run-info 采集**：`SimulatorClient.get_run_info()`（控制面、只认 ctrl 令牌，open 通道直接 1006 不发请求）；`_load_sim_status()` 映射为 `Snapshot.sim`，失败只记 `sim.error`，不算核心资源失败；实例/场景以 run-info 为权威，拿不到才退事件 payload。`WORKBENCH_RUNINFO` 可关（默认开）。
+- **风险接线**：`build_link_risks` / `build_risk_summary` / `build_overall_status` 接入快照；R3 基线取**上一次成功采集**的链路参数（在写缓存之前取）。同时修掉 `risk.py` 里对 pydantic 模型调用 `.get()` 的隐患。
+- **契约**：`Snapshot` 增加 `sim`/`riskLinks`/`riskSummary`/`overallStatus`，`snapshot_version=2`；TS 契约（`frontend/src/types.ts`）同步。
+- **测试**：新增 `test_risk.py`（规则 A/B 纯函数）+ `test_snapshot_risk.py`（快照接线、R3 跨快照基线、run-info 失败降级、离线）；`test_simulator_client.py` 补 run-info 通道用例。后端 `pytest backend/tests` 80 passed / 1 skipped（collect 81；服务器联调用例不可达自动 skip）。
+- **本地冒烟**：`WORKBENCH_OFFLINE=1` 读 `sce20261012-conf01/sce10`，`health=offline`、`sim.status=unknown(error=offline)`、`riskSummary.unknown=true(total=null)`、`overallStatus=unknown`，无伪造值。
+
+### 11.2 期 1 前端批次（2026-11-24，本地）
+
+按 `B03_Network_Workbench_UI_设计说明.md` + 可行性分析 §7「期 1」改版，原 622 行单文件拆为组件：
+
+- **外壳**：`AppShell`（`App.tsx`）+ `Sidebar`（8 个入口，未开放项置灰并标「未开放」）+ `TopBar`（运行态/实例/场景/脚本进度/已运行/仿真时刻/健康/数据龄/最近更新；部分失败与分页提示走状态条）。
+- **首行 KPI**：在线节点 / 活动链路 / 测试业务（分母=已识别分类）/ 风险链路（`riskSummary`，不可信显示「—」）/ 整体状态（规则 B + 触发理由）。
+- **主区域**：拓扑（节点形状分类型、风险红色虚线、选中路径蓝色加粗、点选下钻、类型过滤、只看风险、缩放/平移/复位、缺坐标标注「布局估算」）+ 右侧诊断栏（分分类达标率、需求侧热点 Top 5、风险链路列表）。
+- **第二行**：关键业务表（不达标优先、Flow 列可下钻、全部/不达标/未知筛选）、链路负载排行（需求/容量，超订标红并注明估算）、最近事件（仅 `/events` 实际事件，payload 放 tooltip）。
+- **抽屉**：Service / Flow / Link / Node 四类详情共用右侧抽屉；静态 QoS 与实测并列且互相矛盾时显式标注（静态可行但实测不达标 / 反之）。
+- **数据检查**：默认折叠，元信息（快照时间、数据龄、陈旧资源、分页对账、svc-meta、事件游标、采集错误）+ 展开时才渲染的原始 JSON（可复制）。
+- **写操作**：改路径面板移入折叠区，保留 flow 级影响提示与二次确认；`WORKBENCH_ALLOW_REPATH=0` 时后端 403 原样展示。
+- **只读回归（A-07 收口）**：新增 `tests/test_readonly_surface.py`（前端只有一处 POST 且必须在 `api.ts`；禁止 `/simulation/start` 等；后端写调用仅 `set_service_path`；令牌名不进前端；repath 开关 403）。
+- **验证**：`pnpm build` 通过（JS 191.5 kB / gzip 61.5 kB，CSS 15.9 kB）；离线起后端同源托管 `GET /` 200、`/api/snapshot` 字段与 `sim/risk/overall` 正常；后端 collect 86，85 passed / 1 skipped。
+- **未做（留给期 2）**：QoS 趋势（需后端 1s 采样环形缓冲）、热点综合排序 E-04、计划/实际事件分轨、超大拓扑降采样、路径对比与历史回放。
+
+### 11.3 期 2 批次：Flow 分析页 + 候选路径静态可行性（2026-11-24，本地）
+
+**后端**
+- 新增 `analysis/candidates.py`：`build_flow_candidates()` 纯函数。候选只取离线 `service-paths.json`（公开 API 不提供候选生成），**用当前 `/links` 参数重算**静态 QoS，不采用文件里的 `metrics`（那是场景生成期的计划值）。
+- 同一 Flow 的候选按链路集合去重；一条候选对**每个成员业务**分别做静态校验（成员需求可能不同），汇总 `ok/fail/unknown`；链路不全时不做部分合成，`staticQoS=null` 且全部计 unknown。
+- `Collector.latest()` 缓存最近一次构建的快照，`GET /api/flow-candidates?flowKey=` 直接复用，**不触发新一轮上游采集**；无快照 503、Flow 不存在 404。
+- 单测 `tests/test_flow_candidates.py` 9 项：去重、静态合成、成员校验分歧、当前路径标记与排序、缺链路、缺参数、无候选两种提示、候选编号稳定。
+
+**前端（业务分析 · Flow 视图）**
+- 左列表：搜索（flowKey / 节点 / 业务 ID）+ 四种筛选（全部 / 有不达标成员 / 静态有不可行 / 路径不连续）+ 排序（不达标数 → 静态不可行数 → 成员数）。
+- 右侧详情：基本信息（src/dst IP、pathId、连续性、静态汇总、分类构成）→ 当前路径链路表（五项参数 + 状态 + 需求/容量 + 风险码）→ 成员业务表（需求 vs 实测，点击开抽屉）→ 链路上的其他 Flow（可跳转）→ 候选路径卡片（静态 D/J/B/L/E、成员可行性计数、逐成员冲突明细、当前路径标记、刷新按钮）。
+- 候选值标注「按最近一次快照的链路参数重算」，并提供「刷新」重取，避免参数变化后数值悄悄过期。
+
+**验证**：后端 collect 95（94 passed / 1 skipped）；`pnpm build` 通过（JS 204.8 kB / gzip 64.2 kB）；离线起后端用真实场景跑通 `GET /api/flow-candidates`：Flow `10.1.1.100|10.1.1.119` 返回 3 条候选（5/6/24 段，静态时延 24.1/21.5/25.7 ms，成员校验全部可行），未知 Flow 返回 404。离线模式下业务没有 `path`，因此三条候选都不标「当前路径」——这是如实结果，不是缺陷。
+
+**未做**：趋势缓冲、热点排序 E-04、事件差分、计划/实际事件分轨、agent 动作追踪（按期 2 原计划顺延）。

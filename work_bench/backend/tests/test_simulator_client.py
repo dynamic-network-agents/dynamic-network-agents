@@ -82,3 +82,44 @@ def test_error_envelope_raises_without_token_leak(monkeypatch):
         client.get_links()
     assert exc.value.code == 1002
     assert "secret-token" not in str(exc.value)
+
+
+def test_run_info_uses_ctrl_base_and_parses(monkeypatch):
+    payload = {
+        "code": 0,
+        "data": {"status": "running", "instanceId": "INST-1", "t0TsUs": 123},
+    }
+    calls = _patch(monkeypatch, payload)
+    client = SimulatorClient(
+        "http://h:10100/api/open/v1",
+        "T",
+        auth_mode="ctrl",
+        ctrl_base_url="http://h:10100/api/ctrl/v1",
+    )
+    data = client.get_run_info()
+    assert data["status"] == "running"
+    assert calls[0]["url"] == "http://h:10100/api/ctrl/v1/run-info"
+    assert calls[0]["headers"]["X-Ctrl-Token"] == "T"
+
+
+def test_run_info_rejected_on_open_channel(monkeypatch):
+    # open 令牌调控制面会 1006，且会污染 agent 统计；客户端直接拒绝，不发请求
+    _patch(monkeypatch, {"code": 0, "data": {}})
+    client = SimulatorClient(
+        "http://h:10100/api/open/v1",
+        "T",
+        auth_mode="open",
+        ctrl_base_url="http://h:10100/api/ctrl/v1",
+    )
+    assert client.run_info_available is False
+    with pytest.raises(SimulatorError) as exc:
+        client.get_run_info()
+    assert exc.value.code == 1006
+
+
+def test_run_info_unavailable_without_ctrl_base():
+    client = SimulatorClient("http://h/api/open/v1", "T")
+    assert client.run_info_available is False
+    with pytest.raises(SimulatorError) as exc:
+        client.get_run_info()
+    assert exc.value.code == 1003

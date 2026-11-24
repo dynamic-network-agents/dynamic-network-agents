@@ -1,4 +1,4 @@
-import type { CandidatePath, Snapshot } from "./types";
+import type { CandidatePath, FlowCandidatesResponse, Snapshot } from "./types";
 
 export async function fetchSnapshot(): Promise<Snapshot> {
   const resp = await fetch("/api/snapshot");
@@ -59,4 +59,19 @@ export async function postRepath(body: {
     };
   }
   return (await resp.json()) as RepathResult;
+}
+
+export async function fetchFlowCandidates(flowKey: string): Promise<FlowCandidatesResponse> {
+  const resp = await fetch(`/api/flow-candidates?flowKey=${encodeURIComponent(flowKey)}`);
+  if (!resp.ok) {
+    let detail = "";
+    try {
+      const body = (await resp.json()) as { detail?: unknown };
+      if (typeof body.detail === "string") detail = body.detail;
+    } catch {
+      /* 非 JSON 响应，保留状态码 */
+    }
+    throw new Error(detail || `flow-candidates HTTP ${resp.status}`);
+  }
+  return (await resp.json()) as FlowCandidatesResponse;
 }

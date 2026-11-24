@@ -120,6 +120,41 @@ export interface SimEvent {
   payload?: Record<string, unknown>;
 }
 
+export interface FlowCandidateCheck {
+  ok: number;
+  fail: number;
+  unknown: number;
+}
+
+export interface FlowCandidateMember {
+  serviceId: string;
+  ok?: boolean | null;
+  violations: string[];
+}
+
+export interface FlowCandidate {
+  candidateId: string;
+  pathNo?: number | null;
+  links: string[];
+  nodes: string[];
+  linkCount: number;
+  serviceIds: string[];
+  missingLinks: string[];
+  isCurrent: boolean;
+  staticQoS?: QoSComposed | null;
+  checks: FlowCandidateCheck;
+  perMember: FlowCandidateMember[];
+}
+
+export interface FlowCandidatesResponse {
+  flowKey: string;
+  source: string;
+  memberCount: number;
+  currentLinks: string[];
+  candidates: FlowCandidate[];
+  note?: string | null;
+}
+
 export interface CandidatePath {
   pathNo?: number;
   nodes: string[];
@@ -172,6 +207,45 @@ export interface Flow {
   staticUnknownCount: number;
 }
 
+export interface SimStatus {
+  status: string; // running / paused / joining / finished / idle / unknown
+  instanceId?: string | null;
+  suiteId?: string | null;
+  scenarioId?: string | null;
+  scriptId?: string | null;
+  t0Time?: string | null;
+  t0TsUs?: number | null;
+  netReadyTsUs?: number | null;
+  engineState?: string | null;
+  engineFired?: number | null;
+  engineTotal?: number | null;
+  servicesRunning?: number | null;
+  serviceStates?: Record<string, number>;
+  joinError?: string | null;
+  noBusiness?: boolean | null;
+  error?: string | null;
+}
+
+export interface LinkRisk {
+  linkId: string;
+  codes: string[]; // R1 断 / R2 超订 / R3 劣化
+  severity: string;
+  reasons: string[];
+  isEstimated: boolean;
+}
+
+export interface RiskSummary {
+  total: number | null;
+  byCode: Record<string, number>;
+  unknown: boolean;
+  note?: string | null;
+}
+
+export interface OverallStatus {
+  status: string; // unknown / critical / alarm / normal
+  reasons: string[];
+}
+
 export interface Snapshot {
   snapshot_version?: number;
   health: string;
@@ -179,6 +253,7 @@ export interface Snapshot {
   instance_id: string | null;
   scenario_id: string | null;
   sim_time_us: number | null;
+  sim?: SimStatus;
   errors: string[];
   warnings?: string[];
   svc_meta?: SvcMetaStatus;
@@ -192,6 +267,9 @@ export interface Snapshot {
   services: Service[];
   flows?: Flow[];
   linkLoads?: LinkLoad[];
+  riskLinks?: LinkRisk[];
+  riskSummary?: RiskSummary;
+  overallStatus?: OverallStatus;
   events: SimEvent[];
   events_cursor: number;
 }

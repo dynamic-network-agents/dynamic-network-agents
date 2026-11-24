@@ -216,6 +216,65 @@ class SvcMeta(BaseModel):
     status: SvcMetaStatus = Field(default_factory=SvcMetaStatus)
 
 
+class SimStatus(BaseModel):
+    """仿真运行态（来自内部控制接口 `GET /api/ctrl/v1/run-info`）。
+
+    字段口径见 `sim_src/netsim/openapi.py:2110` `_run_info()`：
+    `status` ∈ running / paused / joining / finished / idle；`t0TsUs` 是仿真起点，
+    不是当前仿真时间（当前时间仍取 `/time` 的 `tsUs`）。
+    `open` 令牌通道取不到该接口（1006），此时 `status="unknown"`，不得伪造。
+    """
+
+    model_config = ConfigDict(extra="allow")
+
+    status: str = "unknown"  # running / paused / joining / finished / idle / unknown
+    instanceId: str | None = None
+    suiteId: str | None = None
+    scenarioId: str | None = None
+    scriptId: str | None = None
+    t0Time: str | None = None
+    t0TsUs: int | None = None
+    netReadyTsUs: int | None = None
+    engineState: str | None = None
+    engineFired: int | None = None
+    engineTotal: int | None = None
+    servicesRunning: int | None = None
+    serviceStates: dict[str, int] = Field(default_factory=dict)
+    joinError: str | None = None
+    noBusiness: bool | None = None
+    error: str | None = None
+
+
+class LinkRisk(BaseModel):
+    """链路风险（规则 A）。codes ∈ {R1 断, R2 超订, R3 劣化}，severity 取排序最靠前者。"""
+
+    model_config = ConfigDict(extra="allow")
+
+    linkId: str
+    codes: list[str] = Field(default_factory=list)
+    severity: str = "R2"
+    reasons: list[str] = Field(default_factory=list)
+    isEstimated: bool = False  # 含 R2（需求侧估算）时为 True
+
+
+class RiskSummary(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
+    total: int | None = None
+    byCode: dict[str, int] = Field(default_factory=dict)
+    unknown: bool = False
+    note: str | None = None
+
+
+class OverallStatus(BaseModel):
+    """整体状态（规则 B）：unknown / critical（异常）/ alarm（告警）/ normal（正常）。"""
+
+    model_config = ConfigDict(extra="allow")
+
+    status: str = "unknown"
+    reasons: list[str] = Field(default_factory=list)
+
+
 class Snapshot(BaseModel):
     """GET /api/snapshot 的响应契约。
 
@@ -224,12 +283,13 @@ class Snapshot(BaseModel):
 
     model_config = ConfigDict(extra="allow")
 
-    snapshot_version: int = 1
+    snapshot_version: int = 2
     health: str
     received_at: str
     instance_id: str | None = None
     scenario_id: str | None = None
     sim_time_us: int | None = None
+    sim: SimStatus = Field(default_factory=SimStatus)
     errors: list[str] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
     svc_meta: SvcMetaStatus = Field(default_factory=SvcMetaStatus)
@@ -239,6 +299,9 @@ class Snapshot(BaseModel):
     services: list[Service] = Field(default_factory=list)
     flows: list[Flow] = Field(default_factory=list)
     linkLoads: list[LinkLoad] = Field(default_factory=list)
+    riskLinks: list[LinkRisk] = Field(default_factory=list)
+    riskSummary: RiskSummary = Field(default_factory=RiskSummary)
+    overallStatus: OverallStatus = Field(default_factory=OverallStatus)
     events: list[dict] = Field(default_factory=list)
     events_cursor: int = 0
     last_success_at: str | None = None

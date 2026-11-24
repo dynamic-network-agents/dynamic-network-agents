@@ -1,0 +1,4 @@
+# 修改记录
+
+- 修改日期：2026-11-24
+- 修改内容：Work Bench「期 1」前端改版。按 `docs/work_bench/B03_Network_Workbench_UI_设计说明.md` 重排信息架构：`App.tsx` 从 622 行单文件拆为外壳 + `components/`（Sidebar / TopBar / KpiCards / TopologyPanel / DiagnosticsPanel / CriticalServicesTable / LinkLoadTable / EventTimeline / DetailDrawer / DataInspector / RepathPanel）与 `lib/`（format / derive / selection），删除 `ServiceDetail.tsx`。新增 5 张 KPI（在线节点、活动链路、测试业务、风险链路、整体状态）；拓扑支持节点形状分类型、风险红色虚线、路径高亮、类型过滤、只看风险、点选下钻与缺坐标标注；右侧诊断栏给出分分类达标率、需求侧热点 Top 5、风险链路；抽屉支持 Service / Flow / Link / Node 四类对象并可互相跳转；原始 JSON 移入默认折叠的「数据检查」。样式重写为设计 token（浅灰蓝底、白卡片、深海军蓝侧栏），补 1600/1280/900 断点、focus-visible 与 reduced-motion。新增 `backend/tests/test_readonly_surface.py` 收口 A-07：前端仅 `api.ts` 一处 POST、禁止仿真控制接口、后端写调用仅 `set_service_path`、令牌名不进前端、repath 403 开关。验证：`pnpm build` 通过（JS 191.5kB / gzip 61.5kB），离线后端同源托管 `GET /` 200 且快照字段正常，后端 85 passed / 1 skipped。文档同步 P0–P3 §11.2、可行性分析期 1 状态、README 目录结构与 `work_bench/CLAUDE.md`。

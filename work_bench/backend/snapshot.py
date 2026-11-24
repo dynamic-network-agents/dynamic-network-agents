@@ -1,7 +1,12 @@
 """统一 Network Snapshot 聚合（pydantic 契约版）。
 
-一次采集 topo + links(分页取全) + services(分页取全 + 详情) + events(增量) + time，
-输出可校验的 `Snapshot` 模型。所有子采集失败均被隔离，不会导致整次快照失败。
+一次采集 topo + links(分页取全) + services(分页取全 + 详情) + events(增量) + time
++ run-info(控制面运行态)，输出可校验的 `Snapshot` 模型。所有子采集失败均被隔离，
+不会导致整次快照失败。
+
+派生分析（在采集层一次算清，前端只展示不重算）：
+- Flow 聚合、链路需求侧负载、静态 QoS；
+- 风险链路（规则 A）/ 整体状态（规则 B），口径见 `analysis/risk.py`。
 
 数据健康（企划书 4.4）：
 - live          最近一次采集成功且数据在新鲜窗口内
@@ -19,13 +24,26 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import Callable, Optional
 
-from .analysis import METRICS, build_flows, build_link_loads, check_static, compose_qos
+from .analysis import (
+    METRICS,
+    build_flows,
+    build_link_loads,
+    build_link_risks,
+    build_overall_status,
+    build_risk_summary,
+    check_static,
+    compose_qos,
+)
 from .models import (
     Link,
+    LinkRisk,
     Node,
+    OverallStatus,
     Pagination,
     ResourcePage,
+    RiskSummary,
     Service,
+    SimStatus,
     Snapshot,
     SvcMetaStatus,
 )
@@ -55,6 +73,7 @@ class Outcome:
     warnings: list[str] = field(default_factory=list)
     ok: dict[str, bool] = field(default_factory=dict)
     svc_meta: SvcMetaStatus = field(default_factory=SvcMetaStatus)
+    sim: SimStatus = field(default_factory=SimStatus)
     pagination: Pagination = field(default_factory=Pagination)
 
 
@@ -68,6 +87,7 @@ class Collector:
         detail_workers: int = 8,
         detail_ttl: float = 4.0,
         svcmeta_enabled: bool = True,
+        runinfo_enabled: bool = True,
         stale_after_s: float = 6.0,
         page_size: int = 500,
         max_pages: int = 20,
@@ -81,6 +101,7 @@ class Collector:
         self.detail_workers = detail_workers
         self.detail_ttl = detail_ttl
         self.svcmeta_enabled = svcmeta_enabled
+        self.runinfo_enabled = runinfo_enabled
         self.stale_after_s = stale_after_s
         self.page_size = page_size
         self.max_pages = max_pages
@@ -98,6 +119,9 @@ class Collector:
         self._prev: dict[str, list] = {}
         self._last_ok_at: dict[str, float] = {}
         self._last_success_iso: Optional[str] = None
+        # 最近一次构建的快照：供 /api/flow-candidates 之类的只读二次查询复用，
+        # 避免为了算候选可行性再触发一轮上游采集。
+        self._last_snapshot: Optional[Snapshot] = None
 
     # ------------------------------------------------------------------ 对外
     def snapshot(self) -> Snapshot:
@@ -106,6 +130,11 @@ class Collector:
                 return self._offline_snapshot()
             return self._live_snapshot()
 
+    def latest(self) -> Optional[Snapshot]:
+        """最近一次构建的快照（不发上游请求）；尚未采集时返回 None。"""
+        with self._lock:
+            return self._last_snapshot
+
     # ------------------------------------------------------------------ 实时
     def _live_snapshot(self) -> Snapshot:
         now = self.clock()
@@ -113,6 +142,7 @@ class Collector:
             self.client,
             bg_category=self.bg_category,
             svcmeta_enabled=self.svcmeta_enabled,
+            runinfo_enabled=self.runinfo_enabled,
             events_cursor=self.events_cursor,
             detail_workers=self.detail_workers,
             detail_cache=self._detail_cache,
@@ -143,12 +173,15 @@ class Collector:
 
         links_by_id = {str(l["linkId"]): l for l in parts["links"] if l.get("linkId")}
         _enrich_static_services(parts["services"], links_by_id)
+        # R3 劣化基线必须是「上一次成功采集」的链路参数，所以先取再更新缓存
+        prev_links = list(self._prev.get("links") or [])
         for res in CORE_RESOURCES:
             if outcome.ok.get(res):
                 self._prev[res] = parts[res]
 
         flows = build_flows(parts["services"], parts["topology"], parts["links"])
         link_loads = build_link_loads(parts["links"], flows, parts["services"])
+        risks = build_link_risks(parts["links"], link_loads, prev_links)
 
         ages: list[float] = []
         for res in CORE_RESOURCES:
@@ -189,12 +222,18 @@ class Collector:
         self.last_instance_id = outcome.instance_id or self.last_instance_id
         self.last_scenario_id = outcome.scenario_id or self.last_scenario_id
 
-        return Snapshot(
+        risk_summary = build_risk_summary(
+            risks, links_ok=bool(outcome.ok.get("links")), health=health
+        )
+        overall = build_overall_status(health, risks, parts["services"])
+
+        snap = Snapshot(
             health=health,
             received_at=_iso_now(),
             instance_id=self.last_instance_id,
             scenario_id=self.last_scenario_id,
             sim_time_us=outcome.sim_time_us,
+            sim=outcome.sim,
             errors=outcome.errors,
             warnings=outcome.warnings,
             svc_meta=outcome.svc_meta,
@@ -204,12 +243,17 @@ class Collector:
             services=[Service.model_validate(s) for s in parts["services"]],
             flows=flows,
             linkLoads=link_loads,
+            riskLinks=[LinkRisk.model_validate(r) for r in risks],
+            riskSummary=RiskSummary.model_validate(risk_summary),
+            overallStatus=OverallStatus.model_validate(overall),
             events=list(self.events_buffer),
             events_cursor=self.events_cursor,
             last_success_at=self._last_success_iso,
             data_age_s=data_age,
             stale_resources=stale_resources,
         )
+        self._last_snapshot = snap
+        return snap
 
     # ------------------------------------------------------------------ 离线
     def _offline_snapshot(self) -> Snapshot:
@@ -231,13 +275,14 @@ class Collector:
         ]
         flows = build_flows(service_dicts, scene.get("nodes") or [], scene.get("links") or [])
         link_loads = build_link_loads(scene.get("links") or [], flows, service_dicts)
-        return Snapshot(
+        snap = Snapshot(
             health="offline",
             offline=True,
             received_at=_iso_now(),
             instance_id=None,
             scenario_id=scene.get("scenarioId") or None,
             sim_time_us=None,
+            sim=SimStatus(status="unknown", error="offline"),
             errors=[],
             warnings=["离线模式：数据来自 net-topo.json / bg-service.json，非当前运行状态"],
             svc_meta=SvcMetaStatus(enabled=False, ok=False, count=0, error="offline"),
@@ -251,11 +296,18 @@ class Collector:
             services=[Service.model_validate(s) for s in service_dicts],
             flows=flows,
             linkLoads=link_loads,
+            riskLinks=[],
+            riskSummary=RiskSummary(unknown=True, note="离线模式：无实时链路数据"),
+            overallStatus=OverallStatus.model_validate(
+                build_overall_status("offline", [], [])
+            ),
             events=[],
             events_cursor=0,
             last_success_at=None,
             data_age_s=None,
         )
+        self._last_snapshot = snap
+        return snap
 
 
 # ---------------------------------------------------------------------- 静态 QoS
@@ -294,6 +346,7 @@ def _build(
     *,
     bg_category: dict[str, str],
     svcmeta_enabled: bool,
+    runinfo_enabled: bool,
     events_cursor: int,
     detail_workers: int,
     detail_cache: dict[str, dict],
@@ -338,6 +391,9 @@ def _build(
     # 4) 业务分类（实时 svc-meta，失败退离线映射）
     live_category, svc_meta = _load_svc_meta(client, svcmeta_enabled)
     out.svc_meta = svc_meta
+
+    # 4.5) 仿真运行态（控制面；失败只记 sim.error，不算核心资源失败）
+    out.sim = _load_sim_status(client, runinfo_enabled)
 
     # 5) 业务列表（分页取全）+ 详情
     svc_list: list[dict] = []
@@ -409,17 +465,71 @@ def _build(
     )
     out.links = links
 
-    # 8) 实例/场景（事件不含 suiteId，从事件 payload 提取）
-    out.instance_id = last_instance_id
-    out.scenario_id = last_scenario_id
-    for evt in out.events:
-        payload = evt.get("payload") or {}
-        if payload.get("instanceId"):
-            out.instance_id = payload["instanceId"]
-        if payload.get("scenarioId"):
-            out.scenario_id = payload["scenarioId"]
+    # 8) 实例/场景：run-info 是权威来源；拿不到时才退回事件 payload / 上一轮
+    out.instance_id = out.sim.instanceId or last_instance_id
+    out.scenario_id = out.sim.scenarioId or last_scenario_id
+    if not (out.sim.instanceId and out.sim.scenarioId):
+        for evt in out.events:
+            payload = evt.get("payload") or {}
+            if not out.instance_id and payload.get("instanceId"):
+                out.instance_id = payload["instanceId"]
+            if not out.scenario_id and payload.get("scenarioId"):
+                out.scenario_id = payload["scenarioId"]
 
     return out
+
+
+def _str_or_none(value) -> Optional[str]:
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text or None
+
+
+def _int_or_none(value) -> Optional[int]:
+    if isinstance(value, bool) or value is None or value == "":
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _load_sim_status(client: SimulatorClient, enabled: bool) -> SimStatus:
+    """拉 run-info → SimStatus；失败保留 `status=unknown` 并记原因，不伪造运行态。"""
+    if not enabled:
+        return SimStatus(status="unknown", error="disabled")
+    if not callable(getattr(client, "get_run_info", None)):
+        return SimStatus(status="unknown", error="client 不支持 run-info")
+    try:
+        data = client.get_run_info()
+    except SimulatorError as exc:
+        return SimStatus(status="unknown", error=f"{exc.code}: {exc.msg}")
+
+    engine = data.get("engine") or {}
+    services = data.get("services") or {}
+    states: dict[str, int] = {}
+    for key, value in (services.get("states") or {}).items():
+        if isinstance(value, int) and not isinstance(value, bool):
+            states[str(key)] = value
+    no_business = data.get("noBusiness")
+    return SimStatus(
+        status=_str_or_none(data.get("status")) or "unknown",
+        instanceId=_str_or_none(data.get("instanceId")),
+        suiteId=_str_or_none(data.get("suiteId")),
+        scenarioId=_str_or_none(data.get("scenarioId")),
+        scriptId=_str_or_none(data.get("scriptId")),
+        t0Time=_str_or_none(data.get("t0Time")),
+        t0TsUs=_int_or_none(data.get("t0TsUs")),
+        netReadyTsUs=_int_or_none(data.get("netReadyTsUs")),
+        engineState=_str_or_none(engine.get("state")),
+        engineFired=_int_or_none(engine.get("fired")),
+        engineTotal=_int_or_none(engine.get("total")),
+        servicesRunning=_int_or_none(services.get("running")),
+        serviceStates=states,
+        joinError=_str_or_none(services.get("joinError")),
+        noBusiness=no_business if isinstance(no_business, bool) else None,
+    )
 
 
 def _load_svc_meta(
