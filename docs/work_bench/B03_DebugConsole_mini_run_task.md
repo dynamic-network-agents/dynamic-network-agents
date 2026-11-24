@@ -11,7 +11,7 @@
 1. 画出 topo 图 → 用 `/topology` 真实坐标画 2D 拓扑，节点按类型/在线态、链路按 up/down 着色。
 2. 表格列出节点 → `/topology` 的 nodes（含 position/status）。
 3. 表格列出链路 → `/links` 的 links（**含 5 项参数**，`/topology` 的 links 不带 params，必须用 `/links`）。
-4. 展示业务（背景 + 测试），列出参数和路径 → 公开 API 无 `category`，靠离线 `bg-service.json` 映射；未匹配标 `unknown`。
+4. 展示业务（背景 + 测试），列出参数和路径 → 公开 API 无 `category`；**V1.2 起优先取实时 `GET /api/ctrl/v1/svc-meta`**（`categorySource=simulator`），失败才退回离线 `bg-service.json`（`offline_mapping`），都没有标 `unknown`。
 5. 展示事件 → `GET /events?sinceTsUs={游标}` 增量读。
 6. 接口实时获取，1–2s 刷新 → 前端每 2s 轮询统一快照 `GET /api/snapshot`。
 7. 提供更改 service 功能 → `POST /api/repath`（唯一写白名单），候选路径取自离线 `service-paths.json`。
@@ -21,10 +21,11 @@
 ## 2. 硬约束（含调试例外）
 
 - 后端只调用仿真器 GET；**唯一例外**：`POST /services/{serviceId}/path`，仅经 `POST /api/repath` 转发，作为调试写通道。
-- 全项目仅此一个写接口；`/api/repath` 之外的任何 POST 均禁止。
-- Token 只读自 `SIM_TOKEN` 环境变量或 `SIM_TOKEN_FILE`（或 `run.sh` 从 `simulator/conf/gateway.json` 读取），**不进前端、不进日志、不入代码/提交**。
-- 默认绑定 `127.0.0.1`。
-- 写操作必须明确提示「改一条业务 = 改整条 flow，影响同源目的的其他业务」。
+- 全项目仅此一个写接口；`/api/repath` 之外的任何 POST 均禁止。`WORKBENCH_ALLOW_REPATH=0` 时该接口返回 403（默认开启便于调试；正式录分时应置 0）。
+- **观测通道不污染 agent 统计**：默认用 ctrl 令牌（`X-Ctrl-Token`，仿真器前端同款）调 `/api/open/v1`，请求落 `front_stat`；只有显式 `SIM_AUTH=open` 才用公开令牌（会写进 `call_stat`，即 agent 统计台账）。
+- Token 只读自 `SIM_CTRL_TOKEN` / `SIM_TOKEN` / `SIM_TOKEN_FILE`（或 `run.sh` 从 `simulator/conf/gateway.json` 读取），**不进前端、不进日志、不入代码/提交**；禁止静默降级到公开令牌。
+- 默认绑定 `127.0.0.1`；服务器部署经 SSH 隧道访问。
+- 写操作必须明确提示「改一条业务 = 改整条 flow，影响同源目的的其他业务」，并在响应里提示该操作会被记为 `source=agent` 的 path 事件。
 
 ---
 

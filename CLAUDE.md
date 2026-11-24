@@ -50,8 +50,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `configs/` | 全局配置（`app.yaml` / `simulator.yaml` / `qos.yaml` / `llm.yaml`） |
 | `tests/` | 集成测试与端到端测试（`integration/`、`e2e/`）；单元测试在 `src/*/tests/` 下跟随被测模块 |
 | `experiments/` | 实验记录 + 问题清单（手工版）：`README.md` 工作流、`index.md` 编号登记、`exp/EXP-*.md`、`iss/ISS-*.md` |
-| `work_bench/` | B03 Work Bench 调试控制台（只读观测/诊断工作台）子项目，独立于 `src/`；当前仅 `README.md` + `CLAUDE.md`，工程代码未创建。工作约束见该目录 `CLAUDE.md` |
-| `docs/work_bench/` | Work Bench 规划文档（评审企划书、任务拆分） |
+| `work_bench/` | B03 Work Bench 调试控制台（只读观测/诊断工作台）子项目，独立于 `src/`；已实现最小可运行版（观测走 ctrl 令牌，不进 agent 调用统计）。工作约束见该目录 `CLAUDE.md` |
+| `docs/work_bench/` | Work Bench 文档（评审企划书、任务拆分、端口令牌与服务器部署口径） |
 | `.claude/`、`.vscode/` | 最小化编辑器/权限配置 |
 
 - 无关的兄弟项目 `../react/my-app`（React，有独立 CLAUDE.md）不属于本赛题。
@@ -60,7 +60,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 技术栈
 
 - 智能体热路径：Python 3.12 + NetworkX（图建模、K-最短路径）
-- 接入：HTTP + JSON 公开 API（`http://{IP}:10100/api/open/v1`，头 `X-Open-Token`）；LLM 经 eval 代理 `:10110/v1`（OpenAI 兼容）
+- 接入：HTTP + JSON 公开 API（`http://{IP}:10100/api/open/v1`，头 `X-Open-Token`，也接受 `X-Ctrl-Token`）；LLM 经 eval 代理 `:10110/v1`（OpenAI 兼容）
 - 运行：Docker Compose（`netsim` / `servicesim` tx,rx / `eval`）；本机 Mac 用 Rosetta 跑 linux/amd64 镜像
 
 ## 运行环境
@@ -72,6 +72,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **路径是 flow 级不是 service 级**：`_flow_for(src,dst)` 按 src/dst IP 键控，同对 UAV 业务共用一条路径。API 不按 `category` 过滤，`background` 业务也可重路由。
 - **公开 API 无 `category` 字段**（自测核实）：test/background 分层只在内部 `/api/ctrl/v1/svc-meta`（需 ctrlToken，公开 token 拿不到）。业务详情仅含 `requirement`/`path`/`actual`（`qosMeet` 布尔）/`priority`/`status`。MVP 统一保护所有 running 业务，暂不区分 test/background。
+- **观测调用分两本账**：带 `X-Open-Token` → `llm_gateway_call_stat.log`（`GET /api/ctrl/v1/agent-calls` 读的就是它，即 agent 调用统计）；带 `X-Ctrl-Token` 或不带 → `llm_gateway_front_stat.log`。`/api/open/v1` 的 GET/POST 都接受 ctrl 令牌（`_auth_query`/`_auth`），所以工作台用 ctrl 令牌调公开接口可做到"语义不变、不进 agent 统计"。**唯一例外是改路径**：`path_event_stat.log` 硬编码 `source='agent'`，任何令牌都躲不开，只能靠 `WORKBENCH_ALLOW_REPATH=0` 关闭（详见 `docs/work_bench/B03_Workbench_端口令牌与服务器部署.md`）。
 - **`/topology` 的 links 不带 `params`**：链路 5 项 QoS 参数只出现在 `GET /links` 列表；构图必须用 `get_links()` 而非 `get_topology()["links"]`，否则参数全为 0。
 - **`node_move` 当前是失效的**：两处缺陷——脚本 `attrs` 用 `fromX/fromY/toX/toY`，而 `_move_start` 读 `from`/`to` 对象（不匹配→零位移）；`conf/linkTypes.json` 缺 `losMeters`（读作 0→"无 LOS，移动被忽略"）。`conf/` 从宿主机 bind-mount，所以修复要改 `simulator/conf/linkTypes.json`。
 - **EXT001 不是业务端点**：它是合成的"外部引接点"（1Gbps 光纤连第一个地面节点），满足实验模型，标准业务路径永不穿越它，`packetsFwd` 恒为 0。`gateway.json` 的 `extraLinkIds` 是**并行链路 labKey→linkId 稳定 ID 映射**，不是"排除表"；EXT001 按 nodeId（`EXT001`）剔除。
@@ -103,5 +104,5 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 运维 runbook：`simulator/README.md`、`mac-docker-trial/README.md`、`simulator/docker/eval/readme.md`（两个 LLM/模型选型评分要求）。
 - **仿真器源码副本**：`sim_src/README.md`（来源、体量、排除项、刷新方式）、`sim_src/CLAUDE.md`（检索口径、核心入口、硬约束）。
 - **仿真器会话整理版**：`docs/simulator/仿真器相关.md`（架构/端口/部署、netem+tbf 落地细节、Mac 控制面超时、路径/QoS、光纤瓶颈画像、源码地图）。
-- **Work Bench 调试控制台**：`work_bench/CLAUDE.md`（工作约束与口径）、`work_bench/README.md`（概览）、`docs/work_bench/B03_调试控制台企划书.md`（评审与 V1.1 建议）、`docs/work_bench/B03_DebugConsole_task_split.md`（任务拆分，权威来源）。
+- **Work Bench 调试控制台**：`work_bench/CLAUDE.md`（工作约束与口径）、`work_bench/README.md`（概览/部署）、`docs/work_bench/B03_调试控制台企划书.md`（评审与 V1.1 建议）、`docs/work_bench/B03_DebugConsole_task_split.md`（任务拆分，权威来源）、`docs/work_bench/B03_DebugConsole_mini_run_task.md`（最小可运行版）、`docs/work_bench/B03_DebugConsole_P0-P3任务分析.md`（P0–P3 任务/状态/验收）、`docs/work_bench/B03_Workbench_端口令牌与服务器部署.md`（端口/令牌/记账/SSH 隧道）。
 - **研发记录**：`docs/experiments/现阶段方案.md`（手工版方案 + 演进路线）、`docs/experiments/研发记录系统建设企划书.md`（完整工具化设想）、`docs/experiments/实验记录模板.md`、`docs/experiments/问题清单模板.md`；日常操作手册 `experiments/README.md`。

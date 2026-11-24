@@ -54,3 +54,42 @@ def load_candidate_paths(path: str) -> dict[str, list[dict]]:
             )
         result[str(sid)] = paths
     return result
+
+
+def load_scene(path: str) -> dict:
+    """net-topo.json → {scenarioId, nodes, links}；文件缺失/异常返回空结构。
+
+    离线模式（WORKBENCH_OFFLINE=1）只用它做拓扑展示；字段与实时 API 对齐
+    （nodes: nodeId/name/nodeType/ip/mask/position；links: linkId/linkType/src/dst/params）。
+    """
+    if not path:
+        return {}
+    p = Path(path)
+    if not p.exists():
+        return {}
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    return {
+        "scenarioId": data.get("scenarioId", ""),
+        "nodes": data.get("nodes") or [],
+        "links": data.get("links") or [],
+    }
+
+
+def load_bg_services(path: str) -> list[dict]:
+    """bg-service.json → 业务列表（离线模式展示用，无 actual）。"""
+    if not path:
+        return []
+    p = Path(path)
+    if not p.exists():
+        return []
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    items = data if isinstance(data, list) else data.get("services", [])
+    return [item for item in items or [] if isinstance(item, dict) and item.get("serviceId")]

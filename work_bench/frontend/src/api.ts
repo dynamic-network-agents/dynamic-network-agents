@@ -29,6 +29,7 @@ export interface RepathResult {
   effectiveTime?: string;
   effectiveTsUs?: number;
   envelope?: unknown;
+  warning?: string;
 }
 
 export async function postRepath(body: {
@@ -43,7 +44,19 @@ export async function postRepath(body: {
     body: JSON.stringify(body),
   });
   if (!resp.ok) {
-    return { ok: false, code: resp.status, msg: `repath HTTP ${resp.status}` };
+    // 403（写开关关闭）等：后端 detail 里有可读原因
+    let detail = "";
+    try {
+      const body = (await resp.json()) as { detail?: unknown };
+      if (typeof body.detail === "string") detail = body.detail;
+    } catch {
+      /* 非 JSON 响应，保留状态码即可 */
+    }
+    return {
+      ok: false,
+      code: resp.status,
+      msg: detail || `repath HTTP ${resp.status}`,
+    };
   }
   return (await resp.json()) as RepathResult;
 }

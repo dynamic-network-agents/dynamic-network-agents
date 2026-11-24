@@ -189,3 +189,78 @@ tr.running td {
   white-space: pre-wrap;
   font-size: 11px;
 }
+
+/* 总览指标条 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stat {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat b {
+  font-size: 20px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat small {
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* 业务详情 */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px 16px;
+  margin-bottom: 8px;
+}
+
+.detail-grid > div {
+  font-size: 12px;
+}
+
+.panel h3 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  color: #334155;
+}
+
+/* 表格内的可点击文本 */
+.linkbtn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #1d4ed8;
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.linkbtn:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 1px;
+}
+
+tr.selected td {
+  background: #e0f2fe;
+}
+
+@media (max-width: 720px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
