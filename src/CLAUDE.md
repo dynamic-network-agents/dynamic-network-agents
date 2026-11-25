@@ -50,9 +50,20 @@
 
 ## 热路径：确定性算法 + LLM 冷路径
 
-- 重路由热路径（`baseline/reroute_loop.py` 的 `Orchestrator.step` → `optimize_flow`）用确定性算法：K-最短路径 → `compose_qos` 静态合成 → `check_qos` 硬过滤 → `path_cost` 代价排序。LLM 只做解释/优先级增强，**不直接生成链路**。
-- 当前 MVP 策略（`reroute_loop.py`）：仅在「路径失效（断链/节点下线）或静态 QoS 违约」时重路由，**不做主动寻优**；状态更新是「事件触发 → 全量重拉 → 重建图」。
-- `optimize_flow` 默认 `k=30`；无可行路径返回 `None`（`reroute_loop` 记 warning 并跳过该 flow，不崩）。
+- 重路由热路径（`baseline/reroute_loop.py` 的 `Orchestrator.step` → `algorithms.flow_planner.plan`）用确定性算法：K-最短路径 → `compose_qos` 静态合成 → `check_qos` 硬过滤 → 方向容量贪心 + 局部搜索。LLM 只做解释/优先级增强，**不直接生成链路**。
+- **闭环是 epoch 状态机**（`reroute_loop.py`，口径见 `docs/agents/传统基线选路方案.md` §5.6–§5.10）：
+  - 一次 epoch = 冻结快照 + 一次规划 + 一个下发批 + 静置校验；**批内不重算**；
+  - **规划器是纯函数**（输出只看 flows/graph/config，不看已装路径）；下发是增量：拿 `plan` 与
+    `installed` 做差集，且只有「修复失效路径」或「加权达标数增益 ≥ Δmin」才下发；
+  - 只认可行动事件（`link_state_changed`/`node_state_changed`/业务非 running），**必须过滤自己下发产生的 `service_state_changed(pathChanged=true, running)`**，否则自激成死循环；
+  - 收敛判据：`plan - installed = ∅`（可证明）+ 可达集上预测=实测连续 H 窗；**F1/F2 不入判据**（物理不可达，否则永不收敛）。
+- 规划器选项（`PlanConfig`）：`rho`（摆放裕度，默认 0.2）、`meet_util`（预测达标阈值，默认 1.0）、
+  `excluded_paths`（实测违约路径惩罚集）。注意 `rho` 与 `meet_util`
+  是两个不同阈值，勿混用。
+- 闭环常量在 `configs/app.yaml`（`reroute_min_gain` / `settle_sec` / `verify_windows` /
+  `corrective_rounds` / `trigger_settle_sec` / `heartbeat_sec` / `min_switch_interval_sec` /
+  `batch_pace_sec` / `max_batches_per_run`），默认值为建议值，待实验标定。
+- `optimize_flow`（`algorithms/optimize.py`）是早期单 flow 选路，**已不在闭环里**，仅保留做离线对比（T3.2）。
 
 ## 待核对事项（写代码前勿自行拍板，需对照仿真器/接口实测）
 

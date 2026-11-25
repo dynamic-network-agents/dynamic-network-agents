@@ -33,8 +33,20 @@ def main() -> None:
     config = OrchestratorConfig(
         k=app.get("k_shortest_paths", 30),
         poll_interval=app.get("poll_interval_sec", 1.0),
+        event_page_limit=app.get("event_page_limit", 100),
         excluded_node_ids=set(sim.get("excluded_node_ids", ["EXT001"])),
         weights=qos.get("link_cost_weights"),
+        plan_rho=app.get("bandwidth_headroom", 0.2),
+        delta_min=app.get("reroute_min_gain", 2.0),
+        settle_s=app.get("settle_sec", 10.0),
+        verify_windows=app.get("verify_windows", 5),
+        verify_votes=app.get("verify_votes", 3),
+        corrective_rounds=app.get("corrective_rounds", 1),
+        trigger_settle_s=app.get("trigger_settle_sec", 3.0),
+        measured_check_interval_s=app.get("heartbeat_sec", 60.0),
+        switch_min_interval_s=app.get("min_switch_interval_sec", 10.0),
+        pace_s=app.get("batch_pace_sec", 0.1),
+        max_batches_per_run=app.get("max_batches_per_run", 60),
     )
     Orchestrator(client, config).run()
 

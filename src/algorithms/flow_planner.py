@@ -10,6 +10,12 @@
 
 分配顺序：F3 按权重降序先占位（高优先级先）；纯背景 flow 后填位（least-contention）；
 F1/F2 只给一条静态可行路径（不投入容量优化）。
+
+**规划器是纯函数**：输出只取决于 `(flows, graph, config)`，不看"当前已装路径"。
+这样同一份快照重算两次必然得到同一结果；闭环把"要不要下发"交给调用方的
+Δscore 闸门（`baseline.reroute_loop`），而不是让规划器去猜稳定性。实测：
+把 incumbent 喂进贪心（现状优先）在 big 场景上既更差也不稳定（sce05 592→384），
+因此不采用。
 """
 from __future__ import annotations
 
@@ -25,9 +31,8 @@ from algorithms.capacity import (
     capacity_map,
     directional_demand,
     fits,
-    max_utilization,
 )
-from algorithms.graph import node_path_to_link_ids
+from algorithms.graph import node_path_to_link_ids, validate_path
 from algorithms.k_shortest_paths import k_shortest_paths
 from math_modeling.flow import flow_requirement, flow_weight, service_is_test
 from math_modeling.link_quality import path_cost
@@ -66,6 +71,8 @@ class PlanConfig:
     local_search: bool = True
     ls_rounds: int = 10
     meet_util: float = 1.0          # 预测达标阈值：自身方向最大利用率 ≤ 该值
+    # 实测违约过的路径：flow_key -> {路径元组}，规划时剔除（无其它候选时回退）
+    excluded_paths: dict[tuple[str, str], set[tuple[str, ...]]] = field(default_factory=dict)
 
 
 @dataclass
@@ -145,20 +152,73 @@ def classify_flow(
     return FlowClass.F3
 
 
+def normalize_path(
+    graph: nx.MultiGraph,
+    flow_key: tuple[str, str],
+    path: list[str] | tuple[str, ...] | None,
+) -> list[str] | None:
+    """把路径归一化成 `flow_key[0] → flow_key[1]` 方向；不连续/链路缺失返回 None。
+
+    仿真器存的 flow 路径方向取决于最后一次提交的顺序，可能与本端约定相反；
+    容量记账（`directional_demand`）要求路径从 `flow_key[0]` 起步，故先归一化。
+    """
+    if not path:
+        return None
+    p = list(path)
+    if not validate_path(graph, p, flow_key[0], flow_key[1]):
+        return p
+    if not validate_path(graph, p[::-1], flow_key[0], flow_key[1]):
+        return p[::-1]
+    return None
+
+
 def _candidates(
     graph: nx.MultiGraph,
     flow_key: tuple[str, str],
     requirement: Requirement,
     cfg: PlanConfig,
 ) -> list[list[str]]:
-    scored: list[tuple[float, list[str]]] = []
-    for node_path in k_shortest_paths(graph, flow_key[0], flow_key[1], cfg.k):
-        link_ids = node_path_to_link_ids(graph, node_path)
-        if not check_qos(compose_qos(link_ids, graph), requirement).feasible:
-            continue
-        scored.append((path_cost(link_ids, graph, cfg.weights), link_ids))
-    scored.sort(key=lambda x: x[0])
-    return [p for _, p in scored]
+    excluded = cfg.excluded_paths.get(flow_key) or set()
+
+    def build(skip: set[tuple[str, ...]]) -> list[list[str]]:
+        scored: list[tuple[float, list[str]]] = []
+        for node_path in k_shortest_paths(graph, flow_key[0], flow_key[1], cfg.k):
+            link_ids = node_path_to_link_ids(graph, node_path)
+            if tuple(link_ids) in skip:
+                continue
+            if not check_qos(compose_qos(link_ids, graph), requirement).feasible:
+                continue
+            scored.append((path_cost(link_ids, graph, cfg.weights), link_ids))
+        scored.sort(key=lambda x: x[0])
+        return [p for _, p in scored]
+
+    cands = build(excluded)
+    if not cands and excluded:
+        # 排除后无候选（例如该 flow 只有一条可行路）：忽略惩罚兜底，
+        # 否则 flow 会彻底失去路径，比走一条实测违约的路更糟。
+        cands = build(set())
+    return cands
+
+
+def _local_util(
+    plan: FlowPlan,
+    cand: list[str],
+    load: dict[DirKey, int],
+    cap: dict[str, int],
+    graph: nx.MultiGraph,
+) -> float:
+    """候选路径**自身**各方向上的最大利用率（叠加当前 load）。
+
+    口径：只看该候选经过的链路方向。用全局最大值会在「存在不可避瓶颈」时让
+    所有候选并列（都等于那个瓶颈的利用率），使 least-contention 退化成「取第一条」。
+    """
+    d = directional_demand(plan.flow_key[0], plan.services, cand, graph)
+    best = 0.0
+    for (lid, _sign), v in d.items():
+        c = cap.get(lid, 0)
+        if c > 0:
+            best = max(best, (load.get((lid, _sign), 0) + v) / c)
+    return best
 
 
 def _least_contention(
@@ -168,21 +228,23 @@ def _least_contention(
     cap: dict[str, int],
     cfg: PlanConfig,
 ) -> list[str] | None:
-    """在静态可行候选里选「最大链路利用率最小」的路径；优先能装下的。"""
-    fitting: list[tuple[list[str], float]] = []
-    fallback: list[tuple[list[str], float]] = []
+    """在静态可行候选里选「自身方向最大利用率最小」的路径；优先能装下的。
+
+    口径修正（2026-11-25）：原来用全网最大利用率，只要网上存在一条不可避瓶颈，
+    所有候选就并列成同一个值，退化成「取第一条」。现在只看候选自身链路方向。
+    """
+    fitting: list[tuple[float, list[str]]] = []
+    fallback: list[tuple[float, list[str]]] = []
     for cand in plan.candidates:
+        u = _local_util(plan, cand, load, cap, graph)
+        fallback.append((u, cand))
         d = directional_demand(plan.flow_key[0], plan.services, cand, graph)
-        trial = dict(load)
-        add_load(trial, d)
-        u = max_utilization(trial, cap)
-        fallback.append((cand, u))
         if fits(d, load, cap, cfg.rho):
-            fitting.append((cand, u))
+            fitting.append((u, cand))
     pool = fitting or fallback
     if not pool:
         return None
-    return min(pool, key=lambda x: x[1])[0]
+    return min(pool, key=lambda x: x[0])[1]
 
 
 def _place(
@@ -193,10 +255,10 @@ def _place(
     cfg: PlanConfig,
 ) -> list[str] | None:
     if plan.cls.hard or plan.weight == 0:
-        # F1/F2（硬失败）与纯背景：least-contention，尽量不挤占 test 链路
+        # F1/F2（物理无解）与纯背景：least-contention，尽量不挤占 test 链路
         return _least_contention(plan, graph, load, cap, cfg)
 
-    # F3 test flow：第一个方向容量装得下的候选（按代价升序）
+    # F3 test flow：第一个方向容量装得下的候选（现状在首位，故「能留就留」）
     for cand in plan.candidates:
         d = directional_demand(plan.flow_key[0], plan.services, cand, graph)
         if fits(d, load, cap, cfg.rho):
@@ -226,6 +288,8 @@ def _service_util(
     graph: nx.MultiGraph,
 ) -> float:
     """单条业务自身方向上的最大链路利用率（只看该业务方向，不含同 flow 反向背景）。"""
+    if not plan.path:
+        return float("inf")     # 无路径 → 不可能达标
     d = directional_demand(plan.flow_key[0], [service], plan.path, graph)
     best = 0.0
     for key in d:
@@ -235,7 +299,7 @@ def _service_util(
     return best
 
 
-def _flow_meets(
+def flow_meets(
     plan: FlowPlan,
     load: dict[DirKey, int],
     cap: dict[str, int],
@@ -263,7 +327,7 @@ def _score(
     for p in plans.values():
         if p.cls.hard or p.weight == 0 or not p.path:
             continue
-        if _flow_meets(p, load, cap, graph, meet_util):
+        if flow_meets(p, load, cap, graph, meet_util):
             s += p.weight
     return s
 
@@ -282,7 +346,7 @@ def local_search(
         for p in plans.values():
             if p.cls.hard or p.weight == 0 or not p.path:
                 continue
-            if _flow_meets(p, load, cap, graph, cfg.meet_util):
+            if flow_meets(p, load, cap, graph, cfg.meet_util):
                 continue
             old = p.path
             best_cand: list[str] | None = None
@@ -318,12 +382,55 @@ def plan_score(
     return _score(plans, load, cap, graph, cfg.meet_util)
 
 
+def score_with_paths(
+    plans: dict[tuple[str, str], FlowPlan],
+    graph: nx.MultiGraph,
+    paths: dict[tuple[str, str], list[str] | None],
+    config: PlanConfig | None = None,
+) -> float:
+    """按给定路径映射评估加权达标数（用于与「当前已装路径」对比得 Δscore）。
+
+    `paths` 里缺失/失效（链路已断、不连续）的 flow 按「无路径」计，不抛异常。
+    """
+    cfg = config or PlanConfig()
+    cap = capacity_map(graph)
+    saved = {k: p.path for k, p in plans.items()}
+    try:
+        for k, p in plans.items():
+            raw = paths.get(k)
+            p.path = normalize_path(graph, k, raw) if raw else None
+        load = _recompute_load(plans, graph)
+        return _score(plans, load, cap, graph, cfg.meet_util)
+    finally:
+        for k, p in plans.items():
+            p.path = saved[k]
+
+
+def predicted_meet(
+    plans: dict[tuple[str, str], FlowPlan],
+    graph: nx.MultiGraph,
+    config: PlanConfig | None = None,
+) -> dict[tuple[str, str], bool]:
+    """每个 flow 的预测达标布尔（供闭环校验「预测 vs 实测」）。"""
+    cfg = config or PlanConfig()
+    cap = capacity_map(graph)
+    load = _recompute_load(plans, graph)
+    return {
+        k: flow_meets(p, load, cap, graph, cfg.meet_util)
+        for k, p in plans.items()
+    }
+
+
 def plan(
     flows: dict[tuple[str, str], list[Service]],
     graph: nx.MultiGraph,
     config: PlanConfig | None = None,
 ) -> dict[tuple[str, str], FlowPlan]:
-    """为每个 flow 选一条路径；返回 flow_key -> FlowPlan。"""
+    """为每个 flow 选一条路径；返回 flow_key -> FlowPlan。
+
+    纯函数：同一 `(flows, graph, config)` 必然得到同一结果（无随机性）。
+    是否下发由调用方按「修复失效路径 / Δscore ≥ Δmin」决定（见 `baseline.reroute_loop`）。
+    """
     cfg = config or PlanConfig()
     access = access_links(graph)
     all_services = [s for svcs in flows.values() for s in svcs]

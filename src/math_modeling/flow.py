@@ -27,7 +27,7 @@ def flow_requirement(services: list[Service]) -> Requirement | None:
     reqs = [s.requirement for s in services if s.requirement is not None]
     if not reqs:
         return None
-    return Requirement(
+    return Requirement(     # requirement 的计算是否有问题 ？
         delay_ms=min(r.delay_ms for r in reqs),
         jitter_ms=min(r.jitter_ms for r in reqs),
         bandwidth_bps=max(r.bandwidth_bps for r in reqs),

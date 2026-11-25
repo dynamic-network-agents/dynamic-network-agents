@@ -94,3 +94,67 @@ def test_local_search_does_not_decrease_score():
     greedy = plan(flows, g, PlanConfig(k=5, local_search=False))
     improved = plan(flows, g, PlanConfig(k=5, local_search=True))
     assert plan_score(improved, g) >= plan_score(greedy, g)
+
+
+# --------------------------------------------------------------------------- 路径归一化 / 评分
+def _chain_graph(alt_bw=10_000_000):
+    """UAV1—L1—GND1—L2—GND2—L3—UAV2，另有一条较慢的备路径 L4/L5。"""
+    g = nx.MultiGraph()
+    for nd, t in (("UAV1", "uav"), ("UAV2", "uav"),
+                  ("GND1", "ground"), ("GND2", "ground"), ("GND3", "ground")):
+        g.add_node(nd, node_type=t)
+
+    def e(u, v, lid, delay, bw=10_000_000):
+        g.add_edge(
+            u, v, key=lid, link_id=lid, link_type="microwave",
+            delay_ms=delay, jitter_ms=0.5, bandwidth_bps=bw,
+            ber=1e-6, packet_loss_rate=0.0005, delay=delay,
+        )
+
+    e("UAV1", "GND1", "L1", 1.0)
+    e("GND1", "GND2", "L2", 1.0)
+    e("GND2", "UAV2", "L3", 1.0)
+    e("UAV1", "GND3", "L4", 2.0, alt_bw)
+    e("GND3", "GND2", "L5", 2.0, alt_bw)
+    return g
+
+
+def test_normalize_path_accepts_reversed_and_rejects_broken():
+    from algorithms.flow_planner import normalize_path
+    g = _chain_graph()
+    key = ("UAV1", "UAV2")
+    assert normalize_path(g, key, ["L1", "L2", "L3"]) == ["L1", "L2", "L3"]
+    assert normalize_path(g, key, ["L3", "L2", "L1"]) == ["L1", "L2", "L3"]
+    assert normalize_path(g, key, ["L1", "L3"]) is None      # 不连续
+    assert normalize_path(g, key, []) is None
+    assert normalize_path(g, key, None) is None
+
+
+def test_score_with_paths_handles_missing_and_broken():
+    from algorithms.flow_planner import score_with_paths
+    g = _chain_graph()
+    svcs = [_svc("TSV1", "UAV1", "UAV2", 1_000_000, pri=6)]
+    flows = group_services_by_flow(svcs)
+    plans = plan(flows, g, PlanConfig(k=5))
+    key = ("UAV1", "UAV2")
+    assert score_with_paths(plans, g, {key: ["L1", "L2", "L3"]}) == 64.0
+    assert score_with_paths(plans, g, {key: None}) == 0.0
+    assert score_with_paths(plans, g, {key: ["L1", "L3"]}) == 0.0   # 断链 → 不计
+    assert plans[key].path is not None              # 原计划未被污染
+
+
+def test_excluded_path_is_avoided_but_falls_back_when_only_option():
+    g = _chain_graph()
+    svcs = [_svc("TSV1", "UAV1", "UAV2", 1_000_000, pri=6)]
+    flows = group_services_by_flow(svcs)
+    key = ("UAV1", "UAV2")
+    cfg = PlanConfig(k=5, excluded_paths={key: {("L1", "L2", "L3")}})
+    assert plan(flows, g, cfg)[key].path == ["L4", "L5", "L3"]
+
+    # 把所有候选都排除：必须兜底，否则 flow 会彻底失去路径
+    cfg_all = PlanConfig(k=5, excluded_paths={key: {
+        ("L1", "L2", "L3"), ("L4", "L5", "L3"),
+    }})
+    assert plan(flows, g, cfg_all)[key].path is not None
+
+

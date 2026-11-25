@@ -4,5 +4,16 @@ poll_interval_sec: 1.0        # 事件/状态轮询间隔（评测要求 ≤10s�
 http_timeout_sec: 6.0         # API 调用超时
 event_page_limit: 100         # 事件分页大小
 k_shortest_paths: 30          # 候选路径条数 K
-reroute_min_gain: 0.05        # 切换门槛 Δmin（代价需降低比例才切换）
-bandwidth_headroom: 0.2       # 链路容量预留裕度 ρ
+bandwidth_headroom: 0.2       # 链路容量预留裕度 ρ（摆放约束：Σ需求 ≤ bw·(1-ρ)）
+
+# —— 收敛与节流（建议值；留作实验标定，口径见 docs/agents/传统基线选路方案.md §5.8）——
+reroute_min_gain: 2.0         # Δmin：优先级加权达标数增益门槛（单位 Σ2^priority，2^1 为最小值）
+settle_sec: 10.0              # 批下发后静置时长，再采样校验
+verify_windows: 5             # 校验采样窗数（1s 一窗）
+verify_votes: 3               # 判定「达标/失配」所需票数
+corrective_rounds: 1          # 每个 epoch 允许的有界纠正轮数
+trigger_settle_sec: 3.0       # 事件合窗：最后一个可行动事件静默多久才规划
+heartbeat_sec: 60.0           # 静默期实测心跳间隔（只查上轮预测达标的 flow）
+min_switch_interval_sec: 10.0 # 同一 flow 两次改路的最小间隔
+batch_pace_sec: 0.1           # 批内 POST 间隔（≈10 次/秒，避免撞频控）
+max_batches_per_run: 60       # 全场下发批次上限（防"没有尽头"）

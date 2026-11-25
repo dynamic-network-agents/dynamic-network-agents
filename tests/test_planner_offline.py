@@ -55,3 +55,54 @@ def test_planner_offline_sce01():
     # 每个 flow 都应有静态可行路径
     missing = [k for k, p in plans.items() if p.path is None]
     assert not missing, f"无静态可行路径的 flow: {missing}"
+
+
+@pytest.mark.skipif(
+    not (os.path.exists(TOPO) and os.path.exists(BG)),
+    reason="场景数据缺失（simulator/ 未挂载）",
+)
+def test_plan_is_pure_and_installed_plan_has_no_gain():
+    """同一份快照重算必须完全一致；把结果当"已装路径"回灌，Δscore 必须为 0。
+
+    这两个性质是闭环「不再下发」的依据（下发闸门 = 修复 or Δscore ≥ Δmin）。
+    """
+    from algorithms.flow_planner import plan_score, score_with_paths
+
+    nodes, links, services = _load()
+    graph = build_graph(nodes, links)
+    flows = group_services_by_flow(services)
+    cfg = PlanConfig(k=30, local_search=True)
+
+    first = plan(flows, graph, cfg)
+    again = plan(flows, graph, cfg)
+    assert {k: p.path for k, p in first.items()} == {k: p.path for k, p in again.items()}
+
+    installed = {k: p.path for k, p in first.items() if p.path}
+    gain = plan_score(first, graph, cfg) - score_with_paths(first, graph, installed, cfg)
+    assert gain == 0, f"装好之后再规划仍有增益 {gain}，闭环会反复下发"
+
+
+@pytest.mark.skipif(
+    not (os.path.exists(TOPO) and os.path.exists(BG)),
+    reason="场景数据缺失（simulator/ 未挂载）",
+)
+def test_link_cut_only_reroutes_affected_flows():
+    """断一条承重链路：承载它的 flow 必须改路、不得留下穿越断链的路径、分数不下降。"""
+    from algorithms.flow_planner import plan_score
+
+    nodes, links, services = _load()
+    flows = group_services_by_flow(services)
+    cfg = PlanConfig(k=30, local_search=True)
+    base = plan(flows, build_graph(nodes, links), cfg)
+    base_paths = {k: p.path for k, p in base.items() if p.path}
+
+    cut = "L00005"
+    graph2 = build_graph(nodes, [l for l in links if l.link_id != cut])
+    after = plan(flows, graph2, cfg)
+
+    affected = {k for k, p in base_paths.items() if cut in p}
+    changed = {k for k in base_paths if list(after[k].path or []) != list(base_paths[k])}
+    assert affected <= changed, f"承载被断链路的 flow 未改路: {affected - changed}"
+    assert not [k for k, p in after.items() if not p.path], "断链后不应有 flow 失去路径"
+    assert not [k for k, p in after.items() if p.path and cut in p.path]
+    assert plan_score(after, graph2, cfg) >= plan_score(base, build_graph(nodes, links), cfg)

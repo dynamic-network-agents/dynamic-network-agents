@@ -24,6 +24,38 @@ import type {
 import { DASH, mbps, num, pct } from "../lib/format";
 
 type FlowFilter = "all" | "bad" | "staticFail" | "discontinuous";
+type FlowSort = "node" | "triage" | "members";
+
+/** 节点 ID 自然序：UAV2 < UAV10，编号补零/不补零都不错位。 */
+const NODE_ORDER = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
+/** 缺失节点 ID 的 Flow 统一排到末尾。 */
+const MISSING_NODE = "\uffff";
+
+function nodeValue(v?: string | null): string {
+  return v && v.trim() ? v : MISSING_NODE;
+}
+
+function compareFlows(sortBy: FlowSort) {
+  const byNode = (a: Flow, b: Flow) =>
+    NODE_ORDER.compare(nodeValue(a.srcNodeId), nodeValue(b.srcNodeId)) ||
+    NODE_ORDER.compare(nodeValue(a.dstNodeId), nodeValue(b.dstNodeId)) ||
+    NODE_ORDER.compare(a.flowKey, b.flowKey);
+
+  return (a: Flow, b: Flow): number => {
+    if (sortBy === "triage") {
+      return (
+        b.qosMeetFalse - a.qosMeetFalse ||
+        b.staticFailCount - a.staticFailCount ||
+        b.memberCount - a.memberCount ||
+        byNode(a, b)
+      );
+    }
+    if (sortBy === "members") {
+      return b.memberCount - a.memberCount || byNode(a, b);
+    }
+    return byNode(a, b);
+  };
+}
 
 interface Props {
   snap: Snapshot;
@@ -40,6 +72,7 @@ export default function FlowAnalysisPage({ snap, onSelectService, onSelectLink }
   const flows = snap.flows ?? [];
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FlowFilter>("all");
+  const [sortBy, setSortBy] = useState<FlowSort>("node");
   const [selected, setSelected] = useState<string | null>(null);
 
   const activeKey = selected ?? flows[0]?.flowKey ?? null;
@@ -63,14 +96,8 @@ export default function FlowAnalysisPage({ snap, onSelectService, onSelectLink }
           .toLowerCase();
         return haystack.includes(q);
       })
-      .sort(
-        (a, b) =>
-          b.qosMeetFalse - a.qosMeetFalse ||
-          b.staticFailCount - a.staticFailCount ||
-          b.memberCount - a.memberCount ||
-          (a.flowKey < b.flowKey ? -1 : 1)
-      );
-  }, [flows, query, filter]);
+      .sort(compareFlows(sortBy));
+  }, [flows, query, filter, sortBy]);
 
   return (
     <div className="flow-page">
@@ -114,6 +141,16 @@ export default function FlowAnalysisPage({ snap, onSelectService, onSelectLink }
               <option value="bad">有不达标成员</option>
               <option value="staticFail">静态有不可行</option>
               <option value="discontinuous">路径不连续</option>
+            </select>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as FlowSort)}
+              aria-label="Flow 排序"
+              title="排序方式"
+            >
+              <option value="node">节点 ID</option>
+              <option value="triage">不达标优先</option>
+              <option value="members">成员数</option>
             </select>
           </div>
 
