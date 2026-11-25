@@ -61,11 +61,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - 智能体热路径：Python 3.12 + NetworkX（图建模、K-最短路径）
 - 接入：HTTP + JSON 公开 API（`http://{IP}:10100/api/open/v1`，头 `X-Open-Token`，也接受 `X-Ctrl-Token`）；LLM 经 eval 代理 `:10110/v1`（OpenAI 兼容）
-- 运行：Docker Compose（`netsim` / `servicesim` tx,rx / `eval`）；本机 Mac 用 Rosetta 跑 linux/amd64 镜像
+- 运行：Docker Compose（`netsim` / `servicesim` tx,rx / `eval`）；**主环境为服务器 x64**，本机 Mac 仅备用（Rosetta 跑 linux/amd64 镜像）。
 
-## 运行环境
+## 运行环境（两套，服务器为主）
 
-- 目标 Ubuntu 22.04.5 Desktop x64（官方基线）；本机为 Apple Silicon (arm64)，所有镜像为 linux/amd64，靠 Rosetta 模拟，较慢，偶有 API 调用超 6s。
+**主环境：服务器 `root@121.43.114.121`（主机名 `netsim-dev`，Ubuntu 22.04.5 x86_64，4 vCPU / 7G 内存，已配 SSH 免密）。**
+自 2026-11-25 起，**仿真器、agent、baseline、work_bench 一律在服务器上跑**，本机只做编辑与经 SSH 隧道访问（`ssh -L 8000:127.0.0.1:8000 root@121.43.114.121` → `http://127.0.0.1:8000`）。不要在服务器上把 workbench 绑到 0.0.0.0。
+
+**备用环境：本机 Mac**（Apple Silicon，镜像 linux/amd64 靠 Rosetta 转译，慢且控制面易超时）。只用于离线单测和临时调试：`uv run pytest src/ tests/` 实测 71 passed / 7 skipped（仿真器不在线时集成/e2e 自动 skip）。
+
 - 完整启动/停止 runbook：`simulator/README.md`（Linux x64 + 本机 Mac，端口表、就绪信号、日志噪音）、`mac-docker-trial/README.md`（Mac 实际路径：`docker compose -f mac-docker-trial/compose.local.yml ...`，OVS/Rosetta 说明）。
 
 ## 关键事实（非显然，已核实）
@@ -82,14 +86,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **`sim_src/` 是解码副本，不是上游源码**：netsim 的 `.py` 由 `base85+zlib` 包装，变量名被重命名（`x001` 等）、注释被剥离；引用行号时注明是解码件行号。带宽 1000Mbps 封顶发生在 `sdncommon._bw_mbit()`（建 Mininet 链路时）；`ctrl.seed_baseline_link_params()` 会用 `net-topo.json` 原始值重新 `apply_link`，`/links` 的返回值又受运行期覆盖，因此不要只凭一处代码断言带宽，以运行期 `/links` 与启动日志为准。
 - **两套 QoS 判定必须统一**（公式见 `docs/agents/智能体设计文档.md` 第 7 节）：静态 $D=\sum d$、$J=\sqrt{\sum j^2}$、$B=\min b$、$L=1-\prod(1-p)$、$E\approx\sum\varepsilon$；实测用逐秒统计。容差：时延 +1.0、抖动/丢包 +1e-9、误码 +1e-12、带宽无容差。
 - **`POST /simulation/start` 当前镜像未实现**（自测返回 1003「未知接口」）；起测试走 UI 的 `POST /sdn-ui/start`（nginx 服务端注入 ctrl 令牌，非公开 token）。
-- **Rosetta 下控制面会打挂**：40 业务跑约 11 分钟后单线程 `ctrl.py(:8080)` 全接口超时，属已知 Mac 转译限制；正式评测应在 Linux x64，闭环下发宜尽早验证。
+- **Rosetta 下控制面会打挂**（仅影响 Mac 备用环境）：40 业务跑约 11 分钟后单线程 `ctrl.py(:8080)` 全接口超时，属已知转译限制；正式跑/评测一律用服务器 x64。
 
 ## 常用命令
 
-- **装依赖**：`uv sync`（本机 uv + Python 3.14，生成 `.venv`）。
-- **跑全部测试**：`uv run pytest src/ tests/`（离线单测常跑；`tests/integration`、`tests/e2e` 需 netsim 在线，否则自动 skip）。
-- **跑单个测试**：`uv run pytest src/math_modeling/tests/test_qos_checker.py::test_xxx`。
-- **起仿真器（Mac）**：`docker compose -f mac-docker-trial/compose.local.yml up -d netsim` → 等 `[start] 就绪` → `up -d tx rx`；停止 `... down`。重建网络后 tx/rx 要**重启**（不是 `up -d`）。
+- **装依赖**：服务器上项目 venv 已就绪，**不要重装**（无 uv）；本机备用环境用 `uv sync`（uv + Python 3.14，生成 `.venv`）。
+- **跑全部测试（服务器）**：`ssh root@121.43.114.121` → `cd /root/dynamic-network-agents && .venv/bin/python -m pytest src/ tests/`。
+- **跑全部测试（本机）**：`uv run pytest src/ tests/`（离线单测常跑；`tests/integration`、`tests/e2e` 需 netsim 在线，否则自动 skip）。
+- **跑单个测试**：`uv run pytest src/math_modeling/tests/test_qos_checker.py::test_xxx`（服务器上把 `uv run pytest` 换成 `.venv/bin/python -m pytest`）。
+- **起 workbench（服务器）**：`cd /root/dynamic-network-agents/work_bench && mkdir -p logs && nohup ./backend/run.sh >> logs/workbench.log 2>&1 &`；本机 `ssh -L 8000:127.0.0.1:8000 root@121.43.114.121`，浏览器开 `http://127.0.0.1:8000`。
+- **查仿真状态（服务器）**：`docker ps`；`curl -H "X-Ctrl-Token: $(...gateway.json ctrlToken...)" 127.0.0.1:10100/api/ctrl/v1/run-info`（令牌勿打印）。
+- **起仿真器（服务器，已在跑）**：官方 compose（`simulator/docker/netsim`、`servicesim/{tx,rx}`、`eval`），**勿随意 down**；确需重建网络后 tx/rx 要**重启**（不是 `up -d`）。
+- **起仿真器（Mac，备用）**：`docker compose -f mac-docker-trial/compose.local.yml up -d netsim` → 等 `[start] 就绪` → `up -d tx rx`；停止 `... down`。
 - **生成场景库**：走 `.agents/skills/scenario-gen/` 技能；生成后 `validate_library.py --conf gen_conf<NN>` 零违规。
 - **检索仿真器实现**：`rg -n "netem|tbf|corrupt" sim_src/netsim/`、`rg -n "qos_meet|errPct" sim_src/servicesim/`。先看 `sim_src/netsim/openapi.py`（API/QoS/选路）与 `sim_src/netsim/ctrl.py`（tc/OVS/事件）。
 - **查令牌**：`python3 -c "import json;print(json.load(open('simulator/conf/gateway.json'))['openTokens'][0])"`（勿打印到日志/提交）。

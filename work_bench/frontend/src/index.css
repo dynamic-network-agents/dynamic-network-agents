@@ -683,6 +683,18 @@ select {
   cursor: pointer;
 }
 
+/* 链路 / 节点文字：白描边保证压在线条上也清晰 */
+.topo-link-label,
+.topo-node-label {
+  user-select: none;
+}
+
+.topo-labels-toggle.is-on {
+  background: #eef4ff;
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
 .topo-actions {
   position: absolute;
   right: 8px;

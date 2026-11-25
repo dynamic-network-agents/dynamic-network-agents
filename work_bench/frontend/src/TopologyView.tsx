@@ -4,7 +4,8 @@
  * 视觉编码（不只靠颜色）：
  * - 节点形状区分类型：UAV 圆 / 地面 方 / 空中 三角 / 外部引接 菱形；
  * - 链路：正常实线、断开红色实线、风险红色虚线、选中路径蓝色加粗、当前选中链路琥珀色；
- * - 标签只在节点数较少或放大后出现，避免 300 节点时糊成一片。
+ * - 节点 ID 与链路 ID 由右下角「显示文字」开关统一控制（默认显示）；
+ *   关闭后仍保留当前选中对象的 ID，便于核对点选结果。
  *
  * 坐标缺失的节点不绘制，由外层面板标注「布局估算」。
  */
@@ -77,6 +78,7 @@ export default function TopologyView({
   const dragRef = useRef<{ x: number; y: number; vx: number; vy: number } | null>(null);
   const movedRef = useRef(false);
   const [box, setBox] = useState<Box | null>(null);
+  const [labelsOn, setLabelsOn] = useState(true);
 
   const positioned = useMemo(() => nodes.filter((n) => n.position), [nodes]);
   const autoBox = useMemo(() => computeBox(positioned), [positioned]);
@@ -97,8 +99,6 @@ export default function TopologyView({
       }),
     [links, nodeById]
   );
-
-  const showLabels = positioned.length <= 80 || (view ? view.w < (autoBox?.w ?? 1) * 0.4 : false);
 
   const onWheel = useCallback(
     (e: React.WheelEvent) => {
@@ -142,6 +142,7 @@ export default function TopologyView({
   const r = view ? Math.max(view.w * 0.006, 2.2) : 7;
   const stroke = view ? Math.max(view.w * 0.0009, 0.6) : 1;
   const fontSize = view ? Math.max(view.w * 0.009, 6) : 10;
+  const linkFontSize = fontSize * 0.85;
 
   return (
     <div className="topo-canvas">
@@ -186,25 +187,55 @@ export default function TopologyView({
             dash = undefined;
           }
 
+          const dx = d.x - s.x;
+          const dy = d.y - s.y;
+          const len = Math.hypot(dx, dy) || 1;
+          // 标签放在中点，沿法线偏移，避免压在线上
+          const off = linkFontSize * 0.95;
+          const lx = (s.x + d.x) / 2 - (dy / len) * off;
+          const ly = (s.y + d.y) / 2 + (dx / len) * off;
+          const showLabel = labelsOn || isSelected;
+
           return (
-            <line
+            <g
               key={l.linkId}
-              x1={s.x}
-              y1={s.y}
-              x2={d.x}
-              y2={d.y}
-              stroke={color}
-              strokeWidth={width}
-              strokeDasharray={dash}
-              opacity={isDown ? 0.75 : 0.9}
               className="topo-link"
               onClick={guard(() => onSelectLink?.(l.linkId))}
             >
+              <line
+                x1={s.x}
+                y1={s.y}
+                x2={d.x}
+                y2={d.y}
+                stroke={color}
+                strokeWidth={width}
+                strokeDasharray={dash}
+                opacity={isDown ? 0.75 : 0.9}
+              />
+              {showLabel && (
+                <text
+                  x={lx}
+                  y={ly}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize={linkFontSize}
+                  fontWeight={isSelected ? 600 : 400}
+                  fill={isSelected ? "#b45309" : "#475569"}
+                  stroke="#fbfdff"
+                  strokeWidth={linkFontSize * 0.3}
+                  strokeLinejoin="round"
+                  paintOrder="stroke"
+                  pointerEvents="none"
+                  className="topo-link-label"
+                >
+                  {l.linkId}
+                </text>
+              )}
               <title>
                 {`${l.linkId} · ${l.linkType ?? "—"} · ${l.status ?? "状态未知"}`}
                 {isRisk ? " · 风险链路" : ""}
               </title>
-            </line>
+            </g>
           );
         })}
 
@@ -258,14 +289,20 @@ export default function TopologyView({
               <title>
                 {`${n.nodeId} ${n.name ?? ""} · ${n.nodeType ?? "未知类型"} · ${n.status ?? "状态未知"}`}
               </title>
-              {showLabels && (
+              {(labelsOn || isSelected) && (
                 <text
                   x={p.x}
                   y={p.y - r * 1.6}
                   textAnchor="middle"
                   fontSize={fontSize}
-                  fill="#334155"
+                  fontWeight={isSelected ? 600 : 400}
+                  fill={isSelected ? "#b45309" : "#334155"}
+                  stroke="#fbfdff"
+                  strokeWidth={fontSize * 0.28}
+                  strokeLinejoin="round"
+                  paintOrder="stroke"
                   pointerEvents="none"
+                  className="topo-node-label"
                 >
                   {n.nodeId}
                 </text>
@@ -276,6 +313,15 @@ export default function TopologyView({
       </svg>
 
       <div className="topo-actions">
+        <button
+          type="button"
+          className={`btn btn-ghost topo-labels-toggle${labelsOn ? " is-on" : ""}`}
+          aria-pressed={labelsOn}
+          onClick={() => setLabelsOn((v) => !v)}
+          title="显示 / 隐藏节点与链路文字（关闭后仍显示选中对象）"
+        >
+          显示文字
+        </button>
         <button type="button" className="btn btn-ghost" onClick={() => setBox(null)}>
           复位视图
         </button>
