@@ -5,8 +5,8 @@
 """
 import pytest
 
-from util.config import load_open_token, load_settings
-from api.client import SimulatorClient, SimulatorError
+from common.config.settings import load_open_token, load_settings
+from common.simulator.client import SimulatorClient, SimulatorError
 
 
 @pytest.fixture(scope="module")

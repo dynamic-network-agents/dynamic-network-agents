@@ -1,8 +1,8 @@
 # 传统基线选路（FPCB）任务清单
 
-> 目的：把《传统基线选路方案（FPCB）》（`docs/agents/传统基线选路方案.md`）拆成可执行、可勾选的任务。
+> 目的：把《传统基线选路方案（FPCB）》（`docs/baseline/传统基线选路方案.md`）拆成可执行、可勾选的任务。
 > 原则：**先离线（不接仿真器）验证算法正确，再接在线闭环**；先做贪心，局部搜索作为增强。
-> 依赖：`docs/math_modeling/数学建模方案.md` §6.2/§6.5；`src/CLAUDE.md` 的模块边界。
+> 依赖：`docs/common/modeling/数学建模方案.md` §6.2/§6.5；`src/CLAUDE.md` 的模块边界。
 > 状态（2026-11-22）：T0–T2、T3.1、T4.1–T4.2（代码 + mock 单测）、T5.1–T5.2 已完成；**T3.2（对比 optimize_flow）、T5.3（实验记录）以及在线真机验证待做**。
 
 ---
@@ -42,9 +42,13 @@
   - `classify_flow`（F1/F2/F3）、`plan(flows, G, cfg)`。
   - 流程：静态可行候选 → 分类 → test 权重降序贪心 → 纯背景 least-contention → F1/F2 least-contention。
   - 验收：sce01 输出 17 个 flow 各一条静态可行路径。
+  - 注（2026-11-26 重构）：实现已拆分为 `flow_planner.py`（门面 + `plan`）/
+    `flow_models.py` / `flow_classification.py` / `flow_candidates.py` /
+    `flow_scoring.py` / `flow_placement.py`，函数名见各模块。
 - [x] **T2.2** 局部搜索 `local_search`
   - 对未预测达标的 test flow 换候选路径（hill-climb，按优先级加权达标数）。
   - 验收：sce01 上贪心 180 → 局部搜索 244（TSV0010 102%→95%），不引入静态违规。
+  - 注（2026-11-26 重构）：现位于 `flow_placement.py::local_search`。
 
 ---
 

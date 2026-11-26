@@ -1,13 +1,13 @@
 """端到端闭环测试：连仿真器 → 构图 → 优化 → 下发路径（需 netsim 在线 + 有 running 业务）。"""
 import pytest
 
-from api.client import SimulatorClient
-from api.executor import PathExecutor
-from algorithms.graph import build_graph, parse_links, parse_nodes
-from algorithms.optimize import optimize_flow
-from math_modeling.flow import flow_requirement, group_services_by_flow
-from math_modeling.models import Service
-from util.config import load_open_token, load_settings
+from common.simulator.client import SimulatorClient
+from common.simulator.executor import PathExecutor
+from common.algorithms.topology.graph import build_graph, parse_links, parse_nodes
+from common.algorithms.path.single_flow import optimize_flow
+from common.modeling.flow import flow_requirement, group_services_by_flow
+from common.modeling.models import Service
+from common.config.settings import load_open_token, load_settings
 
 
 @pytest.fixture(scope="module")

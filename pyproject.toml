@@ -21,12 +21,24 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = [
-    "src/api",
-    "src/math_modeling",
-    "src/algorithms",
+    "src/common",
+    "src/common/simulator",
+    "src/common/perception",
+    "src/common/modeling",
+    "src/common/algorithms",
+    "src/common/algorithms/topology",
+    "src/common/algorithms/path",
+    "src/common/algorithms/flow",
+    "src/common/control",
+    "src/common/observability",
+    "src/common/config",
+    "src/common/util",
     "src/baseline",
     "src/agents",
-    "src/util",
+    "src/agents/ops",
+    "src/agents/resource",
+    "src/agents/a2a",
+    "src/agents/llm",
 ]
 
 [tool.pytest.ini_options]

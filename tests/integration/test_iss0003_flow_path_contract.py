@@ -29,11 +29,11 @@ from typing import Any
 import pytest
 import requests
 
-from api.client import SimulatorClient
-from math_modeling.models import LinkParams, Requirement
-from math_modeling.path_qos import compose_from_params
-from math_modeling.qos_checker import check_qos
-from util.config import load_settings, load_tokens
+from common.simulator.client import SimulatorClient
+from common.modeling.models import LinkParams, Requirement
+from common.modeling.path_qos import compose_from_params
+from common.modeling.qos_checker import check_qos
+from common.config.settings import load_settings, load_tokens
 
 SUITE_SCENE = "sce20261010-conf02/sce01"
 FLOW = ("UAV0001", "UAV0002")

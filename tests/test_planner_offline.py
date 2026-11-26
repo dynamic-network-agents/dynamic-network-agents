@@ -7,10 +7,10 @@ import os
 
 import pytest
 
-from algorithms.flow_planner import PlanConfig, plan
-from algorithms.graph import build_graph
-from math_modeling.flow import group_services_by_flow
-from math_modeling.models import Link, Node, Service
+from common.algorithms.flow.planner import PlanConfig, plan
+from common.algorithms.topology.graph import build_graph
+from common.modeling.flow import group_services_by_flow
+from common.modeling.models import Link, Node, Service
 
 SCEN_DIR = os.path.join(
     os.path.dirname(__file__), "..", "simulator", "data", "scenarios",
@@ -41,13 +41,13 @@ def test_planner_offline_sce01():
     flows = group_services_by_flow(services)
     assert len(flows) == 17                     # 40 业务 → 17 个无序 flow
 
-    plans = plan(flows, graph, PlanConfig(k=30))
+    plans = plan(flows, graph, PlanConfig(candidate_path_count=30))
     assert len(plans) == 17
 
     # F1/F2（硬失败）应恰好是 UAV0001 的 5 条 test 业务
     hard_test = {
         s.service_id
-        for p in plans.values() if p.cls.hard
+        for p in plans.values() if p.flow_class.hard
         for s in p.services if s.is_test
     }
     assert hard_test == {"TSV0002", "TSV0005", "TSV0006", "TSV0007", "TSV0008"}
@@ -66,19 +66,19 @@ def test_plan_is_pure_and_installed_plan_has_no_gain():
 
     这两个性质是闭环「不再下发」的依据（下发闸门 = 修复 or Δscore ≥ Δmin）。
     """
-    from algorithms.flow_planner import plan_score, score_with_paths
+    from common.algorithms.flow.planner import weighted_score, weighted_score_with_paths
 
     nodes, links, services = _load()
     graph = build_graph(nodes, links)
     flows = group_services_by_flow(services)
-    cfg = PlanConfig(k=30, local_search=True)
+    cfg = PlanConfig(candidate_path_count=30, enable_local_search=True)
 
     first = plan(flows, graph, cfg)
     again = plan(flows, graph, cfg)
     assert {k: p.path for k, p in first.items()} == {k: p.path for k, p in again.items()}
 
     installed = {k: p.path for k, p in first.items() if p.path}
-    gain = plan_score(first, graph, cfg) - score_with_paths(first, graph, installed, cfg)
+    gain = weighted_score(first, graph, cfg) - weighted_score_with_paths(first, graph, installed, cfg)
     assert gain == 0, f"装好之后再规划仍有增益 {gain}，闭环会反复下发"
 
 
@@ -88,11 +88,11 @@ def test_plan_is_pure_and_installed_plan_has_no_gain():
 )
 def test_link_cut_only_reroutes_affected_flows():
     """断一条承重链路：承载它的 flow 必须改路、不得留下穿越断链的路径、分数不下降。"""
-    from algorithms.flow_planner import plan_score
+    from common.algorithms.flow.planner import weighted_score
 
     nodes, links, services = _load()
     flows = group_services_by_flow(services)
-    cfg = PlanConfig(k=30, local_search=True)
+    cfg = PlanConfig(candidate_path_count=30, enable_local_search=True)
     base = plan(flows, build_graph(nodes, links), cfg)
     base_paths = {k: p.path for k, p in base.items() if p.path}
 
@@ -105,4 +105,4 @@ def test_link_cut_only_reroutes_affected_flows():
     assert affected <= changed, f"承载被断链路的 flow 未改路: {affected - changed}"
     assert not [k for k, p in after.items() if not p.path], "断链后不应有 flow 失去路径"
     assert not [k for k, p in after.items() if p.path and cut in p.path]
-    assert plan_score(after, graph2, cfg) >= plan_score(base, build_graph(nodes, links), cfg)
+    assert weighted_score(after, graph2, cfg) >= weighted_score(base, build_graph(nodes, links), cfg)

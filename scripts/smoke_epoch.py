@@ -7,11 +7,11 @@ import collections as C
 import json
 import sys
 
-from algorithms.capacity import add_load, capacity_map, directional_demand
-from algorithms.flow_planner import normalize_path
-from algorithms.graph import build_graph
-from baseline.reroute_loop import Orchestrator, OrchestratorConfig
-from math_modeling.models import Link, Node, Service
+from common.algorithms.topology.capacity import add_load, capacity_map, directional_demand
+from common.algorithms.flow.planner import normalize_path
+from common.algorithms.topology.graph import build_graph
+from common.control.loop import Orchestrator, OrchestratorConfig
+from common.modeling.models import Link, Node, Service
 
 SC = "simulator/data/scenarios/sce20261010-conf02/sce01/"
 
@@ -109,9 +109,9 @@ class ScenarioClient:
 def main():
     client, clock = ScenarioClient(), Clock()
     orch = Orchestrator(client, OrchestratorConfig(
-        k=30, pace_s=0, trigger_settle_s=3, settle_s=10,
-        verify_windows=3, verify_votes=2, corrective_rounds=1,
-        measured_check_interval_s=60, switch_min_interval_s=10,
+        candidate_path_count=30, batch_pace_s=0, event_coalesce_s=3, batch_settle_s=10,
+        verify_window_count=3, verify_required_votes=2, corrective_round_limit=1,
+        heartbeat_interval_s=60, min_switch_interval_s=10,
     ), clock=clock, sleep=lambda s: clock.tick(s))
 
     def advance(seconds, label):
@@ -121,7 +121,7 @@ def main():
             client.ts = clock.t
             n += orch.step()
         print(f"  {label}: +{n} POST (累计 {len(client.applied)}), "
-              f"phase={orch._phase.value}, batches={orch._batches}")
+              f"phase={orch.phase.value}, batches={orch.batch_count}")
 
     print("== T0 首轮 ==")
     print("  force epoch POSTs:", orch.step(force=True))

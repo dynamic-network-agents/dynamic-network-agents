@@ -6,7 +6,7 @@ event_page_limit: 100         # 事件分页大小
 k_shortest_paths: 30          # 候选路径条数 K
 bandwidth_headroom: 0.2       # 链路容量预留裕度 ρ（摆放约束：Σ需求 ≤ bw·(1-ρ)）
 
-# —— 收敛与节流（建议值；留作实验标定，口径见 docs/agents/传统基线选路方案.md §5.8）——
+# —— 收敛与节流（建议值；留作实验标定，口径见 docs/common/control/闭环状态机与收敛判据.md）——
 reroute_min_gain: 2.0         # Δmin：优先级加权达标数增益门槛（单位 Σ2^priority，2^1 为最小值）
 settle_sec: 10.0              # 批下发后静置时长，再采样校验
 verify_windows: 5             # 校验采样窗数（1s 一窗）

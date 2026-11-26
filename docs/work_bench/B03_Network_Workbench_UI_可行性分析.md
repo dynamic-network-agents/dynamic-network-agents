@@ -18,7 +18,7 @@
 | `work_bench/CLAUDE.md` | 三条硬约束、数据口径、核心数据模型（Service → Flow → Path） |
 | `B03_DebugConsole_P0-P3任务分析.md` | 范围决策（明确不做）、已核实事实、运行期基线 |
 | `B03_DebugConsole_task_split.md` | Epic / 里程碑划分 |
-| `docs/agents/智能体设计文档.md` §7 | 两套 QoS 公式与容差 |
+| `docs/common/modeling/数学建模方案.md` §4 | 两套 QoS 公式与容差 |
 
 由此产生三条落地规则：
 

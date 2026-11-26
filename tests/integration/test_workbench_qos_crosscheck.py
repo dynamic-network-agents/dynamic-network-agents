@@ -21,9 +21,9 @@ _spec.loader.exec_module(_wb_qos)
 compose_qos = _wb_qos.compose_qos
 check_static = _wb_qos.check_static
 
-from math_modeling.models import LinkParams, Requirement  # noqa: E402
-from math_modeling.path_qos import compose_from_params  # noqa: E402
-from math_modeling.qos_checker import check_qos  # noqa: E402
+from common.modeling.models import LinkParams, Requirement  # noqa: E402
+from common.modeling.path_qos import compose_from_params  # noqa: E402
+from common.modeling.qos_checker import check_qos  # noqa: E402
 
 CASES = [
     [(5.0, 3.0, 1_000_000, 1e-5, 0.01), (7.0, 4.0, 500_000, 2e-5, 0.02)],

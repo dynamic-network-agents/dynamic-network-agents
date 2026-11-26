@@ -1,5 +1,6 @@
 """reroute_loop 在线闭环单测（mock client，不依赖仿真器）。"""
-from baseline.reroute_loop import Orchestrator, OrchestratorConfig
+from common.perception.events import filter_actionable
+from common.control.loop import Orchestrator, OrchestratorConfig
 
 
 class Clock:
@@ -109,7 +110,7 @@ def _service(sid="TSV0001", src="UAV1", dst="UAV2", pri=4, bw=1_000_000, cat="te
 
 def test_step_plans_and_applies_when_no_current_path():
     client = MockClient(_topology(), _links(), {"TSV0001": _service()}, current_paths={})
-    orch = Orchestrator(client, OrchestratorConfig(k=5, switch_min_interval_s=0))
+    orch = Orchestrator(client, OrchestratorConfig(candidate_path_count=5, min_switch_interval_s=0))
     assert orch.step(force=True) == 1
     assert client.applied == [("TSV0001", ["L1", "L2", "L3"])]
 
@@ -120,7 +121,7 @@ def test_step_reverses_path_for_reverse_service():
         _topology(), _links(), {"TSV0002": _service("TSV0002", "UAV2", "UAV1")},
         current_paths={},
     )
-    orch = Orchestrator(client, OrchestratorConfig(k=5, switch_min_interval_s=0))
+    orch = Orchestrator(client, OrchestratorConfig(candidate_path_count=5, min_switch_interval_s=0))
     assert orch.step(force=True) == 1
     assert client.applied == [("TSV0002", ["L3", "L2", "L1"])]
 
@@ -130,7 +131,7 @@ def test_step_skips_when_path_unchanged():
         _topology(), _links(), {"TSV0001": _service()},
         current_paths={"TSV0001": ["L1", "L2", "L3"]},
     )
-    orch = Orchestrator(client, OrchestratorConfig(k=5, switch_min_interval_s=0))
+    orch = Orchestrator(client, OrchestratorConfig(candidate_path_count=5, min_switch_interval_s=0))
     assert orch.step(force=True) == 0
     assert client.applied == []
 
@@ -138,15 +139,15 @@ def test_step_skips_when_path_unchanged():
 def test_event_cursor_starts_from_server_time():
     # skip_history=True：首轮用 GET /time 的 tsUs 初始化游标，不重放历史事件
     client = MockClient(_topology(), _links(), {}, server_ts_us=1_800_000_123_456_789)
-    orch = Orchestrator(client, OrchestratorConfig(k=5, skip_history=True))
+    orch = Orchestrator(client, OrchestratorConfig(candidate_path_count=5, skip_history=True))
     orch.step()
     assert client.event_cursors == [1_800_000_123_456_789]
-    assert orch.since_ts_us == 1_800_000_123_456_789
+    assert orch.events.since_ts_us == 1_800_000_123_456_789
 
 
 def test_event_cursor_replays_history_when_disabled():
     client = MockClient(_topology(), _links(), {}, server_ts_us=1_800_000_123_456_789)
-    orch = Orchestrator(client, OrchestratorConfig(k=5, skip_history=False))
+    orch = Orchestrator(client, OrchestratorConfig(candidate_path_count=5, skip_history=False))
     orch.step()
     assert client.event_cursors == [0]
 
@@ -157,7 +158,7 @@ def test_event_cursor_falls_back_to_zero_without_server_time():
             raise RuntimeError("boom")
 
     client = NoTimeClient(_topology(), _links(), {})
-    orch = Orchestrator(client, OrchestratorConfig(k=5, skip_history=True))
+    orch = Orchestrator(client, OrchestratorConfig(candidate_path_count=5, skip_history=True))
     orch.step()
     assert client.event_cursors == [0]
 
@@ -190,9 +191,10 @@ def _two_path_links(bw_main=10_000_000, bw_alt=10_000_000):
 
 
 def _orch(client, clock=None, **kw):
-    base = dict(k=5, switch_min_interval_s=0.0, pace_s=0.0, trigger_settle_s=0.0,
-                settle_s=10.0, verify_windows=2, verify_votes=2,
-                corrective_rounds=1, measured_check_interval_s=60.0)
+    base = dict(candidate_path_count=5, min_switch_interval_s=0.0, batch_pace_s=0.0,
+                event_coalesce_s=0.0, batch_settle_s=10.0, verify_window_count=2,
+                verify_required_votes=2, corrective_round_limit=1,
+                heartbeat_interval_s=60.0)
     base.update(kw)
     clock = clock or Clock()
     return Orchestrator(client, OrchestratorConfig(**base), clock=clock,
@@ -201,7 +203,7 @@ def _orch(client, clock=None, **kw):
 
 def _settle_and_verify(orch, clock, max_steps=6):
     """推进到校验完成（不关心返回值）。"""
-    clock.tick(orch.config.settle_s + 0.1)
+    clock.tick(orch.config.batch_settle_s + 0.1)
     for _ in range(max_steps):
         orch.step()
         clock.tick(1.1)
@@ -220,13 +222,13 @@ def test_same_path_ignores_submit_direction():
 def test_own_path_change_event_is_not_actionable():
     own = {"eventId": "EVT1", "type": "service_state_changed", "tsUs": 1,
            "payload": {"serviceId": "TSV0001", "status": "running", "pathChanged": True}}
-    assert Orchestrator._actionable([own]) == []
+    assert filter_actionable([own]) == []
 
     stopped = {"eventId": "EVT2", "type": "service_state_changed", "tsUs": 2,
                "payload": {"serviceId": "TSV0001", "status": "stopped", "pathChanged": False}}
     link = {"eventId": "EVT3", "type": "link_state_changed", "tsUs": 3,
             "payload": {"linkId": "L1", "event": "param_change"}}
-    assert len(Orchestrator._actionable([own, stopped, link])) == 2
+    assert len(filter_actionable([own, stopped, link])) == 2
 
 
 def test_no_repost_after_one_batch():
@@ -241,7 +243,7 @@ def test_no_repost_after_one_batch():
     for _ in range(10):
         clock.tick(5.0)
         assert orch.step() == 0
-    clock.tick(orch.config.measured_check_interval_s + 1)
+    clock.tick(orch.config.heartbeat_interval_s + 1)
     assert orch.step() == 0
     assert len(client.applied) == 1
 
@@ -275,7 +277,7 @@ def test_delta_min_blocks_zero_gain_background_move():
     assert client.applied == []
 
     client2, orch2 = scenario()
-    assert _orch(client2, delta_min=0.0).step(force=True) == 1
+    assert _orch(client2, min_gain_threshold=0.0).step(force=True) == 1
 
 
 def test_hard_flow_costs_no_action():
@@ -308,7 +310,7 @@ def test_verify_mismatch_penalizes_path_and_corrects():
     _settle_and_verify(orch, clock)
     assert len(client.applied) == 2
     assert client.applied[0][1] != client.applied[1][1]
-    assert tuple(first) in orch._penalty[("UAV1", "UAV2")]
+    assert tuple(first) in orch.verifier.penalized_paths[("UAV1", "UAV2")]
 
 
 def test_batch_budget_stops_optimization():

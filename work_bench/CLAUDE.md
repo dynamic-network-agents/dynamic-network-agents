@@ -144,4 +144,4 @@ cd frontend && pnpm build
 - 分页参数是 `page`/`size`（默认 500、上限 2000）；`/topology` 不分页，可用于对账。
 - `actual` 只有 6 键；`qosMeet` 容差：delay +1.0ms、jitter/loss +1e-9、带宽无容差、`errPct ≤ ber×100+1e-9`。
 - `node_move` 事件当前存在缺陷（脚本属性结构与处理读取字段不一致、`linkTypes.json` 缺 `losMeters`），控制台必须以实际 API 观测为事实来源。
-- 详见主 `CLAUDE.md`「关键事实」与 `docs/agents/智能体设计文档.md` 第 7 节（两套 QoS 判定公式与容差），端口/令牌细节见 `docs/work_bench/B03_Workbench_端口令牌与服务器部署.md`。
+- 详见主 `CLAUDE.md`「关键事实」与 `docs/common/modeling/数学建模方案.md` §4（两套 QoS 判定公式与容差，唯一权威源），端口/令牌细节见 `docs/work_bench/B03_Workbench_端口令牌与服务器部署.md`。
